@@ -45,3 +45,9 @@ img {
 .icon:hover {
   color: white;
 }
+
+.texSeach {
+  border: none;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
