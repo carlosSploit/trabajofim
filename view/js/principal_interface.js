@@ -14,6 +14,9 @@ function principal(){
     $("#home").click(function (event){ //cuando se preciona la opccion de log, cambia el contenedor
         camb_content("home");
     });
+    $("#store").click(function (event){ //cuando se preciona la opccion de log, cambia el contenedor
+        camb_content("store");
+    });
 }
 
 function camb_content(mensaje){
@@ -24,6 +27,8 @@ function camb_content(mensaje){
        case "log":$("#contenedor_cuerpo").attr("src","./view/login.html");break;
         /*hace un cambio de atributo del contenedor a la interface home.html*/
        case "home":$("#contenedor_cuerpo").attr("src","./view/home.html");break;
+        /*hace un cambio de atributo del contenedor a la interface home.html*/
+       case "store":$("#contenedor_cuerpo").attr("src","./view/store.html");break;
     } 
 }
 

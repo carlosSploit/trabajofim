@@ -12,6 +12,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/store.css">
+        <link rel="stylesheet" href="css/starrr.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,17 +23,18 @@ and open the template in the editor.
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-bars my-1 text-left icon"></i> Categorias
+                        <i class="fas fa-ellipsis-v my-1 text-left icon"></i>   Categorias
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#"><i class="fas fa-tshirt my-1 text-left icon"></i>Ropa</a>
-                      <a class="dropdown-item" href="#"><i class="fas fa-blender-phone my-1 text-left icon"></i>Electrodomesticos</a>
-                      <a class="dropdown-item" href="#"><i class="fas fa-laptop my-1 text-left icon"></i>Computadoras</a>
-                      <a class="dropdown-item" href="#"><i class="fas fa-mobile my-1 text-left icon"></i>Celulares</a>
+                      <!--card de categoria disponibles-->
+                      <a class="dropdown-item" ><i class="fas fa-tshirt my-1 text-left icon"></i> Ropa</a>
+                      <a class="dropdown-item" ><i class="fas fa-blender-phone my-1 text-left icon"></i> Electrodomesticos</a>
+                      <a class="dropdown-item" ><i class="fas fa-laptop my-1 text-left icon"></i> Computadoras</a>
+                      <a class="dropdown-item" ><i class="fas fa-mobile my-1 text-left icon"></i> Celulares</a>
                     </div>
                 </li>
               </ul>
-              <form class="form-inline my-2">
+              <form class=" my-2">
                 <div class="input-group conte">
                     <input type="text" class="form-control texSeach" placeholder="search" aria-label="Username" aria-describedby="basic-addon1">
                     <div class="">
@@ -40,11 +42,55 @@ and open the template in the editor.
                     </div>
                 </div>
               </form>
-
+              <form class=" my-2">
+                <div class="input-group conte">
+                    <div class="">
+                        <span class="mx-3" id="basic-addon1"><i class="fas fa-shopping-cart my-1 icon"></i></span>
+                    </div>
+                </div>
+              </form>
             </div>
-          </nav>
-        
-        
+        </nav>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Gemeral</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Electrodomesticos</li>
+            </ol>
+        </nav>
+
+        <div class="contariner my-0">
+            <div class="row">
+                <div class="col-3">
+                    <aside class="Form my-2 mx-2" >
+                        <div class="contariner">
+                            <div class="row no-gutters" style="background: #eceff1; padding-top:-10px; width: 100%; height: 70vh;">
+
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-9">
+                    <section class="Form my-2 mx-2">
+                        <div class="contariner">
+                            <div class="row no-gutters" style="background: blue; padding-top:-10px ; width: 100%; height: 70vh;">
+                                <!--card de productos generico-->
+                                <div class="card mx-1 my-1" style="width: 150px; height: 180px;">
+                                    <img class="caratCard mx-auto my-1" src="./resorces/fondo_homeprinci.jpg" alt="Card image cap">
+                                    <div style="width: 100%; height: auto;"><h6 class="textCard">ella no te ama</h6></div>
+                                    <div id="star"></div>
+                                    <div style="width: 100%; height: auto;"><h6 class="textCardPrecio">hola </h6></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!--Modales de producto--->
+        <script type="text/javascript" src="view/js/store.js"></script>
+        <script type="text/javascript" src="view/js/starrr.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
