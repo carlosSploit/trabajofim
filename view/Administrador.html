@@ -25,38 +25,87 @@ and open the template in the editor.
 
 <body>
     <div class="row" style="margin-top: 55px;">
-        <div class="nav flex-column nav-pills col-2 mx-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-                aria-controls="v-pills-home" aria-selected="true">Mantenimiento</a>
+        <div class="nav flex-column nav-pills col-2 mx-5" style="background-color:#eceff1 ; height: 75vh;"
+            id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link btn-block active" style="width: 100%;" id="v-pills-home-tab" data-toggle="pill"
+                href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Mantenimiento</a>
             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
                 aria-controls="v-pills-profile" aria-selected="false">Analizador</a>
         </div>
         <div class="tab-content col-9" id="v-pills-tabContent">
-            <div class="row">
-                <div class="col-3">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Other
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <!--        card de categoria disponibles         -->
+                                            <a class="dropdown-item"><i class="fas fa-tshirt my-1 text-left icon"></i>
+                                                Ciudad</a>
+                                            <!-------------------------------------------------->
+                                            <a class="dropdown-item"><i
+                                                    class="fas fa-blender-phone my-1 text-left icon"></i>
+                                                Proveedores</a>
+                                            <a class="dropdown-item"><i class="fas fa-laptop my-1 text-left icon"></i>
+                                            </a>
+                                            <a class="dropdown-item"><i class="fas fa-mobile my-1 text-left icon"></i>
+                                                Celulares</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Categorias
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <!--        card de categoria disponibles         -->
+                                            <a class="dropdown-item"><i class="fas fa-tshirt my-1 text-left icon"></i>
+                                                Ropa</a>
+                                            <!-------------------------------------------------->
+                                            <a class="dropdown-item"><i
+                                                    class="fas fa-blender-phone my-1 text-left icon"></i>
+                                                Electrodomesticos</a>
+                                            <a class="dropdown-item"><i class="fas fa-laptop my-1 text-left icon"></i>
+                                                Computadoras</a>
+                                            <a class="dropdown-item"><i class="fas fa-mobile my-1 text-left icon"></i>
+                                                Celulares</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-                </div>
-                <div class="col-6">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="4567 4512 3698 4512" aria-label="Direccion"
-                            aria-describedby="basic-addon1">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">🔎</span>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="search" aria-label="Direccion"
+                                aria-describedby="basic-addon1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">🔎</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary btn-block">Nuevo Producto</button>
+                    </div>
                 </div>
-                <div class="col-3">
-
-                </div>
-            </div>
-            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <section class="my-2" style="margin-left: -40px;">
                     <div class="container">
                         <div class="row no-gutters"
                             style="background:  #eceff1; padding-top:-10px ; width: 100%; height: 70vh; display: grid;grid-template-columns:180px 180px 180px 180px 180px ; grid-row-gap: 10px; overflow:scroll;overflow-x: hidden;">
                             <!--          card de productos generico            -->
                             <div id="456789" class="card mx-1 my-1"
-                                style="width: 170px; height: 180px; border-radius: 10px; overflow: hidden;">
+                                style="width: 170px; height: 270px; border-radius: 10px; overflow: hidden;">
                                 <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg"
                                     alt="Card image cap">
                                 <div class="mx-2" style="width: 100%; height: auto;">
@@ -72,6 +121,85 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
+                                <div class="container" style="width: 100%; margin-top: 10px;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-primary btn-block"
+                                                style="height: 40px; text-align: center;">Actualizar</button>
+                                        </div>
+                                    </div>
+                                    <div class="row my-1">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------------------------------------------------>
+                            <!--          card de productos generico            -->
+                            <div id="456789" class="card mx-1 my-1"
+                                style="width: 170px; height: 270px; border-radius: 10px; overflow: hidden;">
+                                <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg"
+                                    alt="Card image cap">
+                                <div class="mx-2" style="width: 100%; height: auto;">
+                                    <h6 class="textCard">Prenda de verano</h6>
+                                </div>
+                                <div class="container" style="width: 100%;">
+                                    <div class="row extencion">
+                                        <div class="col-sm-6 ContextCarTex">
+                                            <h6 class="textPunt">4,5 <i class="fas fa-star icon"></i></h6>
+                                        </div>
+                                        <div class="col-sm-6 ContextCarTex">
+                                            <p class="textCoint">S/.4000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container" style="width: 100%; margin-top: 10px;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-primary btn-block"
+                                                style="height: 40px; text-align: center;">Actualizar</button>
+                                        </div>
+                                    </div>
+                                    <div class="row my-1">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------------------------------------------------>
+                            <!--          card de productos generico            -->
+                            <div id="456789" class="card mx-1 my-1"
+                                style="width: 170px; height: 270px; border-radius: 10px; overflow: hidden;">
+                                <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg"
+                                    alt="Card image cap">
+                                <div class="mx-2" style="width: 100%; height: auto;">
+                                    <h6 class="textCard">Prenda de verano</h6>
+                                </div>
+                                <div class="container" style="width: 100%;">
+                                    <div class="row extencion">
+                                        <div class="col-sm-6 ContextCarTex">
+                                            <h6 class="textPunt">4,5 <i class="fas fa-star icon"></i></h6>
+                                        </div>
+                                        <div class="col-sm-6 ContextCarTex">
+                                            <p class="textCoint">S/.4000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container" style="width: 100%; margin-top: 10px;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-primary btn-block"
+                                                style="height: 40px; text-align: center;">Actualizar</button>
+                                        </div>
+                                    </div>
+                                    <div class="row my-1">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!------------------------------------------------------>
                         </div>
@@ -79,175 +207,12 @@ and open the template in the editor.
                 </section>
             </div>
             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                yaaaaaaaaaaaaaaaaaaa qwwwwwwwwwwwwwwwwwwwwwwwwww</div>
+                <button type="button" class="btn btn-secondary btn-block">Nuevo producto</button>
+            </div>
 
         </div>
     </div>
 
-    <div class="contariner my-0">
-        <div class="row">
-            <div class="col-3">
-                <aside class="Form my-2 mx-2">
-                    <div class="container">
-                        <h5 class="mx-2 my-2"> <i class="fas fa-ellipsis-v"></i> Filtro de busqueda: </h5>
-                        <button type="button" class="btn btn-secondary btn-block">Filtrar</button>
-                        <div class="row no-gutters"
-                            style="background: #eceff1; margin-top:10px; width: 100%; height: 60vh;">
-                            <!--- contenedor de filtros de busqueda -->
-                            <div class="accordion col-sm-12" id="accordionExample">
-                                <!-- Cart del fitro numero 1 --->
-                                <div class="card">
-                                    <!-- Cart del encabezado --->
-                                    <div class="card-header" id="headingOne">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left" type="button"
-                                                data-toggle="collapse" data-target="#starcollapse" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                <i class="fas fa-star icon"></i> Puntuaciones
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <!-- Cart del curpo --->
-                                    <div id="starcollapse" class="collapse show" aria-labelledby="headingOne"
-                                        data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <!-- Cart de alternativa chekbox con una estrella --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    <i class="fas fa-star icon"></i>
-                                                </label>
-                                            </div>
-                                            <!-- Cart de alternativa chekbox dos estrellas --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                </label>
-                                            </div>
-                                            <!-- Cart de alternativa chekbox tres estrellas --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                </label>
-                                            </div>
-                                            <!-- Cart de alternativa chekbox cuatro estrellas --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                </label>
-                                            </div>
-                                            <!-- Cart de alternativa chekbox cinco estrellas --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                    <i class="fas fa-star icon"></i>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!------------------------------>
-                                <!-- Cart del fitro numero 2 --->
-                                <div class="card">
-                                    <!-- Cart del encabezado --->
-                                    <div class="card-header" id="headingTwo">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo">
-                                                <i class="fas fa-coins icon"></i> Coins
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <!-- Cart del curpo --->
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                        data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <!-- Cart de alternativa chekbox 0-50 --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    0 - 50
-                                                </label>
-                                            </div>
-                                            <!-- Cart de alternativa chekbox 50-100 --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    50 - 100
-                                                </label>
-                                            </div>
-                                            <!-- Cart de alternativa chekbox 100-500 --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    100 - 500
-                                                </label>
-                                            </div>
-                                            <!-- Cart de alternativa chekbox 500-1000 --->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    500 - 1000
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!------------------------------>
-                            </div>
-                            <!---------------------------------------->
-                        </div>
-                    </div>
-                </aside>
-            </div>
-            <div class="col-9">
-
-            </div>
-        </div>
-    </div>
-
-    <!--Modales de producto--->
-    <div class="modal fade" id="infoProducto" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Carrito de compras</h5>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-                <div class="modal-body" id="contModal">
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!------------------------------->
-    <!--Modales de carrito de compra-->
-
-    <!------------------------------->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
