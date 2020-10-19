@@ -46,16 +46,10 @@ and open the template in the editor.
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <!--        card de categoria disponibles         -->
-                                            <a class="dropdown-item"><i class="fas fa-tshirt my-1 text-left icon"></i>
-                                                Ciudad</a>
+                                            <a class="dropdown-item">🌇 Ciudad</a>
                                             <!-------------------------------------------------->
-                                            <a class="dropdown-item"><i
-                                                    class="fas fa-blender-phone my-1 text-left icon"></i>
-                                                Proveedores</a>
-                                            <a class="dropdown-item"><i class="fas fa-laptop my-1 text-left icon"></i>
-                                                Categoria Producto</a>
-                                            <a class="dropdown-item"><i class="fas fa-mobile my-1 text-left icon"></i>
-                                                Celulares</a>
+                                            <a class="dropdown-item">👷 Proveedores</a>
+                                            <a class="dropdown-item">🎮 Categoria Producto</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -69,16 +63,11 @@ and open the template in the editor.
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <!--        card de categoria disponibles         -->
-                                            <a class="dropdown-item"><i class="fas fa-tshirt my-1 text-left icon"></i>
-                                                Ropa</a>
+                                            <a class="dropdown-item">👕 Ropa</a>
                                             <!-------------------------------------------------->
-                                            <a class="dropdown-item"><i
-                                                    class="fas fa-blender-phone my-1 text-left icon"></i>
-                                                Electrodomesticos</a>
-                                            <a class="dropdown-item"><i class="fas fa-laptop my-1 text-left icon"></i>
-                                                Computadoras</a>
-                                            <a class="dropdown-item"><i class="fas fa-mobile my-1 text-left icon"></i>
-                                                Celulares</a>
+                                            <a class="dropdown-item">📺 Electrodomesticos</a>
+                                            <a class="dropdown-item">📟 Computadoras</a>
+                                            <a class="dropdown-item">📱 Celulares</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -86,7 +75,7 @@ and open the template in the editor.
                         </div>
 
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="search" aria-label="Direccion"
                                 aria-describedby="basic-addon1">
@@ -96,7 +85,10 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-secondary btn-block">Nuevo Producto</button>
+                        <button type="button" id="NewProdut" class="btn btn-success btn-block">Nuevo Producto</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-primary btn-block">Pedidos</button>
                     </div>
                 </div>
                 <section class="my-2" style="margin-left: -40px;">
@@ -213,6 +205,25 @@ and open the template in the editor.
         </div>
     </div>
 
+    <!-- contenedor modal -->
+    <div class="modal fade" id="ModalContainer" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Carrito de compras</h5>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                <div class="modal-body" id="contModal">
+                    <!----codico del modal----->
+
+                    <!------------------------->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------->
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -222,7 +233,7 @@ and open the template in the editor.
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/store.js"></script>
+    <script type="text/javascript" src="js/Administracion.js"></script>
 </body>
 
 </html>
