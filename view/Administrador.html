@@ -211,12 +211,115 @@ and open the template in the editor.
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Carrito de compras</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Añadir Producto</h5>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
                 <div class="modal-body" id="contModal">
                     <!----codico del modal----->
-
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">🔢</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Codigo del prodcuto"
+                                            aria-label="Direccion" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">🎮</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Nombre del prodcuto"
+                                            aria-label="Direccion" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">📋</span>
+                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect01">
+                                            <option selected>Categoria</option>
+                                            <option value="1">👕 Ropa</option>
+                                            <option value="2">📺 Electrodomesticos</option>
+                                            <option value="3">📟 Computadoras</option>
+                                            <option value="3">📱 Celulares</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">👷</span>
+                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect01">
+                                            <option selected>Proveedor</option>
+                                            <option value="1">Jose Maria</option>
+                                            <option value="2">Elisa morales</option>
+                                            <option value="3">Luciana gonzales</option>
+                                            <option value="4">Jimena loaiza</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">💲</span>
+                                        </div>
+                                        <input type="number" class="form-control" placeholder="Precio de Compra"
+                                            aria-label="Direccion" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">💰</span>
+                                        </div>
+                                        <input type="number" class="form-control" placeholder="Precio de Venta"
+                                            aria-label="Direccion" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">🔢</span>
+                                        </div>
+                                        <input type="number" class="form-control" placeholder="Cantidad en Stock"
+                                            aria-label="Direccion" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Descripccion de producto</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" id="NewProdut" class="btn btn-success btn-block">Agregar
+                                        Producto</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!------------------------->
                 </div>
             </div>
