@@ -3,6 +3,7 @@ $(document).ready(principal);
 
 function principal(){
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+        $('#contModal').html(CarritoCompra);
         $('#infoProducto').modal('show');
     });
 
@@ -97,7 +98,7 @@ function Info_Product(){
                               '</div>'+
                               ' <div class="col" style=" width: 100%; height: 40px;">'+
                               '  <div class="input-group-append" style="display: flex;justify-items: right; justify-content: right; align-items: flex-end;">'+
-                              '    <label style=" margin-top: 5px; margin-right: 5px; font-size: 20px; line-height: 1.2; text-align: right;" >S/. 4000</label>'+
+                              '    <label Class="text-right" style=" margin-top: 5px; margin-right: 5px; font-size: 20px; line-height: 1.2; text-align: right;" >S/. 4000</label>'+
                                   '</div>'+
                               '</div>'+
                           '</div>'+
@@ -301,4 +302,203 @@ function Info_Product(){
                   '</div>'+
                   '<!------------------------------------------------------>'+
                 '</div>';
+}
+
+function CarritoCompra(){
+  return '<div class="container">'+
+'  <div class="row">'+
+'     <div class="col">'+
+'       <div class="row">'+
+'         <div class="col-7">'+
+'             <h5>Productos en Carrito</h5>'+
+'         </div>'+
+'         <div class="col-5">'+
+'           <div class="form-group" style="width: 100%;">'+
+'             <div class="input-group">'+
+'               <div class="input-group-prepend">'+
+'                 <span class="input-group-text" id="basic-addon1">S/.</span>'+
+'               </div>'+
+'               <input type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'             </div>'+
+'           </div>'+
+'         </div>'+
+'       </div>'+
+'       <div style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
+'         <!--        Card de producto insertado         -->'+
+'         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
+'             <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
+'              <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'                 <img style="border-radius: 50%;'+
+'                 width: 40px;'+
+'                 height: 40px;'+
+'                 justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+'              </div> '+
+'              <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'                 Maquintosh de 3gb de ram con 2 procesaroderes'+
+'              </div>'+
+'              <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'                 40 Un'+
+'              </div>'+
+'              <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'                 S/.4500'+
+'              </div>'+
+'             </div>'+
+'         </div>'+
+'         <!---------------------------------------------------------------->'+
+'         <!--        Card de producto insertado         -->'+
+'         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
+'           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
+'            <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'               <img style="border-radius: 50%;'+
+'               width: 40px;'+
+'               height: 40px;'+
+'               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+'            </div> '+
+'            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'               Maquintosh de 3gb de ram con 2 procesaroderes'+
+'            </div>'+
+'            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'               40 Un'+
+'            </div>'+
+'            <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'               S/.4500'+
+'            </div>'+
+'           </div>'+
+'       </div>'+
+'       <!---------------------------------------------------------------->'+
+'       <!--        Card de producto insertado         -->'+
+'       <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
+'         <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
+'          <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'             <img style="border-radius: 50%;'+
+'             width: 40px;'+
+'             height: 40px;'+
+'             justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+'          </div> '+
+'          <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'             Maquintosh de 3gb de ram con 2 procesaroderes'+
+'          </div>'+
+'          <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'             40 Un'+
+'          </div>'+
+'          <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'             S/.4500'+
+'          </div>'+
+'         </div>'+
+'     </div>'+
+'     <!---------------------------------------------------------------->'+
+'     <!--        Card de producto insertado         -->'+
+'     <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
+'       <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
+'        <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'           <img style="border-radius: 50%;'+
+'           width: 40px;'+
+'          height: 40px;'+
+'           justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+'        </div> '+
+'        <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'           Maquintosh de 3gb de ram con 2 procesaroderes'+
+'        </div>'+
+'        <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'           40 Un'+
+'        </div>'+
+'        <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'           S/.4500'+
+'        </div>'+
+'       </div>'+
+'   </div>'+
+'   <!---------------------------------------------------------------->'+
+'   <!--        Card de producto insertado         -->'+
+'   <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
+'     <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;">'+ 
+'      <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'         <img style="border-radius: 50%;'+
+'         width: 40px;'+
+'         height: 40px;'+
+'         justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+'      </div> '+
+'      <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'         Maquintosh de 3gb de ram con 2 procesaroderes'+
+'      </div>'+
+'      <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'         40 Un'+
+'      </div>'+
+'      <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+'         S/.4500'+
+'      </div>'+
+'     </div>'+
+' </div>'+
+' <!---------------------------------------------------------------->'+
+'       </div>'+
+'     </div>'+
+'  </div>'+
+'  <div class="row">'+
+'     <div class="col">'+
+'       <div class="row my-1">'+
+'           <select class="custom-select" id="inputGroupSelect01">'+
+'            <option selected>Departamento</option>'+
+'             <option value="1">One</option>'+
+'             <option value="2">Two</option>'+
+'             <option value="3">Three</option>'+
+'           </select>'+
+'       </div>'+
+'       <div class="row my-1">'+
+'           <select class="custom-select" id="inputGroupSelect01">'+
+'             <option selected>Ciudad</option>'+
+'             <option value="1">One</option>'+
+'             <option value="2">Two</option>'+
+'             <option value="3">Three</option>'+
+'           </select>'+
+'       </div>'+
+'       <div class="row my-1">'+
+'           <select class="custom-select" id="inputGroupSelect01">'+
+'             <option selected>Distrito</option>'+
+'             <option value="1">One</option>'+
+'             <option value="2">Two</option>'+
+'             <option value="3">Three</option>'+
+'           </select>'+
+'       </div>'+
+'       <div class="row my-1">'+
+'           <div class="form-group" style="width: 100%;">'+
+'             <div class="input-group">'+
+'               <div class="input-group-prepend">'+
+'                 <span class="input-group-text" id="basic-addon1">🌍</span>'+
+'               </div>'+
+'               <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'             </div>'+
+'             <small id="text_mese" class="form-text text-muted">Escriba la direccion donde quiera recibir el paquete..</small>'+
+'           </div>'+
+'       </div>'+
+'     </div>'+
+'     <div class="row my-1">'+
+'         <div class="col-4">'+
+'           <div class="input-group mb-3">'+
+'               <div class="input-group-prepend">'+
+'                 <span class="input-group-text" id="basic-addon1">📆</span>'+
+'               </div>'+
+'               <input type="text" class="form-control" placeholder="MM/AA" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'             </div>'+
+'         </div>'+
+'         <div class="col-3">'+
+'           <div class="input-group mb-3">'+
+'               <div class="input-group-prepend">'+
+'                 <span class="input-group-text" id="basic-addon1">🔢</span>'+
+'               </div>'+
+'               <input type="text" class="form-control" placeholder="CV" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'             </div>'+
+'         </div>'+
+'         <div class="col">'+
+'           <div class="input-group mb-3">'+
+'               <div class="input-group-prepend">'+
+'                 <span class="input-group-text" id="basic-addon1">💳</span>'+
+'              </div>'+
+'               <input type="text" class="form-control" placeholder="4567 4512 3698 4512" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'             </div>'+
+'         </div>'+
+'     </div>'+
+'  </div>'+
+'  <div Class="row">'+
+'       <button type="button" class="btn btn-primary btn-block">Realizar pedido</button>'+
+'  </div>'+
+'</div>';
 }
