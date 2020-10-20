@@ -1,3 +1,4 @@
+
 $(document).ready(principal);
 
 function principal(){
@@ -32,6 +33,12 @@ function principal(){
     $("#Ciu").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
         $('#contModal').html(MnateniGeografi);
         $('#TituloModal').html("Mantenimiento Geolocalisacion")
+        $('#ModalContainer').modal('show');
+    });
+
+    $("#Pedid").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
+        $('#secudContendP').html(CarritoCompra);
+        $('#TituloModal').html("Lista de Pedidos")
         $('#ModalContainer').modal('show');
     });
 }
@@ -1052,3 +1059,142 @@ function DatLisDepart() {
 function DatLisCiry() {
     return '<option value="1">Piura</option>';
 }
+
+/* codigo directamente extraido de store*/
+function CarritoCompra(){
+    return '<div class="container">'+
+  '  <div class="row">'+
+  '     <div class="col">'+
+  '       <div class="row">'+
+  '         <div class="col-7">'+
+  '             <h5>Productos en Carrito</h5>'+
+  '         </div>'+
+  '         <div class="col-5">'+
+  '           <div class="form-group" style="width: 100%;">'+
+  '             <div class="input-group">'+
+  '               <div class="input-group-prepend">'+
+  '                 <span class="input-group-text" id="basic-addon1">S/.</span>'+
+  '               </div>'+
+  '               <input type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">'+
+  '             </div>'+
+  '           </div>'+
+  '         </div>'+
+  '       </div>'+
+  '       <div style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
+              productCarri()+
+              productCarri()+
+              productCarri()+
+              productCarri()+
+  '       </div>'+
+  '     </div>'+
+  '  </div>'+
+  '  <div class="row">'+
+  '     <div class="col">'+
+  '       <div class="row my-1">'+
+  '           <select class="custom-select" id="inputGroupSelect01">'+
+  '            <option selected>Departamento</option>'+
+                 ProducDepart()+
+                 ProducDepart()+
+                 ProducDepart()+
+                 ProducDepart()+
+  '           </select>'+
+  '       </div>'+
+  '       <div class="row my-1">'+
+  '           <select class="custom-select" id="inputGroupSelect01">'+
+  '             <option selected>Ciudad</option>'+
+                 ProducCity()+
+                 ProducCity()+
+                 ProducCity()+
+                 ProducCity()+
+  '           </select>'+
+  '       </div>'+
+  '       <div class="row my-1">'+
+  '           <select class="custom-select" id="inputGroupSelect01">'+
+  '             <option selected>Distrito</option>'+
+                  ProducDist()+
+                  ProducDist()+
+                  ProducDist()+
+                  ProducDist()+
+                  ProducDist()+
+  '           </select>'+
+  '       </div>'+
+  '       <div class="row my-1">'+
+  '           <div class="form-group" style="width: 100%;">'+
+  '             <div class="input-group">'+
+  '               <div class="input-group-prepend">'+
+  '                 <span class="input-group-text" id="basic-addon1">🌍</span>'+
+  '               </div>'+
+  '               <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
+  '             </div>'+
+  '             <small id="text_mese" class="form-text text-muted">Escriba la direccion donde quiera recibir el paquete..</small>'+
+  '           </div>'+
+  '       </div>'+
+  '     </div>'+
+  '     <div class="row my-1">'+
+  '         <div class="col-4">'+
+  '           <div class="input-group mb-3">'+
+  '               <div class="input-group-prepend">'+
+  '                 <span class="input-group-text" id="basic-addon1">📆</span>'+
+  '               </div>'+
+  '               <input type="text" class="form-control" placeholder="MM/AA" aria-label="Direccion" aria-describedby="basic-addon1">'+
+  '             </div>'+
+  '         </div>'+
+  '         <div class="col-3">'+
+  '           <div class="input-group mb-3">'+
+  '               <div class="input-group-prepend">'+
+  '                 <span class="input-group-text" id="basic-addon1">🔢</span>'+
+  '               </div>'+
+  '               <input type="text" class="form-control" placeholder="CV" aria-label="Direccion" aria-describedby="basic-addon1">'+
+  '             </div>'+
+  '         </div>'+
+  '         <div class="col">'+
+  '           <div class="input-group mb-3">'+
+  '               <div class="input-group-prepend">'+
+  '                 <span class="input-group-text" id="basic-addon1">💳</span>'+
+  '              </div>'+
+  '               <input type="text" class="form-control" placeholder="4567 4512 3698 4512" aria-label="Direccion" aria-describedby="basic-addon1">'+
+  '             </div>'+
+  '         </div>'+
+  '     </div>'+
+  '  </div>'+
+  '  <div Class="row">'+
+  '       <button type="button" class="btn btn-primary btn-block">Realizar pedido</button>'+
+  '  </div>'+
+  '</div>';
+  }
+  
+  function ProducDepart() {
+    return '<option value="1">Piura</option>';
+  }
+  
+  function ProducCity() {
+    return '<option value="1">Piura</option>';
+  }
+  
+  function ProducDist() {
+    return '<option value="1">Piura</option>';  
+  }
+  
+  function productCarri(){
+    return '<!--        Card de producto insertado         -->'+
+    '         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
+    '           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
+    '            <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+    '               <img style="border-radius: 50%;'+
+    '               width: 40px;'+
+    '               height: 40px;'+
+    '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+    '            </div> '+
+    '            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+    '               Maquintosh de 3gb de ram con 2 procesaroderes'+
+    '            </div>'+
+    '            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+    '               40 Un'+
+    '            </div>'+
+    '            <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+    '               S/.4500'+
+    '            </div>'+
+    '           </div>'+
+    '       </div>';
+  }
+

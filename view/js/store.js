@@ -2,6 +2,11 @@
 $(document).ready(principal);
 
 function principal(){
+
+    $("#ConternCategoriStore").html(ItenCateg);//instertar una categoria en el contenedor de estore
+    $("#ContstoreProduct").html(ItenProduct);//instertar un producto en el contenedor de estore
+    $("#ConteNavega").html(Navegacion);//instertar un tab de navegacion en el contenedor de estore
+
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(CarritoCompra);
         $('#infoProducto').modal('show');
@@ -29,6 +34,34 @@ function principal(){
     });
 }
 
+function Navegacion(){
+  return '<li class="breadcrumb-item"><a href="#">Gemeral</a></li>'+
+  '<!--         card de interface ingresada           --->'+
+  '<li class="breadcrumb-item active" aria-current="page">Electrodomesticos</li>';
+}
+
+function ItenCateg(){
+  return `<a class="dropdown-item">👕 Ropa</a>`;
+}
+
+function ItenProduct(){
+    return '<!--          card de productos generico            -->'+
+  '  <div id="456789" class="card mx-1 my-1" style="width: 170px; height: 180px; border-radius: 10px; overflow: hidden;">'+
+  '     <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg" alt="Card image cap">'+
+  '     <div class="mx-2" style="width: 100%; height: auto;"><h6 class="textCard">Prenda de verano</h6></div>'+
+  '     <div class="container" style="width: 100%;">'+
+  '         <div class="row extencion">'+
+  '           <div class="col-sm-6 ContextCarTex">'+
+  '             <h6 class="textPunt">4,5 <i class="fas fa-star icon"></i></h6>'+
+  '           </div>'+
+  '           <div class="col-sm-6 ContextCarTex">'+
+  '             <p class="textCoint">S/.4000</p>'+
+  '           </div>'+
+  '         </div>'+
+  '       </div>'+
+  ' </div>'+
+  ' <!------------------------------------------------------>';
+}
 
 function Info_Product(){
     return '<div class="container">'+
@@ -241,6 +274,7 @@ function Info_Product(){
                           '<ol class="carousel-indicators my-1">'+
                             '<li data-target="#mensajesslidig" data-slide-to="0" class="active"></li>'+
                             '<li data-target="#mensajesslidig" data-slide-to="1"></li>'+
+                            '<li data-target="#mensajesslidig" data-slide-to="2"></li>'+
                           '</ol>'+
                           '<div class="carousel-inner">'+
                             '<!--      card de mensaje de usuario sobre el producto       --->'+
@@ -266,28 +300,8 @@ function Info_Product(){
                               '</div>'+
                             '</div>'+
                             '<!------------------------------------------------------------->'+
-                            '<!--      card de mensaje de usuario sobre el producto       --->'+
-                            '<div class="carousel-item" style="height: 100px; display: flex; justify-items: center;align-items: center;">'+
-                              '<div class="d-block mx-auto" style="-webkit-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
-                                                                  '-moz-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
-                                                                  'box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
-                                                                  'border-radius: 5px;'+ 
-                                                                  'width: 90%; '+
-                                                                  'height: 80px; '+
-                                                                  'background-color: gray;">'+
-                                  '<div class="row">'+
-                                    '<div class="col-2 mx-4 my-1" style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-                                        '<img style="border-radius: 50%;'+
-                                        'width: 40px;'+
-                                        'height: 40px;'+
-                                        'justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
-                                    '</div>'+
-                                    '<div class="col-8 my-1 mx-1 scroll" style="margin-left: -47wQbNPTDJp9hMYdvogK2hAUiHsGeiybwaWe36bwtRQ3UTpYV7YuZ8FV5j9nauFCWwcjM6dTzpL5s2N79Rp5unwdMvc8ZKUoverflow-y: scroll;">'+
-                                       '<h6 style="color: aliceblue;" >★★★★★<br/>El producto se ve interesante pero no es de mi agrado</h6>'+
-                                    '</div>'+
-                                  '</div>'+
-                              '</div>'+
-                            '<!------------------------------------------------------------->'+
+                            productMensseng()+
+                            productMensseng()+
                           '</div>'+
                           '<a class="carousel-control-prev" href="#mensajesslidig" role="button" data-slide="prev">'+
                             '<span class="carousel-control-prev-icon" aria-hidden="true"></span>'+
@@ -302,6 +316,32 @@ function Info_Product(){
                   '</div>'+
                   '<!------------------------------------------------------>'+
                 '</div>';
+}
+
+function productMensseng() {
+  return '<!--      card de mensaje de usuario sobre el producto       --->'+
+  '<div class="carousel-item" style="height: 100px; display: flex; justify-items: center;align-items: center;">'+
+    '<div class="d-block mx-auto" style="-webkit-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        '-moz-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        'box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        'border-radius: 5px;'+ 
+                                        'width: 90%; '+
+                                        'height: 80px; '+
+                                        'background-color: gray;">'+
+        '<div class="row">'+
+          '<div class="col-2 mx-4 my-1" style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+              '<img style="border-radius: 50%;'+
+              'width: 40px;'+
+              'height: 40px;'+
+              'justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+          '</div>'+
+          '<div class="col-8 my-1 mx-1 scroll" style="margin-left: -47wQbNPTDJp9hMYdvogK2hAUiHsGeiybwaWe36bwtRQ3UTpYV7YuZ8FV5j9nauFCWwcjM6dTzpL5s2N79Rp5unwdMvc8ZKUoverflow-y: scroll;">'+
+             '<h6 style="color: aliceblue;" >★★★★★<br/>El producto se ve interesante pero no es de mi agrado</h6>'+
+          '</div>'+
+        '</div>'+
+    '</div>'+
+    '</div>'+
+  '<!------------------------------------------------------------->';
 }
 
 function CarritoCompra(){
@@ -324,111 +364,10 @@ function CarritoCompra(){
 '         </div>'+
 '       </div>'+
 '       <div style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
-'         <!--        Card de producto insertado         -->'+
-'         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
-'             <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
-'              <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'                 <img style="border-radius: 50%;'+
-'                 width: 40px;'+
-'                 height: 40px;'+
-'                 justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
-'              </div> '+
-'              <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'                 Maquintosh de 3gb de ram con 2 procesaroderes'+
-'              </div>'+
-'              <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'                 40 Un'+
-'              </div>'+
-'              <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'                 S/.4500'+
-'              </div>'+
-'             </div>'+
-'         </div>'+
-'         <!---------------------------------------------------------------->'+
-'         <!--        Card de producto insertado         -->'+
-'         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
-'           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
-'            <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'               <img style="border-radius: 50%;'+
-'               width: 40px;'+
-'               height: 40px;'+
-'               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
-'            </div> '+
-'            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'               Maquintosh de 3gb de ram con 2 procesaroderes'+
-'            </div>'+
-'            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'               40 Un'+
-'            </div>'+
-'            <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'               S/.4500'+
-'            </div>'+
-'           </div>'+
-'       </div>'+
-'       <!---------------------------------------------------------------->'+
-'       <!--        Card de producto insertado         -->'+
-'       <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
-'         <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
-'          <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'             <img style="border-radius: 50%;'+
-'             width: 40px;'+
-'             height: 40px;'+
-'             justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
-'          </div> '+
-'          <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'             Maquintosh de 3gb de ram con 2 procesaroderes'+
-'          </div>'+
-'          <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'             40 Un'+
-'          </div>'+
-'          <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'             S/.4500'+
-'          </div>'+
-'         </div>'+
-'     </div>'+
-'     <!---------------------------------------------------------------->'+
-'     <!--        Card de producto insertado         -->'+
-'     <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
-'       <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
-'        <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'           <img style="border-radius: 50%;'+
-'           width: 40px;'+
-'          height: 40px;'+
-'           justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
-'        </div> '+
-'        <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'           Maquintosh de 3gb de ram con 2 procesaroderes'+
-'        </div>'+
-'        <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'           40 Un'+
-'        </div>'+
-'        <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'           S/.4500'+
-'        </div>'+
-'       </div>'+
-'   </div>'+
-'   <!---------------------------------------------------------------->'+
-'   <!--        Card de producto insertado         -->'+
-'   <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
-'     <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;">'+ 
-'      <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'         <img style="border-radius: 50%;'+
-'         width: 40px;'+
-'         height: 40px;'+
-'         justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
-'      </div> '+
-'      <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'         Maquintosh de 3gb de ram con 2 procesaroderes'+
-'      </div>'+
-'      <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'         40 Un'+
-'      </div>'+
-'      <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-'         S/.4500'+
-'      </div>'+
-'     </div>'+
-' </div>'+
-' <!---------------------------------------------------------------->'+
+            productCarri()+
+            productCarri()+
+            productCarri()+
+            productCarri()+
 '       </div>'+
 '     </div>'+
 '  </div>'+
@@ -437,25 +376,29 @@ function CarritoCompra(){
 '       <div class="row my-1">'+
 '           <select class="custom-select" id="inputGroupSelect01">'+
 '            <option selected>Departamento</option>'+
-'             <option value="1">One</option>'+
-'             <option value="2">Two</option>'+
-'             <option value="3">Three</option>'+
+               ProducDepart()+
+               ProducDepart()+
+               ProducDepart()+
+               ProducDepart()+
 '           </select>'+
 '       </div>'+
 '       <div class="row my-1">'+
 '           <select class="custom-select" id="inputGroupSelect01">'+
 '             <option selected>Ciudad</option>'+
-'             <option value="1">One</option>'+
-'             <option value="2">Two</option>'+
-'             <option value="3">Three</option>'+
+               ProducCity()+
+               ProducCity()+
+               ProducCity()+
+               ProducCity()+
 '           </select>'+
 '       </div>'+
 '       <div class="row my-1">'+
 '           <select class="custom-select" id="inputGroupSelect01">'+
 '             <option selected>Distrito</option>'+
-'             <option value="1">One</option>'+
-'             <option value="2">Two</option>'+
-'             <option value="3">Three</option>'+
+                ProducDist()+
+                ProducDist()+
+                ProducDist()+
+                ProducDist()+
+                ProducDist()+
 '           </select>'+
 '       </div>'+
 '       <div class="row my-1">'+
@@ -501,4 +444,39 @@ function CarritoCompra(){
 '       <button type="button" class="btn btn-primary btn-block">Realizar pedido</button>'+
 '  </div>'+
 '</div>';
+}
+
+function ProducDepart() {
+  return '<option value="1">Piura</option>';
+}
+
+function ProducCity() {
+  return '<option value="1">Piura</option>';
+}
+
+function ProducDist() {
+  return '<option value="1">Piura</option>';  
+}
+
+function productCarri(){
+  return '<!--        Card de producto insertado         -->'+
+  '         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
+  '           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
+  '            <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '               <img style="border-radius: 50%;'+
+  '               width: 40px;'+
+  '               height: 40px;'+
+  '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+  '            </div> '+
+  '            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '               Maquintosh de 3gb de ram con 2 procesaroderes'+
+  '            </div>'+
+  '            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '               40 Un'+
+  '            </div>'+
+  '            <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '               S/.4500'+
+  '            </div>'+
+  '           </div>'+
+  '       </div>';
 }

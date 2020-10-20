@@ -5,240 +5,242 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-        
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
-        <link href="css/starrr.css" rel=stylesheet/>
-        <script src="js/starrr.js"></script>
-        
-        <link rel="stylesheet" href="css/store.css">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v my-1 text-left icon"></i>   Categorias
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <!--        card de categoria disponibles         -->
-                      <a class="dropdown-item" ><i class="fas fa-tshirt my-1 text-left icon"></i> Ropa</a>
-                      <!-------------------------------------------------->
-                      <a class="dropdown-item" ><i class="fas fa-blender-phone my-1 text-left icon"></i> Electrodomesticos</a>
-                      <a class="dropdown-item" ><i class="fas fa-laptop my-1 text-left icon"></i> Computadoras</a>
-                      <a class="dropdown-item" ><i class="fas fa-mobile my-1 text-left icon"></i> Celulares</a>
-                    </div>
-                </li>
-              </ul>
-              <form class=" my-2">
-                <div class="input-group conte">
-                    <input type="text" class="form-control texSeach" placeholder="search" aria-label="Username" aria-describedby="basic-addon1">
-                    <div class="">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search my-1 icon"></i></span>
-                    </div>
-                </div>
-              </form>
-              <form class=" my-2">
-                <div class="input-group conte">
-                    <div class="">
-                        <span class="mx-3" id="Carrito"><i class="fas fa-shopping-cart my-1 icon"></i></span>
-                    </div>
-                </div>
-              </form>
-            </div>
-        </nav>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Gemeral</a></li>
-              <!--         card de interface ingresada           --->
-              <li class="breadcrumb-item active" aria-current="page">Electrodomesticos</li>
-              <!---------------------------------------------------->
-            </ol>
-        </nav>
+<head>
+  <title>TODO supply a title</title>
 
-        <div class="contariner my-0">
-            <div class="row">
-                <div class="col-3">
-                    <aside class="Form my-2 mx-2" >
-                        <div class="container">
-                            <h5 class="mx-2 my-2"> <i class="fas fa-ellipsis-v"></i> Filtro de busqueda: </h5>
-                            <button type="button" class="btn btn-secondary btn-block">Filtrar</button>
-                            <div class="row no-gutters" style="background: #eceff1; margin-top:10px; width: 100%; height: 60vh;">
-                                <!--- contenedor de filtros de busqueda -->
-                                <div class="accordion col-sm-12" id="accordionExample">
-                                  <!-- Cart del fitro numero 1 --->
-                                  <div class="card">
-                                    <!-- Cart del encabezado --->
-                                    <div class="card-header" id="headingOne">
-                                      <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#starcollapse" aria-expanded="true" aria-controls="collapseOne">
-                                          <i class="fas fa-star icon"></i> Puntuaciones 
-                                        </button>
-                                      </h2>
-                                    </div>
-                                    <!-- Cart del curpo --->
-                                    <div id="starcollapse" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                      <div class="card-body">
-                                        <!-- Cart de alternativa chekbox con una estrella --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            <i class="fas fa-star icon"></i> 
-                                          </label>
-                                        </div>
-                                        <!-- Cart de alternativa chekbox dos estrellas --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            <i class="fas fa-star icon"></i> 
-                                            <i class="fas fa-star icon"></i> 
-                                          </label>
-                                        </div>
-                                        <!-- Cart de alternativa chekbox tres estrellas --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            <i class="fas fa-star icon"></i> 
-                                            <i class="fas fa-star icon"></i>
-                                            <i class="fas fa-star icon"></i>  
-                                          </label>
-                                        </div>
-                                        <!-- Cart de alternativa chekbox cuatro estrellas --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            <i class="fas fa-star icon"></i> 
-                                            <i class="fas fa-star icon"></i>
-                                            <i class="fas fa-star icon"></i> 
-                                            <i class="fas fa-star icon"></i>  
-                                          </label>
-                                        </div>
-                                        <!-- Cart de alternativa chekbox cinco estrellas --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            <i class="fas fa-star icon"></i> 
-                                            <i class="fas fa-star icon"></i>
-                                            <i class="fas fa-star icon"></i> 
-                                            <i class="fas fa-star icon"></i> 
-                                            <i class="fas fa-star icon"></i>  
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <!------------------------------>
-                                  <!-- Cart del fitro numero 2 --->
-                                  <div class="card">
-                                    <!-- Cart del encabezado --->
-                                    <div class="card-header" id="headingTwo">
-                                      <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                          <i class="fas fa-coins icon"></i> Coins
-                                        </button>
-                                      </h2>
-                                    </div>  
-                                    <!-- Cart del curpo --->
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                      <div class="card-body">
-                                        <!-- Cart de alternativa chekbox 0-50 --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            0 - 50 
-                                          </label>
-                                        </div>
-                                        <!-- Cart de alternativa chekbox 50-100 --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            50 - 100
-                                          </label>
-                                        </div>
-                                        <!-- Cart de alternativa chekbox 100-500 --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            100 - 500
-                                          </label>
-                                        </div>
-                                        <!-- Cart de alternativa chekbox 500-1000 --->
-                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                          <label class="form-check-label" for="exampleRadios1">
-                                            500 - 1000 
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <!------------------------------>
-                                </div>
-                                <!---------------------------------------->
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-                <div class="col-9" >
-                    <section class="my-2" style="margin-left: -40px;">
-                        <div class="container">
-                            <div class="row no-gutters" style="background:  #eceff1; padding-top:-10px ; width: 100%; height: 70vh; display: grid;grid-template-columns:180px 180px 180px 180px 180px ; grid-row-gap: 10px; overflow:scroll;overflow-x: hidden;">
-                                <!--          card de productos generico            -->
-                                <div id="456789" class="card mx-1 my-1" style="width: 170px; height: 180px; border-radius: 10px; overflow: hidden;">
-                                    <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg" alt="Card image cap">
-                                    <div class="mx-2" style="width: 100%; height: auto;"><h6 class="textCard">Prenda de verano</h6></div>
-                                    <div class="container" style="width: 100%;">
-                                        <div class="row extencion">
-                                          <div class="col-sm-6 ContextCarTex">
-                                            <h6 class="textPunt">4,5 <i class="fas fa-star icon"></i></h6>
-                                          </div>
-                                          <div class="col-sm-6 ContextCarTex">
-                                            <p class="textCoint">S/.4000</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                </div>
-                                <!------------------------------------------------------>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--Modales de producto--->
-        <div class="modal fade" id="infoProducto" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Carrito de compras</h5>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-              <div class="modal-body" id="contModal">
-                  
-              </div>
-            </div>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/starrr.css" rel=stylesheet />
+  <script src="js/starrr.js"></script>
+
+  <link rel="stylesheet" href="css/store.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v my-1 text-left icon"></i> Categorias
+          </a>
+          <div id="ConternCategoriStore" class="dropdown-menu" aria-labelledby="navbarDropdown">
+          </div>
+        </li>
+      </ul>
+      <form class=" my-2">
+        <div class="input-group conte">
+          <input type="text" class="form-control texSeach" placeholder="search" aria-label="Username"
+            aria-describedby="basic-addon1">
+          <div class="">
+            <span class="input-group-text" id="basic-addon1"><i class="fas fa-search my-1 icon"></i></span>
           </div>
         </div>
-        <!------------------------------->
-        <!--Modales de carrito de compra-->
+      </form>
+      <form class=" my-2">
+        <div class="input-group conte">
+          <div class="">
+            <span class="mx-3" id="Carrito"><i class="fas fa-shopping-cart my-1 icon"></i></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </nav>
 
-        <!------------------------------->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="js/store.js"></script>
-    </body>
+  <nav aria-label="breadcrumb">
+    <ol id="ConteNavega" class="breadcrumb">
+    </ol>
+  </nav>
+
+  <div class="contariner my-0">
+    <div class="row">
+      <div class="col-3">
+        <aside class="Form my-2 mx-2">
+          <div class="container">
+            <h5 class="mx-2 my-2"> <i class="fas fa-ellipsis-v"></i> Filtro de busqueda: </h5>
+            <button type="button" class="btn btn-secondary btn-block">Filtrar</button>
+            <div class="row no-gutters" style="background: #eceff1; margin-top:10px; width: 100%; height: 60vh;">
+              <!--- contenedor de filtros de busqueda -->
+              <div class="accordion col-sm-12" id="accordionExample">
+                <!-- Cart del fitro numero 1 --->
+                <div class="card">
+                  <!-- Cart del encabezado --->
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                        data-target="#starcollapse" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-star icon"></i> Puntuaciones
+                      </button>
+                    </h2>
+                  </div>
+                  <!-- Cart del curpo --->
+                  <div id="starcollapse" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordionExample">
+                    <div class="card-body">
+                      <!-- Cart de alternativa chekbox con una estrella --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-star icon"></i>
+                        </label>
+                      </div>
+                      <!-- Cart de alternativa chekbox dos estrellas --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                        </label>
+                      </div>
+                      <!-- Cart de alternativa chekbox tres estrellas --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                        </label>
+                      </div>
+                      <!-- Cart de alternativa chekbox cuatro estrellas --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                        </label>
+                      </div>
+                      <!-- Cart de alternativa chekbox cinco estrellas --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                          <i class="fas fa-star icon"></i>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!------------------------------>
+                <!-- Cart del fitro numero 2 --->
+                <div class="card">
+                  <!-- Cart del encabezado --->
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fas fa-coins icon"></i> Coins
+                      </button>
+                    </h2>
+                  </div>
+                  <!-- Cart del curpo --->
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <!-- Cart de alternativa chekbox 0-50 --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          0 - 50
+                        </label>
+                      </div>
+                      <!-- Cart de alternativa chekbox 50-100 --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          50 - 100
+                        </label>
+                      </div>
+                      <!-- Cart de alternativa chekbox 100-500 --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          100 - 500
+                        </label>
+                      </div>
+                      <!-- Cart de alternativa chekbox 500-1000 --->
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                          value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                          500 - 1000
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!------------------------------>
+              </div>
+              <!---------------------------------------->
+            </div>
+          </div>
+        </aside>
+      </div>
+      <div class="col-9">
+        <section class="my-2" style="margin-left: -40px;">
+          <div class="container">
+            <div id="ContstoreProduct" class="row no-gutters"
+              style="background:  #eceff1; padding-top:-10px ; width: 100%; height: 70vh; display: grid;grid-template-columns:180px 180px 180px 180px 180px ; grid-row-gap: 10px; overflow:scroll;overflow-x: hidden;">
+
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!--Modales de producto--->
+  <div class="modal fade" id="infoProducto" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Carrito de compras</h5>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <div class="modal-body" id="contModal">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------->
+  <!--Modales de carrito de compra-->
+
+  <!------------------------------->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/store.js"></script>
+</body>
+
 </html>
