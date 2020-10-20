@@ -1060,7 +1060,8 @@ function DatLisCiry() {
     return '<option value="1">Piura</option>';
 }
 
-/* codigo directamente extraido de store*/
+/* codigo directamente extraido de store el cual 
+da la informacion del pedido*/
 function CarritoCompra(){
     return '<div class="container">'+
   '  <div class="row">'+
@@ -1131,34 +1132,10 @@ function CarritoCompra(){
   '       </div>'+
   '     </div>'+
   '     <div class="row my-1">'+
-  '         <div class="col-4">'+
-  '           <div class="input-group mb-3">'+
-  '               <div class="input-group-prepend">'+
-  '                 <span class="input-group-text" id="basic-addon1">📆</span>'+
-  '               </div>'+
-  '               <input type="text" class="form-control" placeholder="MM/AA" aria-label="Direccion" aria-describedby="basic-addon1">'+
-  '             </div>'+
-  '         </div>'+
-  '         <div class="col-3">'+
-  '           <div class="input-group mb-3">'+
-  '               <div class="input-group-prepend">'+
-  '                 <span class="input-group-text" id="basic-addon1">🔢</span>'+
-  '               </div>'+
-  '               <input type="text" class="form-control" placeholder="CV" aria-label="Direccion" aria-describedby="basic-addon1">'+
-  '             </div>'+
-  '         </div>'+
-  '         <div class="col">'+
-  '           <div class="input-group mb-3">'+
-  '               <div class="input-group-prepend">'+
-  '                 <span class="input-group-text" id="basic-addon1">💳</span>'+
-  '              </div>'+
-  '               <input type="text" class="form-control" placeholder="4567 4512 3698 4512" aria-label="Direccion" aria-describedby="basic-addon1">'+
-  '             </div>'+
-  '         </div>'+
   '     </div>'+
   '  </div>'+
   '  <div Class="row">'+
-  '       <button type="button" class="btn btn-primary btn-block">Realizar pedido</button>'+
+  '       '+
   '  </div>'+
   '</div>';
   }
