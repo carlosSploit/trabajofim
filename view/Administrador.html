@@ -46,7 +46,7 @@ and open the template in the editor.
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <!--        card de categoria disponibles         -->
-                                            <a class="dropdown-item" id="Ciu">🌇 Ciudad</a>
+                                            <a class="dropdown-item" id="Ciu">🌇 Geolocalizacion</a>
                                             <!-------------------------------------------------->
                                             <a class="dropdown-item" id="Pro">👷 Proveedores</a>
                                             <a class="dropdown-item" id="CadP">🎮 Categoria Producto</a>
@@ -61,7 +61,8 @@ and open the template in the editor.
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Categorias
                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <div id="CatProductoCont" class="dropdown-menu"
+                                            aria-labelledby="navbarDropdown">
                                             <!--        card de categoria disponibles         -->
                                             <a class="dropdown-item">👕 Ropa</a>
                                             <!-------------------------------------------------->
@@ -93,7 +94,7 @@ and open the template in the editor.
                 </div>
                 <section class="my-2" style="margin-left: -40px;">
                     <div class="container">
-                        <div class="row no-gutters"
+                        <div id="contentProductAct" class="row no-gutters"
                             style="background:  #eceff1; padding-top:-10px ; width: 100%; height: 70vh; display: grid;grid-template-columns:180px 180px 180px 180px 180px ; grid-row-gap: 10px; overflow:scroll;overflow-x: hidden;">
                             <!--          card de productos generico            -->
                             <div id="456789" class="card mx-1 my-1"
@@ -161,39 +162,7 @@ and open the template in the editor.
                                 </div>
                             </div>
                             <!------------------------------------------------------>
-                            <!--          card de productos generico            -->
-                            <div id="456789" class="card mx-1 my-1"
-                                style="width: 170px; height: 270px; border-radius: 10px; overflow: hidden;">
-                                <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg"
-                                    alt="Card image cap">
-                                <div class="mx-2" style="width: 100%; height: auto;">
-                                    <h6 class="textCard">Prenda de verano</h6>
-                                </div>
-                                <div class="container" style="width: 100%;">
-                                    <div class="row extencion">
-                                        <div class="col-sm-6 ContextCarTex">
-                                            <h6 class="textPunt">4,5 <i class="fas fa-star icon"></i></h6>
-                                        </div>
-                                        <div class="col-sm-6 ContextCarTex">
-                                            <p class="textCoint">S/.4000</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container" style="width: 100%; margin-top: 10px;">
-                                    <div class="row">
-                                        <div class="col">
-                                            <button type="button" id="454546" class="btn btn-primary btn-block"
-                                                style="height: 40px; text-align: center;">Actualizar</button>
-                                        </div>
-                                    </div>
-                                    <div class="row my-1">
-                                        <div class="col">
-                                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!------------------------------------------------------>
+
                         </div>
                     </div>
                 </section>
