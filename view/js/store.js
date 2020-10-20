@@ -8,7 +8,7 @@ function principal(){
     $("#ConteNavega").html(Navegacion);//instertar un tab de navegacion en el contenedor de estore
 
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
-        $('#contModal').html(CarritoCompra);
+        $('#contModal').html(ContentCarritoCompra);
         $('#infoProducto').modal('show');
     });
 
@@ -344,6 +344,34 @@ function productMensseng() {
   '<!------------------------------------------------------------->';
 }
 
+function ContentCarritoCompra() {
+  return '<div class="row">'+
+'  <div class="col">'+
+'      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">'+
+'          <li class="nav-item" role="presentation">'+
+'              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"'+
+'                  role="tab" aria-controls="pills-home" aria-selected="true">Carrito de Compra</a>'+
+'          </li>'+
+'          <li class="nav-item" role="presentation">'+
+'              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"'+
+'                  role="tab" aria-controls="pills-profile" aria-selected="false">Mis pedidos</a>'+
+'          </li>'+
+'      </ul>'+
+'      <div class="tab-content" id="pills-tabContent">'+
+'          <div class="tab-pane fade show active" id="pills-home" role="tabpanel"'+
+'              aria-labelledby="pills-home-tab">'+
+              CarritoCompra()+
+'           </div>'+
+'          <div class="tab-pane fade" id="pills-profile" role="tabpanel"'+
+'             aria-labelledby="pills-profile-tab">'+
+              PedidosCont()+
+'          </div>'+
+'      </div>'+
+'  </div>'+
+'</div>';
+}
+
+
 function CarritoCompra(){
   return '<div class="container">'+
 '  <div class="row">'+
@@ -468,6 +496,184 @@ function productCarri(){
   '               height: 40px;'+
   '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
   '            </div> '+
+  '            <div class = "col-4 bg-ligh "  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '               Maquintosh de 3gb de ram con 2 procesaroderes'+
+  '            </div>'+
+  '            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '               40 Un'+
+  '            </div>'+
+  '            <div class = "col-2 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '               S/.4500'+
+  '            </div>'+
+  '            <div class = "col-2 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '              <button type="button" class="btn btn-danger rounded-circle btn-sm" >x</button>'+
+  '            </div>'+
+  '           </div>'+
+  '       </div>';
+}
+
+
+/* contenedor de listado de pedidos teniendo en cuenta que presenta variantes*/
+
+function PedidosCont(){
+  return '<div'+
+  'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
+  '<div class="accordion" id="accordionExample">'+
+      CardPedidoMY()+
+      CardPedidoMY()+
+      CardPedidoMY()+
+  '</div>'+
+  '<!------------------------------------>'+
+'</div>';
+}
+
+function CardPedidoMY() {
+  return '<!-- car del pedido a mostrar--->'+
+  '<div class="card my-1">'+
+      '<div class="card-header" id="headingOne">'+
+          '<h2 class="mb-0">'+
+              '<button class="btn btn-link btn-block text-left" type="button"'+
+                  'data-toggle="collapse" data-target="#collapseOne6" aria-expanded="true"'+
+                  'aria-controls="collapseOne6">'+
+                  '<div class="row">'+
+                      '<div class="col-3">'+
+                      '    4567856'+
+                      '</div>'+
+                      '<div class="col-6">'+
+                      '    Jose maria hernandez'+
+                      '</div>'+
+                      '<div class="col-3">'+
+                      '    S/.4500'+
+                      '</div>'+
+                  '</div>'+
+              '</button>'+
+          '</h2>'+
+      '</div>'+
+      '<div id="collapseOne6" class="collapse show" aria-labelledby="headingOne"'+
+          'data-parent="#accordionExample">'+
+          '<div class="card-body" id="secudContendP">'+
+          CarritoCompraMY()+
+          '</div>'+
+      '</div>'+
+  '</div>'+
+  '<!----------------------------------------->';
+}
+
+/* codigo directamente extraido de store el cual 
+da la informacion del pedido*/
+function CarritoCompraMY(){
+  return '<div class="container">'+
+'  <div class="row">'+
+'     <div class="col">'+
+'       <div class="row">'+
+'         <div class="col-7">'+
+'             <h5>Productos en Carrito</h5>'+
+'         </div>'+
+'         <div class="col-5">'+
+'           <div class="form-group" style="width: 100%;">'+
+'             <div class="input-group">'+
+'               <div class="input-group-prepend">'+
+'                 <span class="input-group-text" id="basic-addon1">S/.</span>'+
+'               </div>'+
+'               <input type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'             </div>'+
+'           </div>'+
+'         </div>'+
+'       </div>'+
+'       <div style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
+            productCarriMY()+
+            productCarriMY()+
+            productCarriMY()+
+            productCarriMY()+
+'       </div>'+
+'     </div>'+
+'  </div>'+
+'  <div class="row">'+
+'     <div class="col">'+
+'       <div class="row my-1">'+
+'           <select disabled class="custom-select" id="inputGroupSelect01">'+
+'            <option selected>Departamento</option>'+
+              ProducDepartMY()+
+              ProducDepartMY()+
+              ProducDepartMY()+
+              ProducDepartMY()+
+'           </select>'+
+'       </div>'+
+'       <div class="row my-1">'+
+'           <select disabled class="custom-select" id="inputGroupSelect01">'+
+'             <option selected>Ciudad</option>'+
+                ProducCitMY()+
+                ProducCitMY()+
+                ProducCitMY()+
+                ProducCitMY()+
+'           </select>'+
+'       </div>'+
+'       <div class="row my-1">'+
+'           <select disabled class="custom-select" id="inputGroupSelect01">'+
+'             <option selected>Distrito</option>'+
+                ProducDist()+
+                ProducDist()+
+                ProducDist()+
+                ProducDist()+
+                ProducDist()+
+'           </select>'+
+'       </div>'+
+'       <div class="row my-1">'+
+'           <div class="form-group" style="width: 100%;">'+
+'             <div class="input-group">'+
+'               <div class="input-group-prepend">'+
+'                 <span class="input-group-text" id="basic-addon1">🌍</span>'+
+'               </div>'+
+'               <input disabled type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'             </div>'+
+'           </div>'+
+'       </div>'+
+'       <div class="row my-1">'+
+'           <div class="form-group" style="width: 100%;">'+
+'             <div class="input-group">'+
+'               <div class="input-group-prepend">'+
+'                 <span class="input-group-text" id="basic-addon1">📋</span>'+
+'               </div>'+
+'               <input disabled type="text" class="form-control" placeholder="Estado" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'             </div>'+
+'           </div>'+
+'       </div>'+
+'       <div class="row my-1">'+
+'             <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
+'             Estado</button>'+
+'       </div>'+
+'     </div>'+
+'     <div class="row my-1">'+
+'     </div>'+
+'  </div>'+
+'  <div Class="row">'+
+'       '+
+'  </div>'+
+'</div>';
+}
+
+function ProducDepartMY() {
+  return '<option value="1">Piura</option>';
+}
+
+function ProducCitMY() {
+  return '<option value="1">Piura</option>';
+}
+
+function ProducDistMY() {
+  return '<option value="1">Piura</option>';  
+}
+
+function productCarriMY(){
+  return '<!--        Card de producto insertado         -->'+
+  '         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
+  '           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
+  '            <div class= "col-2 bg-light" style="border-top-left-radius: 10px ;border-bottom-left-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '               <img style="border-radius: 50%;'+
+  '               width: 40px;'+
+  '               height: 40px;'+
+  '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+  '            </div> '+
   '            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
   '               Maquintosh de 3gb de ram con 2 procesaroderes'+
   '            </div>'+
@@ -480,3 +686,5 @@ function productCarri(){
   '           </div>'+
   '       </div>';
 }
+
+

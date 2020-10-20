@@ -37,7 +37,7 @@ function principal(){
     });
 
     $("#Pedid").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
-        $('#secudContendP').html(CarritoCompra);
+        $('#contModal').html(PedidosCont);
         $('#TituloModal').html("Lista de Pedidos")
         $('#ModalContainer').modal('show');
     });
@@ -246,112 +246,135 @@ function DatProveedor(){
 /*Mantenimiento de productos*/
 function ManteniProduc(){
     return '<!----codico del modal----->'+
-'    <div class="row">'+
-'        <div class="col">'+
-'            <div class="row">'+
-'                <div class="col">'+
-'                    <div class="input-group mb-3">'+
-'                        <div class="input-group-prepend">'+
-'                            <span class="input-group-text" id="basic-addon1">🔢</span>'+
-'                        </div>'+
-'                        <input type="text" class="form-control" placeholder="Codigo del prodcuto"'+
-'                            aria-label="Direccion" aria-describedby="basic-addon1">'+
-'                    </div>'+
-'                </div>'+
-'            </div>'+
-'            <div class="row">'+
-'                <div class="col">'+
-'                    <div class="input-group mb-3">'+
-'                        <div class="input-group-prepend">'+
-'                            <span class="input-group-text" id="basic-addon1">🎮</span>'+
-'                        </div>'+
-'                        <input type="text" class="form-control" placeholder="Nombre del prodcuto"'+
-'                            aria-label="Direccion" aria-describedby="basic-addon1">'+
-'                    </div>'+
-'                </div>'+
-'            </div>'+
-'            <div class="row">'+
-'                <div class="col">'+
-'                    <div class="input-group mb-3">'+
-'                        <div class="input-group-prepend">'+
-'                            <span class="input-group-text" id="basic-addon1">📋</span>'+
-'                        </div>'+
-'                        <select class="custom-select" id="inputGroupSelect01">'+
-'                            <option selected>Categoria</option>'+
-                             DatCategoriMP()+
-                             DatCategoriMP()+
-                             DatCategoriMP()+
-                             DatCategoriMP()+
-'                        </select>'+
-'                    </div>'+
-'                </div>'+
-'            </div>'+
-'            <div class="row">'+
-'                <div class="col">'+
-'                    <div class="input-group mb-3">'+
-'                        <div class="input-group-prepend">'+
-'                            <span class="input-group-text" id="basic-addon1">👷</span>'+
-'                        </div>'+
-'                        <select class="custom-select" id="inputGroupSelect01">'+
-'                            <option selected>Proveedor</option>'+
-                             DatProveMP()+
-                             DatProveMP()+
-                             DatProveMP()+
-                             DatProveMP()+
-                             DatProveMP()+
-'                        </select>'+
-'                    </div>'+
-'                </div>'+
-'            </div>'+
-'            <div class="row">'+
-'                <div class="col">'+
-'                    <div class="input-group mb-3">'+
-'                        <div class="input-group-prepend">'+
-'                            <span class="input-group-text" id="basic-addon1">💲</span>'+
-'                        </div>'+
-'                        <input type="number" class="form-control" placeholder="Precio de Compra"'+
-'                            aria-label="Direccion" aria-describedby="basic-addon1">'+
-'                    </div>'+
-'                </div>'+
-'                <div class="col">'+
-'                    <div class="input-group mb-3">'+
-'                        <div class="input-group-prepend">'+
-'                            <span class="input-group-text" id="basic-addon1">💰</span>'+
-'                        </div>'+
-'                        <input type="number" class="form-control" placeholder="Precio de Venta"'+
-'                            aria-label="Direccion" aria-describedby="basic-addon1">'+
-'                    </div>'+
-'                </div>'+
-'            </div>'+
-'            <div class="row">'+
-'                <div class="col">'+
-'                    <div class="input-group mb-3">'+
-'                        <div class="input-group-prepend">'+
-'                            <span class="input-group-text" id="basic-addon1">🔢</span>'+
-'                        </div>'+
-'                        <input type="number" class="form-control" placeholder="Cantidad en Stock"'+
-'                           aria-label="Direccion" aria-describedby="basic-addon1">'+
-'                    </div>'+
-'                </div>'+
-'           </div>'+
-'            <div class="row">'+
-'               <div class="col">'+
-'                    <div class="form-group">'+
-'                      <label for="exampleFormControlTextarea1">Descripccion de producto</label>'+
-'                        <textarea class="form-control" id="exampleFormControlTextarea1"'+
-'                            rows="3"></textarea>'+
-'                    </div>'+
-'                </div>'+
-'            </div>'+
-'            <div class="row">'+
-'                <div class="col">'+
-'                    <button type="button" id="NewProdut" class="btn btn-success btn-block">Agregar'+
-'                        Producto</button>'+
-'                </div>'+
-'            </div>'+
-'        </div>'+
-'    </div>'+
-'    <!------------------------->';
+    ' <div class="row">'+
+    ' <div class="col">'+
+        ' <div class="row">'+
+            ' <div class="col">'+
+                '<div class="row">'+
+                    '<div class="col-7">'+
+                        '<div class="row">'+
+                            '<div class="col">'+
+                                ' <div class="input-group mb-3">'+
+                                    ' <div class="input-group-prepend">'+
+                                        ' <span class="input-group-text" id="basic-addon1">🔢</span>'+
+                                        ' </div>'+
+                                    ' <input type="text" class="form-control" placeholder="Codigo del prodcuto"'+
+                                    ' aria-label="Direccion" aria-describedby="basic-addon1">'+
+                                    ' </div>'+
+                                '</div>'+
+                            '</div>'+
+                        ' <div class="row">'+
+                            ' <div class="col">'+
+                                ' <div class="input-group mb-3">'+
+                                    ' <div class="input-group-prepend">'+
+                                        ' <span class="input-group-text" id="basic-addon1">🎮</span>'+
+                                        ' </div>'+
+                                    ' <input type="text" class="form-control" placeholder="Nombre del prodcuto"'+
+                                    ' aria-label="Direccion" aria-describedby="basic-addon1">'+
+                                    ' </div>'+
+                                ' </div>'+
+                            ' </div>'+
+                        ' <div class="row">'+
+                            ' <div class="col">'+
+                                ' <div class="input-group mb-3">'+
+                                    ' <div class="input-group-prepend">'+
+                                        ' <span class="input-group-text" id="basic-addon1">📋</span>'+
+                                        ' </div>'+
+                                    ' <select class="custom-select" id="inputGroupSelect01">'+
+                                        ' <option selected>Categoria</option>'+
+                                        DatCategoriMP()+
+                                        DatCategoriMP()+
+                                        DatCategoriMP()+
+                                        DatCategoriMP()+
+                                        ' </select>'+
+                                    ' </div>'+
+                                ' </div>'+
+                            ' </div>'+
+                        '</div>'+
+                    '<div class="col-5">'+
+                        '<div class="text-center">'+
+                            '<img src="./resorces/fondolo.jpg" style="width: 14vh; height: 14vh;'+
+                            '-webkit-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);'+
+                            '-moz-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);'+
+                            'box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);"'+
+                            ' class="rounded" alt="...">'+
+                            '</div>'+
+                        '<div class="row my-2">'+
+                            '<div class="col">'+
+                                ' <button type="button" style="text-align: center; width: 100px; height: 30px;" id="NewProdut"'+
+                                  '  class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir' + 
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+                ' </div>'+
+            ' </div>'+
+        ' <div class="row">'+
+            ' <div class="col">'+
+                ' <div class="input-group mb-3">'+
+                    ' <div class="input-group-prepend">'+
+                        ' <span class="input-group-text" id="basic-addon1">👷</span>'+
+                        ' </div>'+
+                    ' <select class="custom-select" id="inputGroupSelect01">'+
+                        ' <option selected>Proveedor</option>'+
+                        DatProveMP()+
+                        DatProveMP()+
+                        DatProveMP()+
+                        DatProveMP()+
+                        DatProveMP()+
+                        ' </select>'+
+                    ' </div>'+
+                ' </div>'+
+            ' </div>'+
+        ' <div class="row">'+
+            ' <div class="col">'+
+                ' <div class="input-group mb-3">'+
+                    ' <div class="input-group-prepend">'+
+                        ' <span class="input-group-text" id="basic-addon1">💲</span>'+
+                        ' </div>'+
+                    ' <input type="number" class="form-control" placeholder="Precio de Compra"'+
+    ' aria-label="Direccion" aria-describedby="basic-addon1">'+
+                    ' </div>'+
+                ' </div>'+
+            ' <div class="col">'+
+                ' <div class="input-group mb-3">'+
+                    ' <div class="input-group-prepend">'+
+                        ' <span class="input-group-text" id="basic-addon1">💰</span>'+
+                        ' </div>'+
+                    ' <input type="number" class="form-control" placeholder="Precio de Venta"'+
+    ' aria-label="Direccion" aria-describedby="basic-addon1">'+
+                    ' </div>'+
+                ' </div>'+
+            ' </div>'+
+        ' <div class="row">'+
+            ' <div class="col">'+
+                ' <div class="input-group mb-3">'+
+                    ' <div class="input-group-prepend">'+
+                        ' <span class="input-group-text" id="basic-addon1">🔢</span>'+
+                        ' </div>'+
+                    ' <input type="number" class="form-control" placeholder="Cantidad en Stock"'+
+    ' aria-label="Direccion" aria-describedby="basic-addon1">'+
+                    ' </div>'+
+                ' </div>'+
+            ' </div>'+
+        ' <div class="row">'+
+            ' <div class="col">'+
+                ' <div class="form-group">'+
+                    ' <label for="exampleFormControlTextarea1">Descripccion de producto</label>'+
+                    ' <textarea class="form-control" id="exampleFormControlTextarea1"'+
+    ' rows="3"></textarea>'+
+                    ' </div>'+
+                ' </div>'+
+            ' </div>'+
+        ' <div class="row">'+
+            ' <div class="col">'+
+                ' <button type="button" id="NewProdut" class="btn btn-success btn-block">Agregar'+
+                    ' Producto</button>'+
+                ' </div>'+
+            ' </div>'+
+        ' </div>'+
+    ' </div>'+
+'<!------------------------->';
 } 
 
 /*Cart de categorias que va a ser insertado en el contenedor*/
@@ -1060,6 +1083,51 @@ function DatLisCiry() {
     return '<option value="1">Piura</option>';
 }
 
+function PedidosCont(){
+    return '<div'+
+    'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
+    '<div class="accordion" id="accordionExample">'+
+        CardPedido()+
+        CardPedido()+
+        CardPedido()+
+    '</div>'+
+    '<!------------------------------------>'+
+'</div>';
+}
+
+function CardPedido() {
+    return '<!-- car del pedido a mostrar--->'+
+    '<div class="card my-1">'+
+        '<div class="card-header" id="headingOne">'+
+            '<h2 class="mb-0">'+
+                '<button class="btn btn-link btn-block text-left" type="button"'+
+                    'data-toggle="collapse" data-target="#collapseOne6" aria-expanded="true"'+
+                    'aria-controls="collapseOne6">'+
+                    '<div class="row">'+
+                        '<div class="col-3">'+
+                        '    4567856'+
+                        '</div>'+
+                        '<div class="col-6">'+
+                        '    Jose maria hernandez'+
+                        '</div>'+
+                        '<div class="col-3">'+
+                        '    S/.4500'+
+                        '</div>'+
+                    '</div>'+
+                '</button>'+
+            '</h2>'+
+        '</div>'+
+        '<div id="collapseOne6" class="collapse show" aria-labelledby="headingOne"'+
+            'data-parent="#accordionExample">'+
+            '<div class="card-body" id="secudContendP">'+
+                CarritoCompra()+
+            '</div>'+
+        '</div>'+
+    '</div>'+
+    '<!----------------------------------------->';
+}
+
+
 /* codigo directamente extraido de store el cual 
 da la informacion del pedido*/
 function CarritoCompra(){
@@ -1092,7 +1160,7 @@ function CarritoCompra(){
   '  <div class="row">'+
   '     <div class="col">'+
   '       <div class="row my-1">'+
-  '           <select class="custom-select" id="inputGroupSelect01">'+
+  '           <select disabled class="custom-select" id="inputGroupSelect01">'+
   '            <option selected>Departamento</option>'+
                  ProducDepart()+
                  ProducDepart()+
@@ -1101,7 +1169,7 @@ function CarritoCompra(){
   '           </select>'+
   '       </div>'+
   '       <div class="row my-1">'+
-  '           <select class="custom-select" id="inputGroupSelect01">'+
+  '           <select disabled class="custom-select" id="inputGroupSelect01">'+
   '             <option selected>Ciudad</option>'+
                  ProducCity()+
                  ProducCity()+
@@ -1110,7 +1178,7 @@ function CarritoCompra(){
   '           </select>'+
   '       </div>'+
   '       <div class="row my-1">'+
-  '           <select class="custom-select" id="inputGroupSelect01">'+
+  '           <select disabled class="custom-select" id="inputGroupSelect01">'+
   '             <option selected>Distrito</option>'+
                   ProducDist()+
                   ProducDist()+
@@ -1125,10 +1193,29 @@ function CarritoCompra(){
   '               <div class="input-group-prepend">'+
   '                 <span class="input-group-text" id="basic-addon1">🌍</span>'+
   '               </div>'+
-  '               <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
+  '               <input disabled type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
   '             </div>'+
-  '             <small id="text_mese" class="form-text text-muted">Escriba la direccion donde quiera recibir el paquete..</small>'+
   '           </div>'+
+  '       </div>'+
+  '       <div class="row my-1">'+
+  '           <div class="form-group" style="width: 100%;">'+
+  '             <div class="input-group">'+
+  '               <div class="input-group-prepend">'+
+  '                 <span class="input-group-text" id="basic-addon1">📋</span>'+
+  '               </div>'+
+  '               <select class="custom-select" id="inputGroupSelect01">'+
+  '                  <option selected>Estado</option>'+
+                        ProducDepart()+
+                        ProducDepart()+
+                        ProducDepart()+
+                        ProducDepart()+
+  '               </select>'+
+  '             </div>'+
+  '           </div>'+
+  '       </div>'+
+  '       <div class="row my-1">'+
+  '             <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
+  '             Estado</button>'+
   '       </div>'+
   '     </div>'+
   '     <div class="row my-1">'+

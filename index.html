@@ -27,6 +27,7 @@
     crossorigin="anonymous"></script>
   <!--- my script------>
   <script type="text/javascript" src="view/js/principal_interface.js"></script>
+  <script type="text/javascript" src="view/js/index.js"></script>
   <!-------barra de navegacion------->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
@@ -60,16 +61,33 @@
                         height: 40px;" src="./view/resorces/fondolo.jpg" alt="">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item"><i class="fas fa-tshirt my-1 text-left icon"></i>Pedidos</a>
-            <a class="dropdown-item"><i class="fas fa-blender-phone my-1 text-left icon"></i>Configuraciones</a>
+            <a id="ConfigUsar" class="dropdown-item"><i
+                class="fas fa-blender-phone my-1 text-left icon"></i>Configuraciones</a>
             <a class="dropdown-item"><i class="fas fa-laptop my-1 text-left icon"></i> Cerrar seccion</a>
           </div>
         </li>
       </ul>
     </div>
   </nav>
+
+  <!--Modales de producto--->
+  <div class="modal fade" id="infoProducto" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Carrito de compras</h5>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        <div class="modal-body" id="contModal">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------->
   <!---- cuerpo --->
-  <iframe src="./view/Administrador.html" frameborder="0" style="height: 100vh; width:100%;" id="contenedor_cuerpo" />
+  <iframe src="./view/Administrador.html" frameborder="0" style="height: 100vh; width:100%;" id="contenedor_cuerpo">
+
 </body>
 
 </html>
