@@ -391,7 +391,7 @@ function CarritoCompra(){
 '           </div>'+
 '         </div>'+
 '       </div>'+
-'       <div style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
+'       <div style="background:  #eceff1; width: 100%; height: 150px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
             productCarri()+
             productCarri()+
             productCarri()+
