@@ -2,11 +2,11 @@
   width: 100%;
 }
 
-.Setprogressbar {
+.conteSetP .Setprogressbar {
   counter-reset: step;
 }
 
-.Setprogressbar .li-iten-sep {
+.conteSetP .Setprogressbar .li-iten-sep {
   list-style-type: none;
   float: left;
   width: 33.33%;
@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-.Setprogressbar .li-iten-sep::before {
+.conteSetP .Setprogressbar .li-iten-sep::before {
   content: counter(step);
   counter-increment: step;
   width: 30px;
@@ -28,11 +28,11 @@
   background-color: white;
 }
 
-.Setprogressbar .li-iten-sep::after {
+.conteSetP .Setprogressbar .li-iten-sep::after {
   content: "";
   position: absolute;
   width: 100%;
-  height: 1px;
+  height: 2px;
   line-height: 30px;
   background-color: #ddd;
   top: 15px;
@@ -40,18 +40,18 @@
   z-index: -1;
 }
 
-.Setprogressbar .li-iten-sep:first-child::after {
+.conteSetP .Setprogressbar .li-iten-sep:first-child::after {
   content: none;
 }
 
-.Setprogressbar .li-iten-sep.active {
+.conteSetP .Setprogressbar .li-iten-sep.active {
   color: green;
 }
 
-.Setprogressbar .li-iten-sep.active::before {
+.conteSetP .Setprogressbar .li-iten-sep.active::before {
   border-color: green;
 }
 
-.Setprogressbar .li-iten-sep.active + .li-iten-sep::after {
+.conteSetP .Setprogressbar .li-iten-sep.active + .li-iten-sep::after {
   background-color: green;
 }

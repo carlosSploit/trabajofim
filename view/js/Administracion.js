@@ -1203,16 +1203,12 @@ function CarritoCompra(){
   '             </div>'+
   '           </div>'+
   '       </div>'+
-  '       <div class="row my-1">'+
-  '              <div class="col">'+
-  '               <div class="conetSetP">'+
-  '                  <ul class="Setprogressbar">'+
-  '                      <li class="li-iten-sep active">Step 1</li>'+
-  '                      <li class="li-iten-sep active">Step 2</li>'+
-  '                      <li class="li-iten-sep active">Step 3</li>'+
-  '                  </ul>'+
-  '              </div>'+
-  '              </div>'+
+  '       <div class="conteSetP">'+
+  '          <ul class="Setprogressbar">'+
+  '             <li class="li-iten-sep active">Step 1</li>'+
+  '             <li class="li-iten-sep active">Step 2</li>'+
+  '             <li class="li-iten-sep active">Step 3</li>'+
+  '          </ul>'+
   '       </div>'+
   '       <div class="row my-1">'+
   '             <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
