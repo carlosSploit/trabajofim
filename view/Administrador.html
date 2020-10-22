@@ -21,21 +21,21 @@ and open the template in the editor.
 </head>
 
 <body>
-    <div class="row" style="margin-top: 55px;">
+    <div class="row" style="margin-top: 55px; margin-left: -20px;">
         <div class="nav flex-column nav-pills col-2 mx-5" style="background-color:#eceff1 ; height: 75vh;"
             id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link btn-block active" style="width: 100%;" id="v-pills-home-tab" data-toggle="pill"
                 href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Mantenimiento</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="v-pills-profile"
-                aria-selected="false">Analizador</a>
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                aria-controls="v-pills-profile" aria-selected="false">Profile</a>
         </div>
-        <div class="tab-content col-9" id="v-pills-tabContent">
+        <div class="tab-content" style="width: 70%; margin-left: 15px;" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 <div class="row">
                     <div class="col-3">
                         <div class="row">
                             <div class="col">
-                                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                <ul class="navbar-nav mr-auto mt-lg-0">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -85,11 +85,11 @@ and open the template in the editor.
                     <div class="col-3">
                         <button type="button" id="NewProdut" class="btn btn-success btn-block">Nuevo Producto</button>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2" style="margin-left: -10px;">
                         <button type="button" id="Pedid" class="btn btn-primary btn-block">Pedidos</button>
                     </div>
                 </div>
-                <section class="my-2" style="margin-left: -40px;">
+                <section class="my-2" style="margin-left: -50px;">
                     <div class="container">
                         <div id="contentProductAct" class="row no-gutters"
                             style="background:  #eceff1; padding-top:-10px ; width: 100%; height: 70vh; display: grid;grid-template-columns:180px 180px 180px 180px 180px ; grid-row-gap: 10px; overflow:scroll;overflow-x: hidden;">
@@ -164,6 +164,52 @@ and open the template in the editor.
                     </div>
                 </section>
             </div>
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <h4 class="text-center">Analitica del Software</h4>
+                <div class="row" style="width: 100%; height: 60vh;">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col mx-2 my-2">
+                                <div class="card" style="height: 35vh; width: 100%;">
+                                    <div class="card-body">
+                                        <canvas id="myChart2" height="90vh"></canvas>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-4 mx-2">
+                                <div class="card" style=" height: 30vh; width: 100%;">
+                                    <div class="card-body" style=" height: 30vh; width: 100%;">
+                                        <canvas id="myChart" width="200px"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4" style="margin-left: -10px; margin-right: -10px;">
+                                <div class="card" style=" height: 30vh; width: 100%;">
+                                    <div class="card-body">
+                                        <canvas id="myChart3" style=" height: 20vh; width: auto"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card" style=" height: 30vh; width: 100%; ">
+                                    <div class="card-body">
+                                        <h6 class="text-center">Reporte Diario</h5>
+                                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
+                                            <h6 class="text-center">Reporte Mensual</h5>
+                                                <button type="button" class="btn btn-danger btn-block">Eliminar</button>
+                                                <h6 class="text-center">Reporte Anual</h5>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-block">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -181,6 +227,10 @@ and open the template in the editor.
             </div>
         </div>
         <!------------------------------->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"
+            integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw=="
+            crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/Administracion_Analitic.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>

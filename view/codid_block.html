@@ -16,8 +16,8 @@
     <div class="row" style="width: 100%;height: 100vh;">
         <div class="col">
             <div class="row">
-                <div class="col">
-                    <div class="card mx-2 my-2" style="height: 40vh; width: 100%;">
+                <div class="col mx-2 my-2">
+                    <div class="card" style="height: 40vh; width: 100%;">
                         <div class="card-body">
                             <canvas id="myChart2" style="height: 30vh; width: 80%;"></canvas>
                         </div>
@@ -26,25 +26,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
-                    <div class="card mx-2 my-2" style="height: 40vh; width: 100%;">
+                <div class="col mx-2">
+                    <div class="card" style=" height: 40vh; width: 100%;">
                         <div class="card-body">
-                            <canvas id="myChart" style="height: 5vh; width: 10%;"></canvas>
+                            <canvas id="myChart" style=" height: 29vh; width: 80%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mx-2">
+                    <div class="card" style=" height: 40vh; width: 100%;">
+                        <div class="card-body">
+                            <canvas id="myChart3" style=" height: 29vh; width: 80%;"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card mx-2 my-2" style="height: 40vh; width: 100%;">
+                    <div class="card" style=" height: 40vh; width: 100%;">
                         <div class="card-body">
-                            <!--<canvas id="myChart3" style="height: 30vh; width: 80%;"></canvas>-->
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-                    <div class="card mx-2 my-2" style="height: 40vh; width: 100%;">
-                        <div class="card-body">
-                            <!--<canvas id="myChart4" style="height: 30vh; width: 80%;"></canvas>-->
+                            <h5 class="text-center">Reporte Diario</h5>
+                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
+                            <h5 class="text-center">Reporte Mensual</h5>
+                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
+                            <h5 class="text-center">Reporte Anual</h5>
+                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
                         </div>
                     </div>
                 </div>
@@ -97,7 +101,7 @@
                 }
             }
         });
-        /*var ctx = document.getElementById('myChart3');
+        var ctx = document.getElementById('myChart3');
         var myDoughnutChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -132,42 +136,7 @@
                 }
             }
         });
-        var ctx = document.getElementById('myChart4');
-        var myDoughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [10, 20, 30],
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        'Red',
-                        'Yellow',
-                        'Blue'
-                    ],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ]
-                }],
-                labels: [
-                    'Red',
-                    'Yellow',
-                    'Blue'
-                ],
-                options: {
-                    tooltips: {
-                        mode: 'nearest'
-                    }
 
-                }
-            }
-        });*/
         var ctx = document.getElementById('myChart2');
         var myDoughnutChart = new Chart(ctx, {
             type: 'line',
