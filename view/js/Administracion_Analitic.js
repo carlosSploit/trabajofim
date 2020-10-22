@@ -26,16 +26,19 @@ var ctx = document.getElementById('myChart');
                     'Yellow',
                     'Blue'
                 ],
-                options: {
-                    layout: {
-                        margin: {
-                            left: 50,
-                            right: 0,
-                            top: 0,
-                            bottom: 0
-                        }
+            },
+            options: {
+                legend: {
+                    display: false,
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
                     }
-                }
+                } 
             }
         });
         var ctx = document.getElementById('myChart3');
@@ -66,11 +69,19 @@ var ctx = document.getElementById('myChart');
                     'Yellow',
                     'Blue'
                 ],
-                options: {
-                    tooltips: {
-                        mode: 'nearest'
+            },
+            options: {
+                legend: {
+                    display: false,
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
                     }
-                }
+                } 
             }
         });
 
@@ -96,11 +107,31 @@ var ctx = document.getElementById('myChart');
                     'Viernes',
                     'Sabado',
                     'Domingo'
-                ],
-                options: {
-                    tooltips: {
-                        mode: 'nearest'
+                ]
+            },
+            options: {
+                legend: {
+                    display: false,
+                },
+                scales: { 
+                    xAxes: [{ 
+                       gridLines: { 
+                        color: "rgba(0, 0, 0, 0)", 
+                       } 
+                    }], 
+                    yAxes: [{ 
+                       gridLines: { 
+                        color: "rgba(0, 0, 0, 0)", 
+                       } 
+                    }] 
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
                     }
-                }
+                } 
             }
         });

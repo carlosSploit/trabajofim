@@ -401,7 +401,7 @@ function CarritoCompra(){
 '  </div>'+
 '  <div class="row">'+
 '     <div class="col">'+
-'       <div class="row my-1">'+
+'       <div class="row my-2">'+
 '           <select class="custom-select" id="inputGroupSelect01">'+
 '            <option selected>Departamento</option>'+
                ProducDepart()+
@@ -496,7 +496,7 @@ function productCarri(){
   '               height: 40px;'+
   '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
   '            </div> '+
-  '            <div class = "col-4 bg-ligh "  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+  '            <div class = "col-4 bg-light "  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
   '               Maquintosh de 3gb de ram con 2 procesaroderes'+
   '            </div>'+
   '            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+

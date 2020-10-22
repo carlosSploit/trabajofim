@@ -20,37 +20,61 @@ and open the template in the editor.
     <link rel="stylesheet" href="css/store.css">
 </head>
 
-<body>
-    <div class="row" style="margin-top: 55px; margin-left: -20px;">
-        <div class="nav flex-column nav-pills col-2 mx-5" style="background-color:#eceff1 ; height: 75vh;"
+<body style="overflow: hidden;">
+    <div class="row" style=" margin-left: -20px;">
+        <div class="nav flex-column nav-pills col-2 mx-4" style="background-color:#eceff1 ; height: 100vh;"
             id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <div class="row my-3">
+                <div class="col">
+                    <h4 class="text-center" style="color:#546e7a ;"> Almacen </h4>
+                </div>
+            </div>
             <a class="nav-link btn-block active" style="width: 100%;" id="v-pills-home-tab" data-toggle="pill"
-                href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Mantenimiento</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-                aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .47wQbNPTDJp9hMYdvogK2hAUiHsGeiybwaWe36bwtRQ3UTpYV7YuZ8FV5j9nauFCWwcjM6dTzpL5s2N79Rp5unwdMvc8ZKU.47wQbNPTDJp9hMYdvogK2hAUiHsGeiybwaWe36bwtRQ3UTpYV7YuZ8FV5j9nauFCWwcjM6dTzpL5s2N79Rp5unwdMvc8ZKU 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
+                    <path fill-rule="evenodd"
+                        d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
+                </svg>
+                Mantenimiento</a>
+            <nav class="nav nav-pills flex-column">
+                <a class="nav-link ml-3 my-1" id="CadP" style="width: 100%;" data-toggle="pill" role="tab"
+                    aria-controls="v-pills-profile" aria-selected="false">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-receipt" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z" />
+                        <path fill-rule="evenodd"
+                            d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+                    </svg> C. Producto</a>
+                <a class="nav-link ml-3 my-1" id="Pro" style="width: 100%;" data-toggle="pill" role="tab"
+                    aria-controls="v-pills-profile" aria-selected="false">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-square" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path fill-rule="evenodd"
+                            d="M2 15v-1c0-1 1-4 6-4s6 3 6 4v1H2zm6-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    </svg> Proveedor</a>
+                <a class="nav-link ml-3 my-1" id="Ciu" style="width: 100%;" data-toggle="pill" role="tab"
+                    aria-controls="v-pills-profile" aria-selected="false">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-signpost-split-fill"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M7 16h2V6h5a1 1 0 0 0 .8-.4l.975-1.3a.5.5 0 0 0 0-.6L14.8 2.47wQbNPTDJp9hMYdvogK2hAUiHsGeiybwaWe36bwtRQ3UTpYV7YuZ8FV5j9nauFCWwcjM6dTzpL5s2N79Rp5unwdMvc8ZKU 0 0 0 .8.4h5v5z" />
+                    </svg> Geolocalizacion</a>
+            </nav>
+            <a class="nav-link" id="v-pills-profile-tab" style="width: 100%;" data-toggle="pill" href="#v-pills-profile"
+                role="tab" aria-controls="v-pills-profile" aria-selected="false">Analisis</a>
         </div>
         <div class="tab-content" style="width: 70%; margin-left: 15px;" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="tab-pane fade show active my-3 mx-4" id="v-pills-home" role="tabpanel"
+                aria-labelledby="v-pills-home-tab">
                 <div class="row">
                     <div class="col-3">
                         <div class="row">
-                            <div class="col">
-                                <ul class="navbar-nav mr-auto mt-lg-0">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Other
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <!--        card de categoria disponibles         -->
-                                            <a class="dropdown-item" id="Ciu">🌇 Geolocalizacion</a>
-                                            <!-------------------------------------------------->
-                                            <a class="dropdown-item" id="Pro">👷 Proveedores</a>
-                                            <a class="dropdown-item" id="CadP">🎮 Categoria Producto</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                             <div class="col">
                                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                                     <li class="nav-item dropdown">
@@ -77,7 +101,7 @@ and open the template in the editor.
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="search" aria-label="Direccion"
                                 aria-describedby="basic-addon1">
-                            <div class="input-group-prepend">
+                            <div class="input-group-prepend" style="border-top-right-radius: 10px;">
                                 <span class="input-group-text" id="basic-addon1">🔎</span>
                             </div>
                         </div>
@@ -89,10 +113,10 @@ and open the template in the editor.
                         <button type="button" id="Pedid" class="btn btn-primary btn-block">Pedidos</button>
                     </div>
                 </div>
-                <section class="my-2" style="margin-left: -50px;">
+                <section class="my-2" style="margin-left: -20px;">
                     <div class="container">
                         <div id="contentProductAct" class="row no-gutters"
-                            style="background:  #eceff1; padding-top:-10px ; width: 100%; height: 70vh; display: grid;grid-template-columns:180px 180px 180px 180px 180px ; grid-row-gap: 10px; overflow:scroll;overflow-x: hidden;">
+                            style="background:  #eceff1; padding-top:-10px ; width: 100%; height: 75vh; display: grid;grid-template-columns:180px 180px 180px 180px 180px ; grid-row-gap: 10px; overflow:scroll;overflow-x: hidden;">
                             <!--          card de productos generico            -->
                             <div id="456789" class="card mx-1 my-1"
                                 style="width: 170px; height: 270px; border-radius: 10px; overflow: hidden;">
@@ -164,45 +188,46 @@ and open the template in the editor.
                     </div>
                 </section>
             </div>
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                <h4 class="text-center">Analitica del Software</h4>
-                <div class="row" style="width: 100%; height: 60vh;">
+            <div class="tab-pane fade my-5" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="text-center">Analitica de ventas</h4>
+                    </div>
+                    <div class="col"><button type="button" class="btn btn-success btn-block"
+                            style="width: 400px;">Descargar Reporte</button></div>
+                </div>
+                <div class="row my-3">
                     <div class="col">
                         <div class="row">
                             <div class="col mx-2 my-2">
-                                <div class="card" style="height: 35vh; width: 100%;">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Ventas realizadas
+                                    </div>
                                     <div class="card-body">
-                                        <canvas id="myChart2" height="90vh"></canvas>
+                                        <canvas id="myChart2" height="60px"></canvas>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="row" style="margin-top: 10px;">
-                            <div class="col-4 mx-2">
-                                <div class="card" style=" height: 30vh; width: 100%;">
-                                    <div class="card-body" style=" height: 30vh; width: 100%;">
-                                        <canvas id="myChart" width="200px"></canvas>
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Productos mas Comprados
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-4" style="margin-left: -10px; margin-right: -10px;">
-                                <div class="card" style=" height: 30vh; width: 100%;">
                                     <div class="card-body">
-                                        <canvas id="myChart3" style=" height: 20vh; width: auto"></canvas>
+                                        <canvas id="myChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card" style=" height: 30vh; width: 100%; ">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Productos mas ganacias
+                                    </div>
                                     <div class="card-body">
-                                        <h6 class="text-center">Reporte Diario</h5>
-                                            <button type="button" class="btn btn-danger btn-block">Eliminar</button>
-                                            <h6 class="text-center">Reporte Mensual</h5>
-                                                <button type="button" class="btn btn-danger btn-block">Eliminar</button>
-                                                <h6 class="text-center">Reporte Anual</h5>
-                                                    <button type="button"
-                                                        class="btn btn-danger btn-block">Eliminar</button>
+                                        <canvas id="myChart3"></canvas>
                                     </div>
                                 </div>
                             </div>
