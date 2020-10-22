@@ -1204,20 +1204,15 @@ function CarritoCompra(){
   '           </div>'+
   '       </div>'+
   '       <div class="row my-1">'+
-  '           <div class="form-group" style="width: 100%;">'+
-  '             <div class="input-group">'+
-  '               <div class="input-group-prepend">'+
-  '                 <span class="input-group-text" id="basic-addon1">📋</span>'+
-  '               </div>'+
-  '               <select class="custom-select" id="inputGroupSelect01">'+
-  '                  <option selected>Estado</option>'+
-                        ProducDepart()+
-                        ProducDepart()+
-                        ProducDepart()+
-                        ProducDepart()+
-  '               </select>'+
-  '             </div>'+
-  '           </div>'+
+  '              <div class="col">'+
+  '               <div class="conetSetP">'+
+  '                  <ul class="Setprogressbar">'+
+  '                      <li class="li-iten-sep active">Step 1</li>'+
+  '                      <li class="li-iten-sep active">Step 2</li>'+
+  '                      <li class="li-iten-sep active">Step 3</li>'+
+  '                  </ul>'+
+  '              </div>'+
+  '              </div>'+
   '       </div>'+
   '       <div class="row my-1">'+
   '             <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
