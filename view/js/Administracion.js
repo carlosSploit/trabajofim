@@ -37,7 +37,7 @@ function principal(){
     });
 
     $("#Pedid").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
-        $('#contModal').html(PedidosCont);
+        //$('#contModal').html(PedidosCont);
         $('#TituloModal').html("Lista de Pedidos")
         $('#ModalContainer').modal('show');
     });
