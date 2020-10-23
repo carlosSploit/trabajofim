@@ -15,129 +15,34 @@
 </head>
 
 <body>
-    <div class="container">
-        <ul class="progressbar">
-            <li class="active">login</li>
-            <li>choose interest</li>
-            <li>add friends</li>
-            <li>View map</li>
+
+    <div class="conteSetP">
+        <ul id="stp-dsjdhj" value="0" class="Setprogressbar padre">
+            <li value="1" class="li-iten-sep hijo">Step 1</li>
+            <li value="2" class="li-iten-sep hijo">Step 2</li>
+            <li value="3" class="li-iten-sep hijo">Step 3</li>
         </ul>
     </div>
 
+    <div class="conteSetP">
+        <ul id="stp-dsjdhj" class="Setprogressbar padre">
+            <li class="li-iten-sep hijo">Step 1</li>
+            <li class="li-iten-sep hijo">Step 2</li>
+            <li class="li-iten-sep hijo">Step 3</li>
+        </ul>
+    </div>
 
+    <div class="conteSetP">
+        <ul id="stp-dsjdhj" class="Setprogressbar padre">
+            <li class="li-iten-sep hijo">Step 1</li>
+            <li class="li-iten-sep hijo">Step 2</li>
+            <li class="li-iten-sep hijo">Step 3</li>
+        </ul>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"
         integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw=="
         crossorigin="anonymous"></script>
-    <script>
-        var ctx = document.getElementById('myChart');
-        var myDoughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [10, 20, 30],
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        'Red',
-                        'Yellow',
-                        'Blue'
-                    ],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ]
-                }],
-                labels: [
-                    'Red',
-                    'Yellow',
-                    'Blue'
-                ],
-                options: {
-                    layout: {
-                        margin: {
-                            left: 50,
-                            right: 0,
-                            top: 0,
-                            bottom: 0
-                        }
-                    }
-                }
-            }
-        });
-        var ctx = document.getElementById('myChart3');
-        var myDoughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [10, 20, 30],
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        'Red',
-                        'Yellow',
-                        'Blue'
-                    ],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ]
-                }],
-                labels: [
-                    'Red',
-                    'Yellow',
-                    'Blue'
-                ],
-                options: {
-                    tooltips: {
-                        mode: 'nearest'
-                    }
-                }
-            }
-        });
-
-        var ctx = document.getElementById('myChart2');
-        var myDoughnutChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    data: [45, 10, 50, 40],
-                    // These labels appear in the legend and in the tooltips when hovering different arcs
-                    labels: [
-                        'Proyecto'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                    ]
-                }],
-                labels: [
-                    'Lunes',
-                    'Martes',
-                    'Miercoles',
-                    'Jueves',
-                    'Viernes',
-                    'Sabado',
-                    'Domingo'
-                ],
-                options: {
-                    tooltips: {
-                        mode: 'nearest'
-                    }
-                }
-            }
-        });
-
-    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -149,6 +54,7 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/Administracion.js"></script>
+    <script type="text/javascript" src="js/setProgresbar.js"></script>
 
 </body>
 

@@ -1,5 +1,7 @@
 .conteSetP {
   width: 100%;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 .conteSetP .Setprogressbar {
@@ -17,6 +19,7 @@
 .conteSetP .Setprogressbar .li-iten-sep:before {
   content: counter(step);
   counter-increment: step;
+  position: relative;
   width: 30px;
   height: 30px;
   line-height: 30px;
@@ -26,6 +29,7 @@
   margin: 0 auto 10px auto;
   border-radius: 50%;
   background-color: white;
+  z-index: 2;
 }
 
 .conteSetP .Setprogressbar .li-iten-sep:after {
@@ -37,7 +41,7 @@
   background-color: #ddd;
   top: 15px;
   left: -50%;
-  z-index: -0.9;
+  z-index: 1;
 }
 
 .conteSetP .Setprogressbar .li-iten-sep:first-child:after {

@@ -37,7 +37,7 @@ function principal(){
     });
 
     $("#Pedid").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
-        //$('#contModal').html(PedidosCont);
+        $('#contModal').html(PedidosCont);
         $('#TituloModal').html("Lista de Pedidos")
         $('#ModalContainer').modal('show');
     });
@@ -1204,10 +1204,10 @@ function CarritoCompra(){
   '           </div>'+
   '       </div>'+
   '       <div class="conteSetP">'+
-  '          <ul class="Setprogressbar">'+
-  '             <li class="li-iten-sep active">Step 1</li>'+
-  '             <li class="li-iten-sep active">Step 2</li>'+
-  '             <li class="li-iten-sep active">Step 3</li>'+
+  '          <ul class="Setprogressbar padre">'+
+  '             <li class="li-iten-sep hijo">Step 1</li>'+
+  '             <li class="li-iten-sep hijo">Step 2</li>'+
+  '             <li class="li-iten-sep hijo">Step 3</li>'+
   '          </ul>'+
   '       </div>'+
   '       <div class="row my-1">'+
