@@ -9,6 +9,7 @@ function principal(){
 
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(ContentCarritoCompra);
+        Setprogressbar();
         $('#infoProducto').modal('show');
     });
 
@@ -628,16 +629,17 @@ function CarritoCompraMY(){
 '             </div>'+
 '           </div>'+
 '       </div>'+
-'       <div class="row my-1">'+
-'           <div class="form-group" style="width: 100%;">'+
-'             <div class="input-group">'+
-'               <div class="input-group-prepend">'+
-'                 <span class="input-group-text" id="basic-addon1">📋</span>'+
-'               </div>'+
-'               <input disabled type="text" class="form-control" placeholder="Estado" aria-label="Direccion" aria-describedby="basic-addon1">'+
-'             </div>'+
-'           </div>'+
-'       </div>'+
+'       <div class="row">'+
+'              <div class="col">'+
+'                  <div class="conteSetP">'+
+'                      <ul id="stp-dsjdhj" value="0" class="Setprogressbar padre">'+
+'                          <li value="1" class="li-iten-sep hijo">Pedido Recivido</li>'+
+'                          <li value="2" class="li-iten-sep hijo">Enviado</li>'+
+'                          <li value="3" class="li-iten-sep hijo">Paquete entregado</li>'+
+'                      </ul>'+
+'                  </div>'+
+'              </div>'+
+'          </div>'+
 '       <div class="row my-1">'+
 '             <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
 '             Estado</button>'+
@@ -686,5 +688,45 @@ function productCarriMY(){
   '           </div>'+
   '       </div>';
 }
+
+function Setprogressbar(){
+  var hijos = document.querySelectorAll("div.conteSetP > ul.padre > li.hijo");
+      for (unHijo of hijos) {
+          console.log(unHijo);
+          unHijo.addEventListener("click", function (evt) {
+              var padre = event.currentTarget.parentNode;
+              var hijo = evt.target;
+              padre.setAttribute("value", hijo.value);
+
+              if (hijo.getAttribute("class") === "li-iten-sep hijo active") {
+
+                  var classtext = "li-iten-sep hijo active";
+
+                  for (unHijo2 of padre.querySelectorAll("ul.padre > li.hijo")) {
+                      if (hijo == unHijo2) {
+                          classtext = "li-iten-sep hijo";
+                          unHijo2.setAttribute("class", classtext);
+                      } else {
+                          unHijo2.setAttribute("class", classtext);
+                      }
+                  }
+              } else {
+                  console.log(hijo);
+                  hijo.setAttribute("class", "li-iten-sep hijo active");
+                  for (unHijo3 of padre.querySelectorAll("ul.padre > li.hijo")) {
+                      if (hijo == unHijo3) {
+                          unHijo3.setAttribute("class", "li-iten-sep hijo active");
+                          break;
+                      } else {
+                          unHijo3.setAttribute("class", "li-iten-sep hijo active");
+                      }
+                  }
+              }
+              console.log("Se hizo click en", hijo);
+              console.log("Texto del enlace:", hijo.innerText);
+          });
+      }
+}
+
 
 

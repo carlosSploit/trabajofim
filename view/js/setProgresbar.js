@@ -4,7 +4,6 @@ $(document).ready(principal);
         //console.log(child[0]);
 
         var hijos = document.querySelectorAll("div.conteSetP > ul.padre > li.hijo");
-
         for (unHijo of hijos) {
             console.log(unHijo);
             unHijo.addEventListener("click", function (evt) {
