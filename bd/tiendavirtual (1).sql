@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2020 a las 00:16:35
+-- Tiempo de generación: 24-10-2020 a las 01:09:16
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.2.31
 
@@ -37,6 +37,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ActualizarDepart` (IN `id` INT,
 	UPDATE tdepartamento SET NombreDepart = nom WHERE IdDepartamento = id;
 END$$
 
+DROP PROCEDURE IF EXISTS `usp_ActualizarDist`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ActualizarDist` (IN `id` INT, IN `idCiu` INT, IN `nom` VARCHAR(60))  BEGIN
+UPDATE tdistrito SET idCiudad = idCiu , nombreDistrito = nom WHERE idDistrito = id;
+END$$
+
 DROP PROCEDURE IF EXISTS `usp_EliminarCiu`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_EliminarCiu` (IN `id` INT)  BEGIN
 DELETE FROM tciudad WHERE IdCiudad = id;
@@ -45,6 +50,11 @@ END$$
 DROP PROCEDURE IF EXISTS `usp_EliminarDepart`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_EliminarDepart` (IN `id` INT)  BEGIN
 DELETE FROM tdepartamento WHERE IdDepartamento = id;
+END$$
+
+DROP PROCEDURE IF EXISTS `usp_EliminarDist`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_EliminarDist` (IN `id` INT)  BEGIN
+DELETE FROM tdistrito WHERE idDistrito = id;
 END$$
 
 DROP PROCEDURE IF EXISTS `usp_InsertarCiu`$$
@@ -57,6 +67,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_InsertarDepart` (IN `nomd` VARC
 INSERT INTO tdepartamento (NombreDepart) VALUES (nomd);
 END$$
 
+DROP PROCEDURE IF EXISTS `usp_InsertarDist`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_InsertarDist` (IN `idCiu` INT, IN `nom` VARCHAR(60))  BEGIN
+INSERT INTO tdistrito (idCiudad, nombreDistrito) VALUES (idCiu,nom);
+END$$
+
 DROP PROCEDURE IF EXISTS `usp_ListarCiu`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ListarCiu` (IN `idDep` INT)  BEGIN
 SELECT * FROM tciudad WHERE IdDepartamento = idDep;
@@ -65,6 +80,11 @@ END$$
 DROP PROCEDURE IF EXISTS `usp_ListarDepart`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ListarDepart` ()  BEGIN
 SELECT * FROM tdepartamento WHERE 1 ;
+END$$
+
+DROP PROCEDURE IF EXISTS `usp_ListarDist`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ListarDist` (IN `idCiu` INT)  BEGIN
+SELECT * FROM tdistrito WHERE idCiudad =  idCiu;
 END$$
 
 DELIMITER ;
@@ -82,6 +102,12 @@ CREATE TABLE `tciudad` (
   `NombreCiudad` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tciudad`
+--
+
+INSERT INTO `tciudad` (`IdCiudad`, `IdDepartamento`, `NombreCiudad`) VALUES(2, 2, 'Piura');
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +119,34 @@ CREATE TABLE `tdepartamento` (
   `IdDepartamento` int(11) NOT NULL,
   `NombreDepart` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tdepartamento`
+--
+
+INSERT INTO `tdepartamento` (`IdDepartamento`, `NombreDepart`) VALUES(2, 'Piura');
+INSERT INTO `tdepartamento` (`IdDepartamento`, `NombreDepart`) VALUES(3, 'Pasco');
+INSERT INTO `tdepartamento` (`IdDepartamento`, `NombreDepart`) VALUES(8, 'Huancavelica');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tdistrito`
+--
+
+DROP TABLE IF EXISTS `tdistrito`;
+CREATE TABLE `tdistrito` (
+  `idDistrito` int(11) NOT NULL,
+  `idCiudad` int(11) NOT NULL,
+  `nombreDistrito` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tdistrito`
+--
+
+INSERT INTO `tdistrito` (`idDistrito`, `idCiudad`, `nombreDistrito`) VALUES(1, 2, 'Piura');
+INSERT INTO `tdistrito` (`idDistrito`, `idCiudad`, `nombreDistrito`) VALUES(2, 2, 'Catilla');
 
 --
 -- Índices para tablas volcadas
@@ -111,6 +165,12 @@ ALTER TABLE `tdepartamento`
   ADD PRIMARY KEY (`IdDepartamento`);
 
 --
+-- Indices de la tabla `tdistrito`
+--
+ALTER TABLE `tdistrito`
+  ADD PRIMARY KEY (`idDistrito`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -118,13 +178,19 @@ ALTER TABLE `tdepartamento`
 -- AUTO_INCREMENT de la tabla `tciudad`
 --
 ALTER TABLE `tciudad`
-  MODIFY `IdCiudad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdCiudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tdepartamento`
 --
 ALTER TABLE `tdepartamento`
-  MODIFY `IdDepartamento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdDepartamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `tdistrito`
+--
+ALTER TABLE `tdistrito`
+  MODIFY `idDistrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

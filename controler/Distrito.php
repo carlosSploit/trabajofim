@@ -1,65 +1,59 @@
 <?php
+include_once ("../module/enti/Distrito.php");
+include_once ("../module/bd/BDDistrito.php");
 
-switch (isset($_POST['action'])) {
-    
-    case "insert" : 
-        break;
-    case "eliminar" : 
-        break;
-    case "listar" : 
-        break;
-    case "update" : 
-        break;
-    default:
-        break;
+//----------------------------------------------------
+if(isset($_GET['Action'])){
+    $action=$_GET['Action'];
+    switch ($action) {
+        case "inse":
+                $idCI = $_GET['idCI'];
+                $nombre = $_GET['nom'];
+                $obj = new Distrito($idCI,$nombre);
+                echo insertar($obj);
+            break;
+
+        case "list":
+                $idCI = $_GET['idCI'];
+                echo json_encode(listar($idCI));
+            break;
+        
+        case "Upd":
+                $id = $_GET['id'];
+                $idDep = $_GET['idCI'];
+                $nombre = $_GET['nom'];
+                $obj = new Distrito($idDep,$nombre);
+                $obj->setIdDistrito($id);
+                echo update($obj);
+            break;
+        case 'delet':
+                $id = $_GET['id'];
+                $obj = new Distrito("","");
+                $obj->setIdDistrito($id);
+                echo eliminar($obj);
+            break;
+        default:
+            break;
+    }    
 }
 
-class Distrito  implements crud{
-    var $idDistrito = 0;
-    var $ciud = "";
-    var $NombreDistrito = "";
-    
-    //----------- COSTRUCTOR -------------
-    function __construct($NombreDepart,$NombreCiudad,$NombreDistrito) {
-        $this->setNombreDistrito($NombreDistrito);
-        $this->ciud  = new CiudadDAO($NombreDepart,$NombreCiudad);
-    }
-    
-    //--------- GETTER Y SETTER ------------------
-    
-    function getNombreDistrito() {
-        return $this->NombreDistrito;
-    }
+//------------ METODOS ---------------
+ function eliminar($var) {
+    $bdoj = new DistritoDAO();
+    return $bdoj->eliminar($var);
+}
 
-    function setNombreDistrito($NombreDistrito) {
-        $this->NombreDistrito = $NombreDistrito;
-    }
-    
-    function getIdDistrito() {
-        return $this->idDistrito;
-    }
+function insertar($var) {
+    $bdoj = new DistritoDAO();
+    return $bdoj->insertar($var);
+}
 
-    function setIdDistrito($idDistrito) {
-        $this->idDistrito = $idDistrito;
-    }
-                    
-    //------------ METODOS ---------------
-    public function eliminar($var) {
-        $this->ciud->eliminar($this->ciud);
-        //eliminar en cliente 
-    }
+function listar($var) {
+    $bdoj = new DistritoDAO();
+    return $bdoj->listar($var);
+}
 
-    public function insertar($var) {
-        $this->ciud->insertar($this->ciud);
-        //insertar en cliente 
-    }
-
-    public function listar($var) {
-        
-    }
-
-    public function update($var) {
-        $this->ciud->update($this->ciud);
-        //eliminar en cliente 
-    }
+ function update($var) {
+     $bdoj = new DistritoDAO();
+     return $bdoj->update($var);
 }

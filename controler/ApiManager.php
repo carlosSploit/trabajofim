@@ -109,6 +109,48 @@ if(isset($_GET['ob'])){
             }
         }
         break;
+    /*--------------------------       Distrito      -------------------------------*/
+    case "Distr":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Distr&A=inse&idCI=(
+                 * representa al index de la ciudad )&nom=(
+                 * nombre del distrito a insertar)*/
+                case "inse":
+                    header("Location: ../controler/Distrito.php?Action=inse&idCI=".$_GET['idCI']."&nom=".$_GET['nom']);
+                break;
+
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Distr&A=list&idCI=(
+                 * representa al index de la ciudad )*/
+                case "list": //se realizara la accion de list
+                    header("Location: ../controler/Distrito.php?Action=list&idCI=".$_GET['idCI']);
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Distr&A=Upd&id=(
+                 * index de la ciudad)&idCI=(
+                 * representa al index de la ciudad )&nom=(
+                 * nombtre del distrito a insertar)*/
+                case 'Upd':
+                    header("Location: ../controler/Distrito.php?Action=Upd&id=".$_GET['id']."&idCI=".$_GET['idCI']."&nom=".$_GET['nom']);
+                break;
+            
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Distr&A=delet&id=(
+                 * index del departamento)*/
+                case "delet":
+                    header("Location: ../controler/Distrito.php?Action=delet&id=".$_GET['id']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
     default:
         echo 'se a realizado un mal uso de la api, porfavor consulta el manual';
         break;
