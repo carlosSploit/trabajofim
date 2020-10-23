@@ -1,52 +1,62 @@
 <?php
+include_once ("../module/enti/Ciudad.php");
+include_once ("../module/bd/BDCiudad.php");
 
-class Ciudad  implements crud{
-    var $idCiudad = 0;
-    var $depar = "";
-    var $NombreCiudad = "";
-    
-    //----------- COSTRUCTOR -------------
-    function __construct($NombreDepart,$NombreCiudad) {
-        $this->setNombreCiudad($NombreCiudad);
-        $this->depar = new Departamento($NombreDepart);
-    }
-    
-    //--------- GETTER Y SETTER ------------------
-    
-    function getNombreCiudad() {
-        return $this->NombreCiudad;
-    }
+//----------------------------------------------------
+if(isset($_GET['Action'])){
+    $action=$_GET['Action'];
+    switch ($action) {
+        case "inse":
+                $idDep = $_GET['idDep'];
+                $nombre = $_GET['nom'];
+                $obj = new Ciudad($idDep,$nombre);
+                echo insertar($obj);
+            break;
 
-    function setNombreCiudad($NombreCiudad) {
-        $this->NombreCiudad = $NombreCiudad;
-    }
-    
-    function getIdCiudad() {
-        return $this->idCiudad;
-    }
-
-    function setIdCiudad($idCiudad) {
-        $this->idCiudad = $idCiudad;
-    }
-                    
-    //------------ METODOS ---------------
-    public function eliminar($var) {
-        $this->depar->eliminar($this->depar);
-        //eliminar en cliente 
-    }
-
-    public function insertar($var) {
-        $this->depar->insertar($this->depar);
-        //insertar en cliente 
-    }
-
-    public function listar($var) {
+        case "list":
+                $idDep = $_GET['idDep'];
+                echo json_encode(listar($idDep));
+            break;
         
-    }
-
-    public function update($var) {
-        $this->depar->update($this->depar);
-        //eliminar en cliente 
-    }
+        case "Upd":
+                $id = $_GET['id'];
+                $idDep = $_GET['idDep'];
+                $nombre = $_GET['nom'];
+                $obj = new Ciudad($idDep,$nombre);
+                $obj->setIdCiudad($id);
+                echo update($obj);
+            break;
+        case 'delet':
+                $id = $_GET['id'];
+                $obj = new Ciudad("","");
+                $obj->setIdCiudad($id);
+                echo eliminar($obj);
+            break;
+        default:
+            break;
+    }    
 }
+
+//------------ METODOS ---------------
+ function eliminar($var) {
+    $bdoj = new CiudadDAO();
+    return $bdoj->eliminar($var);
+}
+
+function insertar($var) {
+    $bdoj = new CiudadDAO();
+    return $bdoj->insertar($var);
+}
+
+function listar($var) {
+    $bdoj = new CiudadDAO();
+    return $bdoj->listar($var);
+}
+
+ function update($var) {
+     $bdoj = new CiudadDAO();
+     return $bdoj->update($var);
+}
+
+
 

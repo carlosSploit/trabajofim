@@ -1,50 +1,5 @@
 <?php
 
-
-//--------------- Cliente Api -----------------------
-/*mayormente esto de las apis se da en la cuarta capa , pero poder adaptacion de modelo en vista controlador y modelo 
-de coloca incluido en la capa cpntrolador */
-
-switch (isset($_POST['action'])) {
-    
-    case "insert" : 
-        break;
-    
-    case "eliminar" : 
-
-        break;
-    case "listar" : 
-
-        break;
-    case "update" : 
-
-        break;
-    default:
-        break;
-}
-
-//------------ METODOS ---------------
-function eliminar($var) {
-    $this->us->eliminar($this->us); //eliminar datos en usuario 
-    //eliminar en cliente 
-}
-
-function insertar($var) {
-    $this->us->insertar($this->us); //nsertar en usuario 
-    //insertar en cliente 
-}
-
-function listar($var) {
-
-}
-
-function update($var) {
-    $this->us->update($this->us); //eliminar datos en usuario 
-    //eliminar en cliente 
-}
-
-//----------------------------------------------------
-
 class administracion {
     var $idAdminis=0;
     var $us = ""; // datos de usuario del sistema
