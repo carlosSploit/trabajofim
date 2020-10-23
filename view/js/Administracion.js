@@ -1094,8 +1094,6 @@ function PedidosCont(){
     'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
     '<div class="accordion" id="accordionExample">'+
         CardPedido()+
-        CardPedido()+
-        CardPedido()+
     '</div>'+
     '<!------------------------------------>'+
 '</div>';
@@ -1203,13 +1201,17 @@ function CarritoCompra(){
   '             </div>'+
   '           </div>'+
   '       </div>'+
-  '       <div class="conteSetP">'+
-  '          <ul class="Setprogressbar padre">'+
-  '             <li class="li-iten-sep hijo">Step 1</li>'+
-  '             <li class="li-iten-sep hijo">Step 2</li>'+
-  '             <li class="li-iten-sep hijo">Step 3</li>'+
-  '          </ul>'+
-  '       </div>'+
+  '          <div class="row">'+
+  '              <div class="col">'+
+  '                  <div class="conteSetP">'+
+  '                      <ul id="stp-dsjdhj" value="0" class="Setprogressbar padre">'+
+  '                          <li value="1" class="li-iten-sep hijo">Pedido Recivido</li>'+
+  '                          <li value="2" class="li-iten-sep hijo">Enviado</li>'+
+  '                          <li value="3" class="li-iten-sep hijo">Paquete entregado</li>'+
+  '                      </ul>'+
+  '                  </div>'+
+  '              </div>'+
+  '          </div>'+
   '       <div class="row my-1">'+
   '             <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
   '             Estado</button>'+

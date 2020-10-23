@@ -41,7 +41,7 @@ function Navegacion(){
 }
 
 function ItenCateg(){
-  return `<a class="dropdown-item">👕 Ropa</a>`;
+  return '<a class="dropdown-item">👕 Ropa</a>';
 }
 
 function ItenProduct(){
