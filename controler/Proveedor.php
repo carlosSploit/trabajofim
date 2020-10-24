@@ -1,66 +1,58 @@
 <?php
+include_once ("../module/enti/Proveedor.php");
+include_once ("../module/bd/BDProveedor.php");
 
-class Proveedor implements crud{
-    
-    var $idProveedor = 0;
-    var $nombre = "";
-    var $Email = "";
-    var $celular = 0;
-    
-    function __construct($idProveedor, $nombre, $Email, $celular) {
-        $this->idProveedor = $idProveedor;
-        $this->nombre = $nombre;
-        $this->Email = $Email;
-        $this->celular = $celular;
-    }
+//----------------------------------------------------
+if(isset($_GET['Action'])){
+    $action=$_GET['Action'];
+    switch ($action) {
+        case "inse":
+                $nombre = $_GET['nom'];
+                $Email = $_GET['Ema'];
+                $Teleft = $_GET['tel'];
+                $obj = new Proveedor("",$nombre,$Email,$Teleft);
+                echo insertar($obj);
+            break;
 
-    function getIdProveedor() {
-        return $this->idProveedor;
-    }
-
-    function getNombre() {
-        return $this->nombre;
-    }
-
-    function getEmail() {
-        return $this->Email;
-    }
-
-    function getCelular() {
-        return $this->celular;
-    }
-
-    function setIdProveedor($idProveedor) {
-        $this->idProveedor = $idProveedor;
-    }
-
-    function setNombre($nombre) {
-        $this->nombre = $nombre;
-    }
-
-    function setEmail($Email) {
-        $this->Email = $Email;
-    }
-
-    function setCelular($celular) {
-        $this->celular = $celular;
-    }
-
+        case "list":
+                echo json_encode(listar(""));
+            break;
         
-    public function eliminar($var) {
-        
-    }
+        case "Upd":
+                $id = $_GET['id'];
+                $nombre = $_GET['nom'];
+                $Email = $_GET['Ema'];
+                $Teleft = $_GET['tel'];
+                $obj = new Proveedor($id,$nombre,$Email,$Teleft);
+                echo update($obj);
+            break;
+        case 'delet':
+                 $id = $_GET['id'];
+                $obj = new Proveedor($id,"","","");
+                echo eliminar($obj);
+            break;
+        default:
+            break;
+    }    
+}
 
-    public function insertar($var) {
-        
-    }
+//------------ METODOS ---------------
+ function eliminar($var) {
+    $bdoj = new ProveedorDAO();
+    return $bdoj->eliminar($var);
+}
 
-    public function listar($var) {
-        
-    }
+function insertar($var) {
+    $bdoj = new ProveedorDAO();
+    return $bdoj->insertar($var);
+}
 
-    public function update($var) {
-        
-    }
+function listar($var) {
+    $bdoj = new ProveedorDAO();
+    return $bdoj->listar("");
+}
 
+ function update($var) {
+     $bdoj = new ProveedorDAO();
+     return $bdoj->update($var);
 }

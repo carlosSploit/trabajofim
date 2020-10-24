@@ -1,6 +1,6 @@
 <?php
 
-class Proveedor implements crud{
+class Proveedor {
     
     var $idProveedor = 0;
     var $nombre = "";
@@ -45,22 +45,4 @@ class Proveedor implements crud{
     function setCelular($celular) {
         $this->celular = $celular;
     }
-
-        
-    public function eliminar($var) {
-        
-    }
-
-    public function insertar($var) {
-        
-    }
-
-    public function listar($var) {
-        
-    }
-
-    public function update($var) {
-        
-    }
-
 }

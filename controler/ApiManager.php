@@ -24,10 +24,86 @@ if(isset($_GET['ob'])){
 //        break;
 //    case "Vet": //Ventas
 //        break;
-//    case $value:
-//        break;
-//    case $value:
-//        break;
+/*--------------------------       Categoria de proveedor      -------------------------------*/
+    case "CatProd":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=CatProd&A=inse&nom=(
+                 * nombre del departamento a insertar)*/
+                case "inse":
+                    header("Location: ../controler/tipoProducto.php?Action=inse&nom=".$_GET['nom']);
+                break;
+
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=CatProd&A=list*/
+                case "list": //se realizara la accion de list
+                    header("Location: ../controler/tipoProducto.php?Action=list");
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=CatProd&A=Upd&id=(
+                 * index del departamento)&nom=(
+                 * nombtre del departamento a insertar)*/
+                case 'Upd':
+                    header("Location: ../controler/tipoProducto.php?Action=Upd&id=".$_GET['id']."&nom=".$_GET['nom']);
+                break;
+            
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=CatProd&A=delet&id=(
+                 * index del departamento)*/
+                case "delet":
+                    header("Location: ../controler/tipoProducto.php?Action=delet&id=".$_GET['id']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
+/*--------------------------       Proveedor      -------------------------------*/
+    case "Prove":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Prove&A=inse&nom=(
+                 * nombre del distrito a insertar)&Ema=(Email del proveedor)&tel=(
+                 * telefono del proveedor)*/
+                case "inse":
+                    header("Location: ../controler/Proveedor.php?Action=inse&nom=".$_GET['nom']."&Ema=".$_GET['Ema']."&tel=".$_GET['tel']);
+                break;
+
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Prove&A=list*/
+                case "list": //se realizara la accion de list
+                    header("Location: ../controler/Proveedor.php?Action=list");
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Prove&A=Upd&id=(
+                 * index de la ciudad)&nom=(
+                 * nombre del distrito a insertar)&Ema=(Email del proveedor)&tel=(
+                 * telefono del proveedor)*/
+                case 'Upd':
+                    header("Location: ../controler/Proveedor.php?Action=Upd&id=".$_GET['id']."&nom=".$_GET['nom']."&Ema=".$_GET['Ema']."&tel=".$_GET['tel']);
+                break;
+            
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Prove&A=delet&id=(
+                 * index del departamento)*/
+                case "delet":
+                    header("Location: ../controler/Proveedor.php?Action=delet&id=".$_GET['id']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
     /*--------------------------      Departamento      -------------------------------*/
     case "depart":
         if(isset($_GET['A'])){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2020 a las 01:09:16
+-- Tiempo de generación: 24-10-2020 a las 06:12:36
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.2.31
 
@@ -27,6 +27,11 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+DROP PROCEDURE IF EXISTS `usp_ActualizarCatPro`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ActualizarCatPro` (IN `id` INT, IN `nom` VARCHAR(60))  BEGIN
+UPDATE ttipoproducto SET nombreTipo = nom WHERE idTipo = id ;
+END$$
+
 DROP PROCEDURE IF EXISTS `usp_ActualizarCiu`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ActualizarCiu` (IN `id` INT, IN `idDep` INT, IN `nom` VARCHAR(60))  BEGIN
 UPDATE tciudad SET IdDepartamento = idDep , NombreCiudad = nom WHERE IdCiudad = id;
@@ -40,6 +45,16 @@ END$$
 DROP PROCEDURE IF EXISTS `usp_ActualizarDist`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ActualizarDist` (IN `id` INT, IN `idCiu` INT, IN `nom` VARCHAR(60))  BEGIN
 UPDATE tdistrito SET idCiudad = idCiu , nombreDistrito = nom WHERE idDistrito = id;
+END$$
+
+DROP PROCEDURE IF EXISTS `usp_ActualizarProve`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ActualizarProve` (IN `id` INT, IN `nom` VARCHAR(60), IN `Ema` VARCHAR(30), IN `telf` VARCHAR(9))  BEGIN
+UPDATE tproveedor SET nombre= nom , Email = Ema , celular = telf WHERE idProveedor = id;
+END$$
+
+DROP PROCEDURE IF EXISTS `usp_EliminarCatPro`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_EliminarCatPro` (IN `id` INT)  BEGIN
+DELETE FROM ttipoproducto WHERE idTipo =  id;
 END$$
 
 DROP PROCEDURE IF EXISTS `usp_EliminarCiu`$$
@@ -57,6 +72,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_EliminarDist` (IN `id` INT)  BE
 DELETE FROM tdistrito WHERE idDistrito = id;
 END$$
 
+DROP PROCEDURE IF EXISTS `usp_EliminarProve`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_EliminarProve` (IN `id` INT)  BEGIN
+DELETE FROM tproveedor WHERE idProveedor= id ;
+END$$
+
+DROP PROCEDURE IF EXISTS `usp_InsertarCatPro`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_InsertarCatPro` (IN `nomd` VARCHAR(60))  BEGIN
+INSERT INTO ttipoproducto (nombreTipo) VALUES (nomd);
+END$$
+
 DROP PROCEDURE IF EXISTS `usp_InsertarCiu`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_InsertarCiu` (IN `idDep` INT, IN `nom` VARCHAR(60))  BEGIN
 INSERT INTO tciudad (IdDepartamento, NombreCiudad ) VALUES (idDep,nom);
@@ -70,6 +95,17 @@ END$$
 DROP PROCEDURE IF EXISTS `usp_InsertarDist`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_InsertarDist` (IN `idCiu` INT, IN `nom` VARCHAR(60))  BEGIN
 INSERT INTO tdistrito (idCiudad, nombreDistrito) VALUES (idCiu,nom);
+END$$
+
+DROP PROCEDURE IF EXISTS `usp_InsertarProve`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_InsertarProve` (IN `nomd` VARCHAR(60), IN `Email` VARCHAR(30), IN `celular` VARCHAR(9))  NO SQL
+BEGIN
+INSERT INTO tproveedor (nombre, Email , celular ) VALUES (nomd,Email,celular);
+END$$
+
+DROP PROCEDURE IF EXISTS `usp_ListarCatPro`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ListarCatPro` ()  BEGIN
+SELECT * FROM ttipoproducto WHERE 1;
 END$$
 
 DROP PROCEDURE IF EXISTS `usp_ListarCiu`$$
@@ -87,6 +123,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ListarDist` (IN `idCiu` INT)  B
 SELECT * FROM tdistrito WHERE idCiudad =  idCiu;
 END$$
 
+DROP PROCEDURE IF EXISTS `usp_ListarProve`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_ListarProve` ()  BEGIN
+SELECT * FROM tproveedor WHERE 1;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -96,11 +137,12 @@ DELIMITER ;
 --
 
 DROP TABLE IF EXISTS `tciudad`;
-CREATE TABLE `tciudad` (
-  `IdCiudad` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tciudad` (
+  `IdCiudad` int(11) NOT NULL AUTO_INCREMENT,
   `IdDepartamento` int(11) NOT NULL,
-  `NombreCiudad` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `NombreCiudad` varchar(60) NOT NULL,
+  PRIMARY KEY (`IdCiudad`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tciudad`
@@ -115,10 +157,11 @@ INSERT INTO `tciudad` (`IdCiudad`, `IdDepartamento`, `NombreCiudad`) VALUES(2, 2
 --
 
 DROP TABLE IF EXISTS `tdepartamento`;
-CREATE TABLE `tdepartamento` (
-  `IdDepartamento` int(11) NOT NULL,
-  `NombreDepart` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `tdepartamento` (
+  `IdDepartamento` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreDepart` varchar(60) NOT NULL,
+  PRIMARY KEY (`IdDepartamento`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tdepartamento`
@@ -135,11 +178,12 @@ INSERT INTO `tdepartamento` (`IdDepartamento`, `NombreDepart`) VALUES(8, 'Huanca
 --
 
 DROP TABLE IF EXISTS `tdistrito`;
-CREATE TABLE `tdistrito` (
-  `idDistrito` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tdistrito` (
+  `idDistrito` int(11) NOT NULL AUTO_INCREMENT,
   `idCiudad` int(11) NOT NULL,
-  `nombreDistrito` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nombreDistrito` varchar(60) NOT NULL,
+  PRIMARY KEY (`idDistrito`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tdistrito`
@@ -147,50 +191,41 @@ CREATE TABLE `tdistrito` (
 
 INSERT INTO `tdistrito` (`idDistrito`, `idCiudad`, `nombreDistrito`) VALUES(1, 2, 'Piura');
 INSERT INTO `tdistrito` (`idDistrito`, `idCiudad`, `nombreDistrito`) VALUES(2, 2, 'Catilla');
+INSERT INTO `tdistrito` (`idDistrito`, `idCiudad`, `nombreDistrito`) VALUES(3, 0, '');
+
+-- --------------------------------------------------------
 
 --
--- Índices para tablas volcadas
+-- Estructura de tabla para la tabla `tproveedor`
 --
 
---
--- Indices de la tabla `tciudad`
---
-ALTER TABLE `tciudad`
-  ADD PRIMARY KEY (`IdCiudad`);
+DROP TABLE IF EXISTS `tproveedor`;
+CREATE TABLE IF NOT EXISTS `tproveedor` (
+  `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(60) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `celular` varchar(9) NOT NULL,
+  PRIMARY KEY (`idProveedor`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 
 --
--- Indices de la tabla `tdepartamento`
---
-ALTER TABLE `tdepartamento`
-  ADD PRIMARY KEY (`IdDepartamento`);
-
---
--- Indices de la tabla `tdistrito`
---
-ALTER TABLE `tdistrito`
-  ADD PRIMARY KEY (`idDistrito`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
+-- Estructura de tabla para la tabla `ttipoproducto`
 --
 
---
--- AUTO_INCREMENT de la tabla `tciudad`
---
-ALTER TABLE `tciudad`
-  MODIFY `IdCiudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+DROP TABLE IF EXISTS `ttipoproducto`;
+CREATE TABLE IF NOT EXISTS `ttipoproducto` (
+  `idTipo` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreTipo` varchar(60) NOT NULL,
+  PRIMARY KEY (`idTipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
--- AUTO_INCREMENT de la tabla `tdepartamento`
+-- Volcado de datos para la tabla `ttipoproducto`
 --
-ALTER TABLE `tdepartamento`
-  MODIFY `IdDepartamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
---
--- AUTO_INCREMENT de la tabla `tdistrito`
---
-ALTER TABLE `tdistrito`
-  MODIFY `idDistrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+INSERT INTO `ttipoproducto` (`idTipo`, `nombreTipo`) VALUES(1, 'pantalones');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

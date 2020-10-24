@@ -1,7 +1,6 @@
 <?php
-include_once '../module/crud.php';
 
-class usuario implements crud{
+class usuario {
     
     var $nombre="" ;
     var $dni = 000000000;
@@ -57,22 +56,5 @@ class usuario implements crud{
 
     function setFoto($foto) {
         $this->foto = $foto;
-    }
-
-    //------------ METODOS ---------------
-    public function eliminar($var) {
-        
-    }
-
-    public function insertar($var) {
-        
-    }
-
-    public function listar($var) {
-        
-    }
-
-    public function update($var) {
-        
     }
 }

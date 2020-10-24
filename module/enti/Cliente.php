@@ -1,6 +1,8 @@
 <?php
 
-class Cliente {
+require 'Usuario.php';
+
+class Cliente extends usuario {
     var $idClien = "";
     var $us = "";
     var $User="" ;
@@ -11,7 +13,10 @@ class Cliente {
         $this->setIdClien($idClien);
         $this->setUser($User);
         $this->setPass($Pass);
-        $this->us = new usuario($nombre, $dni, $correro, $telefono, $foto);
+        $this->setDni($dni);
+        $this->setCorrero($correro);
+        $this->setTelefono($telefono);
+        $this->setFoto($foto);
     }
 
     //--------- GETTER Y SETTER ------------------
