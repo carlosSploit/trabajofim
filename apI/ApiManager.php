@@ -30,20 +30,20 @@ if(isset($_GET['ob'])){
             $actioOBJ = $_GET['A'];
             switch ($actioOBJ) {
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=CatProd&A=inse&nom=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=inse&nom=(
                  * nombre del departamento a insertar)*/
                 case "inse":
                     header("Location: ../controler/tipoProducto.php?Action=inse&nom=".$_GET['nom']);
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=CatProd&A=list*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list*/
                 case "list": //se realizara la accion de list
                     header("Location: ../controler/tipoProducto.php?Action=list");
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=CatProd&A=Upd&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=Upd&id=(
                  * index del departamento)&nom=(
                  * nombtre del departamento a insertar)*/
                 case 'Upd':
@@ -51,7 +51,7 @@ if(isset($_GET['ob'])){
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=CatProd&A=delet&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=delet&id=(
                  * index del departamento)*/
                 case "delet":
                     header("Location: ../controler/tipoProducto.php?Action=delet&id=".$_GET['id']);
@@ -69,7 +69,7 @@ if(isset($_GET['ob'])){
             $actioOBJ = $_GET['A'];
             switch ($actioOBJ) {
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Prove&A=inse&nom=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=inse&nom=(
                  * nombre del distrito a insertar)&Ema=(Email del proveedor)&tel=(
                  * telefono del proveedor)*/
                 case "inse":
@@ -77,13 +77,13 @@ if(isset($_GET['ob'])){
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Prove&A=list*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=list*/
                 case "list": //se realizara la accion de list
                     header("Location: ../controler/Proveedor.php?Action=list");
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Prove&A=Upd&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=Upd&id=(
                  * index de la ciudad)&nom=(
                  * nombre del distrito a insertar)&Ema=(Email del proveedor)&tel=(
                  * telefono del proveedor)*/
@@ -92,7 +92,7 @@ if(isset($_GET['ob'])){
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Prove&A=delet&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=delet&id=(
                  * index del departamento)*/
                 case "delet":
                     header("Location: ../controler/Proveedor.php?Action=delet&id=".$_GET['id']);
@@ -110,20 +110,20 @@ if(isset($_GET['ob'])){
             $actioOBJ = $_GET['A'];
             switch ($actioOBJ) {
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=depart&A=inse&nom=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=inse&nom=(
                  * nombre del departamento a insertar)*/
                 case "inse":
                     header("Location: ../controler/Departamento.php?Action=inse&nom=".$_GET['nom']);
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=depart&A=list*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=list*/
                 case "list": //se realizara la accion de list
                     header("Location: ../controler/Departamento.php?Action=list");
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=depart&A=Upd&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=Upd&id=(
                  * index del departamento)&nom=(
                  * nombtre del departamento a insertar)*/
                 case 'Upd':
@@ -131,7 +131,7 @@ if(isset($_GET['ob'])){
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=depart&A=delet&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=delet&id=(
                  * index del departamento)*/
                 case "delet":
                     header("Location: ../controler/Departamento.php?Action=delet&id=".$_GET['id']);
@@ -149,7 +149,7 @@ if(isset($_GET['ob'])){
             $actioOBJ = $_GET['A'];
             switch ($actioOBJ) {
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Ciu&A=inse&idDep=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=inse&idDep=(
                  * representa al index del departamento )&nom=(
                  * nombre del departamento a insertar)*/
                 case "inse":
@@ -157,14 +157,14 @@ if(isset($_GET['ob'])){
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Ciu&A=list&idDep=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=list&idDep=(
                  * representa al index del departamento )*/
                 case "list": //se realizara la accion de list
                     header("Location: ../controler/Ciudad.php?Action=list&idDep=".$_GET['idDep']);
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Ciu&A=Upd&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=Upd&id=(
                  * index de la ciudad)&idDep=(
                  * representa al index del departamento )&nom=(
                  * nombtre del departamento a insertar)*/
@@ -173,7 +173,7 @@ if(isset($_GET['ob'])){
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Ciu&A=delet&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=delet&id=(
                  * index del departamento)*/
                 case "delet":
                     header("Location: ../controler/Ciudad.php?Action=delet&id=".$_GET['id']);
@@ -191,7 +191,7 @@ if(isset($_GET['ob'])){
             $actioOBJ = $_GET['A'];
             switch ($actioOBJ) {
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Distr&A=inse&idCI=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=inse&idCI=(
                  * representa al index de la ciudad )&nom=(
                  * nombre del distrito a insertar)*/
                 case "inse":
@@ -199,14 +199,14 @@ if(isset($_GET['ob'])){
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Distr&A=list&idCI=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=list&idCI=(
                  * representa al index de la ciudad )*/
                 case "list": //se realizara la accion de list
                     header("Location: ../controler/Distrito.php?Action=list&idCI=".$_GET['idCI']);
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Distr&A=Upd&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=Upd&id=(
                  * index de la ciudad)&idCI=(
                  * representa al index de la ciudad )&nom=(
                  * nombtre del distrito a insertar)*/
@@ -215,7 +215,7 @@ if(isset($_GET['ob'])){
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/controler/ApiManager.php?ob=Distr&A=delet&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=delet&id=(
                  * index del departamento)*/
                 case "delet":
                     header("Location: ../controler/Distrito.php?Action=delet&id=".$_GET['id']);
