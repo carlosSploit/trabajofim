@@ -75,3 +75,7 @@ body {
 .scroll::-webkit-scrollbar-thumb {
   background: #c0392b;
 }
+
+.nav-link .active-2 {
+  background: #546e7a;
+}

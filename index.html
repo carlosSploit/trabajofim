@@ -73,13 +73,21 @@
   <!--Modales de producto--->
   <div class="modal fade" id="infoProducto" data-backdrop="static" data-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog  modal-full-height modal-right">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="tituProduct">Carrito de compras</h5>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <div class="modal-header" id="Encabezado" style="background:  #546e7a;">
+          <h5 class="modal-title text-light" id="tituProduct">Carrito de compras</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="text-light" aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="modal-body" id="contModal">
+        <div class="modal-body my-2" id="contModal">
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn font-weight-bold rounded-pill col-3"
+            style="background-color: #546e7a; color: aliceblue">Aceptar</button>
+          <button type="button" class="btn btn-outline-secondary font-weight-bold rounded-pill col-3"
+            data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

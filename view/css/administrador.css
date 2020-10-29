@@ -1,0 +1,19 @@
+.nav-pills .nav-link.active,
+.show > .nav-pills .nav-link {
+  background: #546e7a;
+  color: white;
+}
+
+.nav-pills .nav-link,
+.show > .nav-pills .nav-link {
+  color: #546e7a;
+}
+
+input:focus,
+input.form-control:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}

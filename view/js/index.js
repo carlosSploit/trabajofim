@@ -13,6 +13,10 @@ function principal(){
     });
 }
 
+const button = ' <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
+' Datos</button>'+
+' </div>';
+
 function ConfigUser() {
     return '<!----codico del modal----->'+
     ' <div class="row">'+
@@ -86,9 +90,6 @@ function ConfigUser() {
             ' </div>'+
         ' <div class="row">'+
             ' <div class="col">'+
-                ' <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
-                    ' Datos</button>'+
-                ' </div>'+
             ' </div>'+
         ' </div>'+
     ' </div>'+

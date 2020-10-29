@@ -8,44 +8,72 @@ function principal(){
 
     $("#NewProdut").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(ManteniProduc);
-        $('#TituloModal').html("Insertar Producto")
+        $('.modal-dialog').removeAttr("style");
+        $('.modal-content').removeAttr("style");
+        $('#Encabezaod').removeAttr("style");
+        $('#TituloModal').html("Insertar Producto");
+        $('#TituloModal').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
     $("#454546").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
         $('#contModal').html(ManteniProduc);
-        $('#TituloModal').html("Actualizar Producto")
+        $('.modal-dialog').removeAttr("style");
+        $('.modal-content').removeAttr("style");
+        $('#Encabezaod').removeAttr("style");
+        $('#TituloModal').html("Actualizar Producto");
+        $('#TituloModal').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
     $("#Pro").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
         $('#contModal').html(ManteniProvee);
-        $('#TituloModal').html("Mantenimiento Proveedor")
+        $('.modal-dialog').removeAttr("style");
+        $('.modal-content').removeAttr("style");
+        $('#Encabezaod').removeAttr("style");
+        $('#TituloModal').html("Mantenimiento Proveedor");
+        $('#TituloModal').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
     $("#CadP").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
         $('#contModal').html(ManteniCatPro);
-        $('#TituloModal').html("Mantenimiento Categoria")
+        $('.modal-dialog').removeAttr("style");
+        $('.modal-content').removeAttr("style");
+        $('#Encabezaod').removeAttr("style");
+        $('#TituloModal').html("Mantenimiento Categoria");
+        $('#TituloModal').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
     $("#Ciu").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
         $('#contModal').html(MnateniGeografi);
-        $('#TituloModal').html("Mantenimiento Geolocalisacion")
+        $('#TituloModal').html("Mantenimiento Geolocalisacion");
+        $('#TituloModal').attr("style","color: black;");
+        $('.modal-dialog').removeAttr("style");
+        $('.modal-content').removeAttr("style");
+        $('#Encabezaod').removeAttr("style");
         $('#ModalContainer').modal('show');
     });
 
     $("#Pedid").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
         $('#contModal').html(PedidosCont);
+        $('.modal-dialog').attr("style","position: fixed;margin: auto;width: 500px;height: 100%;right: 0px;");
+        $('.modal-content').attr("style","height: 100%;");
+        $('#Encabezaod').attr("style","background:  #546e7a;");
         $('#TituloModal').html("Lista de Pedidos");
+        $('#TituloModal').attr("style","color: white;");
         Setprogressbar();
         $('#ModalContainer').modal('show');
     });
 
     $("#Admi").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
         $('#contModal').html(ConfigAdmini);
-        $('#TituloModal').html("Registrar Administrador")
+        $('.modal-dialog').removeAttr("style");
+        $('.modal-content').removeAttr("style");
+        $('#Encabezaod').removeAttr("style");
+        $('#TituloModal').html("Registrar Administrador");
+        $('#TituloModal').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 }
@@ -77,13 +105,13 @@ function ItenProduc() {
 '        <div class="container" style="width: 100%; margin-top: 10px;">'+
 '            <div class="row">'+
 '                <div class="col">'+
-'                    <button type="button" id="454546" class="btn btn-primary btn-block"'+
-'                        style="height: 40px; text-align: center;">Actualizar</button>'+
+'                    <button type="button" id="454546" class="btn btn-block rounded-pill"'+
+'                        style="height: 40px; text-align: center;background: #546e7a; color: aliceblue;">Actualizar</button>'+
 '                </div>'+
 '            </div>'+
 '            <div class="row my-1">'+
 '                <div class="col">'+
-'                    <button type="button" class="btn btn-danger btn-block">Eliminar</button>'+
+'                    <button type="button" class="btn btn-outline-danger btn-block rounded-pill">Eliminar</button>'+
 '                </div>'+
 '            </div>'+
 '        </div>'+
@@ -1094,6 +1122,9 @@ function PedidosCont(){
     return '<div'+
     'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
     '<div class="accordion" id="accordionExample">'+
+        CardPedido()+
+        CardPedido()+
+        CardPedido()+
         CardPedido()+
     '</div>'+
     '<!------------------------------------>'+
