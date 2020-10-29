@@ -13,6 +13,7 @@ function principal(){
         $('#Encabezaod').removeAttr("style");
         $('#TituloModal').html("Insertar Producto");
         $('#TituloModal').attr("style","color: black;");
+        $('.close').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
@@ -23,6 +24,7 @@ function principal(){
         $('#Encabezaod').removeAttr("style");
         $('#TituloModal').html("Actualizar Producto");
         $('#TituloModal').attr("style","color: black;");
+        $('.close').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
@@ -33,6 +35,7 @@ function principal(){
         $('#Encabezaod').removeAttr("style");
         $('#TituloModal').html("Mantenimiento Proveedor");
         $('#TituloModal').attr("style","color: black;");
+        $('.close').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
@@ -43,6 +46,7 @@ function principal(){
         $('#Encabezaod').removeAttr("style");
         $('#TituloModal').html("Mantenimiento Categoria");
         $('#TituloModal').attr("style","color: black;");
+        $('.close').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
@@ -53,6 +57,7 @@ function principal(){
         $('.modal-dialog').removeAttr("style");
         $('.modal-content').removeAttr("style");
         $('#Encabezaod').removeAttr("style");
+        $('.close').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 
@@ -63,6 +68,7 @@ function principal(){
         $('#Encabezaod').attr("style","background:  #546e7a;");
         $('#TituloModal').html("Lista de Pedidos");
         $('#TituloModal').attr("style","color: white;");
+        $('.close').attr("style","color: white;");
         Setprogressbar();
         $('#ModalContainer').modal('show');
     });
@@ -74,6 +80,7 @@ function principal(){
         $('#Encabezaod').removeAttr("style");
         $('#TituloModal').html("Registrar Administrador");
         $('#TituloModal').attr("style","color: black;");
+        $('.close').attr("style","color: black;");
         $('#ModalContainer').modal('show');
     });
 }
