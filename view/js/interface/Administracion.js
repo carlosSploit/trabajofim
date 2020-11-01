@@ -81,6 +81,24 @@ function principal() {
         $('.modal-content').removeAttr("style");
         $('#Encabezaod').attr("style", "background:  #546e7a;");
         $('.close').attr("style", "color: white;");
+        holas = new  ApiDepart("",""); // opjeto que interactua de cabeza
+        holas.List();
+        holas.List(); //listado de precaucion, causado por bugg
+        $('#AgregarDepart').click(function (event) {
+            holas = new  ApiDepart("",$('#TextDepart').val());
+            holas.add();
+            holas.List();
+            $('#TextDepart').val("");
+        });
+        var objc = new  ApiCiudad("",-1,"");
+        objc.List();
+        objc.List();//listado de precaucion, causado por bugg
+        $('#AgregarCiuda').click(function (event) {
+            objc = new  ApiCiudad("",$('#LisDpartament').val(),$('#textCiud').val());
+            objc.add();
+            objc.List();
+            $('#textCiud').val("");
+        });
         $('#ModalContainer').modal('show');
     });
 
@@ -668,7 +686,7 @@ function MnateniGeografi() {
         '                                                               <span class="input-group-text"' +
         '                                                                   id="basic-addon1">🌎</span>' +
         '                                                           </div>' +
-        '                                                           <input type="text" class="form-control"' +
+        '                                                           <input type="text" id="TextDepart" class="form-control"' +
         '                                                               placeholder="Nombre del departamento"' +
         '                                                               aria-label="Direccion"' +
         '                                                               aria-describedby="basic-addon1">' +
@@ -677,7 +695,7 @@ function MnateniGeografi() {
         '                                               </div>' +
         '                                               <div class="row">' +
         '                                                   <div class="col">' +
-        '                                                       <button type="button" id="NewProdut"' +
+        '                                                       <button type="button" id="AgregarDepart"' +
         '                                                           class="btn btn-success btn-block">Agregar' +
         '                                                           Departamento</button>' +
         '                                                   </div>' +
@@ -712,7 +730,7 @@ function MnateniGeografi() {
         '                                                                       id="basic-addon1">🌎</span>' +
         '                                                               </div>' +
         '                                                               <select class="custom-select"' +
-        '                                                                   id="inputGroupSelect01">' +
+        '                                                                   id="LisDpartament">' +
         '                                                                   <option selected>Deàrtamento' +
         '                                                                   </option>' +
         DatLisDepart() +
@@ -730,7 +748,7 @@ function MnateniGeografi() {
         '                                                                       id="basic-addon1">🗾</span>' +
         '                                                               </div>' +
         '                                                               <input type="text"' +
-        '                                                                   class="form-control"' +
+        '                                                                   class="form-control" id="textCiud"' +
         '                                                                   placeholder="Nombre de la ciudad"' +
         '                                                                   aria-label="Direccion"' +
         '                                                                   aria-describedby="basic-addon1">' +
@@ -739,7 +757,7 @@ function MnateniGeografi() {
         '                                                   </div>' +
         '                                                   <div class="row">' +
         '                                                       <div class="col">' +
-        '                                                           <button type="button" id="NewProdut"' +
+        '                                                           <button type="button" id="AgregarCiuda"' +
         '                                                               class="btn btn-success btn-block">Agregar' +
         '                                                               Ciudad</button>' +
         '                                                       </div>' +
@@ -858,8 +876,9 @@ function MnateniGeografi() {
         '                                   aria-labelledby="headingOne" data-parent="#accordionExample">' +
         '                                   <div class="card-body">' +
         '                                       <div' +
-        '                                           style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        DatDepart() +
+        '                                           style="background:  #eceff1; width: 100%; height: 200px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px;">' +
+        '                                           <div class="accordion" id="contentDepart" style="width: 100%; height: 200px;overflow:scroll;overflow-x: hidden;">' +
+        '                                           </div>' +
         '                                       </div>' +
         '                                   </div>' +
         '                               </div>' +
@@ -879,9 +898,10 @@ function MnateniGeografi() {
         '                                   data-parent="#accordionExample">' +
         '                                   <div class="card-body">' +
         '                                       <div' +
-        '                                           style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        DatCiu() +
-        '                                        </div>' +
+        '                                           style="background:  #eceff1; width: 100%; height: 200px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px;">' +
+        '                                           <div class="accordion" id="contentCiud" style="width: 100%; height: 200px;overflow:scroll;overflow-x: hidden;">' +
+        '                                           </div>' +
+        '                                       </div>' +
         '                                    </div>' +
         '                                </div>' +
         '                            </div>' +
@@ -918,24 +938,27 @@ function MnateniGeografi() {
 }
 
 /*contenerdor de que se usara para mostrar los datos de los departamentos*/
-function DatDepart() {
+function DatDepart(id,nombre) {
     return '<!-- car de un departamento--->' +
         '                                           <div class="accordion" id="accordionExample">' +
         '                                               <div class="card">' +
-        '                                                   <div class="card-header" id="headingOne">' +
-        '                                                       <h2 class="mb-0">' +
+        '                                                   <div class="card-header row" id="headingOne">' +
+        '                                                       <h2 class="col-8">' +
         '                                                           <button' +
         '                                                               class="btn btn-link btn-block text-left"' +
         '                                                               type="button" data-toggle="collapse"' +
-        '                                                               data-target="#collapseOne1"' +
+        '                                                               data-target="#collapseOne'+id+'"' +
         '                                                               aria-expanded="true"' +
-        '                                                               aria-controls="collapseOne1">' +
-        '                                                               Piura' +
+        '                                                               aria-controls="collapseOne'+id+'">' +
+                                                                        '🌎 '+ nombre+
         '                                                           </button>' +
         '                                                       </h2>' +
+        '                                                       <div class="col-4">' +
+        '                                                            <button type="button" onclick="deleDepart('+id+')" id="NewProdut"' +
+        '                                                             class="btn btn-outline-danger btn-block rounded-pill">Eliminar</button>' +
+        '                                                       </div>' +
         '                                                   </div>' +
-        '' +
-        '                                                   <div id="collapseOne1" class="collapse show"' +
+        '                                                   <div id="collapseOne'+id+'" class="collapse show"' +
         '                                                       aria-labelledby="headingOne"' +
         '                                                       data-parent="#accordionExample">' +
         '                                                       <div class="card-body">' +
@@ -951,7 +974,7 @@ function DatDepart() {
         '                                                                                       class="input-group-text"' +
         '                                                                                       id="basic-addon1">🌎</span>' +
         '                                                                               </div>' +
-        '                                                                               <input type="text"' +
+        '                                                                               <input type="text" id="TextDepart'+id+'" value="'+nombre+'"'+
         '                                                                                   class="form-control"' +
         '                                                                                   placeholder="Nombre del departamento"' +
         '                                                                                   aria-label="Direccion"' +
@@ -961,7 +984,7 @@ function DatDepart() {
         '                                                                   </div>' +
         '                                                                   <div class="row">' +
         '                                                                       <div class="col">' +
-        '                                                                           <button type="button"' +
+        '                                                                           <button type="button" onclick="ActuDepart('+id+')"' +
         '                                                                               id="NewProdut"' +
         '                                                                               class="btn btn-success btn-block">Agregar' +
         '                                                                               Departamento</button>' +
@@ -976,9 +999,20 @@ function DatDepart() {
         '                                           <!------------------------------------>';
 }
 
+function ActuDepart(id){
+    const catup2 = new ApiDepart(id,"");
+    catup2.Update();
+    catup2.List();
+}
+
+function deleDepart(id){
+    const catup2 = new ApiDepart(id,"","","");
+    catup2.delect();
+    catup2.ListProvee();
+}
 
 /*contenedor de quera unsa para mostrar los datos de los ciudades*/
-function DatCiu() {
+function DatCiu(id,nombre) {
     return '<!-- car de un departamento--->' +
         '                                           <div class="accordion" id="accordionExample">' +
         '                                               <div class="card">' +
@@ -990,7 +1024,7 @@ function DatCiu() {
         '                                                               data-target="#collapseOne2"' +
         '                                                               aria-expanded="true"' +
         '                                                               aria-controls="collapseOne2">' +
-        '                                                               Piura' +
+                                                                        nombre+
         '                                                           </button>' +
         '                                                       </h2>' +
         '                                                   </div>' +
@@ -1044,7 +1078,7 @@ function DatCiu() {
         '                                                                    </div>' +
         '                                                                    <div class="row">' +
         '                                                                        <div class="col">' +
-        '                                                                            <button type="button"' +
+        '                                                                            <button type="button" onclick="ActuCiuda('+id+')"' +
         '                                                                                id="NewProdut"' +
         '                                                                                class="btn btn-success btn-block">Agregar' +
         '                                                                                Ciudad</button>' +
@@ -1058,6 +1092,19 @@ function DatCiu() {
         '                                            </div>' +
         '                                            <!------------------------------------>';
 }
+
+function ActuCiuda(id){
+    const catup2 = new ApiDepart(id,"");
+    catup2.Update();
+    catup2.List();
+}
+
+function deleDepart(id){
+    const catup2 = new ApiDepart(id,"","","");
+    catup2.delect();
+    catup2.ListProvee();
+}
+
 /*Contenerodot que sera usado para mostrar los datos de las ciudades existentes*/
 function DatDistrito() {
     return '<!-- car de un departamento--->' +
@@ -1123,10 +1170,6 @@ function DatDistrito() {
         '                                                                                            selected>' +
         '                                                                                            Ciudad' +
         '                                                                                        </option>' +
-        DatLisCiry() +
-        DatLisCiry() +
-        DatLisCiry() +
-        DatLisCiry() +
         '                                                                                    </select>' +
         '                                                                                </div>' +
         '                                                                            </div>' +
@@ -1168,8 +1211,8 @@ function DatDistrito() {
         '                                                <!------------------------------------>';
 }
 /*car para de departamento para listado*/
-function DatLisDepart() {
-    return '<option value="1">Piura</option>';
+function DatLisDepart(id,nombre) {
+    return '<option value="'+id+'">'+nombre+'</option>';
 }
 /*car para de ciudad para listado*/
 function DatLisCiry() {
@@ -1740,7 +1783,7 @@ function Setprogressbar() {
     }
 }
 
-
+/* contenedor de fecht para la categoria de productos, interactuara con la api*/
 class ApiCategori{
     
     constructor(id,icono, nombre){
@@ -1753,6 +1796,7 @@ class ApiCategori{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=inse&nom="+this.icono+" "+this.nombre)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        this.ListAdmin();
         this.ListAdmin();
     }
 
@@ -1774,6 +1818,7 @@ class ApiCategori{
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.ListAdmin();
+        this.ListAdmin();
     }
 
     async Update(){
@@ -1783,9 +1828,10 @@ class ApiCategori{
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.ListAdmin();
+        this.ListAdmin();
     }
 }
-
+/* contenedor de fecht para el proveedor, interactuara con la api*/
 class ApiProvee{
     
     constructor(id,nombre, correo,celular){
@@ -1799,6 +1845,7 @@ class ApiProvee{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=inse&nom="+this.ProveeNombre+"&Ema="+this.ProveeCorreoElectonico+"&tel="+this.ProveeCelular)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        this.ListProvee();
         this.ListProvee();
     }
 
@@ -1820,6 +1867,7 @@ class ApiProvee{
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.ListProvee();
+        this.ListProvee();
     }
 
     async Update(){
@@ -1830,5 +1878,107 @@ class ApiProvee{
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.ListProvee();
+        this.ListProvee();
+    }
+}
+/* contenedor de fecht para el Depart, interactuara con la api*/
+
+class ApiDepart{
+    
+    constructor(id,nombre){
+        this.id = id;
+        this.Nombre_Dep = nombre;
+    }
+
+    async add(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=inse&nom="+this.Nombre_Dep)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List();
+        this.List();
+    }
+
+    async List(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=list")
+        .then(response => response.json())
+        .catch(Error => console.log("json ERROR"))
+        .then(data => {
+            var html_codeIten = "";
+            var html_codeList = "";
+            data.forEach(element => {
+                html_codeIten = html_codeIten + DatDepart(element.IdDepartamento ,element.NombreDepart) ;
+                html_codeList = html_codeList + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
+            });
+            $('#contentDepart').html(html_codeIten);
+            $('#LisDpartament').html(html_codeList);
+        }).catch(Error => console.log("ERROR"));
+    }
+
+    async delect(){
+       fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=delet&id="+this.id)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List();
+        this.List();
+    }
+
+    async Update(){
+        var yabnomb = '#TextDepart'+this.id;
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=Upd&id="+this.id+"&nom="+$(yabnomb).val())
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List();
+        this.List();
+    }
+}
+
+/* contenedor de fecht para el Ciudad, interactuara con la api*/
+
+class ApiCiudad{
+    
+    constructor(id,idDep,nombre){
+        this.id = id;
+        this.idDepart = idDep;
+        this.Nombre_ciu = nombre;
+    }
+
+    async add(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=inse&idDep="+this.idDepart+"&nom="+this.Nombre_ciu)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List();
+        this.List();
+    }
+
+    async List(){
+        if(this.idDepart == -1){
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=list&idDep="+this.idDepart)
+            .then(response => response.json())
+            .catch(Error => console.log("json ERROR"))
+            .then(data => {
+            var html_codeIten = "";
+            data.forEach(element => {
+                html_codeIten = html_codeIten + DatCiu(element.IdCiudad,element.NombreCiudad) ;
+            });
+            $('#contentCiud').html(html_codeIten);
+            }).catch(Error => console.log("ERROR"));
+        }
+    }
+
+    async delect(){
+       fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=delet&id="+this.id)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List();
+        this.List();
+    }
+
+    async Update(){
+        var yabnomb = '#TextDepart'+this.id;
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=Upd&id="+this.id+"&nom="+$(yabnomb).val())
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List();
+        this.List();
     }
 }
