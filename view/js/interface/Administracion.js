@@ -40,6 +40,8 @@ function principal() {
     });
 
     $("#CadP").click(function (event) { //cuando se precione la opccion de meseng, cambia el contenedor
+        var holas = new  ApiCategori("","","");
+        holas.ListAdmin();
         $('#contModal').html(ManteniCatPro);
         $('.modal-dialog').removeAttr("style");
         $('.modal-content').removeAttr("style");
@@ -47,6 +49,12 @@ function principal() {
         $('#TituloModal').html("Mantenimiento Categoria");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
+        
+        $('#AgregCat').click(function (event) {
+            holas = new  ApiCategori("",$('#inputGroupSelect01').val(),$('#cateText').val());
+            holas.addAdmin();
+            holas.ListAdmin();
+        });
         $('#ModalContainer').modal('show');
     });
 
@@ -457,11 +465,11 @@ function ManteniCatPro() {
         '                               </div>' +
         '                               <select class="custom-select" id="inputGroupSelect01">' +
         '                                   <option selected>Icono</option>' +
-        DatIcont() +
-        DatIcont() +
-        DatIcont() +
-        DatIcont() +
-        DatIcont() +
+                                            DatIcont() +
+                                            DatIcont() +
+                                            DatIcont() +
+                                            DatIcont() +
+                                            DatIcont() +
         '                               </select>' +
         '                           </div>' +
         '                       </div>' +
@@ -470,7 +478,7 @@ function ManteniCatPro() {
         '                               <div class="input-group-prepend">' +
         '                                   <span class="input-group-text" id="basic-addon1">📺</span>' +
         '                               </div>' +
-        '                               <input type="text" class="form-control"' +
+        '                               <input type="text" class="form-control" id="cateText"'+
         '                                   placeholder="Nombre de la Categoria" aria-label="Direccion"' +
         '                                   aria-describedby="basic-addon1">' +
         '                           </div>' +
@@ -478,7 +486,7 @@ function ManteniCatPro() {
         '                   </div>' +
         '                   <div class="row">' +
         '                       <div class="col">' +
-        '                           <button type="button" id="NewProdut"' +
+        '                           <button type="button" id="AgregCat"' +
         '                               class="btn btn-success btn-block">Agregar' +
         '                               Catehoria</button>' +
         '                       </div>' +
@@ -488,11 +496,8 @@ function ManteniCatPro() {
         '       </div>' +
         '       <div class="tab-pane fade" id="pills-profile" role="tabpanel"' +
         '           aria-labelledby="pills-profile-tab">' +
-        '           <div class="accordion" id="accordionExample"' +
+        '           <div class="accordion" id="ContentCategori"' +
         '               style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        DatCaegor() +
-        DatCaegor() +
-        DatCaegor() +
         '           </div>' +
         '       </div>' +
         '   </div>' +
@@ -501,20 +506,20 @@ function ManteniCatPro() {
 }
 /*Cart de datos de los iconos que se van a mostrar el en contenedor*/
 function DatIcont() {
-    return '<option value="1">👕</option>';
+    return '<option value="👕">👕</option>';
 }
 /*Car de proveedores que se van a mostrar*/
-function DatCaegor() {
+function DatCaegor(id,icon,Nombre) {
     return '<div class="row padding-0">' +
         '                   <div class="col">' +
         '                       <div class="card">' +
         '                           <div class="card-header" id="headingOne">' +
         '                               <h2 class="row mb-0">' +
         '                                   <div class="col-8" data-toggle="collapse"' +
-        '                                       data-target="#collapseExample6" aria-expanded="false"' +
-        '                                       aria-controls="collapseExample6">' +
+        '                                       data-target="#collapseExample'+id+'" aria-expanded="false"' +
+        '                                       aria-controls="collapseExample'+id+'">' +
         '                                       <div class="col">' +
-        '                                           <h5>👕 Polos</h5>' +
+        '                                           <h5>'+Nombre+'</h5>' +
         '                                       </div>' +
         '                                   </div>' +
         '                                   <div class="col-4">' +
@@ -523,7 +528,7 @@ function DatCaegor() {
         '                                   </div>' +
         '                               </h2>' +
         '                           </div>' +
-        '                           <div class="collapse" id="collapseExample6">' +
+        '                           <div class="collapse" id="collapseExample'+id+'">' +
         '                               <div class="card card-body">' +
         '                                   <div class="row">' +
         '                                       <div class="col">' +
@@ -536,7 +541,7 @@ function DatCaegor() {
         '                                                       </div>' +
         '                                                       <select class="custom-select"' +
         '                                                           id="inputGroupSelect01">' +
-        '                                                           <option selected>Icono</option>' +
+        '                                                           <option selected>'+icon+'</option>' +
         DatIcont() +
         DatIcont() +
         DatIcont() +
@@ -551,7 +556,7 @@ function DatCaegor() {
         '                                                               id="basic-addon1">📺</span>' +
         '                                                       </div>' +
         '                                                       <input type="text" class="form-control"' +
-        '                                                           placeholder="Nombre de la Categoria"' +
+        '                                                           placeholder="Nombre de la Categoria" value = "'+Nombre+'"'+
         '                                                           aria-label="Direccion"' +
         '                                                           aria-describedby="basic-addon1">' +
         '                                                   </div>' +
@@ -1686,5 +1691,42 @@ function Setprogressbar() {
             console.log("Se hizo click en", hijo);
             console.log("Texto del enlace:", hijo.innerText);
         });
+    }
+}
+
+
+class ApiCategori{
+    
+    constructor(id,icono, nombre){
+        this.id = id;
+        this.icono = icono;
+        this.nombre = nombre;
+    }
+
+    async addAdmin(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=inse&nom="+this.icono+" "+this.nombre)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+    }
+
+    async ListAdmin(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list")
+        .then(response => response.json())
+        .catch(Error => console.log("json ERROR"))
+        .then(data => {
+            var html_codeIten = "";
+            data.forEach(element => {
+                html_codeIten = html_codeIten + DatCaegor(element.idTipo,"",element.nombreTipo) ;
+            });
+            $('#ContentCategori').html(html_codeIten);
+        }).catch(Error => console.log("ERROR"));
+    }
+
+    delect(){
+        
+    }
+
+    Update(){
+
     }
 }
