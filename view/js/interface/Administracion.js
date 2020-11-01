@@ -1,8 +1,10 @@
 
+
 $(document).ready(principal);
 
 function principal() {
-
+    var holas = null;
+    
     $('#contentProductAct').html(ItenProduc); // añadir un producto a un contenedor
     $('#CatProductoCont').html(ItenCatego); // añadir una categoria a un contenedor
 
@@ -36,17 +38,21 @@ function principal() {
         $('#TituloModal').html("Mantenimiento Proveedor");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
+        holas = new  ApiProvee("","","","");
+        holas.ListProvee();
         $('#AddProvee').click(function (event) {
             holas = new  ApiProvee("",$('#ProveeNombre').val(),$('#ProveeCorreoElectonico').val(),$('#ProveeCelular').val());
             holas.addProvee();
             holas.ListProvee();
+            $('#ProveeNombre').val("");
+            $('#ProveeCorreoElectonico').val("");
+            $('#ProveeCelular').val("")
         });
         $('#ModalContainer').modal('show');
     });
 
     $("#CadP").click(function (event) { //cuando se precione la opccion de meseng, cambia el contenedor
-        var holas = new  ApiCategori("","","");
-        holas.ListAdmin();
+        
         $('#contModal').html(ManteniCatPro);
         $('.modal-dialog').removeAttr("style");
         $('.modal-content').removeAttr("style");
@@ -54,10 +60,15 @@ function principal() {
         $('#TituloModal').html("Mantenimiento Categoria");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
+        holas = new  ApiCategori("","","");
+        holas.ListAdmin();
         $('#AgregCat').click(function (event) {
             holas = new  ApiCategori("",$('#inputGroupSelect01').val(),$('#cateText').val());
             holas.addAdmin();
             holas.ListAdmin();
+            $('#inputGroupSelect01').val("");
+            $('#cateText').val("Icono");
+           
         });
         $('#ModalContainer').modal('show');
     });
@@ -208,10 +219,12 @@ function ManteniProvee() {
         '            </div>' +
         '            <div class="tab-pane fade" id="pills-profile" role="tabpanel"' +
         '                aria-labelledby="pills-profile-tab">' +
-        '                <div class="accordion" id="coneterProveeder"' +
-        '                    style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        DatProveedor() +
-        '                </div>' +
+                        '<div' +
+                            'style="background:  #eceff1; width: 100%; height: 400px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
+                                '<div class="accordion" id="coneterProveeder" style="width: 100%; height: 400px;overflow:scroll;overflow-x: hidden;">' +
+                                '</div>' +
+                        '<!------------------------------------>' +
+                        '</div>'+
         '            </div>' +
         '        </div>' +
         '    </div>';
@@ -225,10 +238,10 @@ function DatProveedor(id,nom,cor,cel) {
         '                                <div class="card-header" id="headingOne">' +
         '                                    <h2 class="row mb-0">' +
         '                                        <div class="col-8" data-toggle="collapse"' +
-        '                                            data-target="#collapseExample6" aria-expanded="false"' +
-        '                                            aria-controls="collapseExample6">' +
+        '                                            data-target="#collapseExample'+id+'" aria-expanded="false"' +
+        '                                            aria-controls="collapseExample'+id+'">' +
         '                                            <div >' +
-        '                                                <h5>Juan carmona ernandes</h5>' +
+        '                                                <h5>'+nom+'</h5>' +
         '                                            </div>' +
         '                                        </div>' +
         '                                        <div class="col-4">' +
@@ -237,7 +250,7 @@ function DatProveedor(id,nom,cor,cel) {
         '                                        </div>' +
         '                                    </h2>' +
         '                                </div>' +
-        '                                <div class="collapse" id="collapseExample6">' +
+        '                                <div class="collapse" id="collapseExample'+id+'">' +
         '                                    <div class="card card-body">' +
         '                                        <div class="row">' +
         '                                            <div class="col">' +
@@ -298,15 +311,15 @@ function DatProveedor(id,nom,cor,cel) {
 }
 
 function ActuProvee(id){
-    const catup = new ApiProvee(id,"","","");
-    catup.Update();
-    catup.ListProvee();
+    const catup2 = new ApiProvee(id,"","","");
+    catup2.Update();
+    catup2.ListProvee();
 }
 
 function deleProvee(id){
-    const catup = new ApiProvee(id,"","","");
-    catup.delect();
-    catup.ListProvee();
+    const catup2 = new ApiProvee(id,"","","");
+    catup2.delect();
+    catup2.ListProvee();
 }
 
 /*Mantenimiento de productos*/
@@ -512,9 +525,12 @@ function ManteniCatPro() {
         '       </div>' +
         '       <div class="tab-pane fade" id="pills-profile" role="tabpanel"' +
         '           aria-labelledby="pills-profile-tab">' +
-        '           <div class="accordion" id="ContentCategori"' +
-        '               style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        '           </div>' +
+                    '<div' +
+                    'style="background:  #eceff1; width: 100%; height: 400px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
+                        '<div class="accordion" id="ContentCategori" style="width: 100%; height: 400px;overflow:scroll;overflow-x: hidden;">' +
+                        '</div>' +
+                   '<!------------------------------------>' +
+                   '</div>'+
         '       </div>' +
         '   </div>' +
         '   </div>' +
@@ -1783,6 +1799,7 @@ class ApiProvee{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=inse&nom="+this.ProveeNombre+"&Ema="+this.ProveeCorreoElectonico+"&tel="+this.ProveeCelular)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        this.ListProvee();
     }
 
     async ListProvee(){
@@ -1792,25 +1809,26 @@ class ApiProvee{
         .then(data => {
             var html_codeIten = "";
             data.forEach(element => {
-                html_codeIten = html_codeIten + DatCaegor(element.idTipo,"",element.nombreTipo) ;
+                html_codeIten = html_codeIten + DatProveedor(element.idProveedor,element.nombre,element.Email,element.celular) ;
             });
             $('#coneterProveeder').html(html_codeIten);
         }).catch(Error => console.log("ERROR"));
     }
 
     async delect(){
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=delet&id="+this.id)
+       fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=delet&id="+this.id)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        this.ListProvee();
     }
 
     async Update(){
         var yabnomb = '#ProveeNombre'+this.id;
         var yabcorr = '#ProveeCorreoElectonico'+this.id;
         var yabcel = '#ProveeCorreoElectonico'+this.id;
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=Upd&id="+this.id+"&nom="+$(yabicon).val()+" "+$(yabtext).val())
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=Upd&id="+this.id+"&nom="+$(yabnomb).val()+"&Ema="+$(yabcorr).val()+"&tel="+$(yabcel).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.ListAdmin();
+        this.ListProvee();
     }
 }

@@ -87,7 +87,7 @@ and open the template in the editor.
                         d="M6.5 3a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3zm-4 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3zm8 0a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3z" />
                 </svg> Analisis</a>
         </div>
-        <div class="tab-content col-9" id="v-pills-tabContent">
+        <div class="tab-content col-9" onclick="" id="v-pills-tabContent">
             <div class="tab-pane fade show active my-3" id="v-pills-home" role="tabpanel"
                 aria-labelledby="v-pills-home-tab">
                 <div class="row">
@@ -259,7 +259,17 @@ and open the template in the editor.
             </div>
         </div>
     </div>
-
+    <!--Alerta en messeng-->
+    <div class="toast" data-autohide="false">
+        <div class="toast-header">
+            <strong class="mr-auto text-primary">Toast Header</strong>
+            <small class="text-muted">5 mins ago</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+        </div>
+        <div class="toast-body">
+            Some text inside the toast body
+        </div>
+    </div>
     <!--Modales de producto--->
     <div class="modal fade" id="ModalContainer" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -278,10 +288,12 @@ and open the template in the editor.
         </div>
     </div>
     <!------------------------------->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"
         integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw=="
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/interface/Administracion_Analitic.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -292,6 +304,9 @@ and open the template in the editor.
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/interface/Administracion.js"></script>
+    <script type="text/javascript">
+        $('.toast').toast('show');
+    </script>
 </body>
 
 </html>

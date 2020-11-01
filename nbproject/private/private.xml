@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/PhpProjec/view/Administrador.html</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDComentProducto.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Cliente.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Administrador.php</file>
@@ -15,6 +16,7 @@
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Ventas.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Ciudad.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDCiudad.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/apI/ApiManager.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Departamento.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDetalleVenta.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDUsuario.php</file>
@@ -29,6 +31,7 @@
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDProducto.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Ciudad.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Cliente.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/view/js/interface/Administracion.js</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/conexion.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDProveedor.php</file>
         </group>
