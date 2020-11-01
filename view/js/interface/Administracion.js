@@ -1017,19 +1017,19 @@ function DatCiu(id,nombre) {
         '                                           <div class="accordion" id="accordionExample">' +
         '                                               <div class="card">' +
         '                                                   <div class="card-header" id="headingOne">' +
-        '                                                       <h2 class="mb-0">' +
+        '                                                       <h2 class="col-8">' +
         '                                                           <button' +
         '                                                               class="btn btn-link btn-block text-left"' +
         '                                                               type="button" data-toggle="collapse"' +
-        '                                                               data-target="#collapseOne2"' +
+        '                                                               data-target="#collapci'+id+'"' +
         '                                                               aria-expanded="true"' +
-        '                                                               aria-controls="collapseOne2">' +
-                                                                        nombre+
+        '                                                               aria-controls="collapci'+id+'">' +
+                                                                        '🗾 '+nombre+
         '                                                           </button>' +
         '                                                       </h2>' +
         '                                                   </div>' +
         '' +
-        '                                                   <div id="collapseOne2" class="collapse show"' +
+        '                                                   <div id="collapci'+id+'" class="collapse show"' +
         '                                                       aria-labelledby="headingOne"' +
         '                                                       data-parent="#accordionExample">' +
         '                                                       <div class="card-body">' +
@@ -1068,7 +1068,7 @@ function DatCiu(id,nombre) {
         '                                                                                       class="input-group-text"' +
         '                                                                                       id="basic-addon1">🗾</span>' +
         '                                                                               </div>' +
-        '                                                                               <input type="text"' +
+        '                                                                               <input type="text" value="'+nombre+'"' +
         '                                                                                   class="form-control"' +
         '                                                                                    placeholder="Nombre de la ciudad"' +
         '                                                                                    aria-label="Direccion"' +
@@ -1111,7 +1111,7 @@ function DatDistrito() {
         '                                                <div class="accordion" id="accordionExample">' +
         '                                                    <div class="card">' +
         '                                                        <div class="card-header" id="headingOne">' +
-        '                                                            <h2 class="mb-0">' +
+        '                                                            <h2 class="col-8">' +
         '                                                                <button' +
         '                                                                    class="btn btn-link btn-block text-left"' +
         '                                                                    type="button"' +
