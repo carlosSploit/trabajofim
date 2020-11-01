@@ -36,6 +36,11 @@ function principal() {
         $('#TituloModal').html("Mantenimiento Proveedor");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
+        $('#AddProvee').click(function (event) {
+            holas = new  ApiProvee("",$('#ProveeNombre').val(),$('#ProveeCorreoElectonico').val(),$('#ProveeCelular').val());
+            holas.addProvee();
+            holas.ListProvee();
+        });
         $('#ModalContainer').modal('show');
     });
 
@@ -49,7 +54,6 @@ function principal() {
         $('#TituloModal').html("Mantenimiento Categoria");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
-        
         $('#AgregCat').click(function (event) {
             holas = new  ApiCategori("",$('#inputGroupSelect01').val(),$('#cateText').val());
             holas.addAdmin();
@@ -163,7 +167,7 @@ function ManteniProvee() {
         '                                    <div class="input-group-prepend">' +
         '                                        <span class="input-group-text" id="basic-addon1">👷</span>' +
         '                                    </div>' +
-        '                                    <input type="text" class="form-control"' +
+        '                                    <input type="text" id="ProveeNombre" class="form-control"' +
         '                                        placeholder="Nombre del prodcuto" aria-label="Direccion"' +
         '                                        aria-describedby="basic-addon1">' +
         '                                </div>' +
@@ -175,7 +179,7 @@ function ManteniProvee() {
         '                                    <div class="input-group-prepend">' +
         '                                        <span class="input-group-text" id="basic-addon1">📧</span>' +
         '                                    </div>' +
-        '                                    <input type="text" class="form-control"' +
+        '                                    <input type="text" id="ProveeCorreoElectonico" class="form-control"' +
         '                                        placeholder="Correo electronico" aria-label="Direccion"' +
         '                                        aria-describedby="basic-addon1">' +
         '                                </div>' +
@@ -187,14 +191,14 @@ function ManteniProvee() {
         '                                    <div class="input-group-prepend">' +
         '                                        <span class="input-group-text" id="basic-addon1">📱</span>' +
         '                                    </div>' +
-        '                                    <input type="text" class="form-control" placeholder="Celular"' +
+        '                                    <input type="text" id="ProveeCelular" class="form-control" placeholder="Celular"' +
         '                                        aria-label="Direccion" aria-describedby="basic-addon1">' +
         '                                </div>' +
         '                            </div>' +
         '                        </div>' +
         '                        <div class="row">' +
         '                            <div class="col">' +
-        '                                <button type="button" id="NewProdut"' +
+        '                                <button type="button" id="AddProvee"' +
         '                                    class="btn btn-success btn-block">Agregar' +
         '                                    Proveedor</button>' +
         '                            </div>' +
@@ -204,7 +208,7 @@ function ManteniProvee() {
         '            </div>' +
         '            <div class="tab-pane fade" id="pills-profile" role="tabpanel"' +
         '                aria-labelledby="pills-profile-tab">' +
-        '                <div class="accordion" id="accordionExample"' +
+        '                <div class="accordion" id="coneterProveeder"' +
         '                    style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
         DatProveedor() +
         '                </div>' +
@@ -214,7 +218,7 @@ function ManteniProvee() {
 }
 
 /*representa al car de proveedor que va a estar insertado en el contenedor*/
-function DatProveedor() {
+function DatProveedor(id,nom,cor,cel) {
     return '<div class="row padding-0">' +
         '                        <div class="col">' +
         '                            <div class="card">' +
@@ -228,7 +232,7 @@ function DatProveedor() {
         '                                            </div>' +
         '                                        </div>' +
         '                                        <div class="col-4">' +
-        '                                             <button type="button" id="NewProdut"' +
+        '                                             <button type="button" onclick="deleProvee('+id+')" id="NewProdut"' +
         '                                                 class="btn btn-outline-danger btn-block rounded-pill">Eliminar</button>' +
         '                                        </div>' +
         '                                    </h2>' +
@@ -244,7 +248,7 @@ function DatProveedor() {
         '                                                                <span class="input-group-text"' +
         '                                                                    id="basic-addon1">👷</span>' +
         '                                                            </div>' +
-        '                                                            <input type="text" class="form-control"' +
+        '                                                            <input type="text" id="ProveeNombre'+id+'" value="'+nom+'" class="form-control"' +
         '                                                                placeholder="Nombre del prodcuto"' +
         '                                                                aria-label="Direccion"' +
         '                                                                aria-describedby="basic-addon1">' +
@@ -258,7 +262,7 @@ function DatProveedor() {
         '                                                               <span class="input-group-text"' +
         '                                                                    id="basic-addon1">📧</span>' +
         '                                                           </div>' +
-        '                                                           <input type="text" class="form-control"' +
+        '                                                           <input type="text" id="ProveeCorreoElectonico'+id+'" value="'+cor+'" class="form-control"' +
         '                                                               placeholder="Correo electronico"' +
         '                                                               aria-label="Direccion"' +
         '                                                               aria-describedby="basic-addon1">' +
@@ -270,7 +274,7 @@ function DatProveedor() {
         '                                                               <span class="input-group-text"' +
         '                                                                    id="basic-addon1">📱</span>' +
         '                                                            </div>' +
-        '                                                            <input type="text" class="form-control"' +
+        '                                                            <input type="text" id="ProveeCelular'+id+'" value="'+cel+'" class="form-control"' +
         '                                                                placeholder="Celular"' +
         '                                                                aria-label="Direccion"' +
         '                                                                aria-describedby="basic-addon1">' +
@@ -279,7 +283,7 @@ function DatProveedor() {
         '                                                </div>' +
         '                                                <div class="row">' +
         '                                                    <div class="col">' +
-        '                                                        <button type="button" id="NewProdut"' +
+        '                                                        <button type="button" onclick="ActuProvee('+id+')" id="NewProdut"' +
         '                                                            class="btn btn-success btn-block">Actualizar' +
         '                                                            Proveedor</button>' +
         '                                                    </div>' +
@@ -291,6 +295,18 @@ function DatProveedor() {
         '                            </div>' +
         '                       </div>' +
         '                    </div>';
+}
+
+function ActuProvee(id){
+    const catup = new ApiProvee(id,"","","");
+    catup.Update();
+    catup.ListProvee();
+}
+
+function deleProvee(id){
+    const catup = new ApiProvee(id,"","","");
+    catup.delect();
+    catup.ListProvee();
 }
 
 /*Mantenimiento de productos*/
@@ -523,7 +539,7 @@ function DatCaegor(id,icon,Nombre) {
         '                                       </div>' +
         '                                   </div>' +
         '                                   <div class="col-4">' +
-        '                                       <a id="NewProdut"' +
+        '                                       <a id="NewProdut" onclick="catproDelet('+id+')"' +
         '                                           class="btn btn-outline-danger btn-block rounded-pill">Eliminar</a>' +
         '                                   </div>' +
         '                               </h2>' +
@@ -540,12 +556,12 @@ function DatCaegor(id,icon,Nombre) {
         '                                                               id="basic-addon1">📋</span>' +
         '                                                       </div>' +
         '                                                       <select class="custom-select"' +
-        '                                                           id="inputGroupSelect01">' +
+        '                                                           id="catSelet'+id+'">' +
         '                                                           <option selected>'+icon+'</option>' +
-        DatIcont() +
-        DatIcont() +
-        DatIcont() +
-        DatIcont() +
+                                                                    DatIcont() +
+                                                                    DatIcont() +
+                                                                    DatIcont() +
+                                                                    DatIcont() +
         '                                                       </select>' +
         '                                                   </div>' +
         '                                               </div>' +
@@ -555,7 +571,7 @@ function DatCaegor(id,icon,Nombre) {
         '                                                           <span class="input-group-text"' +
         '                                                               id="basic-addon1">📺</span>' +
         '                                                       </div>' +
-        '                                                       <input type="text" class="form-control"' +
+        '                                                       <input type="text" class="form-control" id="catTex'+id+'"' +
         '                                                           placeholder="Nombre de la Categoria" value = "'+Nombre+'"'+
         '                                                           aria-label="Direccion"' +
         '                                                           aria-describedby="basic-addon1">' +
@@ -564,7 +580,7 @@ function DatCaegor(id,icon,Nombre) {
         '                                           </div>' +
         '                                           <div class="row">' +
         '                                               <div class="col">' +
-        '                                                   <button type="button" id="NewProdut"' +
+        '                                                   <button type="button" onclick="catproUp('+id+')"' +
         '                                                      class="btn btn-success btn-block">Agregar' +
         '                                                       Catehoria</button>' +
         '                                               </div>' +
@@ -576,6 +592,20 @@ function DatCaegor(id,icon,Nombre) {
         '                       </div>' +
         '                   </div>' +
         '               </div>';
+}
+
+function catproUp(id){
+    console.log(id);
+    const catup = new ApiCategori(id,"","");
+    catup.Update();
+    catup.ListAdmin();
+}
+
+function catproDelet(id){
+    console.log(id);
+    const catup = new ApiCategori(id,"","");
+    catup.delect();
+    catup.ListAdmin();
 }
 
 function MnateniGeografi() {
@@ -1707,6 +1737,7 @@ class ApiCategori{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=inse&nom="+this.icono+" "+this.nombre)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        this.ListAdmin();
     }
 
     async ListAdmin(){
@@ -1722,11 +1753,64 @@ class ApiCategori{
         }).catch(Error => console.log("ERROR"));
     }
 
-    delect(){
-        
+    async delect(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=delet&id="+this.id)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.ListAdmin();
     }
 
-    Update(){
+    async Update(){
+        var yabicon = '#catSelet'+this.id;
+        var yabtext = '#catTex'+this.id;
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=Upd&id="+this.id+"&nom="+$(yabicon).val()+" "+$(yabtext).val())
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.ListAdmin();
+    }
+}
 
+class ApiProvee{
+    
+    constructor(id,nombre, correo,celular){
+        this.id = id;
+        this.ProveeNombre = nombre;
+        this.ProveeCorreoElectonico = correo;
+        this.ProveeCelular = celular;
+    }
+
+    async addProvee(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=inse&nom="+this.ProveeNombre+"&Ema="+this.ProveeCorreoElectonico+"&tel="+this.ProveeCelular)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+    }
+
+    async ListProvee(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=list")
+        .then(response => response.json())
+        .catch(Error => console.log("json ERROR"))
+        .then(data => {
+            var html_codeIten = "";
+            data.forEach(element => {
+                html_codeIten = html_codeIten + DatCaegor(element.idTipo,"",element.nombreTipo) ;
+            });
+            $('#coneterProveeder').html(html_codeIten);
+        }).catch(Error => console.log("ERROR"));
+    }
+
+    async delect(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=delet&id="+this.id)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+    }
+
+    async Update(){
+        var yabnomb = '#ProveeNombre'+this.id;
+        var yabcorr = '#ProveeCorreoElectonico'+this.id;
+        var yabcel = '#ProveeCorreoElectonico'+this.id;
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=Upd&id="+this.id+"&nom="+$(yabicon).val()+" "+$(yabtext).val())
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.ListAdmin();
     }
 }
