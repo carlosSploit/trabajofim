@@ -1956,7 +1956,6 @@ class ApiDepart{
                 //como el contenedor de las ciudades ya presenta el contenedor, solo quedaria mostrar
                 if((dat_constant.iddist != element.IdDepartamento)&&(html_codeListp.indexOf(element.NombreDepart)==-1)){
                     html_codeListp = html_codeListp + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
-                    console.log(element.IdDepartamento);
                 }
             });
             $('#contentDepart').html(html_codeIten); //imprime a su contenedor
