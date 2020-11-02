@@ -84,8 +84,8 @@ function principal() {
         /*---------------------------------------*/
         /*contenedor de los Departamentos disponibles e mantenimiento*/
         holas = new  ApiDepart("",""); // opjeto que interactua de cabeza
-        holas.List();
-        holas.List(); //listado de precaucion, causado por bugg
+        holas.List("");
+        holas.List(""); //listado de precaucion, causado por bugg
         $('#AgregarDepart').click(function (event) {
             holas = new  ApiDepart("",$('#TextDepart').val());
             holas.add();
@@ -94,35 +94,38 @@ function principal() {
 
             /*produce una actualizacion en la ciudad*/
             var objc = new  ApiCiudad("",-1,"");
-            objc.List();
-            objc.List();//listado de precaucion, causado por bugg
+            objc.List("");
+            objc.List("");//listado de precaucion, causado por bugg
             $('#TextDepart').val("");
         });
         /*---------------------------------------*/
         /*contenedor de los ciudades disponibles e mantenimiento*/
         var objc = new  ApiCiudad("",-1,"");
-        objc.List();
-        objc.List();//listado de precaucion, causado por bugg
+        objc.List("");
+        objc.List("");//listado de precaucion, causado por bugg
         /*inicialisa las ciudades dependiendo del distrito*/
+        console.log($('#LisDepartDist').val());
         var objc = new  ApiCiudad("",$('#LisDepartDist').val(),"");
-        objc.List();
-        objc.List();//listado de precaucion, causado por bugg
+        objc.List("");
+        objc.List("");//listado de precaucion, causado por bugg
+
         /*Se le activa un evento para poder incertar datos*/
         $('#LisDepartDist').change(function(){ 
+            console.log($('#LisDepartDist').val());
             var objc = new  ApiCiudad("",$('#LisDepartDist').val(),"");
-            objc.List();
-            objc.List();//listado de precaucion, causado por bugg
+            objc.List("");
+            objc.List("");//listado de precaucion, causado por bugg
         }); 
         $('#AgregarCiuda').click(function (event) {
             objc = new  ApiCiudad("",$('#LisDpartament').val(),$('#textCiud').val());
             objc.add();
-            objc.List();
-            objc.List();
+            objc.List("");
+            objc.List("");
 
             /*produce una actualizacion en la ciudad*/
             var objc = new  ApiCiudad("",-1,"");
-            objc.List();
-            objc.List();//listado de precaucion, causado por bugg
+            objc.List("");
+            objc.List("");//listado de precaucion, causado por bugg
             $('#textCiud').val("");
         });
         /*---------------------------------------*/
@@ -133,7 +136,7 @@ function principal() {
         $('#AgregarDist').click(function (event) {
             objd = new  ApiDistrito("",$('#LisCiudad').val(),$('#textDist').val());
             objd.add();
-            objd = new  ApiDistrito("",-1,"");/*esto ayudara hacer un refresh mas general*/
+            objd.idCiudad = -1;
             objd.List();
             objd.List();
             $('#textDist').val("");
@@ -840,16 +843,9 @@ function MnateniGeografi() {
         '                                                                   <span class="input-group-text"' +
         '                                                                       id="basic-addon1">🗾</span>' +
         '                                                               </div>' +
-        '                                                               <select id="LisCiudad" class="custom-select"' +
-        '                                                                   id="inputGroupSelect01">' +
+        '                                                               <select id="LisCiudad" class="custom-select" >' +
         '                                                                   <option selected>Ciudad' +
         '                                                                   </option>' +
-        DatLisCiry() +
-        DatLisCiry() +
-        DatLisCiry() +
-        DatLisCiry() +
-        DatLisCiry() +
-        DatLisCiry() +
         '                                                               </select>' +
         '                                                           </div>' +
         '                                                       </div>' +
@@ -1185,15 +1181,11 @@ function DatDistrito(id,nombre) {
         '                                                                                    </div>' +
         '                                                                                    <select' +
         '                                                                                        class="custom-select"' +
-        '                                                                                        id="inputGroupSelect01">' +
+        '                                                                                        id="LDepDist'+id+'" onchange="IncetDat('+id+')">' +
         '                                                                                        <option' +
         '                                                                                            selected>' +
         '                                                                                            Deàrtamento' +
         '                                                                                        </option>' +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
         '                                                                                    </select>' +
         '                                                                                </div>' +
         '                                                                            </div>' +
@@ -1208,7 +1200,7 @@ function DatDistrito(id,nombre) {
         '                                                                                    </div>' +
         '                                                                                    <select' +
         '                                                                                        class="custom-select"' +
-        '                                                                                        id="inputGroupSelect01">' +
+        '                                                                                        id="LCiuDist'+id+'" >' +
         '                                                                                        <option' +
         '                                                                                            selected>' +
         '                                                                                            Ciudad' +
@@ -1228,7 +1220,7 @@ function DatDistrito(id,nombre) {
         '                                                                                            id="basic-addon1">🌃</span>' +
         '                                                                                    </div>' +
         '                                                                                    <input' +
-        '                                                                                        type="text"' +
+        '                                                                                        type="text" value="'+nombre+'"' +
         '                                                                                        class="form-control"' +
         '                                                                                        placeholder="Nombre de la Distrito"' +
         '                                                                                        aria-label="Direccion"' +
@@ -1257,9 +1249,26 @@ function DatDistrito(id,nombre) {
 function DatLisDepart(id,nombre) {
     return '<option value="'+id+'">'+nombre+'</option>';
 }
+
 /*car para de ciudad para listado*/
 function DatLisCiry(id,nombre) {
     return '<option value="'+id+'">'+nombre+'</option>';
+}
+
+/* opccion que sirve para poder listar las ciudades dependindo de la celencion del departamento en cada itent*/
+function IncetDat(id){
+    var auxc = new ApiCiudad("","","");
+    var id_conte_lis = "#LCiuDist"+id;
+    var id_conte_depart = "#LDepDist"+id;
+    $(id_conte_lis).html(" "); // limpia la casilla para que se pueda ver 
+    var id_depart = $(id_conte_depart).val();
+    var dat = {
+        llave: id_conte_lis,
+        idCiu: 0,
+        iddist: id_depart
+    };
+    auxc.idDepart = id_depart;
+    auxc.List(dat);
 }
 
 function PedidosCont() {
@@ -1954,7 +1963,7 @@ class ApiDepart{
                 html_codeIten = html_codeIten + DatDepart(element.IdDepartamento ,element.NombreDepart) ;
                 html_codeList = html_codeList + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
                 //como el contenedor de las ciudades ya presenta el contenedor, solo quedaria mostrar
-                if((dat_constant.iddist != element.IdDepartamento)&&(html_codeListp.indexOf(element.NombreDepart)==-1)){
+                if((dat_constant.iddist != element.IdDepartamento)&&(html_codeListp.indexOf(element.NombreDepart)==-1)&&(dat_constant != "")){
                     html_codeListp = html_codeListp + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
                 }
             });
@@ -1999,11 +2008,11 @@ class ApiCiudad{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=inse&idDep="+this.idDepart+"&nom="+this.Nombre_ciu)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.List();
-        this.List();
+        this.List("");
+        this.List("");
     }
 
-    async List(){
+    async List(dat_constant){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
         var aux = new ApiDepart("","");
         if(this.idDepart == -1){
             fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=list&idDep="+this.idDepart)
@@ -2036,10 +2045,18 @@ class ApiCiudad{
             .catch(Error => console.log("json ERROR"))
             .then(data => {
             var html_codeIten = "";
+            var html_codeList = $(dat_constant.llave).html(); //sirve en caso que sea parabetrizado
             data.forEach(element => {
                 html_codeIten = html_codeIten + DatLisCiry(element.IdCiudad,element.NombreCiudad) ;
+                //lista en caso que se ingresa el parametro y se hace el filtraje 
+                if((dat_constant.idCiu != element.IdCiudad)&&(html_codeList.indexOf(element.NombreCiudad)==-1)){
+                    html_codeList = html_codeList + DatLisCiry(element.IdCiudad ,element.NombreCiudad) ;
+                }
             });
-            $('#LisCiudad').html(html_codeIten);
+            if(dat_constant != ""){ // teniendo en cuenta que lo insertado sea un nulo-para un listado de rutina
+                $(dat_constant.llave).html(html_codeList); //imprime al contenedor del distrito
+            }else{ $('#LisCiudad').html(html_codeIten);  }
+            
             }).catch(Error => console.log(Error));
 
         }
@@ -2049,8 +2066,8 @@ class ApiCiudad{
        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=delet&id="+this.id)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.List();
-        this.List();
+        this.List("");
+        this.List("");
     }
 
     async Update(){
@@ -2059,8 +2076,8 @@ class ApiCiudad{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=Upd&id="+this.id+"&idDep="+ $(yabiddep).val()+"&nom="+$(yabnomb).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.List();
-        this.List();
+        this.List("");
+        this.List("");
     }
 }
 
@@ -2083,31 +2100,47 @@ class ApiDistrito{
     }
 
     async List(){
-        var aux = new ApiDepart("","");
-        if(this.idDepart == -1){
+        console.log("entraste");
+        var aux = new ApiDepart("",""); // es un pre inicializador de datos del objeto departamento
+        var auxc= new ApiCiudad("","",""); // es un pre inicializador de latos del objeto ciudad
+        if(this.idCiudad == -1){
             fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=list&idCI="+this.idCiudad)
             .then(response => response.json())
             .catch(Error => console.log("json ERROR"))
             .then(data => {
-            var html_codeIten = "";
-            data.forEach(element => {
-                console.log(element);
-                html_codeIten = html_codeIten + DatDistrito(element.idDistrito,element.nombreDistrito) ;
-            });
-            $('#contentDist').html(html_codeIten);
-            
-            /*Ace un listado de los distritos dentro del contenedor designado de ciurdad*/
-            /*data.forEach(element => {
-                var id_conte_lis = "#LDepInt"+element.IdCiudad;
-                $(id_conte_lis).html("");
-                var dar = {
-                        llave: id_conte_lis,
-                        iddist: element.IdDepartamento
-                };
-                $(id_conte_lis).html(DatLisDepart(element.IdDepartamento ,element.NombreDepart));
-                aux.List(dar);
-            });*/
-            /*.................................................................*/
+                var html_codeIten = "";
+                data.forEach(element => {
+                    html_codeIten = html_codeIten + DatDistrito(element.idDistrito,element.nombreDistrito) ;
+                });
+                $('#contentDist').html(html_codeIten);
+                /*teniendo las inseciones de los contenedores de itens, comensaremos a editar sus datos*/
+                /*Ayudara a la insercion de datos por medio de las id pre ingresadas en el distrito*/
+                data.forEach(element => {
+                    var id_conte_lis = "#LDepDist"+element.idDistrito;
+                    console.log(id_conte_lis);
+                    $(id_conte_lis).html("");
+                    var dar = {
+                            llave: id_conte_lis,
+                            iddist: element.IdDepartamento
+                    };
+                    $(id_conte_lis).html(DatLisDepart(element.IdDepartamento ,element.NombreDepart));
+                    aux.List(dar);
+                });
+                /*teniendo las inseciones de los contenedores de itens, comensaremos a editar sus datos*/
+                /*Ayudara a la insercion de datos por medio de las id pre ingresadas en la ciudad*/
+                data.forEach(element => {
+                    var id_conte_lis = "#LCiuDist"+element.idDistrito;
+                    $(id_conte_lis).html("");
+                    var dar = {
+                            llave: id_conte_lis,
+                            idCiu: element.IdCiudad,
+                            iddist: element.IdDepartamento
+                    };
+                    $(id_conte_lis).html(DatLisCiry(element.IdCiudad ,element.NombreCiudad));
+                    auxc.idDepart = element.IdDepartamento;
+                    auxc.List(dar);
+                });
+
             }).catch(Error => console.log(Error));
         }
     }
