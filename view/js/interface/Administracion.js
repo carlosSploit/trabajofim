@@ -1962,7 +1962,9 @@ class ApiDepart{
             $('#contentDepart').html(html_codeIten); //imprime a su contenedor
             $('#LisDpartament').html(html_codeList); //imprime al contenedor de la ciudad
             $('#LisDepartDist').html(html_codeList); //imprime al contenedor del distrito
-            $(dat_constant.llave).html(html_codeListp); //imprime al contenedor del distrito
+            if(dat_constant != ""){ // teniendo en cuenta que lo insertado sea un nulo-para un listado de rutina
+                $(dat_constant.llave).html(html_codeListp); //imprime al contenedor del distrito
+            }
         }).catch(Error => console.log(Error));
     }
 
@@ -2090,6 +2092,7 @@ class ApiDistrito{
             .then(data => {
             var html_codeIten = "";
             data.forEach(element => {
+                console.log(element);
                 html_codeIten = html_codeIten + DatDistrito(element.idDistrito,element.nombreDistrito) ;
             });
             $('#contentDist').html(html_codeIten);
