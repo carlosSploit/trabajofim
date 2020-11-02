@@ -87,7 +87,8 @@ function principal() {
         $('#AgregarDepart').click(function (event) {
             holas = new  ApiDepart("",$('#TextDepart').val());
             holas.add();
-            holas.List();
+            holas.List("");
+            holas.List("");
             $('#TextDepart').val("");
         });
         var objc = new  ApiCiudad("",-1,"");
@@ -96,6 +97,7 @@ function principal() {
         $('#AgregarCiuda').click(function (event) {
             objc = new  ApiCiudad("",$('#LisDpartament').val(),$('#textCiud').val());
             objc.add();
+            objc.List();
             objc.List();
             $('#textCiud').val("");
         });
@@ -733,11 +735,6 @@ function MnateniGeografi() {
         '                                                                   id="LisDpartament">' +
         '                                                                   <option selected>Deàrtamento' +
         '                                                                   </option>' +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
         '                                                               </select>' +
         '                                                           </div>' +
         '                                                       </div>' +
@@ -793,14 +790,9 @@ function MnateniGeografi() {
         '                                                                       id="basic-addon1">🌎</span>' +
         '                                                               </div>' +
         '                                                               <select class="custom-select"' +
-        '                                                                   id="inputGroupSelect01">' +
+        '                                                                   id="LisDepartDist">' +
         '                                                                   <option selected>Deàrtamento' +
         '                                                                   </option>' +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
         '                                                               </select>' +
         '                                                           </div>' +
         '                                                       </div>' +
@@ -1002,13 +994,13 @@ function DatDepart(id,nombre) {
 function ActuDepart(id){
     const catup2 = new ApiDepart(id,"");
     catup2.Update();
-    catup2.List();
+    catup2.List("");
 }
 
 function deleDepart(id){
     const catup2 = new ApiDepart(id,"","","");
     catup2.delect();
-    catup2.ListProvee();
+    catup2.List("");
 }
 
 /*contenedor de quera unsa para mostrar los datos de los ciudades*/
@@ -1028,7 +1020,6 @@ function DatCiu(id,nombre) {
         '                                                           </button>' +
         '                                                       </h2>' +
         '                                                   </div>' +
-        '' +
         '                                                   <div id="collapci'+id+'" class="collapse show"' +
         '                                                       aria-labelledby="headingOne"' +
         '                                                       data-parent="#accordionExample">' +
@@ -1047,15 +1038,11 @@ function DatCiu(id,nombre) {
         '                                                                               </div>' +
         '                                                                               <select' +
         '                                                                                   class="custom-select"' +
-        '                                                                                   id="inputGroupSelect01">' +
+        '                                                                                   id="LDepInt'+id+'">' +
         '                                                                                   <option' +
         '                                                                                       selected>' +
         '                                                                                       Deàrtamento' +
         '                                                                                   </option>' +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
-        DatLisDepart() +
         '                                                                               </select>' +
         '                                                                           </div>' +
         '                                                                       </div>' +
@@ -1068,7 +1055,7 @@ function DatCiu(id,nombre) {
         '                                                                                       class="input-group-text"' +
         '                                                                                       id="basic-addon1">🗾</span>' +
         '                                                                               </div>' +
-        '                                                                               <input type="text" value="'+nombre+'"' +
+        '                                                                               <input type="text" id="textCiud'+id+'" value="'+nombre+'"' +
         '                                                                                   class="form-control"' +
         '                                                                                    placeholder="Nombre de la ciudad"' +
         '                                                                                    aria-label="Direccion"' +
@@ -1094,13 +1081,13 @@ function DatCiu(id,nombre) {
 }
 
 function ActuCiuda(id){
-    const catup2 = new ApiDepart(id,"");
+    const catup2 = new ApiCiudad(id,"","");
     catup2.Update();
     catup2.List();
 }
 
 function deleDepart(id){
-    const catup2 = new ApiDepart(id,"","","");
+    const catup2 = new ApiCiudad(id,"","","");
     catup2.delect();
     catup2.ListProvee();
 }
@@ -1894,32 +1881,41 @@ class ApiDepart{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=inse&nom="+this.Nombre_Dep)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.List();
-        this.List();
+        this.List("");
+        this.List("");
     }
 
-    async List(){
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=list")
+    async List(dat_constant){//sirve para en caso que se quiera insertar un tipo de dato, se inyecte por la variable del contenedor
+        //dat_constant = dat_constant.substring(1,dat_constant.length);
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=list",{ method: 'GET'})
         .then(response => response.json())
-        .catch(Error => console.log("json ERROR"))
+        .catch(Error => console.log(Error))
         .then(data => {
             var html_codeIten = "";
             var html_codeList = "";
+            var html_codeListp = $(dat_constant.llave).html(); //sirve en caso que sea parabetrizado
             data.forEach(element => {
                 html_codeIten = html_codeIten + DatDepart(element.IdDepartamento ,element.NombreDepart) ;
                 html_codeList = html_codeList + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
+                //como el contenedor de las ciudades ya presenta el contenedor, solo quedaria mostrar
+                if((dat_constant.iddist != element.IdDepartamento)&&(html_codeListp.indexOf(element.NombreDepart)==-1)){
+                    html_codeListp = html_codeListp + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
+                    console.log(element.IdDepartamento);
+                }
             });
-            $('#contentDepart').html(html_codeIten);
-            $('#LisDpartament').html(html_codeList);
-        }).catch(Error => console.log("ERROR"));
+            $('#contentDepart').html(html_codeIten); //imprime a su contenedor
+            $('#LisDpartament').html(html_codeList); //imprime al contenedor de la ciudad
+            $('#LisDepartDist').html(html_codeList); //imprime al contenedor del distrito
+            $(dat_constant.llave).html(html_codeListp); //imprime al contenedor del distrito
+        }).catch(Error => console.log(Error));
     }
 
     async delect(){
        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=delet&id="+this.id)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.List();
-        this.List();
+        this.List("");
+        this.List("");
     }
 
     async Update(){
@@ -1927,8 +1923,8 @@ class ApiDepart{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=Upd&id="+this.id+"&nom="+$(yabnomb).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.List();
-        this.List();
+        this.List("");
+        this.List("");
     }
 }
 
@@ -1951,6 +1947,7 @@ class ApiCiudad{
     }
 
     async List(){
+        var aux = new ApiDepart("","");
         if(this.idDepart == -1){
             fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=list&idDep="+this.idDepart)
             .then(response => response.json())
@@ -1961,7 +1958,21 @@ class ApiCiudad{
                 html_codeIten = html_codeIten + DatCiu(element.IdCiudad,element.NombreCiudad) ;
             });
             $('#contentCiud').html(html_codeIten);
-            }).catch(Error => console.log("ERROR"));
+            
+            /*Ace un listado de los distritos dentro del contenedor designado de ciurdad*/
+            data.forEach(element => {
+                var id_conte_lis = "#LDepInt"+element.IdCiudad;
+                $(id_conte_lis).html("");
+                var dar = {
+                        llave: id_conte_lis,
+                        iddist: element.IdDepartamento
+                };
+                $(id_conte_lis).html(DatLisDepart(element.IdDepartamento ,element.NombreDepart));
+                aux.List(dar);
+
+            });
+            /*.................................................................*/
+            }).catch(Error => console.log(Error));
         }
     }
 
