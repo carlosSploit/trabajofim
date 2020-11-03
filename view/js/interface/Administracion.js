@@ -2186,7 +2186,7 @@ class ApiDistrito{
     async Update(){
         var yabidciu = '#LisCiudad'+this.id;
         var yabnomb = '#textDist'+this.id;
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=Upd&id="+id+"&idCI="+$(yabidciu).val()+"&nom="+$(yabnomb).val())
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=Upd&id="+this.id+"&idCI="+$(yabidciu).val()+"&nom="+$(yabnomb).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.List();
