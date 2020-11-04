@@ -24,7 +24,46 @@ if(isset($_GET['ob'])){
 //        break;
 //    case "Vet": //Ventas
 //        break;
-/*--------------------------       Categoria de proveedor      -------------------------------*/
+/*--------------------------       Categoria de producto      -------------------------------*/
+        case "Prod":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=inse&CodProd=(cod del producto)&IdProve=(id de proveedor de producto)&IdTipo=(id de la categoria del producto)&Nom=(nombre del producto)&Descri=(descripccion de producto)&Cantid=&(cantidad en stock de producto)PreC=(precio de compra del producto)&PreV=(precio de venta del producto)&Photo=(photodeproducto)*/
+                case "inse":
+                    header("Location: ../controler/Producto.php?Action=inse&CodProd=".$_GET['CodProd']."&IdProve=".$_GET['IdProve']."&IdTipo=".$_GET['IdTipo']."&Nom=".$_GET['Nom']."&Descri=".$_GET['Descri']."&Cantid=".$_GET['Cantid']."&PreC=".$_GET['PreC']."&PreV=".$_GET['PreV']."&Photo=".$_GET['Photo']);
+                break;
+
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT=(el tipo de usuario que lo este buscando ya sea)
+                 * por Administrador o cliente)&Tipo=(ya sea un listado de un producto o de una consulta de un producto)&Nombre=*/
+                case "list": //se realizara la accion de list
+                    header("Location: ../controler/Producto.php?Action=list&userT=".$_GET['userT']."&Tipo=".$_GET['Tipo']."&Nombre=".$_GET['Nombre']);
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=Upd&id=(
+                 * index del departamento)&nom=(
+                 * nombtre del departamento a insertar)*/
+                case 'Upd':
+                    header("Location: ../controler/tipoProducto.php?Action=Upd&id=".$_GET['id']."&nom=".$_GET['nom']);
+                break;
+            
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=delet&id=(
+                 * index del departamento)*/
+                case "delet":
+                    header("Location: ../controler/tipoProducto.php?Action=delet&id=".$_GET['id']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
+/*--------------------------       Categoria de producto      -------------------------------*/
     case "CatProd":
         if(isset($_GET['A'])){
             $actioOBJ = $_GET['A'];

@@ -22,7 +22,8 @@ if(isset($_GET['Action'])){
             break;
 
         case "list":
-                $idDep = $_GET['idDep'];
+                $idDep = array("userT"=>$_GET['userT'], "Tipo"=>$_GET['Tipo'],"Nombre"=>$_GET['Nombre']);
+                /*ESTA CLASE DE LISTADO DE DE MANEA MOMENTANEA*/
                 echo json_encode(listar($idDep));
             break;
         
@@ -52,21 +53,21 @@ if(isset($_GET['Action'])){
 
 //------------ METODOS ---------------
  function eliminar($var) {
-    $bdoj = new ProveedorDAO();
+    $bdoj = new ProductoDAO();
     return $bdoj->eliminar($var);
 }
 
 function insertar($var) {
-    $bdoj = new ProveedorDAO();
+    $bdoj = new ProductoDAO();
     return $bdoj->insertar($var);
 }
 
 function listar($var) {
-    $bdoj = new CiudadDAO();
+    $bdoj = new ProductoDAO();
     return $bdoj->listar($var);
 }
 
  function update($var) {
-     $bdoj = new ProveedorDAO();
+     $bdoj = new ProductoDAO();
      return $bdoj->update($var);
 }

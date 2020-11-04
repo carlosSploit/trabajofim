@@ -5,7 +5,7 @@ require 'conexion.php';
 
 // es el data acces objet de la tabla producto
 
-class Producto extends conexion implements crud {
+class ProductoDAO extends conexion implements crud {
 
     public function __construct() {
         $con = new conexion();
@@ -46,8 +46,10 @@ class Producto extends conexion implements crud {
     public function listar($var) {
         try {
             $obj = Conexion::singleton();    
-            $data = $obj->prepare('CALL usp_ListarProduc(?)');          
-            $data->bindParam(1, $var);   
+            $data = $obj->prepare('CALL usp_ListarProduc(?,?,?)');          
+            $data->bindParam(1, $var['userT']);   
+            $data->bindParam(2, $var['Tipo']);   
+            $data->bindParam(3, $var['Nombre']);   
             $data->execute();
             $lista = $data->fetchAll();                      
             return $lista;         
