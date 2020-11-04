@@ -1,113 +1,72 @@
 <?php
 
-switch (isset($_POST['action'])) {
-    
-    case "insert" : 
-        break;
-    
-    case "eliminar" : 
-        break;
-    case "listar" : 
-        break;
-    case "update" : 
-        break;
-    default:
-        break;
+include_once ("../module/enti/Producto.php");
+include_once ("../module/bd/BDProducto.php");
+
+//----------------------------------------------------
+if(isset($_GET['Action'])){
+    $action=$_GET['Action'];
+    switch ($action) {
+        case "inse":
+                $CodProd= $_GET['CodProd'];
+                $IdProve = $_GET['IdProve'];
+                $IdTipo = $_GET['IdTipo'];
+                $Nom = $_GET['Nom'];
+                $Descri = $_GET['Descri'];
+                $Cantid = $_GET['Cantid'];
+                $PreC = $_GET['PreC'];
+                $PreV = $_GET['PreV'];
+                $Photo = $_GET['Photo'];
+                $obj = new Producto("",$CodProd, $IdProve, $IdTipo, $Nom, $Descri, $Cantid, $PreC, $PreV, $Photo,0,1);
+                echo insertar($obj);
+            break;
+
+        case "list":
+                $idDep = $_GET['idDep'];
+                echo json_encode(listar($idDep));
+            break;
+        
+        case "Upd":
+                $IdProd = $_GET['IdProd'];
+                $CodProd = $_GET['CodProd'];
+                $IdProve = $_GET['IdProve'];
+                $IdTipo = $_GET['IdTipo'];
+                $Nom = $_GET['Nom'];
+                $Descri = $_GET['Descri'];
+                $Cantid = $_GET['Cantid'];
+                $PreC = $_GET['PreC'];
+                $PreV = $_GET['PreV'];
+                $Photo = $_GET['Photo'];
+                $obj = new Producto($IdProd,$CodProd, $IdProve, $IdTipo, $Nom, $Descri, $Cantid, $PreC, $PreV, $Photo,0,1);
+                echo update($obj);
+            break;
+        case 'delet':
+                $IdProd = $_GET['IdProd'];
+                $obj = new Producto($IdProd,"","","","","","","","","",0,1);
+                echo eliminar($obj);
+            break;
+        default:
+            break;
+    }    
 }
 
+//------------ METODOS ---------------
+ function eliminar($var) {
+    $bdoj = new ProveedorDAO();
+    return $bdoj->eliminar($var);
+}
 
-class Producto implements crud {
-    
-    var $idProducto = 0; 
-    var $idTipo = 0;
-    var $Cantidad = 0;
-    var $PrecioC = 0;
-    var $PrecioV = 0;
-    var $Calificacion = 0;
-    var $idProveedor = 0;
-    
-    function __construct($idProducto, $idTipo, $Cantidad, $PrecioC, $PrecioV, $Calificacion, $idProveedor) {
-        $this->idProducto = $idProducto;
-        $this->idTipo = $idTipo;
-        $this->Cantidad = $Cantidad;
-        $this->PrecioC = $PrecioC;
-        $this->PrecioV = $PrecioV;
-        $this->Calificacion = $Calificacion;
-        $this->idProveedor = $idProveedor;
-    }
-    
+function insertar($var) {
+    $bdoj = new ProveedorDAO();
+    return $bdoj->insertar($var);
+}
 
-    function getIdProducto() {
-        return $this->idProducto;
-    }
+function listar($var) {
+    $bdoj = new CiudadDAO();
+    return $bdoj->listar($var);
+}
 
-    function getIdTipo() {
-        return $this->idTipo;
-    }
-
-    function getCantidad() {
-        return $this->Cantidad;
-    }
-
-    function getPrecioC() {
-        return $this->PrecioC;
-    }
-
-    function getPrecioV() {
-        return $this->PrecioV;
-    }
-
-    function getCalificacion() {
-        return $this->Calificacion;
-    }
-
-    function getIdProveedor() {
-        return $this->idProveedor;
-    }
-
-    function setIdProducto($idProducto) {
-        $this->idProducto = $idProducto;
-    }
-
-    function setIdTipo($idTipo) {
-        $this->idTipo = $idTipo;
-    }
-
-    function setCantidad($Cantidad) {
-        $this->Cantidad = $Cantidad;
-    }
-
-    function setPrecioC($PrecioC) {
-        $this->PrecioC = $PrecioC;
-    }
-
-    function setPrecioV($PrecioV) {
-        $this->PrecioV = $PrecioV;
-    }
-
-    function setCalificacion($Calificacion) {
-        $this->Calificacion = $Calificacion;
-    }
-
-    function setIdProveedor($idProveedor) {
-        $this->idProveedor = $idProveedor;
-    }
-
-        
-    public function eliminar($var) {
-        
-    }
-
-    public function insertar($var) {
-        
-    }
-
-    public function listar($var) {
-        
-    }
-
-    public function update($var) {
-        
-    }
-
+ function update($var) {
+     $bdoj = new ProveedorDAO();
+     return $bdoj->update($var);
 }

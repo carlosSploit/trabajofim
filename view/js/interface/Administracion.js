@@ -1163,7 +1163,7 @@ function DatDistrito(id,nombre) {
     return '<!-- car de un departamento--->' +
         '                                                <div class="accordion" id="accordionExample">' +
         '                                                    <div class="card">' +
-        '                                                        <div class="card-header" id="headingOne">' +
+        '                                                        <div class="card-header row" id="headingOne">' +
         '                                                            <h2 class="col-8">' +
         '                                                                <button' +
         '                                                                    class="btn btn-link btn-block text-left"' +
@@ -1175,6 +1175,10 @@ function DatDistrito(id,nombre) {
                                                                              "🌃 "+nombre+
         '                                                                </button>' +
         '                                                            </h2>' +
+        '                                                            <div class="col-4">' +
+        '                                                                <button type="button" onclick="deleDistri('+id+')" id="NewProdut"' +
+        '                                                                class="btn btn-outline-danger btn-block rounded-pill">Eliminar</button>' +
+        '                                                             </div>' +
         '                                                        </div>' +
         '' +
         '                                                        <div id="collapseOne'+id+'" class="collapse show"' +
@@ -1290,6 +1294,11 @@ function ActuDistri(id){
     catup2.Update();
     catup2.List("");
     catup2.List("");
+
+    /*contenedor de los distritos disponibles e mantenimiento*/
+    var objd = new  ApiDistrito("",-1,"");
+    objd.List();
+    objd.List();//listado de precaucion, causado por bugg
 }
 
 function deleDistri(id){
@@ -1297,6 +1306,11 @@ function deleDistri(id){
     catup2.delect();
     catup2.List("");
     catup2.List("");
+
+    /*contenedor de los distritos disponibles e mantenimiento*/
+    var objd = new  ApiDistrito("",-1,"");
+    objd.List();
+    objd.List();//listado de precaucion, causado por bugg
 }
 
 
@@ -2179,16 +2193,18 @@ class ApiDistrito{
        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=delet&id="+this.id)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        this.idCiudad = -1;
         this.List();
         this.List();
     }
 
     async Update(){
-        var yabidciu = '#LisCiudad'+this.id;
+        var yabidciu = '#LCiuDist'+this.id;
         var yabnomb = '#textDist'+this.id;
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=Upd&id="+this.id+"&idCI="+$(yabidciu).val()+"&nom="+$(yabnomb).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        this.idCiudad = -1;
         this.List();
         this.List();
     }
