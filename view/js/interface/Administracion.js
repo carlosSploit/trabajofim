@@ -4,9 +4,16 @@ $(document).ready(principal);
 
 function principal() {
     var holas = null;
-    
-    $('#contentProductAct').html(ItenProduc); // añadir un producto a un contenedor
-    $('#CatProductoCont').html(ItenCatego); // añadir una categoria a un contenedor
+    var objPro = new ApiProducto();
+    objPro.List("A",1,"");
+    //$('#contentProductAct').html(ItenProduc("6","Lechita pa la cara",5,100)); // añadir un producto a un contenedor
+    var objCat = new ApiCategori();
+    objCat.ListAdmin();
+
+    $('#BuscadorProd').click(function (event) {
+        var objPro = new ApiProducto();
+        objPro.List("A",3,$('#textBus').val());
+    });
 
     $("#NewProdut").click(function (event) { //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(ManteniProduc);
@@ -16,17 +23,28 @@ function principal() {
         $('#TituloModal').html("Insertar Producto");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
-        $('#ModalContainer').modal('show');
-    });
+        holas = new  ApiCategori(-1,"#CatProduc","");
+        holas.ListAdmin();
+        holas = new  ApiProvee(-1,"#PovProduc","","");
+        holas.ListProvee();
+        $('#Inserproduct').click(function(event){
+            var objPro = new ApiProducto("",$('#CodProduc').val(),$('#PovProduc').val(),$('#CatProduc').val(),$('#NomProduc').val(),$('#DesProduc').val(),$('#CanProduc').val(),$('#PrCProduc').val(),$('#PrVProduc').val(),"4564564646");
+            objPro.add();
 
-    $("#454546").click(function (event) { //cuando se precione la opccion de meseng, cambia el contenedor
-        $('#contModal').html(ManteniProduc);
-        $('.modal-dialog').removeAttr("style");
-        $('.modal-content').removeAttr("style");
-        $('#Encabezaod').attr("style", "background:  #546e7a;");
-        $('#TituloModal').html("Actualizar Producto");
-        $('#TituloModal').attr("style", "color: white;");
-        $('.close').attr("style", "color: white;");
+            //Liempieza de casillas
+            $('#CodProduc').val("");
+            $('#NomProduc').val("");
+            $('#DesProduc').val("");
+            $('#CanProduc').val("");
+            $('#PrCProduc').val("");
+            $('#PrVProduc').val("");
+
+            /*Refresca las categorias y los proveedores*/
+            holas = new  ApiCategori(-1,"#CatProduc","");
+            holas.ListAdmin();
+            holas = new  ApiProvee(-1,"#PovProduc","","");
+            holas.ListProvee();
+        });
         $('#ModalContainer').modal('show');
     });
 
@@ -173,40 +191,45 @@ function principal() {
     });
 }
 /*Vista del Categoria*/
-function ItenCatego(params) {
-    return '<a class="dropdown-item">👕 Ropa</a>';
+function ItenCatego(id,nombre) {
+    return '<a class="dropdown-item" onclick="buscCatPro('+id+')">'+nombre+'</a>';
+}
+
+function buscCatPro(id) {
+    var objPro=new ApiProducto();
+    objPro.List('A',4,id);
 }
 
 /*Vista del producto*/
-function ItenProduc() {
+function ItenProduc(id,nombre,Punt,prec) {
     return '<!--          card de productos generico            -->' +
         '    <div id="456789" class="card mx-1 my-1"' +
         '        style="width: 170px; height: 270px; border-radius: 10px; overflow: hidden;">' +
         '        <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg"' +
         '            alt="Card image cap">' +
         '        <div class="mx-2" style="width: 100%; height: auto;">' +
-        '            <h6 class="textCard">Prenda de verano</h6>' +
+        '            <h6 class="textCard">'+nombre+'</h6>' +
         '        </div>' +
         '        <div class="container" style="width: 100%;">' +
         '            <div class="row extencion">' +
         '                <div class="col-sm-6 ContextCarTex">' +
-        '                    <h6 class="textPunt">4,5 <i class="fas fa-star icon"></i></h6>' +
+        '                    <h6 class="textPunt">'+Punt+' <i class="fas fa-star icon"></i></h6>' +
         '                </div>' +
         '                <div class="col-sm-6 ContextCarTex">' +
-        '                    <p class="textCoint">S/.4000</p>' +
+        '                    <p class="textCoint">S/.'+prec+'</p>' +
         '                </div>' +
         '           </div>' +
         '        </div>' +
         '        <div class="container" style="width: 100%; margin-top: 10px;">' +
         '            <div class="row">' +
         '                <div class="col">' +
-        '                    <button type="button" id="454546" class="btn btn-block rounded-pill"' +
+        '                    <button type="button" onclick="ActIntenPro('+id+')" class="btn btn-block rounded-pill"' +
         '                        style="height: 40px; text-align: center;background: #546e7a; color: aliceblue;">Actualizar</button>' +
         '                </div>' +
         '            </div>' +
         '            <div class="row my-1">' +
         '                <div class="col">' +
-        '                    <button type="button" class="btn btn-outline-danger btn-block rounded-pill">Eliminar</button>' +
+        '                    <button type="button"  onclick="DeletIntenPro('+id+')" class="btn btn-outline-danger btn-block rounded-pill">Eliminar</button>' +
         '                </div>' +
         '            </div>' +
         '        </div>' +
@@ -214,7 +237,24 @@ function ItenProduc() {
         '    <!------------------------------------------------------>';
 }
 
+function ActIntenPro(id){
+    var objPro = new ApiProducto();
+    objPro.List("A",2,id);
+    $('.modal-dialog').removeAttr("style");
+    $('.modal-content').removeAttr("style");
+    $('#Encabezaod').attr("style", "background:  #546e7a;");
+    $('#TituloModal').html("Actualizar Producto");
+    $('#TituloModal').attr("style", "color: white;");
+    $('.close').attr("style", "color: white;");
+    $('#ModalContainer').modal('show');
+}
 
+function DeletIntenPro(id){
+    var objPro = new ApiProducto(id,"","","","","","","","","");
+    objPro.delect();
+    objPro.List("A",1,"");
+    objPro.List("A",1,"");
+}
 
 /*Mantenimiento de proveedores*/
 function ManteniProvee() {
@@ -402,7 +442,7 @@ function ManteniProduc() {
         ' <div class="input-group-prepend">' +
         ' <span class="input-group-text" id="basic-addon1">🔢</span>' +
         ' </div>' +
-        ' <input type="text" class="form-control" placeholder="Codigo del prodcuto"' +
+        ' <input type="text" id="CodProduc" class="form-control" placeholder="Codigo del prodcuto"' +
         ' aria-label="Direccion" aria-describedby="basic-addon1">' +
         ' </div>' +
         '</div>' +
@@ -413,7 +453,7 @@ function ManteniProduc() {
         ' <div class="input-group-prepend">' +
         ' <span class="input-group-text" id="basic-addon1">🎮</span>' +
         ' </div>' +
-        ' <input type="text" class="form-control" placeholder="Nombre del prodcuto"' +
+        ' <input type="text" id="NomProduc" class="form-control" placeholder="Nombre del prodcuto"' +
         ' aria-label="Direccion" aria-describedby="basic-addon1">' +
         ' </div>' +
         ' </div>' +
@@ -424,7 +464,7 @@ function ManteniProduc() {
         ' <div class="input-group-prepend">' +
         ' <span class="input-group-text" id="basic-addon1">📋</span>' +
         ' </div>' +
-        ' <select class="custom-select" id="inputGroupSelect01">' +
+        ' <select class="custom-select" id="CatProduc">' +
         ' <option selected>Categoria</option>' +
         DatCategoriMP() +
         DatCategoriMP() +
@@ -459,7 +499,7 @@ function ManteniProduc() {
         ' <div class="input-group-prepend">' +
         ' <span class="input-group-text" id="basic-addon1">👷</span>' +
         ' </div>' +
-        ' <select class="custom-select" id="inputGroupSelect01">' +
+        ' <select class="custom-select" id="PovProduc">' +
         ' <option selected>Proveedor</option>' +
         DatProveMP() +
         DatProveMP() +
@@ -476,7 +516,7 @@ function ManteniProduc() {
         ' <div class="input-group-prepend">' +
         ' <span class="input-group-text" id="basic-addon1">💲</span>' +
         ' </div>' +
-        ' <input type="number" class="form-control" placeholder="Precio de Compra"' +
+        ' <input type="number" id="PrCProduc" class="form-control" placeholder="Precio de Compra"' +
         ' aria-label="Direccion" aria-describedby="basic-addon1">' +
         ' </div>' +
         ' </div>' +
@@ -485,7 +525,7 @@ function ManteniProduc() {
         ' <div class="input-group-prepend">' +
         ' <span class="input-group-text" id="basic-addon1">💰</span>' +
         ' </div>' +
-        ' <input type="number" class="form-control" placeholder="Precio de Venta"' +
+        ' <input type="number" id="PrVProduc" class="form-control" placeholder="Precio de Venta"' +
         ' aria-label="Direccion" aria-describedby="basic-addon1">' +
         ' </div>' +
         ' </div>' +
@@ -496,7 +536,7 @@ function ManteniProduc() {
         ' <div class="input-group-prepend">' +
         ' <span class="input-group-text" id="basic-addon1">🔢</span>' +
         ' </div>' +
-        ' <input type="number" class="form-control" placeholder="Cantidad en Stock"' +
+        ' <input type="number" id="CanProduc" class="form-control" placeholder="Cantidad en Stock"' +
         ' aria-label="Direccion" aria-describedby="basic-addon1">' +
         ' </div>' +
         ' </div>' +
@@ -505,14 +545,14 @@ function ManteniProduc() {
         ' <div class="col">' +
         ' <div class="form-group">' +
         ' <label for="exampleFormControlTextarea1">Descripccion de producto</label>' +
-        ' <textarea class="form-control" id="exampleFormControlTextarea1"' +
+        ' <textarea id="DesProduc" class="form-control" id="exampleFormControlTextarea1"' +
         ' rows="3"></textarea>' +
         ' </div>' +
         ' </div>' +
         ' </div>' +
         ' <div class="row">' +
         ' <div class="col">' +
-        ' <button type="button" id="NewProdut" class="btn btn-success btn-block">Agregar' +
+        ' <button type="button" id="Inserproduct" class="btn btn-success btn-block">Agregar' +
         ' Producto</button>' +
         ' </div>' +
         ' </div>' +
@@ -521,13 +561,154 @@ function ManteniProduc() {
         '<!------------------------->';
 }
 
+/*Mantenimiento de productos*/
+function ManteniProducAct(id) {
+    return '<!----codico del modal----->' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        '<div class="row">' +
+        '<div class="col-7">' +
+        '<div class="row">' +
+        '<div class="col">' +
+        ' <div class="input-group mb-3">' +
+        ' <div class="input-group-prepend">' +
+        ' <span class="input-group-text" id="basic-addon1">🔢</span>' +
+        ' </div>' +
+        ' <input type="text" id="CodProduc'+id+'" class="form-control" placeholder="Codigo del prodcuto"' +
+        ' aria-label="Direccion" aria-describedby="basic-addon1">' +
+        ' </div>' +
+        '</div>' +
+        '</div>' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        ' <div class="input-group mb-3">' +
+        ' <div class="input-group-prepend">' +
+        ' <span class="input-group-text" id="basic-addon1">🎮</span>' +
+        ' </div>' +
+        ' <input type="text" id="NomProduc'+id+'" class="form-control" placeholder="Nombre del prodcuto"' +
+        ' aria-label="Direccion" aria-describedby="basic-addon1">' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        ' <div class="input-group mb-3">' +
+        ' <div class="input-group-prepend">' +
+        ' <span class="input-group-text" id="basic-addon1">📋</span>' +
+        ' </div>' +
+        ' <select class="custom-select" id="CatProduc'+id+'">' +
+        ' <option selected>Categoria</option>' +
+        DatCategoriMP() +
+        DatCategoriMP() +
+        DatCategoriMP() +
+        DatCategoriMP() +
+        ' </select>' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        '</div>' +
+        '<div class="col-5">' +
+        '<div class="text-center">' +
+        '<img src="./resorces/fondolo.jpg" style="width: 14vh; height: 14vh;' +
+        '-webkit-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
+        '-moz-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
+        'box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);"' +
+        ' class="rounded" alt="...">' +
+        '</div>' +
+        '<div class="row my-2">' +
+        '<div class="col">' +
+        ' <button type="button" style="text-align: center; width: 100px; height: 30px;" id="NewProdut"' +
+        '  class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        ' </div>' +
+        ' </div>' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        ' <div class="input-group mb-3">' +
+        ' <div class="input-group-prepend">' +
+        ' <span class="input-group-text" id="basic-addon1">👷</span>' +
+        ' </div>' +
+        ' <select class="custom-select" id="PovProduc'+id+'">' +
+        ' <option selected>Proveedor</option>' +
+        DatProveMP() +
+        DatProveMP() +
+        DatProveMP() +
+        DatProveMP() +
+        DatProveMP() +
+        ' </select>' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        ' <div class="input-group mb-3">' +
+        ' <div class="input-group-prepend">' +
+        ' <span class="input-group-text" id="basic-addon1">💲</span>' +
+        ' </div>' +
+        ' <input type="number" id="PrCProduc'+id+'" class="form-control" placeholder="Precio de Compra"' +
+        ' aria-label="Direccion" aria-describedby="basic-addon1">' +
+        ' </div>' +
+        ' </div>' +
+        ' <div class="col">' +
+        ' <div class="input-group mb-3">' +
+        ' <div class="input-group-prepend">' +
+        ' <span class="input-group-text" id="basic-addon1">💰</span>' +
+        ' </div>' +
+        ' <input type="number" id="PrVProduc'+id+'" class="form-control" placeholder="Precio de Venta"' +
+        ' aria-label="Direccion" aria-describedby="basic-addon1">' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        ' <div class="input-group mb-3">' +
+        ' <div class="input-group-prepend">' +
+        ' <span class="input-group-text" id="basic-addon1">🔢</span>' +
+        ' </div>' +
+        ' <input type="number" id="CanProduc'+id+'" class="form-control" placeholder="Cantidad en Stock"' +
+        ' aria-label="Direccion" aria-describedby="basic-addon1">' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        ' <div class="form-group">' +
+        ' <label for="exampleFormControlTextarea1">Descripccion de producto</label>' +
+        ' <textarea id="DesProduc'+id+'" class="form-control" id="exampleFormControlTextarea1"' +
+        ' rows="3"></textarea>' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        ' <div class="row">' +
+        ' <div class="col">' +
+        ' <button type="button" onclick="ActItenProduct('+id+')" class="btn btn-success btn-block">Agregar' +
+        ' Producto</button>' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        ' </div>' +
+        '<!------------------------->';
+}
+
+function ActItenProduct(id){
+    var objPro = new ApiProducto(id,"","","","","","","","","");
+    objPro.Update();
+    objPro.List("A",1,"");
+    objPro.List("A",1,"");
+}
+
 /*Cart de categorias que va a ser insertado en el contenedor*/
-function DatCategoriMP() {
-    return '<option value="1">👕 Ropa</option>';
+function DatCategoriMP(id,Nombre) {
+    return '<option value="'+id+'">'+Nombre+'</option>';
 }
 /*Cart de proveedor que va a ser insertado en el contenedor*/
-function DatProveMP() {
-    return '<option value="1">Jose Maria</option>';
+function DatProveMP(id,nombre) {
+    return '<option value="'+id+'">'+nombre+'</option>';
 }
 
 /*Mantenimiento de la categoria de producto*/
@@ -552,7 +733,7 @@ function ManteniCatPro() {
         '           <div class="row">' +
         '               <div class="col">' +
         '                   <div class="row">' +
-        '                       <div class="col">' +
+        '                       <div class="col-4">' +
         '                           <div class="input-group mb-3">' +
         '                               <div class="input-group-prepend">' +
         '                                   <span class="input-group-text" id="basic-addon1">📋</span>' +
@@ -560,14 +741,10 @@ function ManteniCatPro() {
         '                               <select class="custom-select" id="inputGroupSelect01">' +
         '                                   <option selected>Icono</option>' +
                                             DatIcont() +
-                                            DatIcont() +
-                                            DatIcont() +
-                                            DatIcont() +
-                                            DatIcont() +
         '                               </select>' +
         '                           </div>' +
         '                       </div>' +
-        '                       <div class="col">' +
+        '                       <div class="col-8">' +
         '                           <div class="input-group mb-3">' +
         '                               <div class="input-group-prepend">' +
         '                                   <span class="input-group-text" id="basic-addon1">📺</span>' +
@@ -603,7 +780,17 @@ function ManteniCatPro() {
 }
 /*Cart de datos de los iconos que se van a mostrar el en contenedor*/
 function DatIcont() {
-    return '<option value="👕">👕</option>';
+    return '<option value="1">👕</option>'+
+    '<option value="2">👟</option>'+
+    '<option value="3">👞</option>'+
+    '<option value="4">👖</option>'+
+    '<option value="5">💻</option>'+
+    '<option value="6">📱</option>'+
+    '<option value="7">🔫</option>'+
+    '<option value="8">👙</option>'+
+    '<option value="9">🎮</option>'+
+    '<option value="10">🎸</option>'+
+    '<option value="11">♟</option>';
 }
 /*Car de proveedores que se van a mostrar*/
 function DatCaegor(id,icon,Nombre) {
@@ -616,7 +803,7 @@ function DatCaegor(id,icon,Nombre) {
         '                                       data-target="#collapseExample'+id+'" aria-expanded="false"' +
         '                                       aria-controls="collapseExample'+id+'">' +
         '                                       <div class="col">' +
-        '                                           <h5>'+Nombre+'</h5>' +
+        '                                           <h5>'+icon+Nombre+'</h5>' +
         '                                       </div>' +
         '                                   </div>' +
         '                                   <div class="col-4">' +
@@ -639,9 +826,6 @@ function DatCaegor(id,icon,Nombre) {
         '                                                       <select class="custom-select"' +
         '                                                           id="catSelet'+id+'">' +
         '                                                           <option selected>'+icon+'</option>' +
-                                                                    DatIcont() +
-                                                                    DatIcont() +
-                                                                    DatIcont() +
                                                                     DatIcont() +
         '                                                       </select>' +
         '                                                   </div>' +
@@ -1433,6 +1617,19 @@ function MantAdm() {
         '                   </div>' +
         '                   <div class="row">' +
         '                       <div class="col">' +
+        '                           <div class="input-group mb-3">' +
+        '                               <div class="input-group-prepend">' +
+        '                                   <span class="input-group-text"' +
+        '                                       id="basic-addon1">🔐</span>' +
+        '                               </div>' +
+        '                               <input type="text" class="form-control"' +
+        '                                  placeholder="Contraseña" aria-label="Direccion"' +
+        '                                   aria-describedby="basic-addon1">' +
+        '                           </div>' +
+        '                       </div>' +
+        '                   </div>' +
+        '                   <div class="row">' +
+        '                       <div class="col">' +
         '                           <button type="button" id="NewProdut"' +
         '                               class="btn btn-success btn-block">Ingresar' +
         '                               Datos</button>' +
@@ -1577,6 +1774,19 @@ function ItenAdmin() {
         '                                                   aria-describedby="basic-addon1">' +
         '                                           </div>' +
         '                                       </div>' +
+        '                                   </div>' +
+        '                                   <div class="row">' +
+        '                                       <div class="col">' +
+        '                                            <div class="input-group mb-3">' +
+        '                                               <div class="input-group-prepend">' +
+        '                                                   <span class="input-group-text"' +
+        '                                                       id="basic-addon1">🔐</span>' +
+        '                                                   </div>' +
+        '                                                   <input type="text" class="form-control"' +
+        '                                                   placeholder="Contraseña" aria-label="Direccion"' +
+        '                                                   aria-describedby="basic-addon1">' +
+        '                                               </div>' +
+        '                                        </div>' +
         '                                   </div>' +
         '                                   <div class="row">' +
         '                                       <div class="col">' +
@@ -1896,16 +2106,57 @@ class ApiCategori{
     }
 
     async ListAdmin(){
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list")
-        .then(response => response.json())
-        .catch(Error => console.log("json ERROR"))
-        .then(data => {
-            var html_codeIten = "";
-            data.forEach(element => {
-                html_codeIten = html_codeIten + DatCaegor(element.idTipo,"",element.nombreTipo) ;
-            });
-            $('#ContentCategori').html(html_codeIten);
-        }).catch(Error => console.log("ERROR"));
+        if(this.id != -1){
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list")
+            .then(response => response.json())
+            .catch(Error => console.log("json ERROR"))
+            .then(data => {
+                var html_codeIten = "";
+                var html_codeLis = "";
+                data.forEach(element => {
+                    html_codeIten = html_codeIten + DatCaegor(element.idTipo,this.ListIncont(element.nombreTipo.charAt(0)),element.nombreTipo.substring(1,element.nombreTipo.length));
+                    html_codeLis = html_codeLis + ItenCatego(element.idTipo, this.ListIncont(element.nombreTipo.charAt(0)) + element.nombreTipo.substring(1,element.nombreTipo.length));
+                });
+                $('#ContentCategori').html(html_codeIten);
+                $('#CatProductoCont').html(html_codeLis);
+            }).catch(Error => console.log(Error));
+        }else{ // en caso que se de un listado distinto 
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list")
+            .then(response => response.json())
+            .catch(Error => console.log(Error))
+            .then(data => {
+                var html_codeLis = "";
+                if(this.nombre != ""){
+                    html_codeLis = $(this.icono).html(); 
+                    $(this.icono).html(" "); 
+                }
+                data.forEach(element => {
+                    if(this.nombre != ""){
+                        if(this.nombre!=element.idTipo){
+                            html_codeLis = html_codeLis + DatCategoriMP(element.idTipo,element.nombreTipo);
+                        }
+                    }else{
+                        html_codeLis = html_codeLis + DatCategoriMP(element.idTipo,element.nombreTipo) ;
+                    }
+                });
+                $(this.icono).html(html_codeLis); //en este caso para evitar la funcionabilidad principal se reusa las variables
+            }).catch(Error => console.log("ERROR"));
+        }
+    }
+
+    ListIncont(cod) {
+
+        if(cod == 1){return "👕";}
+        if(cod == 2){return "👟";}
+        if(cod == 3){return "👞";}
+        if(cod == 4){return "👖";}
+        if(cod == 5){return "💻";}
+        if(cod == 6){return "📱";}
+        if(cod == 7){return "🔫";}
+        if(cod == 8){return "👙";}
+        if(cod == 9){return "🎮";}
+        if(cod == 10){return "🎸";}
+        if(cod == 11){return "♟";}
     }
 
     async delect(){
@@ -1945,16 +2196,40 @@ class ApiProvee{
     }
 
     async ListProvee(){
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=list")
-        .then(response => response.json())
-        .catch(Error => console.log("json ERROR"))
-        .then(data => {
-            var html_codeIten = "";
-            data.forEach(element => {
-                html_codeIten = html_codeIten + DatProveedor(element.idProveedor,element.nombre,element.Email,element.celular) ;
-            });
-            $('#coneterProveeder').html(html_codeIten);
-        }).catch(Error => console.log("ERROR"));
+        if(this.id != -1){
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=list")
+            .then(response => response.json())
+            .catch(Error => console.log("json ERROR"))
+            .then(data => {
+                var html_codeIten = "";
+                data.forEach(element => {
+                    html_codeIten = html_codeIten + DatProveedor(element.idProveedor,element.nombre,element.Email,element.celular) ;
+                });
+                $('#coneterProveeder').html(html_codeIten);
+            }).catch(Error => console.log("ERROR"));
+        }else{
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prove&A=list")
+            .then(response => response.json())
+            .catch(Error => console.log(Error))
+            .then(data => {
+                var html_codeLis = "";
+                if(this.ProveeCorreoElectonico!=""){
+                    html_codeLis = $(this.ProveeNombre).html();
+                    $(this.ProveeNombre).html(" ");
+                }
+                data.forEach(element => {
+                    console.log(element.idProveedor+" "+element.nombre);
+                    if((this.ProveeCorreoElectonico!="")){//se reusa una de las variables para poder evitar ysar su funcionabilidad principal
+                        if(this.ProveeCorreoElectonico!=element.idProveedor){//se reusa una de las variables para poder evitar ysar su funcionabilidad principal
+                            html_codeLis = html_codeLis + DatProveMP(element.idProveedor,element.nombre);
+                        }
+                    } else {
+                        html_codeLis = html_codeLis + DatProveMP(element.idProveedor,element.nombre) ;
+                    }
+                });
+                $(this.ProveeNombre).html(html_codeLis); //se reusa una de las variables para poder evitar ysar su funcionabilidad principal
+            }).catch(Error => console.log(Error));
+        }
     }
 
     async delect(){
@@ -2038,6 +2313,131 @@ class ApiDepart{
 }
 
 /* contenedor de fecht para el Ciudad, interactuara con la api*/
+
+class ApiProducto{
+
+    constructor(IdProd,CodProd,IdProve,IdTipo,Nom,Descri,Cantid,PreC,PreV,Photo){
+        this.IdProd = IdProd;
+        this.CodProd = CodProd;
+        this.IdProve = IdProve;
+        this.IdTipo = IdTipo;
+        this.Nom = Nom;
+        this.Descri = Descri;
+        this.Cantid = Cantid;
+        this.PreC = PreC;
+        this.PreV = PreV;
+        this.Photo = Photo;
+    }
+
+    async add(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=inse&CodProd="+this.CodProd+"&IdProve="+this.IdProve+"&IdTipo="+this.IdTipo+"&Nom="+this.Nom+"&Descri="+this.Descri+"&Cantid="+this.Cantid+"&PreC="+this.PreC+"&PreV="+this.PreV+"&Photo="+this.Photo)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List("");
+        this.List("");
+    }
+
+    async List(user,tipo,nombre){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
+        var aux = new ApiDepart("","");
+        switch (user) {
+            case "A":
+                switch (tipo) {
+                    case 2: // se consulta la informacion, producto por producto
+                        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre)
+                        .then(response => response.json())
+                        .catch(Error => console.log(Error))
+                        .then(data => {
+                            var html_codeIten = "";
+                            data.forEach(element => {
+                                $('#contModal').html(ManteniProducAct(nombre)); // inicialisa el codigo para editarlo por este encapsulado
+                                var yavcod = "#CodProduc"+nombre;
+                                var yavnom = "#NomProduc"+nombre;
+                                var yavctp = "#CatProduc"+nombre;
+                                var yavpro = "#PovProduc"+nombre;  
+                                var yavprc = "#PrCProduc"+nombre;
+                                var yavprv = "#PrVProduc"+nombre;
+                                var yavsto = "#CanProduc"+nombre;
+                                var yavdes = "#DesProduc"+nombre;
+                                // insertando datos al contenedor
+                                $(yavcod).val(element.CodProduc);
+                                $(yavnom).val(element.Nombre);
+                                //insertar datos a las categorirasss
+                                var objCat = new ApiCategori(-1,yavctp,element.idTipo);
+                                $(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
+                                objCat.ListAdmin();
+                                //insertar datos a los proveedores
+                                var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
+                                $(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
+                                objPro.ListProvee();
+                                //$(yavctp).html(html_codeIten); //categoria
+                                //$(yavpro).html(html_codeIten); //proveedor
+                                $(yavprc).val(element.PrecioC);
+                                $(yavprv).val(element.PrecioV);
+                                $(yavsto).val(element.Cantidad);
+                                $(yavdes).val(element.Descripcion);
+                                //console.log(element.CodProduc+" "+element.Nombre+" "+element.PrecioC+" "+element.PrecioV+" "+element.Cantidad+" "+element.Descripcion);
+                            });
+                        });
+                    break;
+
+                    default: // con son varios los caso que se repiten con el mismo metodo se colocara el default
+                        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre)
+                        .then(response => response.json())
+                        .catch(Error => console.log(Error))
+                        .then(data => {
+                            var html_codeIten = "";
+                            data.forEach(element => {
+                                html_codeIten = html_codeIten + ItenProduc(element.idproducto,element.Nombre,element.calificacion,element.PrecioV);
+                                //console.log(element.idproducto+" "+element.Nombre+" "+element.calificacion+" "+element.PrecioV);
+                            });
+                            $('#contentProductAct').html(html_codeIten);
+                        });
+                        break;
+                }
+                break;
+            case "c":
+                
+                break;
+            default:
+                break;
+        }
+    }
+
+    async delect(){
+       fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=delet&IdProd="+this.IdProd)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List("");
+        this.List("");
+    }
+
+    async Update(){
+        var yavcod = "#CodProduc"+this.IdProd;
+        var yavnom = "#NomProduc"+this.IdProd;
+        var yavctp = "#CatProduc"+this.IdProd;
+        var yavpro = "#PovProduc"+this.IdProd;  
+        var yavprc = "#PrCProduc"+this.IdProd;
+        var yavprv = "#PrVProduc"+this.IdProd;
+        var yavsto = "#CanProduc"+this.IdProd;
+        var yavdes = "#DesProduc"+this.IdProd;
+
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=Upd"
+        +"&IdProd="+this.IdProd
+        +"&CodProd="+$(yavcod).val()
+        +"&IdProve="+$(yavpro).val()
+        +"&IdTipo="+$(yavctp).val()
+        +"&Nom="+$(yavnom).val()
+        +"&Descri="+$(yavdes).val()
+        +"&Cantid="+$(yavsto).val()
+        +"&PreC="+$(yavprc).val()
+        +"&PreV="+$(yavprv).val()
+        +"&Photo="+"adjkasdhjsahdjsahdjshdkjashdks")
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.List("");
+        this.List("");
+    }
+}
 
 class ApiCiudad{
     

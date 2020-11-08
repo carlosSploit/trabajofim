@@ -30,7 +30,16 @@ if(isset($_GET['ob'])){
             $actioOBJ = $_GET['A'];
             switch ($actioOBJ) {
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=inse&CodProd=(cod del producto)&IdProve=(id de proveedor de producto)&IdTipo=(id de la categoria del producto)&Nom=(nombre del producto)&Descri=(descripccion de producto)&Cantid=&(cantidad en stock de producto)PreC=(precio de compra del producto)&PreV=(precio de venta del producto)&Photo=(photodeproducto)*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=inse
+                 * &CodProd=(cod del producto)
+                 * &IdProve=(id de proveedor de producto)
+                 * &IdTipo=(id de la categoria del producto)
+                 * &Nom=(nombre del producto)
+                 * &Descri=(descripccion de producto)
+                 * &Cantid=(cantidad en stock de producto)
+                 * &PreC=(precio de compra del producto)
+                 * &PreV=(precio de venta del producto)
+                 * &Photo=(photodeproducto)*/
                 case "inse":
                     header("Location: ../controler/Producto.php?Action=inse&CodProd=".$_GET['CodProd']."&IdProve=".$_GET['IdProve']."&IdTipo=".$_GET['IdTipo']."&Nom=".$_GET['Nom']."&Descri=".$_GET['Descri']."&Cantid=".$_GET['Cantid']."&PreC=".$_GET['PreC']."&PreV=".$_GET['PreV']."&Photo=".$_GET['Photo']);
                 break;
@@ -43,18 +52,26 @@ if(isset($_GET['ob'])){
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=Upd&id=(
-                 * index del departamento)&nom=(
-                 * nombtre del departamento a insertar)*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=Upd
+                 * &IdProd=(id del producto)
+                 * &CodProd=(Codigo del producto)
+                 * &IdProve=(Id de proveedor)
+                 * &IdTipo=(id de categoria)
+                 * &Nom=(nombre dle producto)
+                 * &Descri=(descripccion del producto)
+                 * &Cantid=(stock del producto)
+                 * &PreC=(precio de compra)
+                 * &PreV=(precio de venta)
+                 * &Photo=(array de byts de la foto)*/
                 case 'Upd':
-                    header("Location: ../controler/tipoProducto.php?Action=Upd&id=".$_GET['id']."&nom=".$_GET['nom']);
+                    header("Location: ../controler/Producto.php?Action=Upd&IdProd=".$_GET['IdProd']."&CodProd=".$_GET['CodProd']."&IdProve=".$_GET['IdProve']."&IdTipo=".$_GET['IdTipo']."&Nom=".$_GET['Nom']."&Descri=".$_GET['Descri']."&Cantid=".$_GET['Cantid']."&PreC=".$_GET['PreC']."&PreV=".$_GET['PreV']."&Photo=".$_GET['Photo']);
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=delet&id=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=delet&IdProd=(
                  * index del departamento)*/
                 case "delet":
-                    header("Location: ../controler/tipoProducto.php?Action=delet&id=".$_GET['id']);
+                    header("Location: ../controler/Producto.php?Action=delet&IdProd=".$_GET['IdProd']);
                 break;
 
                 default:
