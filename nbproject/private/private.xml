@@ -11,8 +11,8 @@
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Distrito.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDistrito.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Distrito.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDAdministrador.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDepartamento.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Usuario.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Ventas.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/DetalleVenta.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Ciudad.php</file>
@@ -20,7 +20,6 @@
             <file>file:/C:/xampp/htdocs/PhpProjec/apI/ApiManager.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Departamento.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDetalleVenta.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDUsuario.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Departamento.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDtipoProducto.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Producto.php</file>

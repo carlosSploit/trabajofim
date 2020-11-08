@@ -1,8 +1,7 @@
 <?php
 
-class administracion {
+class administracion extends usuario{
     var $idAdminis=0;
-    var $us = ""; // datos de usuario del sistema
     var $User= "" ;
     var $Pass = 000000000;
     var $tipTrabajo = "";
@@ -10,14 +9,20 @@ class administracion {
     //----------- COSTRUCTOR -------------
     
     function __construct($nombre, $dni, $correro, $telefono, $foto,$idAdminis, $User, $Pass,$tipTrabajo) {
+        $this->setNombre($nombre);
+        $this->setDni($dni);
+        $this->setCorrero($correro);
+        $this->setTelefono($telefono);
+        $this->setFoto($foto);
         $this->setIdAdminis($idAdminis);
         $this->setUser($User);
         $this->setPass($Pass);
         $this->setTipTrabajo($tipTrabajo);
-        $this->us = new usuario($nombre, $dni, $correro, $telefono, $foto);
     }
 
     //--------- GETTER Y SETTER ------------------
+    
+    
     
     function getUser() {
         return $this->User;
