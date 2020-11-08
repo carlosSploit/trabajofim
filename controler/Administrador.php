@@ -1,12 +1,12 @@
 <?php
 include_once ("../module/enti/Administrador.php");
 include_once ("../module/bd/BDAdministrador.php");
-include_once ("../module/bd/BDUsuario.php");
-include_once ("../module/enti/Usuario.php");
 
 switch (isset($_POST['action'])) {
     
     case "insert" : 
+        $objAdmi = new Administrador();
+        $objAdmi->
         break;
     
     case "eliminar" : 

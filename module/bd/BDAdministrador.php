@@ -31,9 +31,8 @@ class AdministradorDAO extends conexion implements crud {
             $data->bindParam(3, $var->getCorrero());
             $data->bindParam(4, $var->getTelefono());
             $data->bindParam(5, $var->getFoto());
-            $data->bindParam(6, $var->getUser());
-            $data->bindParam(7, $var->getPass());
-            $data->bindParam(8, $var->getTipTrabajo());
+            $data->bindParam(6, $var->getPass());
+            $data->bindParam(7, $var->getTipTrabajo());
             $data->execute();
             return "Insercion correcto";
         }catch (Exception $e) {
