@@ -25,7 +25,7 @@ class AdministradorDAO extends conexion implements crud {
     public function insertar($var) {
         try {
             $obj = Conexion::singleton();      
-            $data = $obj->prepare('CALL usp_InsertarAdminis(?,?,?,?,?,?,?,?,?)');
+            $data = $obj->prepare('CALL usp_InsertarAdminis(?,?,?,?,?,?,?)');
             $data->bindParam(1, $var->getDni());
             $data->bindParam(2, $var->getNombre());
             $data->bindParam(3, $var->getCorrero());
@@ -59,16 +59,15 @@ class AdministradorDAO extends conexion implements crud {
     public function update($var) {
         try {
             $obj = Conexion::singleton();      
-            $data = $obj->prepare('CALL usp_ActualizarAdminis(?,?,?,?,?,?,?,?,?,?)');
+            $data = $obj->prepare('CALL usp_ActualizarAdminis(?,?,?,?,?,?,?,?)');
             $data->bindParam(1, $var->getIdAdminis());
             $data->bindParam(2, $var->getDni());
             $data->bindParam(3, $var->getNombre());
             $data->bindParam(4, $var->getCorrero());
             $data->bindParam(5, $var->getTelefono());
             $data->bindParam(6, $var->getFoto());
-            $data->bindParam(7, $var->getUser());
-            $data->bindParam(8, $var->getPass());
-            $data->bindParam(9, $var->getTipTrabajo());
+            $data->bindParam(7, $var->getPass());
+            $data->bindParam(8, $var->getTipTrabajo());
             $data->execute();
             return "Actualizado correcto";
         }catch (Exception $e) {

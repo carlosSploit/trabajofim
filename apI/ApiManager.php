@@ -24,7 +24,59 @@ if(isset($_GET['ob'])){
 //        break;
 //    case "Vet": //Ventas
 //        break;
-/*--------------------------       Categoria de producto      -------------------------------*/
+/*--------------------------      Administrador      -------------------------------*/
+        case "Admi":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=inse
+                 * &dni=(dni del administrador)
+                 * &nom=(nombre del administrador)
+                 * &corre=(correo activo del administrador)
+                 * &telef=(telefono activo del administrador)
+                 * &foto= (telefono activo del administrador)
+                 * &pass= (contraseña de acceso al sistema del administrador)
+                 * &tiptrabajo= (tipo de trabajador del adminitrador) esta funcionavilidad no presenta mucho uso momentaneamente*/
+                case "inse":
+                    header("Location: ../controler/Administrador.php?Action=insert&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']."&tiptrabajo=".$_GET['tiptrabajo']);
+                break;
+
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT=(el tipo de usuario que lo este buscando ya sea)
+                 * por Administrador o cliente)&Tipo=(ya sea un listado de un producto o de una consulta de un producto)&Nombre=*/
+                case "list": //se realizara la accion de list
+                    header("Location: ../controler/Producto.php?Action=list&userT=".$_GET['userT']."&Tipo=".$_GET['Tipo']."&Nombre=".$_GET['Nombre']);
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd
+                 * 6id= (id del administraodr)
+                 * &dni=(dni del administrador)
+                 * &nom=(nombre del administrador)
+                 * &corre=(correo activo del administrador)
+                 * &telef=(telefono activo del administrador)
+                 * &foto= (telefono activo del administrador)
+                 * &pass= (contraseña de acceso al sistema del administrador)
+                 * &tiptrabajo= (tipo de trabajador del adminitrador) esta funcionavilidad no presenta mucho uso momentaneamente*/
+                case 'Upd':
+                    header("Location: ../controler/Administrador.php?Action=update&id=".$_GET['id']."&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']."&tiptrabajo=".$_GET['tiptrabajo']);
+                break;
+            
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=delet&IdProd=(
+                 * index del departamento)*/
+                case "delet":
+                    header("Location: ../controler/Producto.php?Action=delet&IdProd=".$_GET['IdProd']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
+/*--------------------------       Producto      -------------------------------*/
         case "Prod":
         if(isset($_GET['A'])){
             $actioOBJ = $_GET['A'];

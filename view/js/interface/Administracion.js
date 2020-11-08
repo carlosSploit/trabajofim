@@ -187,6 +187,18 @@ function principal() {
         $('#TituloModal').html("Registrar Administrador");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
+        $('#InserAdmid').click(function (event) {
+            var objAdmi = new ApiAdministrador("",$('#dniText').val(),$('#nomText').val(),$('#correText').val(),$('#telefText').val(),"asjdgsajdgsajdghsahdjas",$('#passText').val(),$('#tiptrabajoSelet').val());            
+            //console.log($('#dniTextAdmi').val()+" "+$('#nomTextAdmi').val()+" "+$('#correTextAdmi').val()+" "+$('#telefTextAdmi').val()+" "+"asjdgsajdgsajdghsahdjas"+" "+$('#passTextAdmi').val()+" "+$('#tiptrabajoSeletAdmi').val());
+            objAdmi.addAdmin();
+
+            $('#dniText').val();
+            $('#nomText').val();
+            $('#correText').val();
+            $('#telefText').val();
+            $('#passText').val()
+            $('#tiptrabajoSelet').val()
+        });
         $('#ModalContainer').modal('show');
     });
 }
@@ -1545,7 +1557,7 @@ function MantAdm() {
         '                                                   <span class="input-group-text"' +
         '                                                       id="basic-addon1">🔢</span>' +
         '                                               </div>' +
-        '                                               <input type="text" class="form-control"' +
+        '                                               <input id="dniTextAdmi" type="text" class="form-control"' +
         '                                                   placeholder="Dni Administrador"' +
         '                                                   aria-label="Direccion"' +
         '                                                   aria-describedby="basic-addon1">' +
@@ -1559,7 +1571,7 @@ function MantAdm() {
         '                                                   <span class="input-group-text"' +
         '                                                       id="basic-addon1">📋</span>' +
         '                                               </div>' +
-        '                                               <input type="text" class="form-control"' +
+        '                                               <input id="nomTextAdmi" type="text" class="form-control"' +
         '                                                   placeholder="Nombre del Administrador"' +
         '                                                   aria-label="Direccion"' +
         '                                                   aria-describedby="basic-addon1">' +
@@ -1573,7 +1585,7 @@ function MantAdm() {
         '                                                   <span class="input-group-text"' +
         '                                                       id="basic-addon1">📱</span>' +
         '                                               </div>' +
-        '                                               <input type="text" class="form-control"' +
+        '                                               <input id="telefTextAdmi" type="text" class="form-control"' +
         '                                                   placeholder="Telefono del Administrador"' +
         '                                                   aria-label="Direccion"' +
         '                                                   aria-describedby="basic-addon1">' +
@@ -1609,7 +1621,7 @@ function MantAdm() {
         '                                   <span class="input-group-text"' +
         '                                       id="basic-addon1">📧</span>' +
         '                               </div>' +
-        '                               <input type="text" class="form-control"' +
+        '                               <input id="correTextAdmi" type="text" class="form-control"' +
         '                                  placeholder="Correo Electronico" aria-label="Direccion"' +
         '                                   aria-describedby="basic-addon1">' +
         '                           </div>' +
@@ -1622,7 +1634,7 @@ function MantAdm() {
         '                                   <span class="input-group-text"' +
         '                                       id="basic-addon1">🔐</span>' +
         '                               </div>' +
-        '                               <input type="text" class="form-control"' +
+        '                               <input id="passTextAdmi" type="text" class="form-control"' +
         '                                  placeholder="Contraseña" aria-label="Direccion"' +
         '                                   aria-describedby="basic-addon1">' +
         '                           </div>' +
@@ -1630,7 +1642,16 @@ function MantAdm() {
         '                   </div>' +
         '                   <div class="row">' +
         '                       <div class="col">' +
-        '                           <button type="button" id="NewProdut"' +
+        '                           <select class="custom-select" id="tiptrabajoSeletAdmi">' +
+        '                                <option selected value="Trabajador">Trabajador</option>' +
+        '                                <option selected value="Gerente">Gerente</option>' +
+        '                            </select>' +
+        '                       </div>' +
+        '                   </div>' +
+
+        '                   <div class="row my-3">' +
+        '                       <div class="col">' +
+        '                           <button type="button" id="InserAdmid"' +
         '                               class="btn btn-success btn-block">Ingresar' +
         '                               Datos</button>' +
         '                       </div>' +
@@ -2085,6 +2106,59 @@ function Setprogressbar() {
             console.log("Se hizo click en", hijo);
             console.log("Texto del enlace:", hijo.innerText);
         });
+    }
+}
+
+/* contenedor de fecht para la categoria de productos, interactuara con la api*/
+class ApiAdministrador{
+    
+    constructor(id,dni, nombre,correo,telef,foto,pass,tiptrabajo){
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.corre = correo;
+        this.telef = telef;
+        this.foto = foto;
+        this.pass = pass;
+        this.tiptrabajo = tiptrabajo;
+    }
+
+    async addAdmin(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=inse"
+        +"* &dni="+ this.dni
+        +"* &nom="+ this.nombre
+        +"* &corre="+ this.corre
+        +"* &telef="+ this.telef
+        +"* &foto=" + this.foto
+        +"* &pass=" + this.pass
+        +"* &tiptrabajo="+ this.tiptrabajo)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.ListAdmin();
+        this.ListAdmin();
+    }
+
+    async ListAdmin(){
+        
+    }
+
+
+    async delect(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=delet&id="+this.id)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.ListAdmin();
+        this.ListAdmin();
+    }
+
+    async Update(){
+        var yabicon = '#catSelet'+this.id;
+        var yabtext = '#catTex'+this.id;
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=Upd&id="+this.id+"&nom="+$(yabicon).val()+" "+$(yabtext).val())
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        this.ListAdmin();
+        this.ListAdmin();
     }
 }
 

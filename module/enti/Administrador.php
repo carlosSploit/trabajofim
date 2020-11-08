@@ -1,6 +1,8 @@
 <?php
 
-class administracion extends usuario{
+require_once 'Usuario.php';
+
+class Administrador extends usuario{
     var $idAdminis=0;
     var $User= "" ;
     var $Pass = 000000000;
@@ -21,8 +23,6 @@ class administracion extends usuario{
     }
 
     //--------- GETTER Y SETTER ------------------
-    
-    
     
     function getUser() {
         return $this->User;
