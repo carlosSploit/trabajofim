@@ -188,16 +188,16 @@ function principal() {
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
         $('#InserAdmid').click(function (event) {
-            var objAdmi = new ApiAdministrador("",$('#dniText').val(),$('#nomText').val(),$('#correText').val(),$('#telefText').val(),"asjdgsajdgsajdghsahdjas",$('#passText').val(),$('#tiptrabajoSelet').val());            
-            //console.log($('#dniTextAdmi').val()+" "+$('#nomTextAdmi').val()+" "+$('#correTextAdmi').val()+" "+$('#telefTextAdmi').val()+" "+"asjdgsajdgsajdghsahdjas"+" "+$('#passTextAdmi').val()+" "+$('#tiptrabajoSeletAdmi').val());
+            var objAdmi = new ApiAdministrador("",$('#dniTextAdmi').val(),$('#nomTextAdmi').val(),$('#correTextAdmi').val(),$('#telefTextAdmi').val(),"asjdgsajdgsajdghsahdjas",$('#passTextAdmi').val(),$('#tiptrabajoSeletAdmi').val());            
+            console.log($('#dniTextAdmi').val()+" "+$('#nomTextAdmi').val()+" "+$('#correTextAdmi').val()+" "+$('#telefTextAdmi').val()+" "+"asjdgsajdgsajdghsahdjas"+" "+$('#passTextAdmi').val()+" "+$('#tiptrabajoSeletAdmi').val());
             objAdmi.addAdmin();
 
-            $('#dniText').val();
-            $('#nomText').val();
-            $('#correText').val();
-            $('#telefText').val();
-            $('#passText').val()
-            $('#tiptrabajoSelet').val()
+            $('#dniText').val(" ");
+            $('#nomText').val(" ");
+            $('#correText').val(" ");
+            $('#telefText').val(" ");
+            $('#passText').val(" ")
+            $('#tiptrabajoSelet').val(1)
         });
         $('#ModalContainer').modal('show');
     });
@@ -2124,14 +2124,15 @@ class ApiAdministrador{
     }
 
     async addAdmin(){
+        console.log(this.dni+" "+this.nombre);
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=inse"
-        +"* &dni="+ this.dni
-        +"* &nom="+ this.nombre
-        +"* &corre="+ this.corre
-        +"* &telef="+ this.telef
-        +"* &foto=" + this.foto
-        +"* &pass=" + this.pass
-        +"* &tiptrabajo="+ this.tiptrabajo)
+        +"&dni="+ this.dni
+        +"&nom="+ this.nombre
+        +"&corre="+ this.corre
+        +"&telef="+ this.telef
+        +"&foto=" + this.foto
+        +"&pass=" + this.pass
+        +"&tiptrabajo="+ this.tiptrabajo)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.ListAdmin();
