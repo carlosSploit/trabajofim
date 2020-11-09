@@ -53,7 +53,7 @@ if(isset($_GET['ob'])){
             
                 /* la accion realizada es listado se traduce de la siguiente manera
                  * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd
-                 * 6id= (id del administraodr)
+                 * &id= (id del administraodr)
                  * &dni=(dni del administrador)
                  * &nom=(nombre del administrador)
                  * &corre=(correo activo del administrador)
