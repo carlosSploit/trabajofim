@@ -2451,9 +2451,6 @@ class ApiDepart{
 }
 
 /* contenedor de fecht para el Ciudad, interactuara con la api*/
-/*Se replica la clase teniendo en cuenta que las funcionabilidades a usar van a ser distintas 
-pero conservando casi la misma funcionabilidad,esto quiere decir que en almacen y en store
-se pueden dar algunas funciones repetidas y otras nuevas dependiendo de la clase*/
 
 class ApiProducto{
 
@@ -2479,7 +2476,7 @@ class ApiProducto{
     }
 
     async List(user,tipo,nombre){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
-        //var aux = new ApiDepart("","");
+        var aux = new ApiDepart("","");
         switch (user) {
             case "A":
                 switch (tipo) {
@@ -2503,15 +2500,16 @@ class ApiProducto{
                                 $(yavcod).val(element.CodProduc);
                                 $(yavnom).val(element.Nombre);
                                 //insertar datos a las categorirasss
-                                //var objCat = new ApiCategori(-1,yavctp,element.idTipo);
-                                //$(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
-                                //objCat.ListAdmin();
+                                var objCat = new ApiCategori(-1,yavctp,element.idTipo);
+                                $(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
+                                objCat.ListAdmin();
                                 //insertar datos a los proveedores
-                                //var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
-                                //$(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
-                                //objPro.ListProvee();
+                                var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
+                                $(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
+                                objPro.ListProvee();
                                 //$(yavctp).html(html_codeIten); //categoria
                                 //$(yavpro).html(html_codeIten); //proveedor
+                                
                                 $(yavprc).val(element.PrecioC);
                                 $(yavprv).val(element.PrecioV);
                                 $(yavsto).val(element.Cantidad);

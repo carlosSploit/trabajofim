@@ -1,88 +1,73 @@
 <?php
 
-//--------------- Cliente Api -----------------------
-/*mayormente esto de las apis se da en la cuarta capa , pero poder adaptacion de modelo en vista controlador y modelo 
-de coloca incluido en la capa cpntrolador */
+include_once ("../module/enti/Administrador.php");
+include_once ("../module/bd/BDAdministrador.php");
 
-switch (isset($_POST['action'])) {
+if(isset($_GET['Action'])){
+    $action=$_GET['Action'];
     
-    case "insert" : 
-        break;
-    
-    case "eliminar" : 
-        break;
+    switch ($action) {
 
-    case "listar" : 
-        break;
+        case "inse" :
+            $objdni = $_GET['dni'];
+            $objnom = $_GET['nom'];
+            $objcorre = $_GET['corre'];
+            $objtelef = $_GET['telef'];
+            $objfoto = $_GET['foto'];
+            $objpass = $_GET['pass'];
 
-    case "update" : 
-        break;
-        
-    default:
-        break;
+            $objAdmi = new Cliente($objnom, $objdni, $objcorre, $objtelef, $objfoto,"","", $objpass);
+            echo insertar($objAdmi);
+            break;
+
+        case "delet" : 
+                $idCli = $_GET['id'];
+                $objAdmi = new Cliente("","","","","", $idCli,"","");
+                echo eliminar($objAdmi);
+            break;
+        case "list" : 
+            $idDep = array("tip"=>$_GET['tip'], "uss"=>$_GET['uss'],"pas"=>$_GET['pas']);
+            echo json_encode(listar($idDep));
+            break;
+        case "Upd" :
+            
+            $objidCl = $_GET['id'];
+            $objdni = $_GET['dni'];
+            $objnom = $_GET['nom'];
+            $objcorre = $_GET['corre'];
+            $objtelef = $_GET['telef'];
+            $objfoto = $_GET['foto'];
+            $objpass = $_GET['pass'];
+
+            $objAdmi = new Cliente($objnom, $objdni, $objcorre, $objtelef, $objfoto, $objidCl,"", $objpass);
+            echo update($objAdmi);
+            break;
+        default:
+            echo 'no tienes nada en enseñar perro';
+            break;
+    }
+}else{
+    echo 'no tienes nada en enseñar perro';
+}
+//------------ METODOS ---------------
+function eliminar($var) {
+    $objAdmi = new ClienteDAO();
+    return $objAdmi->eliminar($var);
 }
 
-//----------------------------------------------------
+function insertar($var) {
+    $objAdmi = new ClienteDAO();
+    return $objAdmi->insertar($var);
+}
 
-class Cliente  implements crud{
-    var $idClien = "";
-    var $us = "";
-    var $User="" ;
-    var $Pass = 000000000;
-    
-    //----------- COSTRUCTOR -------------
-    function __construct($nombre, $dni, $correro, $telefono, $foto,$idClien, $User, $Pass) {
-        $this->setIdClien($idClien);
-        $this->setUser($User);
-        $this->setPass($Pass);
-        $this->us = new usuario($nombre, $dni, $correro, $telefono, $foto);
-    }
+function listar($var) {
+    $objAdmi = new ClienteDAO();
+    return $objAdmi->listar($var);
+}
 
-    //--------- GETTER Y SETTER ------------------
-    
-    function getUser() {
-        return $this->User;
-    }
-
-    function getPass() {
-        return $this->Pass;
-    }
-
-    function setUser($User) {
-        $this->User = $User;
-    }
-
-    function setPass($Pass) {
-        $this->Pass = $Pass;
-    }
-
-    function getIdClien() {
-        return $this->idClien;
-    }
-
-    function setIdClien($idClien) {
-        $this->idClien = $idClien;
-    }
-    
-    //------------ METODOS ---------------
-    public function eliminar($var) {
-        $this->us->eliminar($var); //eliminar datos en usuario 
-        //eliminar en cliente 
-    }
-
-    public function insertar($var) {
-        $this->us->insertar($var); //nsertar en usuario 
-        //insertar en cliente 
-    }
-
-    public function listar($var) {
-        
-    }
-
-    public function update($var) {
-        $this->us->update($var); //eliminar datos en usuario 
-        //eliminar en cliente 
-    }
+function update($var) {
+    $objAdmi = new ClienteDAO();
+    return $objAdmi->update($var);
 }
 
 

@@ -1,25 +1,6 @@
 <?php
 
-switch (isset($_POST['action'])) {
-    
-    case "insert" : 
-
-        break;
-    
-    case "eliminar" : 
-
-        break;
-    case "listar" : 
-
-        break;
-    case "update" : 
-
-        break;
-    default:
-        break;
-}
-
-class comentProducto implements crud{
+class comentProducto{
     
     var $idComent = 0;
     var $idProducto = 0;
@@ -35,7 +16,6 @@ class comentProducto implements crud{
         $this->calif_prod = $calif_prod;
     }
 
-    
     function getIdComent() {
         return $this->idComent;
     }
@@ -74,23 +54,6 @@ class comentProducto implements crud{
 
     function setCalif_prod($calif_prod) {
         $this->calif_prod = $calif_prod;
-    }
-
-        
-    public function eliminar($var) {
-        
-    }
-
-    public function insertar($var) {
-        
-    }
-
-    public function listar($var) {
-        
-    }
-
-    public function update($var) {
-        
     }
 
 }

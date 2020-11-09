@@ -40,7 +40,7 @@ function ItenProduct(id,nombre,Punt,prec){
   '     <div class="container" style="width: 100%;">'+
   '         <div class="row extencion">'+
   '           <div class="col-sm-6 ContextCarTex">'+
-  '             <h6 class="textPunt">'+Punt+'<i class="fas fa-star icon"></i></h6>'+
+  '             <h6 class="textPunt">'+Punt+" "+'<i class="fas fa-star icon"></i></h6>'+
   '           </div>'+
   '           <div class="col-sm-6 ContextCarTex">'+
   '             <p class="textCoint">S/.'+prec+'</p>'+
@@ -52,27 +52,12 @@ function ItenProduct(id,nombre,Punt,prec){
 }
 
 function Interaccion(id){//cuando se precione la opccion de meseng, cambia el contenedor
-  $('#contModal').html(Info_Product);
+  var opa = new ApiProducto();
+  opa.List('A',2,id);
   $('#infoProducto').modal('show');
-
-  //Comportamiento de los botones dentro del modal de producto
-
-  $("#ProductBoton").click(function (event){ //cuando se precione la opccion de Producto, cambia el contenedor
-      $('#contCompra').show(); // se enciende la vicion de la informaicon del producto 
-      $('#contMeseng').hide(); // se apaga ka vicion de los mensajes del producto
-      $("#ProductBoton").attr("class","flex-sm-fill text-sm-center nav-link active");
-      $("#MessengerBoton").attr("class","flex-sm-fill text-sm-center nav-link ");
-  });
-
-  $("#MessengerBoton").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
-      $('#contCompra').hide(); // se apaga la vicion de la inforacion del producto
-      $('#contMeseng').show(); // se enciende la opccion de los mensajes de producto
-      $('#ProductBoton').attr("class","flex-sm-fill text-sm-center nav-link");
-      $('#MessengerBoton').attr("class","flex-sm-fill text-sm-center nav-link active");
-  });
 }
 
-function Info_Product(){
+function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
     return '<div class="container">'+
                   '<div class="row">'+
                     '<div class="col-lg-12" style=" width: 100%; height:200px; margin-bottom: 10px;">'+
@@ -109,7 +94,7 @@ function Info_Product(){
                     '<!-- Nombre del producto del producto -->'+
                     '<div class="row">'+
                       '<div class="col-lg-12" style="overflow: hidden; overflow-y: scroll; width: 100%; height: 50px; margin-top: 10px;">'+
-                          '<h5>Clave de producto 2019 de Microsoft Office Home & Business, código 1, Licencia de Usuario, caja minorista, Compatible con Mac y Windows</h5>'+
+                          '<h5>'+nombre+'</h5>'+
                       '</div>'+
                     '</div>'+
                     '<!-- Descripccion del producto -->'+
@@ -123,7 +108,7 @@ function Info_Product(){
                         '<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">'+
                           '<div class="card-body">'+
                             '<div class="form-group" style="height: 70px; overflow: hidden; overflow-y: scroll;">'+
-                              'The .form-group class is the easiest way to add some structure to forms. It provides a flexible class that encourages proper grouping of labels, controls, optional help text, and form validation messaging. By default it only applies margin-bottom, but it picks up additional styles in .form-inline as needed. Use it with s, or nearly any other element.'+
+                                '<h6>'+descripccion+'</h6>'+
                             '</div>'+
                           '</div>'+
                         '</div>'+
@@ -135,12 +120,12 @@ function Info_Product(){
                           '<div class="row">'+
                               '<div class="col" style=" width: 100%; height: 40px;">'+
                                 '<div class="input-group-append">'+
-                                  '<label style="text-align: center; margin-top: 5px; margin-right: 5px; font-size: 20px; line-height: 1.2;" >Disponibles :  50</label>'+
+                                  '<label style="text-align: center; margin-top: 5px; margin-right: 5px; font-size: 20px; line-height: 1.2;" >Disponibles :  '+cantidad+'</label>'+
                                 '</div>'+
                               '</div>'+
                               ' <div class="col" style=" width: 100%; height: 40px;">'+
                               '  <div class="input-group-append" style="display: flex;justify-items: right; justify-content: right; align-items: flex-end;">'+
-                              '    <label Class="text-right" style=" margin-top: 5px; margin-right: 5px; font-size: 20px; line-height: 1.2; text-align: right;" >S/. 4000</label>'+
+                              '    <label Class="text-right" style=" margin-top: 5px; margin-right: 5px; font-size: 20px; line-height: 1.2; text-align: right;" >S/. '+precio+'</label>'+
                                   '</div>'+
                               '</div>'+
                           '</div>'+
@@ -244,7 +229,7 @@ function Info_Product(){
                                   '</div>'+
                              '</div>'+
                              '<div class="col-5" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
-                                  '<h3 class="text-primary" >5 ★</h3>'+
+                                  '<h3 class="text-primary" >'+calificacion+' ★</h3>'+
                              '</div>'+
                           '</div>'+
                         '</div>'+
@@ -272,7 +257,7 @@ function Info_Product(){
                             '★★★★★'+
                           '</option>'+
                         '</select>'+
-                        '<input type="text" class="form-control" style="width:33vh;">'+
+                        '<input type="text" class="form-control" style="width:30vh;">'+
                         '<button type="button" class="btn btn-primary" >Enviar</button>'+
                       '</div>'+
                     '</div>'+
@@ -738,6 +723,9 @@ function Setprogressbar(){
 
 
 /* contenedor de fecht para el Ciudad, interactuara con la api*/
+/*Se replica la clase teniendo en cuenta que las funcionabilidades a usar van a ser distintas 
+pero conservando casi la misma funcionabilidad,esto quiere decir que en almacen y en store
+se pueden dar algunas funciones repetidas y otras nuevas dependiendo de la clase*/
 
 class ApiProducto{
 
@@ -755,7 +743,7 @@ class ApiProducto{
   }
 
   async List(user,tipo,nombre){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
-      var aux = new ApiDepart("","");
+      //var aux = new ApiDepart("","");
       switch (user) {
           case "A":
               switch (tipo) {
@@ -766,33 +754,50 @@ class ApiProducto{
                       .then(data => {
                           var html_codeIten = "";
                           data.forEach(element => {
-                              $('#contModal').html(ManteniProducAct(nombre)); // inicialisa el codigo para editarlo por este encapsulado
-                              var yavcod = "#CodProduc"+nombre;
+                              //$('#contModal').html(ManteniProducAct(nombre)); // inicialisa el codigo para editarlo por este encapsulado
+                              /*var yavcod = "#CodProduc"+nombre;
                               var yavnom = "#NomProduc"+nombre;
                               var yavctp = "#CatProduc"+nombre;
                               var yavpro = "#PovProduc"+nombre;  
                               var yavprc = "#PrCProduc"+nombre;
                               var yavprv = "#PrVProduc"+nombre;
                               var yavsto = "#CanProduc"+nombre;
-                              var yavdes = "#DesProduc"+nombre;
+                              var yavdes = "#DesProduc"+nombre;*/
                               // insertando datos al contenedor
-                              $(yavcod).val(element.CodProduc);
-                              $(yavnom).val(element.Nombre);
+                              //$(yavcod).val(element.CodProduc);
+                              //$(yavnom).val(element.Nombre);
+                              console.log(element.Descripcion);
+                              $('#contModal').html(Info_Product(element.idproducto,element.Nombre,element.Descripcion,element.Cantidad,element.PrecioV,element.calificacion));
                               //insertar datos a las categorirasss
-                              var objCat = new ApiCategori(-1,yavctp,element.idTipo);
-                              $(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
-                              objCat.ListAdmin();
+                              //var objCat = new ApiCategori(-1,yavctp,element.idTipo);
+                              //$(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
+                              //objCat.ListAdmin();
                               //insertar datos a los proveedores
-                              var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
-                              $(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
-                              objPro.ListProvee();
+                              //var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
+                              //$(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
+                              //objPro.ListProvee();
                               //$(yavctp).html(html_codeIten); //categoria
                               //$(yavpro).html(html_codeIten); //proveedor
-                              $(yavprc).val(element.PrecioC);
-                              $(yavprv).val(element.PrecioV);
-                              $(yavsto).val(element.Cantidad);
-                              $(yavdes).val(element.Descripcion);
+                              //$(yavprc).val(element.PrecioC);
+                              //$(yavprv).val(element.PrecioV);
+                              //$(yavsto).val(element.Cantidad);
+                              //$(yavdes).val(element.Descripcion);
                               //console.log(element.CodProduc+" "+element.Nombre+" "+element.PrecioC+" "+element.PrecioV+" "+element.Cantidad+" "+element.Descripcion);
+                              //Comportamiento de los botones dentro del modal de producto
+
+                              $("#ProductBoton").click(function (event){ //cuando se precione la opccion de Producto, cambia el contenedor
+                                  $('#contCompra').show(); // se enciende la vicion de la informaicon del producto 
+                                  $('#contMeseng').hide(); // se apaga ka vicion de los mensajes del producto
+                                  $("#ProductBoton").attr("class","flex-sm-fill text-sm-center nav-link active");
+                                  $("#MessengerBoton").attr("class","flex-sm-fill text-sm-center nav-link ");
+                              });
+
+                              $("#MessengerBoton").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
+                                  $('#contCompra').hide(); // se apaga la vicion de la inforacion del producto
+                                  $('#contMeseng').show(); // se enciende la opccion de los mensajes de producto
+                                  $('#ProductBoton').attr("class","flex-sm-fill text-sm-center nav-link");
+                                  $('#MessengerBoton').attr("class","flex-sm-fill text-sm-center nav-link active");
+                              });
                           });
                       });
                   break;
