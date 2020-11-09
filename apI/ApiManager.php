@@ -39,14 +39,16 @@ if(isset($_GET['ob'])){
                  * &pass= (contraseña de acceso al sistema del administrador)
                  * &tiptrabajo= (tipo de trabajador del adminitrador) esta funcionavilidad no presenta mucho uso momentaneamente*/
                 case "inse":
-                    header("Location: ../controler/Administrador.php?Action=insert&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']."&tiptrabajo=".$_GET['tiptrabajo']);
+                    header("Location: ../controler/Administrador.php?Action=inse&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']."&tiptrabajo=".$_GET['tiptrabajo']);
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT=(el tipo de usuario que lo este buscando ya sea)
-                 * por Administrador o cliente)&Tipo=(ya sea un listado de un producto o de una consulta de un producto)&Nombre=*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list
+                 * &tip=(tipo de busqueda que se quiera realizar)
+                 * &uss=(usuario de la cueta)
+                 * &pas=(password de la cuenta)*/
                 case "list": //se realizara la accion de list
-                    header("Location: ../controler/Producto.php?Action=list&userT=".$_GET['userT']."&Tipo=".$_GET['Tipo']."&Nombre=".$_GET['Nombre']);
+                    header("Location: ../controler/Administrador.php?Action=list&tip=".$_GET['tip']."&uss=".$_GET['uss']."&pas=".$_GET['pas']);
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
@@ -60,7 +62,7 @@ if(isset($_GET['ob'])){
                  * &pass= (contraseña de acceso al sistema del administrador)
                  * &tiptrabajo= (tipo de trabajador del adminitrador) esta funcionavilidad no presenta mucho uso momentaneamente*/
                 case 'Upd':
-                    header("Location: ../controler/Administrador.php?Action=update&id=".$_GET['id']."&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']."&tiptrabajo=".$_GET['tiptrabajo']);
+                    header("Location: ../controler/Administrador.php?Action=Upd&id=".$_GET['id']."&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']."&tiptrabajo=".$_GET['tiptrabajo']);
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera

@@ -44,9 +44,9 @@ class AdministradorDAO extends conexion implements crud {
         try {
             $obj = Conexion::singleton();    
             $data = $obj->prepare('CALL usp_ListarAdminis(?,?,?)');          
-            $data->bindParam(1, $var['userT']);   
-            $data->bindParam(2, $var['Tipo']);   
-            $data->bindParam(3, $var['Nombre']);   
+            $data->bindParam(1, $var['tip']);   
+            $data->bindParam(2, $var['uss']);   
+            $data->bindParam(3, $var['pas']);   
             $data->execute();
             $lista = $data->fetchAll();                      
             return $lista;         

@@ -8,8 +8,7 @@ if(isset($_GET['Action'])){
     
     switch ($action) {
 
-        case "insert" :
-            
+        case "inse" :
             $objdni = $_GET['dni'];
             $objnom = $_GET['nom'];
             $objcorre = $_GET['corre'];
@@ -22,13 +21,14 @@ if(isset($_GET['Action'])){
             echo insertar($objAdmi);
             break;
 
-        case "eliminar" : 
+        case "delet" : 
 
             break;
-        case "listar" : 
-
+        case "list" : 
+            $idDep = array("tip"=>$_GET['tip'], "uss"=>$_GET['uss'],"pas"=>$_GET['pas']);
+            echo json_encode(listar($idDep));
             break;
-        case "update" :
+        case "Upd" :
             
             $objidAd = $_GET['id'];
             $objdni = $_GET['dni'];

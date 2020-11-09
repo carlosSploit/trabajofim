@@ -178,7 +178,6 @@ function principal() {
         Setprogressbar();
         $('#ModalContainer').modal('show');
     });
-
     $("#Admi").click(function (event) { //cuando se precione la opccion de meseng, cambia el contenedor
         $('#contModal').html(MantAdm);
         $('.modal-dialog').removeAttr("style");
@@ -187,17 +186,23 @@ function principal() {
         $('#TituloModal').html("Registrar Administrador");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
+        // lista los aministradores de forma principal
+        var objAdmi = new ApiAdministrador();            
+        objAdmi.id = -1;
+        objAdmi.ListAdmin();
+        objAdmi.ListAdmin();
         $('#InserAdmid').click(function (event) {
             var objAdmi = new ApiAdministrador("",$('#dniTextAdmi').val(),$('#nomTextAdmi').val(),$('#correTextAdmi').val(),$('#telefTextAdmi').val(),"asjdgsajdgsajdghsahdjas",$('#passTextAdmi').val(),$('#tiptrabajoSeletAdmi').val());            
-            console.log($('#dniTextAdmi').val()+" "+$('#nomTextAdmi').val()+" "+$('#correTextAdmi').val()+" "+$('#telefTextAdmi').val()+" "+"asjdgsajdgsajdghsahdjas"+" "+$('#passTextAdmi').val()+" "+$('#tiptrabajoSeletAdmi').val());
             objAdmi.addAdmin();
-
-            $('#dniText').val(" ");
-            $('#nomText').val(" ");
-            $('#correText').val(" ");
-            $('#telefText').val(" ");
-            $('#passText').val(" ")
-            $('#tiptrabajoSelet').val(1)
+            objAdmi.id = -1;
+            objAdmi.ListAdmin();
+            objAdmi.ListAdmin();
+            $('#dniTextAdmi').val("");
+            $('#nomTextAdmi').val("");
+            $('#correTextAdmi').val("");
+            $('#telefTextAdmi').val("");
+            $('#passTextAdmi').val("")
+            $('#tiptrabajoSeletAdmi').val("Trabajador")
         });
         $('#ModalContainer').modal('show');
     });
@@ -1557,7 +1562,7 @@ function MantAdm() {
         '                                                   <span class="input-group-text"' +
         '                                                       id="basic-addon1">🔢</span>' +
         '                                               </div>' +
-        '                                               <input id="dniTextAdmi" type="text" class="form-control"' +
+        '                                               <input maxlength="9" id="dniTextAdmi" type="text" class="form-control"' +
         '                                                   placeholder="Dni Administrador"' +
         '                                                   aria-label="Direccion"' +
         '                                                   aria-describedby="basic-addon1">' +
@@ -1648,7 +1653,6 @@ function MantAdm() {
         '                            </select>' +
         '                       </div>' +
         '                   </div>' +
-
         '                   <div class="row my-3">' +
         '                       <div class="col">' +
         '                           <button type="button" id="InserAdmid"' +
@@ -1658,17 +1662,13 @@ function MantAdm() {
         '                   </div>' +
         '               </div>' +
         '           </div>' +
-        '           <!------------------------->;' +
+        '           <!------------------------->' +
         '       </div>' +
         '       <div class="tab-pane fade" id="pills-profile" role="tabpanel"' +
         '           aria-labelledby="pills-profile-tab">' +
         '           <div' +
         '               style="background:  #eceff1; width: 100%; height: 500px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        '               <div class="accordion" id="accordionExample">' +
-        ItenAdmin() +
-        ItenAdmin() +
-        ItenAdmin() +
-        ItenAdmin() +
+        '               <div class="accordion" id="ContenerAdmin">' +
         '           </div>' +
         '       </div>' +
         '   </div>' +
@@ -1676,33 +1676,37 @@ function MantAdm() {
         '</div>';
 }
 
-function ItenAdmin() {
-    return ' <!-- car del pedido a mostrar--->' +
-        '               <div class="card my-1">' +
-        '                   <div class="card-header" id="headingOne">' +
-        '                       <h2 class="mb-0">' +
-        '                           <button class="btn btn-link btn-block text-left" type="button"' +
-        '                               data-toggle="collapse" data-target="#collapseOne6"' +
-        '                               aria-expanded="true" aria-controls="collapseOne6">' +
-        '                               <div class="row">' +
-        '                                   <div class="col-3">' +
-        '                                       4567856' +
-        '                                   </div>' +
-        '                                   <div class="col-5">' +
-        '                                       Jose maria hernandez' +
-        '                                   </div>' +
-        '                                   <div class="col-4">' +
-        '                                       <a id="NewProdut"' +
-        '                                           class="btn btn-outline-danger btn-block rounded-pill">Eliminar</a>' +
-        '                                   </div>' +
-        '                               </div>' +
-        '                           </button>' +
-        '                       </h2>' +
-        '                   </div>' +
-        '                   <div id="collapseOne6" class="collapse show"' +
-        '                       aria-labelledby="headingOne" data-parent="#accordionExample">' +
-        '                       <div class="card-body" id="secudContendP">' +
-        '                           <!----codico del modal----->' +
+function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {
+    return '<!-- car de un departamento--->' +
+        ' <div class="accordion" id="accordionExample">' +
+        '      <div class="card">' +
+        '          <div class="card-header row" id="headingOne">' +
+        '                    <h2 class="col-8">' +
+        '                         <button' +
+        '                           class="btn btn-link btn-block text-left"' +
+        '                           type="button"' +
+        '                           data-toggle="collapse"' +
+        '                           data-target="#collapseOne'+id+'"' +
+        '                           aria-expanded="true"' +
+        '                           aria-controls="collapseOne'+id+'">' +
+        '                           <div class="row">'+
+        '                               <div class="col-5">'+dni +
+        '                                 </div>' +
+        '                               <div class="col-7">' +nombre+
+        '                                 </div>' +
+        '                           </div>'+
+        '                          </button>' +
+        '                      </h2>' +
+        '                      <div class="col-4">' +
+        '                          <button type="button" onclick="deleDistri('+id+')" id="NewProdut"' +
+        '                          class="btn btn-outline-danger btn-block rounded-pill">Eliminar</button>' +
+        '                      </div>' +
+        '                    </div>' +
+        '                      <div id="collapseOne'+id+'" class="collapse show"' +
+        '                        aria-labelledby="headingOne"' +
+        '                        data-parent="#accordionExample">' +
+        '                         <div class="card-body">' +
+        '                            <!----codico del modal----->' +
         '                           <div class="row">' +
         '                               <div class="col">' +
         '                                   <div class="row">' +
@@ -1718,7 +1722,7 @@ function ItenAdmin() {
         '                                                                       class="input-group-text"' +
         '                                                                       id="basic-addon1">🔢</span>' +
         '                                                               </div>' +
-        '                                                               <input type="text"' +
+        '                                                               <input value="'+dni+'" id="dniTextAdmi'+id+'" type="text"' +
         '                                                                   class="form-control"' +
         '                                                                   placeholder="Dni Administrador"' +
         '                                                                   aria-label="Direccion"' +
@@ -1735,7 +1739,7 @@ function ItenAdmin() {
         '                                                                       class="input-group-text"' +
         '                                                                       id="basic-addon1">📋</span>' +
         '                                                               </div>' +
-        '                                                               <input type="text"' +
+        '                                                               <input value="'+nombre+'" id="nomTextAdmi'+id+'" type="text"' +
         '                                                                   class="form-control"' +
         '                                                                   placeholder="Nombre del Administrador"' +
         '                                                                   aria-label="Direccion"' +
@@ -1752,7 +1756,7 @@ function ItenAdmin() {
         '                                                                       class="input-group-text"' +
         '                                                                       id="basic-addon1">📱</span>' +
         '                                                               </div>' +
-        '                                                               <input type="text"' +
+        '                                                               <input value="'+telef+'" id="telefTextAdmi'+id+'" type="text"' +
         '                                                                   class="form-control"' +
         '                                                                   placeholder="Telefono del Administrador"' +
         '                                                                   aria-label="Direccion"' +
@@ -1789,7 +1793,7 @@ function ItenAdmin() {
         '                                                   <span class="input-group-text"' +
         '                                                       id="basic-addon1">📧</span>' +
         '                                               </div>' +
-        '                                               <input type="text" class="form-control"' +
+        '                                               <input value="'+correo+'" type="text" class="form-control" id="correTextAdmi'+id+'"' +
         '                                                   placeholder="Correo Electronico"' +
         '                                                   aria-label="Direccion"' +
         '                                                   aria-describedby="basic-addon1">' +
@@ -1803,7 +1807,7 @@ function ItenAdmin() {
         '                                                   <span class="input-group-text"' +
         '                                                       id="basic-addon1">🔐</span>' +
         '                                                   </div>' +
-        '                                                   <input type="text" class="form-control"' +
+        '                                                   <input value="'+pass+'" type="text" class="form-control" id="passTextAdmi'+id+'"' +
         '                                                   placeholder="Contraseña" aria-label="Direccion"' +
         '                                                   aria-describedby="basic-addon1">' +
         '                                               </div>' +
@@ -1811,18 +1815,34 @@ function ItenAdmin() {
         '                                   </div>' +
         '                                   <div class="row">' +
         '                                       <div class="col">' +
-        '                                           <button type="button" id="NewProdut"' +
+        '                                           <select class="custom-select" id="tiptrabajoSeletAdmi'+id+'">' + ((tipAdmin == "Trabajador")?'<option value="Trabajador">Trabajador</option><option value="Gerente">Gerente</option>':'<option value="Trabajador">Trabajador</option><option selected value="Gerente">Gerente</option>')+
+        '                                           </select>' +
+        '                                       </div>' +
+        '                                   </div>' +
+        '                                   <div class="row">' +
+        '                                       <div class="col">' +
+        '                                           <button type="button" onclick="ActuAminIten('+id+')"' +
         '                                               class="btn btn-success btn-block">Ingresar' +
         '                                               Datos</button>' +
         '                                       </div>' +
         '                                   </div>' +
         '                               </div>' +
         '                           </div>' +
-        '                           <!------------------------->;' +
-        '                       </div>' +
-        '                   </div>' +
+        '                        </div>' +
+        '                    </div>' +
         '               </div>' +
-        '               <!----------------------------------------->';
+        '          </div>' +
+        '     </div>' +
+        '</div>' +
+        '<!------------------------------------>';
+}
+
+function ActuAminIten(id) {
+    var objAdmi = new ApiAdministrador(id,"","","","","","","");
+    objAdmi.Update();
+    objAdmi.id = -1;
+    objAdmi.ListAdmin();
+    objAdmi.ListAdmin();
 }
 
 function CardPedido() {
@@ -2140,7 +2160,21 @@ class ApiAdministrador{
     }
 
     async ListAdmin(){
-        
+        if(this.id == -1){ //prestamos la variable id para poder realizar el listado
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list"
+                +"&tip=1"
+                +"&uss=sdfsdfds"
+                +"&pas=dsfsdf")
+            .then(response => response.json())
+            .catch(Error => console.log(Error))
+            .then(data => {
+                var html_codeIten = "";
+                data.forEach(element => {
+                    html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
+                });
+                $('#ContenerAdmin').html(html_codeIten);
+            }).catch(Error => console.log(Error));
+        }
     }
 
 
@@ -2153,9 +2187,23 @@ class ApiAdministrador{
     }
 
     async Update(){
-        var yabicon = '#catSelet'+this.id;
-        var yabtext = '#catTex'+this.id;
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=Upd&id="+this.id+"&nom="+$(yabicon).val()+" "+$(yabtext).val())
+        var yabidA = this.id;
+        var yabdni = '#dniTextAdmi'+this.id;
+        var yabnom = '#nomTextAdmi'+this.id;
+        var yabcor = '#correTextAdmi'+this.id;
+        var yabtel = '#telefTextAdmi'+this.id;
+        var yabpho = '#fotoImgAdmi'+this.id;
+        var yabpas = '#passTextAdmi'+this.id;
+        var yabTiA = '#tiptrabajoSeletAdmi'+this.id;
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd"
+        +"&id=" + yabidA
+        +"&dni=" + $(yabdni).val()
+        +"&nom=" + $(yabnom).val()
+        +"&corre=" + $(yabcor).val()
+        +"&telef=" + $(yabtel).val()
+        +"&foto=" + "sahdjahdjkahdjkahdjkashdjksa"
+        +"&pass=" + $(yabpas).val()
+        +"&tiptrabajo=" + $(yabTiA).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.ListAdmin();
