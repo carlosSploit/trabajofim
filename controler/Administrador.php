@@ -22,7 +22,9 @@ if(isset($_GET['Action'])){
             break;
 
         case "delet" : 
-
+                $idAdminis = $_GET['id'];
+                $objAdmi = new Administrador("","","","","",$idAdminis,"","","");
+                echo eliminar($objAdmi);
             break;
         case "list" : 
             $idDep = array("tip"=>$_GET['tip'], "uss"=>$_GET['uss'],"pas"=>$_GET['pas']);

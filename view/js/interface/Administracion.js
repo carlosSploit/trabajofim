@@ -196,6 +196,8 @@ function principal() {
             objAdmi.addAdmin();
             objAdmi.id = -1;
             objAdmi.ListAdmin();
+
+            var objAdmi = new ApiAdministrador(-1,"","","","","","",""); //la segunda imprecion por el bug
             objAdmi.ListAdmin();
             $('#dniTextAdmi').val("");
             $('#nomTextAdmi').val("");
@@ -1698,7 +1700,7 @@ function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {
         '                          </button>' +
         '                      </h2>' +
         '                      <div class="col-4">' +
-        '                          <button type="button" onclick="deleDistri('+id+')" id="NewProdut"' +
+        '                          <button type="button" onclick="ElimiAdminIten('+id+')" id="NewProdut"' +
         '                          class="btn btn-outline-danger btn-block rounded-pill">Eliminar</button>' +
         '                      </div>' +
         '                    </div>' +
@@ -1819,7 +1821,7 @@ function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {
         '                                           </select>' +
         '                                       </div>' +
         '                                   </div>' +
-        '                                   <div class="row">' +
+        '                                   <div class="row my-4">' +
         '                                       <div class="col">' +
         '                                           <button type="button" onclick="ActuAminIten('+id+')"' +
         '                                               class="btn btn-success btn-block">Ingresar' +
@@ -1841,7 +1843,19 @@ function ActuAminIten(id) {
     var objAdmi = new ApiAdministrador(id,"","","","","","","");
     objAdmi.Update();
     objAdmi.id = -1;
+    objAdmi.ListAdmin(); // la primera imprecion de refrech
+
+    var objAdmi = new ApiAdministrador(-1,"","","","","","",""); //la segunda imprecion por el bug
     objAdmi.ListAdmin();
+}
+
+function ElimiAdminIten(id) {
+    var objAdmi = new ApiAdministrador(id,"","","","","","","");
+    objAdmi.delect();
+    objAdmi.id = -1;
+    objAdmi.ListAdmin(); // la primera imprecion de refrech
+
+    var objAdmi = new ApiAdministrador(-1,"","","","","","",""); //la segunda imprecion por el bug
     objAdmi.ListAdmin();
 }
 
@@ -2179,7 +2193,7 @@ class ApiAdministrador{
 
 
     async delect(){
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=delet&id="+this.id)
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=delet&id="+this.id)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.ListAdmin();
@@ -2206,6 +2220,7 @@ class ApiAdministrador{
         +"&tiptrabajo=" + $(yabTiA).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        
         this.ListAdmin();
         this.ListAdmin();
     }
@@ -2436,6 +2451,9 @@ class ApiDepart{
 }
 
 /* contenedor de fecht para el Ciudad, interactuara con la api*/
+/*Se replica la clase teniendo en cuenta que las funcionabilidades a usar van a ser distintas 
+pero conservando casi la misma funcionabilidad,esto quiere decir que en almacen y en store
+se pueden dar algunas funciones repetidas y otras nuevas dependiendo de la clase*/
 
 class ApiProducto{
 
@@ -2461,7 +2479,7 @@ class ApiProducto{
     }
 
     async List(user,tipo,nombre){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
-        var aux = new ApiDepart("","");
+        //var aux = new ApiDepart("","");
         switch (user) {
             case "A":
                 switch (tipo) {
@@ -2485,13 +2503,13 @@ class ApiProducto{
                                 $(yavcod).val(element.CodProduc);
                                 $(yavnom).val(element.Nombre);
                                 //insertar datos a las categorirasss
-                                var objCat = new ApiCategori(-1,yavctp,element.idTipo);
-                                $(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
-                                objCat.ListAdmin();
+                                //var objCat = new ApiCategori(-1,yavctp,element.idTipo);
+                                //$(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
+                                //objCat.ListAdmin();
                                 //insertar datos a los proveedores
-                                var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
-                                $(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
-                                objPro.ListProvee();
+                                //var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
+                                //$(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
+                                //objPro.ListProvee();
                                 //$(yavctp).html(html_codeIten); //categoria
                                 //$(yavpro).html(html_codeIten); //proveedor
                                 $(yavprc).val(element.PrecioC);

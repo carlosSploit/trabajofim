@@ -2,36 +2,18 @@
 $(document).ready(principal);
 
 function principal(){
+    
+    var objProdu = new ApiProducto(1,"","","","","","","","","");
+    objProdu.List("A",1,"");
 
     $("#ConternCategoriStore").html(ItenCateg);//instertar una categoria en el contenedor de estore
-    $("#ContstoreProduct").html(ItenProduct);//instertar un producto en el contenedor de estore
+    //$("#ContstoreProduct").html(ItenProduct);//instertar un producto en el contenedor de estore
     $("#ConteNavega").html(Navegacion);//instertar un tab de navegacion en el contenedor de estore
 
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(ContentCarritoCompra);
         Setprogressbar();
         $('#infoProducto').modal('show');
-    });
-
-    $("#456789").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
-        $('#contModal').html(Info_Product);
-        $('#infoProducto').modal('show');
-
-        //Comportamiento de los botones dentro del modal de producto
-
-        $("#ProductBoton").click(function (event){ //cuando se precione la opccion de Producto, cambia el contenedor
-            $('#contCompra').show(); // se enciende la vicion de la informaicon del producto 
-            $('#contMeseng').hide(); // se apaga ka vicion de los mensajes del producto
-            $("#ProductBoton").attr("class","flex-sm-fill text-sm-center nav-link active");
-            $("#MessengerBoton").attr("class","flex-sm-fill text-sm-center nav-link ");
-        });
-
-        $("#MessengerBoton").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
-            $('#contCompra').hide(); // se apaga la vicion de la inforacion del producto
-            $('#contMeseng').show(); // se enciende la opccion de los mensajes de producto
-            $('#ProductBoton').attr("class","flex-sm-fill text-sm-center nav-link");
-            $('#MessengerBoton').attr("class","flex-sm-fill text-sm-center nav-link active");
-        });
     });
 }
 
@@ -50,23 +32,44 @@ function ItenCateg(){
           '</div>';
 }
 
-function ItenProduct(){
+function ItenProduct(id,nombre,Punt,prec){
     return '<!--          card de productos generico            -->'+
-  '  <div id="456789" class="card mx-1 my-1" style="width: 170px; height: 180px; border-radius: 10px; overflow: hidden;">'+
+  '  <div onclick="Interaccion('+id+')" class="card mx-1 my-1" style="width: 170px; height: 180px; border-radius: 10px; overflow: hidden;">'+
   '     <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg" alt="Card image cap">'+
-  '     <div class="mx-2" style="width: 100%; height: auto;"><h6 class="textCard">Prenda de verano</h6></div>'+
+  '     <div class="mx-2" style="width: 100%; height: auto;"><h6 class="textCard">'+nombre+'</h6></div>'+
   '     <div class="container" style="width: 100%;">'+
   '         <div class="row extencion">'+
   '           <div class="col-sm-6 ContextCarTex">'+
-  '             <h6 class="textPunt">4,5 <i class="fas fa-star icon"></i></h6>'+
+  '             <h6 class="textPunt">'+Punt+'<i class="fas fa-star icon"></i></h6>'+
   '           </div>'+
   '           <div class="col-sm-6 ContextCarTex">'+
-  '             <p class="textCoint">S/.4000</p>'+
+  '             <p class="textCoint">S/.'+prec+'</p>'+
   '           </div>'+
   '         </div>'+
   '       </div>'+
   ' </div>'+
   ' <!------------------------------------------------------>';
+}
+
+function Interaccion(id){//cuando se precione la opccion de meseng, cambia el contenedor
+  $('#contModal').html(Info_Product);
+  $('#infoProducto').modal('show');
+
+  //Comportamiento de los botones dentro del modal de producto
+
+  $("#ProductBoton").click(function (event){ //cuando se precione la opccion de Producto, cambia el contenedor
+      $('#contCompra').show(); // se enciende la vicion de la informaicon del producto 
+      $('#contMeseng').hide(); // se apaga ka vicion de los mensajes del producto
+      $("#ProductBoton").attr("class","flex-sm-fill text-sm-center nav-link active");
+      $("#MessengerBoton").attr("class","flex-sm-fill text-sm-center nav-link ");
+  });
+
+  $("#MessengerBoton").click(function (event){ //cuando se precione la opccion de meseng, cambia el contenedor
+      $('#contCompra').hide(); // se apaga la vicion de la inforacion del producto
+      $('#contMeseng').show(); // se enciende la opccion de los mensajes de producto
+      $('#ProductBoton').attr("class","flex-sm-fill text-sm-center nav-link");
+      $('#MessengerBoton').attr("class","flex-sm-fill text-sm-center nav-link active");
+  });
 }
 
 function Info_Product(){
@@ -733,5 +736,113 @@ function Setprogressbar(){
       }
 }
 
+
+/* contenedor de fecht para el Ciudad, interactuara con la api*/
+
+class ApiProducto{
+
+  constructor(IdProd,CodProd,IdProve,IdTipo,Nom,Descri,Cantid,PreC,PreV,Photo){
+      this.IdProd = IdProd;
+      this.CodProd = CodProd;
+      this.IdProve = IdProve;
+      this.IdTipo = IdTipo;
+      this.Nom = Nom;
+      this.Descri = Descri;
+      this.Cantid = Cantid;
+      this.PreC = PreC;
+      this.PreV = PreV;
+      this.Photo = Photo;
+  }
+
+  async List(user,tipo,nombre){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
+      var aux = new ApiDepart("","");
+      switch (user) {
+          case "A":
+              switch (tipo) {
+                  case 2: // se consulta la informacion, producto por producto
+                      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre)
+                      .then(response => response.json())
+                      .catch(Error => console.log(Error))
+                      .then(data => {
+                          var html_codeIten = "";
+                          data.forEach(element => {
+                              $('#contModal').html(ManteniProducAct(nombre)); // inicialisa el codigo para editarlo por este encapsulado
+                              var yavcod = "#CodProduc"+nombre;
+                              var yavnom = "#NomProduc"+nombre;
+                              var yavctp = "#CatProduc"+nombre;
+                              var yavpro = "#PovProduc"+nombre;  
+                              var yavprc = "#PrCProduc"+nombre;
+                              var yavprv = "#PrVProduc"+nombre;
+                              var yavsto = "#CanProduc"+nombre;
+                              var yavdes = "#DesProduc"+nombre;
+                              // insertando datos al contenedor
+                              $(yavcod).val(element.CodProduc);
+                              $(yavnom).val(element.Nombre);
+                              //insertar datos a las categorirasss
+                              var objCat = new ApiCategori(-1,yavctp,element.idTipo);
+                              $(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
+                              objCat.ListAdmin();
+                              //insertar datos a los proveedores
+                              var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
+                              $(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
+                              objPro.ListProvee();
+                              //$(yavctp).html(html_codeIten); //categoria
+                              //$(yavpro).html(html_codeIten); //proveedor
+                              $(yavprc).val(element.PrecioC);
+                              $(yavprv).val(element.PrecioV);
+                              $(yavsto).val(element.Cantidad);
+                              $(yavdes).val(element.Descripcion);
+                              //console.log(element.CodProduc+" "+element.Nombre+" "+element.PrecioC+" "+element.PrecioV+" "+element.Cantidad+" "+element.Descripcion);
+                          });
+                      });
+                  break;
+
+                  default: // con son varios los caso que se repiten con el mismo metodo se colocara el default
+                      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre)
+                      .then(response => response.json())
+                      .catch(Error => console.log(Error))
+                      .then(data => {
+                          var html_codeIten = "";
+                          data.forEach(element => {
+                              html_codeIten = html_codeIten + ItenProduct(element.idproducto,element.Nombre,element.calificacion,element.PrecioV);
+                              //console.log(element.idproducto+" "+element.Nombre+" "+element.calificacion+" "+element.PrecioV);
+                          });
+                          $('#ContstoreProduct').html(html_codeIten);
+                      });
+                      break;
+              }
+              break;
+          default:
+              break;
+      }
+  }
+
+  async Update_Stock(){
+      var yavcod = "#CodProduc"+this.IdProd;
+      var yavnom = "#NomProduc"+this.IdProd;
+      var yavctp = "#CatProduc"+this.IdProd;
+      var yavpro = "#PovProduc"+this.IdProd;  
+      var yavprc = "#PrCProduc"+this.IdProd;
+      var yavprv = "#PrVProduc"+this.IdProd;
+      var yavsto = "#CanProduc"+this.IdProd;
+      var yavdes = "#DesProduc"+this.IdProd;
+
+      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=Upd"
+      +"&IdProd="+this.IdProd
+      +"&CodProd="+$(yavcod).val()
+      +"&IdProve="+$(yavpro).val()
+      +"&IdTipo="+$(yavctp).val()
+      +"&Nom="+$(yavnom).val()
+      +"&Descri="+$(yavdes).val()
+      +"&Cantid="+$(yavsto).val()
+      +"&PreC="+$(yavprc).val()
+      +"&PreV="+$(yavprv).val()
+      +"&Photo="+"adjkasdhjsahdjsahdjshdkjashdks")
+      .then(response => response.json())
+      .then(data => console.log(JSON.parse(data)));
+      this.List("");
+      this.List("");
+  }
+}
 
 

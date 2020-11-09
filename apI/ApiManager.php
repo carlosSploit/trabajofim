@@ -66,10 +66,10 @@ if(isset($_GET['ob'])){
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=delet&IdProd=(
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=delet&id=(
                  * index del departamento)*/
                 case "delet":
-                    header("Location: ../controler/Producto.php?Action=delet&IdProd=".$_GET['IdProd']);
+                    header("Location: ../controler/Administrador.php?Action=delet&id=".$_GET['id']);
                 break;
 
                 default:
