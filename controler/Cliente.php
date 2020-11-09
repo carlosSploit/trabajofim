@@ -1,7 +1,7 @@
 <?php
 
-include_once ("../module/enti/Administrador.php");
-include_once ("../module/bd/BDAdministrador.php");
+include_once ("../module/enti/Cliente.php");
+include_once ("../module/bd/BDCliente.php");
 
 if(isset($_GET['Action'])){
     $action=$_GET['Action'];

@@ -38,7 +38,7 @@ if(isset($_GET['ob'])){
                  * &foto= (telefono activo del administrador)
                  * &pass= (contraseña de acceso al sistema del administrador)*/
                 case "inse":
-                    header("Location: ../controler/cliente.php?Action=inse&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']);
+                    header("Location: ../controler/Cliente.php?Action=inse&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']);
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
@@ -47,7 +47,7 @@ if(isset($_GET['ob'])){
                  * &uss=(usuario de la cueta)
                  * &pas=(password de la cuenta)*/
                 case "list": //se realizara la accion de list
-                    header("Location: ../controler/cliente.php?Action=list&tip=".$_GET['tip']."&uss=".$_GET['uss']."&pas=".$_GET['pas']);
+                    header("Location: ../controler/Cliente.php?Action=list&tip=".$_GET['tip']."&uss=".$_GET['uss']."&pas=".$_GET['pas']);
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
@@ -60,14 +60,14 @@ if(isset($_GET['ob'])){
                  * &foto= (telefono activo del administrador)
                  * &pass= (contraseña de acceso al sistema del administrador)*/
                 case 'Upd':
-                    header("Location: ../controler/cliente.php?Action=Upd&id=".$_GET['id']."&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']);
+                    header("Location: ../controler/Cliente.php?Action=Upd&id=".$_GET['id']."&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']);
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
                  * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=delet&id=(
                  * index del departamento)*/
                 case "delet":
-                    header("Location: ../controler/cliente.php?Action=delet&id=".$_GET['id']);
+                    header("Location: ../controler/Cliente.php?Action=delet&id=".$_GET['id']);
                 break;
 
                 default:
