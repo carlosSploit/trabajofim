@@ -6,6 +6,8 @@ function principal(){
     //$("#ContstoreProduct").html(ItenProduct);//instertar un producto en el contenedor de estore
     //$("#ConteNavega").html(Navegacion);//instertar un tab de navegacion en el contenedor de estore
 
+    //verifica quien inicio secion por medio del controlador de cuenta y la ip publica
+
     $("#ConfigUsar").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(ConfigUser);
         $('#tituProduct').html("Configuracion")

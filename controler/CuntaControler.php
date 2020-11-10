@@ -18,7 +18,12 @@ if(isset($_GET['Action'])){
 
         case "delet" : 
             break;
-        case "list" : 
+        
+        case "list" :
+            $objmac = $_GET['mac'];
+
+            $objAdmi = new CuentaCont("","", $objmac,"");
+            echo json_encode(listar($objAdmi));
             break;
         case "Upd" :
             

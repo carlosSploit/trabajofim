@@ -29,10 +29,8 @@ class CuentaContDAO extends conexion implements crud {
     public function listar($var) {
         try {
             $obj = Conexion::singleton();    
-            $data = $obj->prepare('CALL usp_ListarCuentaC(?,?,?)');          
-            $data->bindParam(1, $var['tip']);   
-            $data->bindParam(2, $var['uss']);   
-            $data->bindParam(3, $var['pas']);   
+            $data = $obj->prepare('CALL usp_ListarCuentaC(?)');          
+            $data->bindParam(1, $var->getMac());      
             $data->execute();
             $lista = $data->fetchAll();                      
             return $lista;         

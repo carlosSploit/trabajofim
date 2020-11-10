@@ -2,13 +2,6 @@
 
 $(document).ready(principal);
 
-fetch("https://api.ipify.org?format=json")
-            .then(response => response.json())
-            .catch(Error => console.log(Error))
-            .then(data => {
-                console.log(data.ip);
-            }).catch(Error => console.log(Error));
-
 
 function principal(){
     
@@ -52,10 +45,20 @@ class ApiCliente{
                 if(data.length != 0){
                     alert("Archivo si existende");
                     data.forEach(element => {
+                        /*extraer la ip publica de la maquina*/
+                        fetch("https://api.ipify.org?format=json")
+                        .then(response => response.json())
+                        .catch(Error => console.log(Error))
+                        .then(data => {
+                            /*Se inserta los datos del inicio de la secion*/
+                            var obj = new ApiCuentCo(element.idCliente,data.ip);
+                            obj.addAdmin();
+                        }).catch(Error => console.log(Error));
                         window.location ="../index.html";
                         console.log("Extrayendo datos");
                         //html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
                     });
+
                 }else{
                     alert("Archivo no existende");
                 }
@@ -63,13 +66,23 @@ class ApiCliente{
             }).catch(Error => console.log(Error));
         }
     }
+}
 
 
-    async delect(){
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=delet&id="+this.id)
+/* contenedor de fecht para la categoria de productos, interactuara con la api*/
+class ApiCuentCo{
+    
+    constructor(uss,mac){
+        this.uss = uss;
+        this.mac = mac;
+    }
+
+    async addAdmin(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=cuenC&A=inse"
+        +"&uss="+ this.uss
+        +"&mac="+ this.mac)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.ListAdmin();
-        this.ListAdmin();
-    }
+    }    
 }
+
