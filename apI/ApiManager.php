@@ -31,19 +31,17 @@ if(isset($_GET['ob'])){
             switch ($actioOBJ) {
                 /* la accion realizada es insercion se traduce de la siguiente manera
                  * http://localhost/PhpProjec/api/ApiManager.php?ob=cuenC&A=inse
-                 * &uss=(dni del administrador)
-                 * &mac=(nombre del administrador)*/
+                 * &uss=(id del cliente)
+                 * &mac=(mac del cliente)*/
                 case "inse":
                     header("Location: ../controler/CuntaControler.php?Action=inse&uss=".$_GET['uss']."&mac=".$_GET['mac']);
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=list
-                 * &tip=(tipo de busqueda que se quiera realizar)
-                 * &uss=(usuario de la cueta)
-                 * &pas=(password de la cuenta)*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=cuenC&A=list
+                 * &mac=(mac de la cuenta)*/
                 case "list": //se realizara la accion de list
-                    header("Location: ../controler/Cliente.php?Action=list&tip=".$_GET['tip']."&uss=".$_GET['uss']."&pas=".$_GET['pas']);
+                    header("Location: ../controler/CuntaControler.php?Action=list&mac=".$_GET['mac']);
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera

@@ -10,9 +10,11 @@
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Administrador.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Administrador.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Distrito.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/view/login.html</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDistrito.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Distrito.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDAdministrador.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDCuentaCont.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDepartamento.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Ventas.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/DetalleVenta.php</file>
@@ -21,9 +23,12 @@
             <file>file:/C:/xampp/htdocs/PhpProjec/apI/ApiManager.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Departamento.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDetalleVenta.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/CuentaCont.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Departamento.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDtipoProducto.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Producto.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/view/js/interface/login.js</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/controler/CuntaControler.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Proveedor.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/tipoProducto.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Proveedor.php</file>
@@ -39,6 +44,8 @@
             <file>file:/C:/xampp/htdocs/PhpProjec/view/js/interface/Administracion.js</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/conexion.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDProveedor.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/view/home.html</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/controler/MessengControler.php</file>
         </group>
     </open-files>
 </project-private>

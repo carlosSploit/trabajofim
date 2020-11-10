@@ -8,6 +8,15 @@ function principal(){
 
     //verifica quien inicio secion por medio del controlador de cuenta y la ip publica
 
+    /*extraer la ip publica de la maquina*/
+    fetch("https://api.ipify.org?format=json")
+    .then(response => response.json())
+    .catch(Error => console.log(Error))
+    .then(data => {
+        var obj= new ApiCuentCo("",data.ip);
+        obj.listAdmin();
+    }).catch(Error => console.log(Error));
+
     $("#ConfigUsar").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(ConfigUser);
         $('#tituProduct').html("Configuracion")
@@ -96,4 +105,20 @@ function ConfigUser() {
         ' </div>'+
     ' </div>'+
 '<!------------------------->';
+}
+
+/* contenedor de fecht para la categoria de productos, interactuara con la api*/
+class ApiCuentCo{
+    
+    constructor(uss,mac){
+        this.uss = uss;
+        this.mac = mac;
+    }
+
+    async listAdmin(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=cuenC&A=list"
+        +"&mac="+ this.mac)
+        .then(response => response.json())
+        .then(data => {console.log(data.idCliente)});
+    }    
 }
