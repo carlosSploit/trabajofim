@@ -34,7 +34,7 @@ if(isset($_GET['ob'])){
                  * &mail=(nombre del administrador)
                  * &message=(Mensaje que se quiera enviar)*/
                 case "inse":
-                    header("Location: ../controler/MessengControler.php?Action=inse&name=".$_GET['name']."&mail=".$_GET['mail']."&message=".$_GET['message']);
+                    header("Location: ../controler/MessengControler.php?Action=inse&name=".$_GET['name']."&mail=".$_GET['mail']."&message=".$_GET['message']."&mailD=".$_GET['mailD']);
                 break;
                 default:
                     echo 'no se entendio la accion que quiso realizar';

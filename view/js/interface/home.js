@@ -27,7 +27,8 @@ class ApiMessege{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Mesg&A=inse"
         +"&name="+ this.nombre
         +"&mail="+ this.email
-        +"&message="+ this.messenge)
+        +"&message="+ this.messenge
+        +"&mailD=1")
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
     }

@@ -5,14 +5,13 @@ $(document).ready(principal);
 function principal(){
     
     $("#RegUser").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
-        var objMesg = new ApiMessege('Carlos Arturo Guerrero','Arturo14212000@gmail.com','El codigo es : ');
+        var objMesg = new ApiMessege($('#RegNom').val(),$('#RegEmai').val(),'El codigo es : ');
         objMesg.sedMessege();
         $('#ModalAler').modal('show');
         $('#ValidCod').click(function (event){
             if(Token == $('#RegCod').val()){
 
                 //ingresa los datos del cliente
-                
                 var objAd = new ApiCliente("","",$('#RegNom').val(),$('#RegEmai').val(),$('#RegCell').val(),'56565+655+565',$('#RegPass').val());
                 objAd.addAdmin();
                 $('#RegNom').val("");
@@ -52,7 +51,8 @@ class ApiMessege{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Mesg&A=inse"
         +"&name="+ this.nombre
         +"&mail="+ this.email
-        +"&message="+ this.messenge + Token)
+        +"&message="+ this.messenge + Token
+        +"&mailD=2")
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
     }

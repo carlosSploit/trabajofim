@@ -1,97 +1,65 @@
 <?php
 
-switch (isset($_POST['action'])) {
-    
-    case "insert" : 
+include_once ("../module/enti/ComentProducto.php");
+include_once ("../module/bd/BDComentProducto.php");
 
-        break;
-    
-    case "eliminar" : 
+//----------------------------------------------------
+if(isset($_GET['Action'])){
+    $action=$_GET['Action'];
+    switch ($action) {
+        case "inse":
+                $idProd = $_GET['idProd'];
+                $idClient = $_GET['idClient'];
+                $Descrip = $_GET['Descrip'];
+                $Califi= $_GET['Califi'];
+                $obj = new comentProducto($idComent, $idProd, $Descrip, $idClient, $Califi);
+                echo insertar($obj);
+            break;
 
-        break;
-    case "listar" : 
-
-        break;
-    case "update" : 
-
-        break;
-    default:
-        break;
+        case "list":
+                $idDep = $_GET['idDep'];
+                echo json_encode(listar($idDep));
+            break;
+        
+        case "Upd":
+                $idComPro = $_GET['idComPro'];
+                $idProd = $_GET['idProd'];
+                $idClient = $_GET['idClient'];
+                $Descrip = $_GET['Descrip'];
+                $Califi= $_GET['Califi'];
+                $obj = new comentProducto($idComPro, $idProd, $Descrip, $idClient, $Califi);
+                $obj->setIdCiudad($id);
+                echo update($obj);
+            break;
+        case 'delet':
+                $id = $_GET['id'];
+                $obj = new comentProducto($idComent, $idProducto, $descripccion, $idCliente, $calif_prod);
+                $obj->setIdCiudad($id);
+                echo eliminar($obj);
+            break;
+        default:
+            break;
+    }    
 }
 
-class comentProducto implements crud{
-    
-    var $idComent = 0;
-    var $idProducto = 0;
-    var $descripccion = "";
-    var $idCliente = 0;
-    var $calif_prod = 0;
-    
-    function __construct($idComent, $idProducto, $descripccion, $idCliente, $calif_prod) {
-        $this->idComent = $idComent;
-        $this->idProducto = $idProducto;
-        $this->descripccion = $descripccion;
-        $this->idCliente = $idCliente;
-        $this->calif_prod = $calif_prod;
-    }
+//------------ METODOS ---------------
+ function eliminar($var) {
+    $bdoj = new ComentProduDAODAO();
+    return $bdoj->eliminar($var);
+}
 
-    
-    function getIdComent() {
-        return $this->idComent;
-    }
+function insertar($var) {
+    $bdoj = new ComentProduDAODAO();
+    return $bdoj->insertar($var);
+}
 
-    function getIdProducto() {
-        return $this->idProducto;
-    }
+function listar($var) {
+    $bdoj = new ComentProduDAODAO();
+    return $bdoj->listar($var);
+}
 
-    function getDescripccion() {
-        return $this->descripccion;
-    }
-
-    function getIdCliente() {
-        return $this->idCliente;
-    }
-
-    function getCalif_prod() {
-        return $this->calif_prod;
-    }
-
-    function setIdComent($idComent) {
-        $this->idComent = $idComent;
-    }
-
-    function setIdProducto($idProducto) {
-        $this->idProducto = $idProducto;
-    }
-
-    function setDescripccion($descripccion) {
-        $this->descripccion = $descripccion;
-    }
-
-    function setIdCliente($idCliente) {
-        $this->idCliente = $idCliente;
-    }
-
-    function setCalif_prod($calif_prod) {
-        $this->calif_prod = $calif_prod;
-    }
-
-        
-    public function eliminar($var) {
-        
-    }
-
-    public function insertar($var) {
-        
-    }
-
-    public function listar($var) {
-        
-    }
-
-    public function update($var) {
-        
-    }
-
+ function update($var) {
+     $bdoj = new ComentProduDAODAO();
+     return $bdoj->update($var);
 }
 
