@@ -13,7 +13,7 @@
 <body>
     <section class="Form my-4 mx-5">
         <div class="contariner">
-            <div class="row no-gutters">
+            <div class="row rowcast no-gutters">
                 <div class="col-lg-5">
                     <img src="./resorces/fondolog.jpg" class="img-fluid" alt="" />
                 </div>
@@ -55,7 +55,48 @@
             </div>
         </div>
     </section>
+    <!--Modales de producto--->
+    <div class="modal fade" id="ModalAler" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #546e7a; color: aliceblue" id="Encabezaod">
+                    <h5 class="modal-title" id="TituloModal">Verificar Token de creacion</h5>
+                    <button type="button" style="color: aliceblue" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="border-radius: 0%;">
+                        <div class="col" style="border-radius: 0%;">
 
+                            <div class="row">
+                                <img src="./resorces/logo.png" style="height: 50px; width: 100px;"
+                                    class="my-1 mx-auto col-3 d-flex justify-content-center" height="10" width="100" />
+                            </div>
+
+                            <h6 class="row" style="padding: 10PX;">Bienvenido a la plataforma de ventas Tienda nuve.
+                                Porafor ingrese a
+                                su Correo que a ingresaso para poder a comprobar el codigo de validacion de su
+                                cueta a crear:</h6>
+
+                            <div class="row">
+                                <input id="RegCod" data-toggle="popover"
+                                    data-content="Error, Ingrese el codigo correcto" type="text" placeholder="Codigo"
+                                    class="form-control my-1 mx-auto col-3 d-flex justify-content-center" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button id="ValidCod" type="button" class="btn font-weight-bold rounded-pill col-7"
+                        style="background-color: #546e7a; color: aliceblue">Validar cuenta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

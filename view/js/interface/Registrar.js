@@ -1,19 +1,67 @@
+var Token = "";
+
 $(document).ready(principal);
 
 function principal(){
     
     $("#RegUser").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
-        var objAd = new ApiCliente("","",$('#RegNom').val(),$('#RegEmai').val(),$('#RegCell').val(),'56565+655+565',$('#RegPass').val());
-        objAd.addAdmin();
-        $('#RegNom').val("");
-        $('#RegEmai').val("");
-        $('#RegCell').val("");
-        $('#RegPass').val("");
+        var objMesg = new ApiMessege('Carlos Arturo Guerrero','Arturo14212000@gmail.com','El codigo es : ');
+        objMesg.sedMessege();
+        $('#ModalAler').modal('show');
+        $('#ValidCod').click(function (event){
+            if(Token == $('#RegCod').val()){
 
-        alert("InsertadisisisisisisiMO");
+                //ingresa los datos del cliente
+                
+                var objAd = new ApiCliente("","",$('#RegNom').val(),$('#RegEmai').val(),$('#RegCell').val(),'56565+655+565',$('#RegPass').val());
+                objAd.addAdmin();
+                $('#RegNom').val("");
+                $('#RegEmai').val("");
+                $('#RegCell').val("");
+                $('#RegPass').val("");
+
+                $('#ModalAler').modal('hide');
+            }else{
+                $('#RegCod').popover('enable');
+                $('#RegCod').popover('show');
+            }
+        });
+
+        $('#RegCod').focus(Apagar)
+        
     });
 
+    function Apagar(){
+        $('#RegCod').popover('hide');
+        $('#RegCod').popover('disable');
+    }
+
 }
+
+/* contenedor de fecht para la categoria de productos, interactuara con la api*/
+class ApiMessege{
+    
+    constructor(nombre,email,messenge){
+        this.nombre = nombre;
+        this.email = email;
+        this.messenge = messenge;
+    }
+
+    async sedMessege(){
+        Token = this.getRandomArbitrary(1,999999);
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Mesg&A=inse"
+        +"&name="+ this.nombre
+        +"&mail="+ this.email
+        +"&message="+ this.messenge + Token)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+    }
+
+    getRandomArbitrary(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+    }
+}
+
 
 /* contenedor de fecht para la categoria de productos, interactuara con la api*/
 class ApiCliente{
