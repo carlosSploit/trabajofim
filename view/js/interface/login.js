@@ -43,7 +43,6 @@ class ApiCliente{
             .catch(Error => console.log(Error))
             .then(data => {
                 if(data.length != 0){
-                    alert("Archivo si existende");
                     data.forEach(element => {
                         /*extraer la ip publica de la maquina*/
                         fetch("https://api.ipify.org?format=json")
@@ -51,11 +50,10 @@ class ApiCliente{
                         .catch(Error => console.log(Error))
                         .then(data => {
                             /*Se inserta los datos del inicio de la secion*/
-                            var obj = new ApiCuentCo(element.idCliente,data.ip);
+                            var obj = new ApiCuentC(element.idCliente,data.ip);
                             obj.addAdmin();
                         }).catch(Error => console.log(Error));
-                        window.location ="../index.html";
-                        console.log("Extrayendo datos");
+                        //window.location ="../index.html";
                         //html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
                     });
 
@@ -70,7 +68,7 @@ class ApiCliente{
 
 
 /* contenedor de fecht para la categoria de productos, interactuara con la api*/
-class ApiCuentCo{
+class ApiCuentC{
     
     constructor(uss,mac){
         this.uss = uss;
@@ -78,11 +76,20 @@ class ApiCuentCo{
     }
 
     async addAdmin(){
+        console.log(this.uss+" "+this.mac);
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=cuenC&A=inse"
         +"&uss="+ this.uss
         +"&mac="+ this.mac)
         .then(response => response.json())
-        .then(data => console.log(JSON.parse(data)));
+        .then(data => {
+            console.log(data)
+        });
+        alert("Bienvenido. porfavor espere un momento");
+        setTimeout ("redireccionar()", 2000); //tiempo expresado en milisegundos
     }    
 }
 
+function redireccionar(){
+    window.location ="../index.html";
+  } 
+  

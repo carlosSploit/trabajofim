@@ -1,25 +1,25 @@
 
 <?php
 
-class CuentaCont {
+class CuentaContA {
     var $idSeccion = 0;
-    var $idClient = "";
+    var $idAdministrador = "";
     var $mac = "";
     var $estadoC = 0;
     
-    function __construct($idSeccion, $idClient, $mac, $estadoC) {
-        $this->setMac($mac);
-        $this->setIdClient($idClient);
+    function __construct($idSeccion, $idAdministrador, $mac, $estadoC) {
         $this->setIdSeccion($idSeccion);
+        $this->setIdAdministrador($idAdministrador);
+        $this->setMac($mac);
         $this->setEstadoC($estadoC);
     }
-    
+
     function getIdSeccion() {
         return $this->idSeccion;
     }
 
-    function getIdClient() {
-        return $this->idClient;
+    function getIdAdministrador() {
+        return $this->idAdministrador;
     }
 
     function getMac() {
@@ -34,8 +34,8 @@ class CuentaCont {
         $this->idSeccion = $idSeccion;
     }
 
-    function setIdClient($idClient) {
-        $this->idClient = $idClient;
+    function setIdAdministrador($idAdministrador) {
+        $this->idAdministrador = $idAdministrador;
     }
 
     function setMac($mac) {
@@ -45,7 +45,6 @@ class CuentaCont {
     function setEstadoC($estadoC) {
         $this->estadoC = $estadoC;
     }
-
 
 
 }

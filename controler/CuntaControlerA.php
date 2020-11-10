@@ -1,7 +1,7 @@
 <?php
 
-include_once ("../module/enti/CuentaCont.php");
-include_once ("../module/bd/BDCuentaCont.php");
+include_once ("../module/enti/CuentaContA.php");
+include_once ("../module/bd/BDCuentaContA.php");
 
 if(isset($_GET['Action'])){
     $action=$_GET['Action'];
@@ -12,7 +12,7 @@ if(isset($_GET['Action'])){
             $objdni = $_GET['uss'];
             $objmac = $_GET['mac'];
 
-            $objAdmi = new CuentaCont("", $objdni, $objmac,"");
+            $objAdmi = new CuentaContA("", $objdni, $objmac,"");
             echo insertar($objAdmi);
             break;
 
@@ -34,7 +34,7 @@ if(isset($_GET['Action'])){
             $objfoto = $_GET['foto'];
             $objpass = $_GET['pass'];
 
-            $objAdmi = new CuentaCont($idSeccion, $idClient, $mac, $estadoC);
+            $objAdmi = new CuentaContA($idSeccion, $idClient, $mac, $estadoC);
             echo update($objAdmi);
             break;
         default:
@@ -46,21 +46,21 @@ if(isset($_GET['Action'])){
 }
 //------------ METODOS ---------------
 function eliminar($var) {
-    $objAdmi = new CuentaContDAO();
+    $objAdmi = new CuentaContADAO();
     return $objAdmi->eliminar($var);
 }
 
 function insertar($var) {
-    $objAdmi = new CuentaContDAO();
+    $objAdmi = new CuentaContADAO();
     return $objAdmi->insertar($var);
 }
 
 function listar($var) {
-    $objAdmi = new CuentaContDAO();
+    $objAdmi = new CuentaContADAO();
     return $objAdmi->listar($var);
 }
 
 function update($var) {
-    $objAdmi = new CuentaContDAO();
+    $objAdmi = new CuentaContADAO();
     return $objAdmi->update($var);
 }

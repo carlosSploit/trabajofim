@@ -4,7 +4,7 @@ require 'conexion.php';
 
 // es el data acces objet de la tabla producto
 
-class CuentaContDAO extends conexion implements crud {
+class CuentaContADAO extends conexion implements crud {
 
     public function __construct() {
         $con = new conexion();
@@ -16,8 +16,8 @@ class CuentaContDAO extends conexion implements crud {
     public function insertar($var) {
         try {
             $obj = Conexion::singleton();      
-            $data = $obj->prepare('CALL usp_InsertarCuentaC(?,?)');
-            $data->bindParam(1, $var->getIdClient());
+            $data = $obj->prepare('CALL usp_InsertarCuentaCA(?,?)');
+            $data->bindParam(1, $var->getIdAdministrador());
             $data->bindParam(2, $var->getMac());
             $data->execute();
             return "Insercion correcto";
@@ -29,7 +29,7 @@ class CuentaContDAO extends conexion implements crud {
     public function listar($var) {
         try {
             $obj = Conexion::singleton();    
-            $data = $obj->prepare('CALL usp_ListarCuentaC(?)');          
+            $data = $obj->prepare('CALL usp_ListarCuentaCA(?)');          
             $data->bindParam(1,$var);      
             $data->execute();
             $lista = $data->fetchAll();                      
@@ -43,8 +43,8 @@ class CuentaContDAO extends conexion implements crud {
     public function update($var) {
         try {
             $obj = Conexion::singleton();      
-            $data = $obj->prepare('CALL usp_ActualizarCuentaC(?,?,?,?,?,?,?,?)');
-            $data->bindParam(1, $var->getIdClient());
+            $data = $obj->prepare('CALL usp_ActualizarCuentaCA(?)');
+            $data->bindParam(1, $var->getIdAdministrador());
             $data->execute();
             return "Actualizado correcto";
         }catch (Exception $e) {
