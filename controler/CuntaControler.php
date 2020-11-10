@@ -1,7 +1,7 @@
 <?php
 
-include_once ("../module/enti/Cliente.php");
-include_once ("../module/bd/BDCliente.php");
+include_once ("../module/enti/CuentaCont.php");
+include_once ("../module/bd/BDCuentaCont.php");
 
 if(isset($_GET['Action'])){
     $action=$_GET['Action'];
@@ -9,21 +9,16 @@ if(isset($_GET['Action'])){
     switch ($action) {
 
         case "inse" :
-            $objdni = $_GET['mac'];
-            $objnom = $_GET['uss'];
+            $objdni = $_GET['uss'];
+            $objmac = $_GET['mac'];
 
-            $objAdmi = new Cliente($objnom, $objdni, $objcorre, $objtelef, $objfoto,"","", $objpass);
+            $objAdmi = new CuentaCont("", $objdni, $objmac,"");
             echo insertar($objAdmi);
             break;
 
         case "delet" : 
-                $idCli = $_GET['id'];
-                $objAdmi = new Cliente("","","","","", $idCli,"","");
-                echo eliminar($objAdmi);
             break;
         case "list" : 
-            $idDep = array("tip"=>$_GET['tip'], "uss"=>$_GET['uss'],"pas"=>$_GET['pas']);
-            echo json_encode(listar($idDep));
             break;
         case "Upd" :
             
@@ -35,7 +30,7 @@ if(isset($_GET['Action'])){
             $objfoto = $_GET['foto'];
             $objpass = $_GET['pass'];
 
-            $objAdmi = new Cliente($objnom, $objdni, $objcorre, $objtelef, $objfoto, $objidCl,"", $objpass);
+            $objAdmi = new CuentaCont($idSeccion, $idClient, $mac, $estadoC);
             echo update($objAdmi);
             break;
         default:
@@ -47,21 +42,21 @@ if(isset($_GET['Action'])){
 }
 //------------ METODOS ---------------
 function eliminar($var) {
-    $objAdmi = new ClienteDAO();
+    $objAdmi = new CuentaContDAO();
     return $objAdmi->eliminar($var);
 }
 
 function insertar($var) {
-    $objAdmi = new ClienteDAO();
+    $objAdmi = new CuentaContDAO();
     return $objAdmi->insertar($var);
 }
 
 function listar($var) {
-    $objAdmi = new ClienteDAO();
+    $objAdmi = new CuentaContDAO();
     return $objAdmi->listar($var);
 }
 
 function update($var) {
-    $objAdmi = new ClienteDAO();
+    $objAdmi = new CuentaContDAO();
     return $objAdmi->update($var);
 }
