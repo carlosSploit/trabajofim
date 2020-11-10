@@ -24,6 +24,24 @@ if(isset($_GET['ob'])){
 //        break;
 //    case "Vet": //Ventas
 //        break;
+        case "Mesg":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Mesg&A=inse
+                 * &name=(dni del administrador)
+                 * &mail=(nombre del administrador)
+                 * &message=(Mensaje que se quiera enviar)*/
+                case "inse":
+                    header("Location: ../controler/MessengControler.php?Action=inse&name=".$_GET['name']."&mail=".$_GET['mail']."&message=".$_GET['message']);
+                break;
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
 /*--------------------------      Cliente      -------------------------------*/
         case "clie":
         if(isset($_GET['A'])){

@@ -14,6 +14,7 @@ class Cliente extends usuario {
         $this->setUser($User);
         $this->setPass($Pass);
         $this->setDni($dni);
+        $this->setNombre($nombre);
         $this->setCorrero($correro);
         $this->setTelefono($telefono);
         $this->setFoto($foto);

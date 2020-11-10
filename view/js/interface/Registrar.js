@@ -2,10 +2,15 @@ $(document).ready(principal);
 
 function principal(){
     
-
     $("#RegUser").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         var objAd = new ApiCliente("","",$('#RegNom').val(),$('#RegEmai').val(),$('#RegCell').val(),'56565+655+565',$('#RegPass').val());
         objAd.addAdmin();
+        $('#RegNom').val("");
+        $('#RegEmai').val("");
+        $('#RegCell').val("");
+        $('#RegPass').val("");
+
+        alert("InsertadisisisisisisiMO");
     });
 
 }
@@ -21,13 +26,13 @@ class ApiCliente{
         this.telef = telef;
         this.foto = foto;
         this.pass = pass;
-        this.tiptrabajo = tiptrabajo;
     }
 
     async addAdmin(){
+        console.log(this.getRandomArbitrary(1,999999)-this.nombre);
         console.log(this.dni+" "+this.nombre);
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=inse"
-        +"&dni="+ getRandomArbitrary(1,99999999)
+        +"&dni="+ this.getRandomArbitrary(1,999999)
         +"&nom="+ this.nombre
         +"&corre="+ this.corre
         +"&telef="+ this.telef
