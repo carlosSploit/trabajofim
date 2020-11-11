@@ -105,6 +105,6 @@ class ApiAdministrador{
 
 
 function redireccionar(){
-    window.location ="../index.html";
+    parent.document.location.href = "../index.html";
 } 
   

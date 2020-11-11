@@ -45,6 +45,10 @@ async function principal(){
         localStorage.removeItem('user');
         window.location ="index.html";
     });
+
+    //$('#contenedor_cuerpo').on('change', function() {
+        //console.log('seleccionado man');
+    //});
 }
 
 function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
