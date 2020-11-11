@@ -12,6 +12,21 @@ function principal(){
         $('#TeXMessege').val("");    
     });
 
+    $("#Mytrabajo").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+        window.scroll({
+            top: 967,
+            left:967,
+            behavior: 'smooth'
+          });    
+    });
+
+    $("#contac").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+        window.scroll({
+            top: 2435,
+            left:967,
+            behavior: 'smooth'
+          });    
+    });
 }
 
 /* contenedor de fecht para la categoria de productos, interactuara con la api*/

@@ -12,6 +12,9 @@ async function principal(){
     //verifica quien inicio secion por medio del controlador de cuenta y la ip publica
 
     /*extraer la ip publica de la maquina*/
+
+    $("#contenedor_cuerpo").attr("src","./view/home.html"); //inicializamos el iframe
+
     if(localStorage.getItem("user")){
         let varOBJ = JSON.parse(localStorage.getItem("user"));
         $('#ucog').show();
