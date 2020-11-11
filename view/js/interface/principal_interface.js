@@ -28,7 +28,18 @@ function camb_content(mensaje){
         /*hace un cambio de atributo del contenedor a la interface home.html*/
        case "home":$("#contenedor_cuerpo").attr("src","./view/home.html");break;
         /*hace un cambio de atributo del contenedor a la interface home.html*/
-       case "store":$("#contenedor_cuerpo").attr("src","./view/store.html");break;
+       case "store":
+        if(localStorage.getItem("user")){
+            let varOBJ = JSON.parse(localStorage.getItem("user"));
+            if(varOBJ.tip == 'A'){
+                $("#contenedor_cuerpo").attr("src","./view/Administrador.html");
+            }else{
+                $("#contenedor_cuerpo").attr("src","./view/store.html");
+            }
+        }else{
+            $("#contenedor_cuerpo").attr("src","./view/store.html");
+        }       
+        break;
     } 
 }
 

@@ -12,7 +12,8 @@ function principal(){
             obj.ListAdmin();
             console.log($("#TextEmail").val()+" "+$("#TextPass").val());
         }else{
-            alert("cdigo");
+            var obj = new ApiAdministrador(-1,$("#TextEmail").val(),"","","","",$("#TextPass").val());
+            obj.ListAdmin();
         }
         
     });
@@ -44,17 +45,15 @@ class ApiCliente{
             .then(data => {
                 if(data.length != 0){
                     data.forEach(element => {
-                        /*extraer la ip publica de la maquina*/
-                        fetch("https://api.ipify.org?format=json")
-                        .then(response => response.json())
-                        .catch(Error => console.log(Error))
-                        .then(data => {
-                            /*Se inserta los datos del inicio de la secion*/
-                            var obj = new ApiCuentC(element.idCliente,data.ip);
-                            obj.addAdmin();
-                        }).catch(Error => console.log(Error));
-                        //window.location ="../index.html";
-                        //html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
+                        /*SE carga la informacion en cache*/
+                            let cont={
+                                id: element.idCliente,
+                                tip: 'C'
+                            };
+                            localStorage.setItem("user",JSON.stringify(cont));
+                            
+                            alert("Bienvenido. porfavor espere un momento");
+                            setTimeout ("redireccionar()", 2000); //tiempo expresado en milisegundos
                     });
 
                 }else{
@@ -66,30 +65,46 @@ class ApiCliente{
     }
 }
 
-
-/* contenedor de fecht para la categoria de productos, interactuara con la api*/
-class ApiCuentC{
+class ApiAdministrador{
     
-    constructor(uss,mac){
-        this.uss = uss;
-        this.mac = mac;
+    constructor(id,dni, nombre,correo,telef,foto,pass,tiptrabajo){
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.corre = correo;
+        this.telef = telef;
+        this.foto = foto;
+        this.pass = pass;
+        this.tiptrabajo = tiptrabajo;
     }
 
-    async addAdmin(){
-        console.log(this.uss+" "+this.mac);
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=cuenC&A=inse"
-        +"&uss="+ this.uss
-        +"&mac="+ this.mac)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        });
-        alert("Bienvenido. porfavor espere un momento");
-        setTimeout ("redireccionar()", 2000); //tiempo expresado en milisegundos
-    }    
+    async ListAdmin(){
+        if(this.id == -1){ //prestamos la variable id para poder realizar el listado
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list"
+                +"&tip=2"
+                +"&uss=" + this.dni
+                +"&pas=" + this.pass)
+            .then(response => response.json())
+            .catch(Error => console.log(Error))
+            .then(data => {
+                console.log(data);
+                data.forEach(element => {
+                    let cont={
+                        id: element.idAdministracion,
+                        tip: 'A'
+                    };
+                    localStorage.setItem("user",JSON.stringify(cont));
+                    
+                    alert("Bienvenido. porfavor espere un momento");
+                    setTimeout ("redireccionar()", 2000); //tiempo expresado en milisegundos
+                });
+            }).catch(Error => console.log(Error));
+        }
+    }
 }
+
 
 function redireccionar(){
     window.location ="../index.html";
-  } 
+} 
   

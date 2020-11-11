@@ -1,8 +1,9 @@
 
+let key='dat';
 
 $(document).ready(principal);
 
-function principal(){
+async function principal(){
 
     //$("#ConternCategoriStore").html(ItenCateg);//instertar una categoria en el contenedor de estore
     //$("#ContstoreProduct").html(ItenProduct);//instertar un producto en el contenedor de estore
@@ -11,36 +12,36 @@ function principal(){
     //verifica quien inicio secion por medio del controlador de cuenta y la ip publica
 
     /*extraer la ip publica de la maquina*/
-    fetch("https://api.ipify.org?format=json")
-    .then(response => response.json())
-    .catch(Error => console.log(Error))
-    .then(data => {
-        document.getElementById('contModal').setAttribute("value","0"); // se inicialisa el value para evitar bug
-        var obj= new ApiCuentCI("",data.ip);
-        obj.listAdmin();
-        //se comprueba si se a insertado algo o no
-        if(document.getElementById('contModal').getAttribute("value") == 0){ //si es igual a 0 cabe la posibilidad que sea administrador
-            $('#sign').attr("style", 'display: block');
-            $('#log').attr("style", 'display: block');
+    if(localStorage.getItem("user")){
+        let varOBJ = JSON.parse(localStorage.getItem("user"));
+        $('#ucog').show();
+        $('#sign').attr("style", 'display: none');
+        $('#log').attr("style", 'display: none');
 
-        }else{
-            $('#sign').attr("style", 'display: none');
-            $('#log').attr("style", 'display: none');
-
+        if(varOBJ.tip == 'A'){ //administrador
+            var objApi = new ApiAdministrador(varOBJ.id,"","","","","","");
+            objApi.ListAdmin();
+        }else{//cliente
+            var objApi = new ApiCliente(varOBJ.id,"","","","","","");
+            objApi.ListAdmin();
         }
-        //if (document.getElementById('contModal').getAttribute("value")!=0){
 
-        //}
-
-       
-    }).catch(Error => console.log(Error));
-
+    }else{
+        $('#ucog').hide();
+        $('#sign').attr("style", 'display: block');
+        $('#log').attr("style", 'display: block');
+    }
+    
     $("#ConfigUsar").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         //$('#contModal').html(ConfigUser);
         $('#tituProduct').html("Configuracion")
         $('#infoProducto').modal('show');
     });
 
+    $("#CerrarUsar").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+        localStorage.removeItem('user');
+        window.location ="index.html";
+    });
 }
 
 function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
@@ -135,32 +136,89 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
 '<!------------------------->';
 }
 
-/* contenedor de fecht para la categoria de productos, interactuara con la api*/
-class ApiCuentCI{
+class ApiCliente{
     
-    constructor(uss,mac){
-        this.uss = uss;
-        this.mac = mac;
+    constructor(id,dni, nombre,correo,telef,foto,pass){
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.corre = correo;
+        this.telef = telef;
+        this.foto = foto;
+        this.pass = pass;
     }
 
-    async listAdmin(){
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=cuenC&A=list&mac="+this.mac.replace('.', 'a'))
-        .then(response => response.json())
-        .catch(Error => {console.log(Error)})
-        .then(data => {
-            console.log(data);
-            if(data.length == 0){
-                document.getElementById('contModal').setAttribute("value", 0);
-            }else{
+    async ListAdmin(){ // comprueva el login si el cliente con los datos existe
+        console.log(this.corre+" "+this.pass);
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=list"
+                +"&tip=1"
+                +"&uss="+this.id
+                +"&pas="+this.pass)
+            .then(response => response.json())
+            .catch(Error => console.log(Error))
+            .then(data => {
+                console.log(data);
+                if(data.length != 0){
+                    data.forEach(element => {
+                        console.log(element);
+                        $('#contModal').html(ConfigUser("",element.dni_user,element.nombre,element.telefono,element.correo,"",element.pass));
+                    });
+
+                }else{
+                    alert("Archivo no existende");
+                }
+                //$('#ContenerAdmin').html(html_codeIten);
+            }).catch(Error => console.log(Error));
+    }
+}
+
+class ApiAdministrador{
+    
+    constructor(id,dni, nombre,correo,telef,foto,pass,tiptrabajo){
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.corre = correo;
+        this.telef = telef;
+        this.foto = foto;
+        this.pass = pass;
+        this.tiptrabajo = tiptrabajo;
+    }
+
+    async ListAdmin(){
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list"
+                +"&tip=3"
+                +"&uss=" + this.id
+                +"&pas=" + this.pass)
+            .then(response => response.json())
+            .catch(Error => console.log(Error))
+            .then(data => {
+                console.log(data);
                 data.forEach(element => {
-                    //console.log(element.dni_user);
-                    $('#contModal').html(ConfigUser("",element.dni_user,element.nombre,element.telefono,element.correo,"",element.pass));
-                    document.getElementById('contModal').setAttribute("value", element.idCliente);
+                    $('#contModal').html(ConfigUser(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass));
                 });
-            }
-        });
-//        $.get( "http://localhost/PhpProjec/api/ApiManager.php?ob=cuenC&A=list&mac="+this.mac, function( data ) {
-//          alert('dniClient : '+ data.dni_user);
-//        }, "json" );
-    }    
+            }).catch(Error => console.log(Error));
+    }
+
+    async Update(){
+        var yabidA = this.id;
+        var yabdni = '#dniTextAdmi'+this.id;
+        var yabnom = '#nomTextAdmi'+this.id;
+        var yabcor = '#correTextAdmi'+this.id;
+        var yabtel = '#telefTextAdmi'+this.id;
+        var yabpho = '#fotoImgAdmi'+this.id;
+        var yabpas = '#passTextAdmi'+this.id;
+        var yabTiA = '#tiptrabajoSeletAdmi'+this.id;
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd"
+        +"&id=" + yabidA
+        +"&dni=" + $(yabdni).val()
+        +"&nom=" + $(yabnom).val()
+        +"&corre=" + $(yabcor).val()
+        +"&telef=" + $(yabtel).val()
+        +"&foto=" + "sahdjahdjkahdjkahdjkashdjksa"
+        +"&pass=" + $(yabpas).val()
+        +"&tiptrabajo=" + $(yabTiA).val())
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+    }
 }
