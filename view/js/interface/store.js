@@ -239,7 +239,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                     '<h5 style="margin-top: 100px;">Mensajes : </h5>'+
                     '<div class="input-group ">'+
                       '<div class="input-group-prepend" >'+
-                        '<select class="custom-select" style="width:100px;" id="inputGroupSelect01">'+
+                        '<select id="Califsle'+id+'" class="custom-select" style="width:100px;" id="inputGroupSelect01">'+
                           '<option selected>Choose...</option>'+
                           '<option value="1">'+
                            ' ★ '+
@@ -257,8 +257,8 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                             '★★★★★'+
                           '</option>'+
                         '</select>'+
-                        '<input type="text" class="form-control" style="width:30vh;">'+
-                        '<button type="button" class="btn btn-primary" >Enviar</button>'+
+                        '<input id="MesengProdu'+id+'" type="text" class="form-control" style="width:30vh;">'+
+                        '<button onclick="EnviarMs('+id+')" type="button" class="btn btn-primary" >Enviar</button>'+
                       '</div>'+
                     '</div>'+
                     '<!------------------------------>'+
@@ -310,6 +310,23 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                   '</div>'+
                   '<!------------------------------------------------------>'+
                 '</div>';
+}
+
+function EnviarMs(id) {
+  if(localStorage.getItem("user")){
+    let varOBJ = JSON.parse(localStorage.getItem("user"));
+    var texMesseg = "#MesengProdu"+id;
+    var Calififalse = "#Califsle"+id;
+    var objComent = new ApiComentProduct(id,varOBJ.id,$(texMesseg).val(),$(Calififalse).val());
+    console.log(id+" "+varOBJ.id+" "+$(texMesseg).val()+" "+$(Calififalse).val());
+    objComent.insertComent();
+
+    $(texMesseg).val("");
+    $(Calififalse).val("1");
+  }else{
+    alert("Porfavor si deseas dar un comentario, primero inicia secion. si no tienes cuenta"
+    +"registrate en la cuenta");
+  }
 }
 
 function productMensseng() {
@@ -754,36 +771,8 @@ class ApiProducto{
                       .then(data => {
                           var html_codeIten = "";
                           data.forEach(element => {
-                              //$('#contModal').html(ManteniProducAct(nombre)); // inicialisa el codigo para editarlo por este encapsulado
-                              /*var yavcod = "#CodProduc"+nombre;
-                              var yavnom = "#NomProduc"+nombre;
-                              var yavctp = "#CatProduc"+nombre;
-                              var yavpro = "#PovProduc"+nombre;  
-                              var yavprc = "#PrCProduc"+nombre;
-                              var yavprv = "#PrVProduc"+nombre;
-                              var yavsto = "#CanProduc"+nombre;
-                              var yavdes = "#DesProduc"+nombre;*/
-                              // insertando datos al contenedor
-                              //$(yavcod).val(element.CodProduc);
-                              //$(yavnom).val(element.Nombre);
                               console.log(element.Descripcion);
                               $('#contModal').html(Info_Product(element.idproducto,element.Nombre,element.Descripcion,element.Cantidad,element.PrecioV,element.calificacion));
-                              //insertar datos a las categorirasss
-                              //var objCat = new ApiCategori(-1,yavctp,element.idTipo);
-                              //$(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
-                              //objCat.ListAdmin();
-                              //insertar datos a los proveedores
-                              //var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
-                              //$(yavpro).html(DatProveMP(element.idProveedor,element.ProveNombre)); //inicializa con el proveedor del producto
-                              //objPro.ListProvee();
-                              //$(yavctp).html(html_codeIten); //categoria
-                              //$(yavpro).html(html_codeIten); //proveedor
-                              //$(yavprc).val(element.PrecioC);
-                              //$(yavprv).val(element.PrecioV);
-                              //$(yavsto).val(element.Cantidad);
-                              //$(yavdes).val(element.Descripcion);
-                              //console.log(element.CodProduc+" "+element.Nombre+" "+element.PrecioC+" "+element.PrecioV+" "+element.Cantidad+" "+element.Descripcion);
-                              //Comportamiento de los botones dentro del modal de producto
 
                               $("#ProductBoton").click(function (event){ //cuando se precione la opccion de Producto, cambia el contenedor
                                   $('#contCompra').show(); // se enciende la vicion de la informaicon del producto 
@@ -821,32 +810,38 @@ class ApiProducto{
               break;
       }
   }
+}
 
-  async Update_Stock(){
-      var yavcod = "#CodProduc"+this.IdProd;
-      var yavnom = "#NomProduc"+this.IdProd;
-      var yavctp = "#CatProduc"+this.IdProd;
-      var yavpro = "#PovProduc"+this.IdProd;  
-      var yavprc = "#PrCProduc"+this.IdProd;
-      var yavprv = "#PrVProduc"+this.IdProd;
-      var yavsto = "#CanProduc"+this.IdProd;
-      var yavdes = "#DesProduc"+this.IdProd;
+class ApiComentProduct{
+    constructor(IdProd,idcli,descrip,calif){
+      this.IdProd = IdProd;
+      this.idcli = idcli;
+      this.descrip = descrip;
+      this.calif = calif;
+  }
 
-      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=Upd"
-      +"&IdProd="+this.IdProd
-      +"&CodProd="+$(yavcod).val()
-      +"&IdProve="+$(yavpro).val()
-      +"&IdTipo="+$(yavctp).val()
-      +"&Nom="+$(yavnom).val()
-      +"&Descri="+$(yavdes).val()
-      +"&Cantid="+$(yavsto).val()
-      +"&PreC="+$(yavprc).val()
-      +"&PreV="+$(yavprv).val()
-      +"&Photo="+"adjkasdhjsahdjsahdjshdkjashdks")
-      .then(response => response.json())
-      .then(data => console.log(JSON.parse(data)));
-      this.List("");
-      this.List("");
+  async insertComent(){
+
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=inse"
+    +"&idProd="+this.IdProd
+    +"&idClient="+this.idcli
+    +"&Descrip="+this.descrip
+    +"&Califi="+this.calif)
+    .then(response => response.json())
+    .then(data => console.log(JSON.parse(data)));
+
+  }
+
+  async listarComent(){
+
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=list"
+    +"&idProd="+this.IdProd
+    +"&idClient="+this.idcli
+    +"&Descrip="+this.descrip
+    +"&Califi="+this.calif)
+    .then(response => response.json())
+    .then(data => console.log(JSON.parse(data)));
+
   }
 }
 

@@ -24,7 +24,54 @@ if(isset($_GET['ob'])){
 //        break;
 //    case "Vet": //Ventas
 //        break;
-        
+        case "coment":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=inse
+                 * &idProd=(id del producto)
+                 * &idClient=(id del cliente)
+                 * &Descrip=(mensaje del cliente)
+                 * &Califi=(calificacion del producto del cliente)*/
+                case "inse":
+                    header("Location: ../controler/ComentProducto.php?Action=inse&idProd=".$_GET['idProd']."&idClient=".$_GET['idClient']."&Descrip=".$_GET['Descrip']."&Califi=".$_GET['Califi']);
+                break;
+
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=list
+                 * &tip=(mac de la cuenta)
+                 * &idpo=(mac de la cuenta)*/
+                case "list": //se realizara la accion de list
+                    header("Location: ../controler/ComentProducto.php?Action=list&tip=".$_GET['tip']."&idpo=".$_GET['idpo']);
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=Upd
+                 * &id= (id del administraodr)
+                 * &dni=(dni del administrador)
+                 * &nom=(nombre del administrador)
+                 * &corre=(correo activo del administrador)
+                 * &telef=(telefono activo del administrador)
+                 * &foto= (telefono activo del administrador)
+                 * &pass= (contraseña de acceso al sistema del administrador)*/
+                case 'Upd':
+                    header("Location: ../controler/Cliente.php?Action=Upd&id=".$_GET['id']."&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']);
+                break;
+            
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=delet&id=(
+                 * index del departamento)*/
+                case "delet":
+                    header("Location: ../controler/Cliente.php?Action=delet&id=".$_GET['id']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
         /*--------------------------      Adminstraciom      -------------------------------*/
         case "cuenCA":
         if(isset($_GET['A'])){

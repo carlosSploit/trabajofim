@@ -17,14 +17,14 @@ function principal(){
     $("#store").click(function (event){ //cuando se preciona la opccion de log, cambia el contenedor
         camb_content("store");
     });
-    
-    document.getElementById('contenedor_cuerpo').setAttribute("onLoad",'alert("frame has (re)loaded");');
+
+    //document.getElementById('contenedor_cuerpo').setAttribute("onLoad",'');
     //$('#contenedor_cuerpo').attr("onLoad", 'alert("frame has (re)loaded");');
     //$('#contenedor_cuerpo').load(reload('cometelo')); 
 }
 
 function reload(url){
-    console.log(url);
+    //console.log(url);
 }
 
 function camb_content(mensaje){

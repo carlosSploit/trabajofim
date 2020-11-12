@@ -12,12 +12,12 @@ if(isset($_GET['Action'])){
                 $idClient = $_GET['idClient'];
                 $Descrip = $_GET['Descrip'];
                 $Califi= $_GET['Califi'];
-                $obj = new comentProducto($idComent, $idProd, $Descrip, $idClient, $Califi);
+                $obj = new comentProducto("",$idProd,$Descrip,$idClient,$Califi);
                 echo insertar($obj);
             break;
 
         case "list":
-                $idDep = $_GET['idDep'];
+                $idDep = array('tip'=>$_GET['tip'],'idpo'=>$_GET['idpo']);
                 echo json_encode(listar($idDep));
             break;
         
@@ -44,22 +44,22 @@ if(isset($_GET['Action'])){
 
 //------------ METODOS ---------------
  function eliminar($var) {
-    $bdoj = new ComentProduDAODAO();
+    $bdoj = new ComentProduDAO();
     return $bdoj->eliminar($var);
 }
 
 function insertar($var) {
-    $bdoj = new ComentProduDAODAO();
+    $bdoj = new ComentProduDAO();
     return $bdoj->insertar($var);
 }
 
 function listar($var) {
-    $bdoj = new ComentProduDAODAO();
+    $bdoj = new ComentProduDAO();
     return $bdoj->listar($var);
 }
 
  function update($var) {
-     $bdoj = new ComentProduDAODAO();
+     $bdoj = new ComentProduDAO();
      return $bdoj->update($var);
 }
 
