@@ -177,7 +177,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                            '</div>'+
                                            '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                             '<div class="progress" style="width: 90%;">'+
-                                              '<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                              '<div id="estre1'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                             '</div>'+
                                            '</div>'+
                                         '</div>'+
@@ -191,7 +191,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                         '</div>'+
                                         '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                          '<div class="progress" style="width: 90%;">'+
-                                           '<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                           '<div id="estre2'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                          '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -205,7 +205,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                         '</div>'+
                                         '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                          '<div class="progress" style="width: 90%;">'+
-                                           '<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                           '<div id="estre3'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                          '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -219,7 +219,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                         '</div>'+
                                         '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                          '<div class="progress" style="width: 90%;">'+
-                                           '<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                           '<div id="estre4'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                          '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -233,7 +233,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                         '</div>'+
                                         '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                          '<div class="progress" style="width: 90%;">'+
-                                           '<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                           '<div id="estre5'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                          '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -855,6 +855,21 @@ class ApiComentProduct{
     +"&tip="+this.idcli)
     .then(response => response.json())
     .then(data => {
+
+      var est1 = "#estre1"+this.IdProd;
+      var est2 = "#estre2"+this.IdProd;
+      var est3 = "#estre3"+this.IdProd;
+      var est4 = "#estre4"+this.IdProd;
+      var est5 = "#estre5"+this.IdProd;
+      
+      console.log(est1+" "+est2+" "+est3+" "+est4+" "+est5);
+
+      $(est1).attr("aria-valuenow",data.estre1);
+      $(est2).attr("aria-valuenow",data.estre2);
+      $(est3).attr("aria-valuenow",data.estre3);
+      $(est4).attr("aria-valuenow",data.estre4);
+      $(est5).attr("aria-valuenow",data.estre5);
+
       console.log(data)
     });
 
