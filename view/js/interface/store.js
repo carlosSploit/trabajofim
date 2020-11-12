@@ -66,6 +66,9 @@ function Interaccion(id){//cuando se precione la opccion de meseng, cambia el co
   $('#TituloModal').html("Informacion de producto");
   $('#TituloModal').attr("style", "color: white;");
   $('.close').attr("style", "color: white;");
+  $('#mensajesslidig').on('slide.bs.carousel', function () {
+    console.log('sabeeeeeeeeeeeeeeeeeeee');
+  })
   $('#infoProducto').modal('show');
 }
 
@@ -76,24 +79,12 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                       '<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">'+
                         '<ol class="carousel-indicators">'+
                           '<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>'+ // si se añaden mas imagenes se tendra que añadir mas escuchadores
-                          '<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>'+
                         '</ol>'+
                         '<div class="carousel-inner">'+
                           '<div class="carousel-item active">'+
                             '<img src="resorces/fondolo.jpg" class="d-block w-100" height="200px" alt="...">'+ /*Aqui va ir una de las imagenes del producto*/
                           '</div>'+
-                          '<div class="carousel-item">'+
-                            '<img src="resorces/fondo_homeprinci.jpg" class="d-block w-100" height="200px" alt="...">'+
-                          '</div>'+
                         '</div>'+
-                        '<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">'+
-                          '<span class="carousel-control-prev-icon" aria-hidden="true"></span>'+
-                          '<span class="sr-only">Previous</span>'+
-                        '</a>'+
-                        '<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">'+
-                          '<span class="carousel-control-next-icon" aria-hidden="true"></span>'+
-                          '<span class="sr-only">Next</span>'+
-                        '</a>'+
                       '</div>'+
                     '</div>'+
                   '</div>'+
@@ -166,7 +157,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                     '<div class="row">'+
                       '<div class="col-lg-12" style="width: 100%; height: 50px; margin-top: 10px;">'+
                         '<div class="col">'+
-                          '<h5>Valoraciones: 45</h5>'+
+                          '<h5 id="CantiComent'+id+'">Valoraciones: 45</h5>'+
                           '<div class="row" style="">'+
                              '<div class="col-7">'+
                                   '<div class="row">'+
@@ -177,7 +168,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                            '</div>'+
                                            '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                             '<div class="progress" style="width: 90%;">'+
-                                              '<div id="estre1'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                              '<div id="estreuno'+id+'" class="progress-bar" role="progressbar" style="width: 5%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                             '</div>'+
                                            '</div>'+
                                         '</div>'+
@@ -191,7 +182,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                         '</div>'+
                                         '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                          '<div class="progress" style="width: 90%;">'+
-                                           '<div id="estre2'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                           '<div id="estredos'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                          '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -205,7 +196,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                         '</div>'+
                                         '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                          '<div class="progress" style="width: 90%;">'+
-                                           '<div id="estre3'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                           '<div id="estretres'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                          '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -219,7 +210,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                         '</div>'+
                                         '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                          '<div class="progress" style="width: 90%;">'+
-                                           '<div id="estre4'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                           '<div id="estrecuatro'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                          '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -233,7 +224,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                         '</div>'+
                                         '<div class="col-9" style="display:flex; justify-content: center; justify-items: center; align-items: center;">'+
                                          '<div class="progress" style="width: 90%;">'+
-                                           '<div id="estre5'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
+                                           '<div id="estrecinco'+id+'" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>'+
                                          '</div>'+
                                         '</div>'+
                                      '</div>'+
@@ -277,37 +268,9 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                     '<div class="row">'+
                       '<div class="col-lg-12" style=" width: 100%; height:100px; margin-bottom: 10px;margin-top: 10px;">'+
                         '<div id="mensajesslidig" class="carousel slide col-lg-12" data-ride="carousel">'+
-                          '<ol class="carousel-indicators my-1">'+
-                            '<li data-target="#mensajesslidig" data-slide-to="0" class="active"></li>'+
-                            '<li data-target="#mensajesslidig" data-slide-to="1"></li>'+
-                            '<li data-target="#mensajesslidig" data-slide-to="2"></li>'+
+                          '<ol id="ContainerTabsIten'+id+'" class="carousel-indicators my-1">'+
                           '</ol>'+
-                          '<div class="carousel-inner">'+
-                            '<!--      card de mensaje de usuario sobre el producto       --->'+
-                            '<div class="carousel-item active" style="height: 100px; display: flex; justify-items: center;align-items: center;">'+
-                              
-                              '<div class="d-block mx-auto bg-secondary" style="-webkit-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
-                                                                  '-moz-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
-                                                                  'box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
-                                                                  'border-radius: 5px; '+
-                                                                  'width: 90%; '+
-                                                                  'height: 80px;">'+
-                                  '<div class="row">'+
-                                    '<div class="col-2 mx-5 my-1" style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-                                        '<img style="border-radius: 50%;'+
-                                        'width: 40px;'+
-                                        'height: 40px;'+
-                                        'justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
-                                    '</div>'+
-                                    '<div class="col-8 my-1 mx-1 scroll" style="margin-left: -20px; height: 70px; display: flex; justify-items: center;align-items: center; overflow: hidden;overflow-y: scroll;">'+
-                                       '<h6 style="color: aliceblue;" >★★★★★<br/>El producto se ve interesante pero no es de mi agrado</h6>'+
-                                    '</div>'+
-                                  '</div>'+
-                              '</div>'+
-                            '</div>'+
-                            '<!------------------------------------------------------------->'+
-                            productMensseng()+
-                            productMensseng()+
+                          '<div class="carousel-inner" id="ContainerMesseg'+id+'">'+
                           '</div>'+
                           '<a class="carousel-control-prev" href="#mensajesslidig" role="button" data-slide="prev">'+
                             '<span class="carousel-control-prev-icon" aria-hidden="true"></span>'+
@@ -333,17 +296,74 @@ function EnviarMs(id) {
     console.log(id+" "+varOBJ.id+" "+$(texMesseg).val()+" "+$(Calififalse).val());
     objComent.insertComent();
 
+    var opa = new ApiProducto();
+    opa.List('A',2,id);
+
     $(texMesseg).val("");
     $(Calififalse).val("1");
+    
   }else{
     alert("Porfavor si deseas dar un comentario, primero inicia secion. si no tienes cuenta"
     +"registrate en la cuenta");
   }
 }
 
-function productMensseng() {
+/*por parte de un bug causado en lo que es la demostracion del mensaje, se coloca primero esta intenface y luego la de abajo como siguiente*/
+function productMenssengPri(estrellas,mensaje) {
   return '<!--      card de mensaje de usuario sobre el producto       --->'+
-  '<div class="carousel-item" style="height: 100px; display: flex; justify-items: center;align-items: center;">'+
+  '<div  class="carousel-item active" style="height: 100px;">'+
+    
+    '<div class="d-block mx-auto bg-secondary" style="-webkit-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        '-moz-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        'box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        'border-radius: 5px; '+
+                                        'width: 90%; '+
+                                        'height: 80px;">'+
+        '<div class="row ">'+
+          '<div class="col-2 mx-5 my-1" style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+              '<img style="border-radius: 50%;'+
+              'width: 40px;'+
+              'height: 40px;'+
+              'justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+          '</div>'+
+          '<div class="col-7 my-1 scroll" style="margin-left: -20px; height: 70px; ">'+
+             '<h6 style="color: aliceblue;font-size: 13px;" >'+estrellas+'<br/>'+mensaje+'</h6>'+
+          '</div>'+
+        '</div>'+
+    '</div>'+
+  '</div>'+
+  '<!------------------------------------------------------------->';
+}
+
+function productMenssengPri2(estrellas,mensaje) {
+  return '<!--      card de mensaje de usuario sobre el producto       --->'+
+  '<div  class="carousel-item" style="height: 100px;">'+
+    
+    '<div class="d-block mx-auto bg-secondary" style="-webkit-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        '-moz-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        'box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
+                                        'border-radius: 5px; '+
+                                        'width: 90%; '+
+                                        'height: 80px;">'+
+        '<div class="row ">'+
+          '<div class="col-2 mx-5 my-1" style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
+              '<img style="border-radius: 50%;'+
+              'width: 40px;'+
+              'height: 40px;'+
+              'justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+          '</div>'+
+          '<div class="col-7 my-1 scroll" style="margin-left: -20px; height: 70px; ">'+
+             '<h6 style="color: aliceblue;font-size: 13px;" >'+estrellas+'<br/>'+mensaje+'</h6>'+
+          '</div>'+
+        '</div>'+
+    '</div>'+
+  '</div>'+
+  '<!------------------------------------------------------------->';
+}
+
+function productMensseng(estrellas,mensaje) {
+  return '<!--      card de mensaje de usuario sobre el producto       --->'+
+  '<div onLoad="console.log('+'pasando a ->'+');" class="carousel-item" style="height: 100px; ">'+
     '<div class="d-block mx-auto" style="-webkit-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
                                         '-moz-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
                                         'box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
@@ -358,13 +378,33 @@ function productMensseng() {
               'height: 40px;'+
               'justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
           '</div>'+
-          '<div class="col-8 my-1 mx-1 scroll" style="margin-left: -47wQbNPTDJp9hMYdvogK2hAUiHsGeiybwaWe36bwtRQ3UTpYV7YuZ8FV5j9nauFCWwcjM6dTzpL5s2N79Rp5unwdMvc8ZKUoverflow-y: scroll;">'+
-             '<h6 style="color: aliceblue;" >★★★★★<br/>El producto se ve interesante pero no es de mi agrado</h6>'+
+          '<div class="col-7 my-1 scroll" style="margin-left: -47wQbNPTDJp9hMYdvogK2hAUiHsGeiybwaWe36bwtRQ3UTpYV7YuZ8FV5j9nauFCWwcjM6dTzpL5s2N79Rp5unwdMvc8ZKUoverflow-y: scroll;">'+
+             '<h6 style="color: aliceblue;font-size: 13px;" >'+estrellas+'<br/>'+mensaje+'</h6>'+
           '</div>'+
         '</div>'+
     '</div>'+
     '</div>'+
   '<!------------------------------------------------------------->';
+}
+
+function productMenssengAP(estrellas,mensaje) {
+  return '<div class="carousel-item active" style="background-color: gray; height: 200px; display: flex; justify-items: center;align-items: center;">'+
+'  <img src="..." class="d-block" alt="...">'+
+'  <div class="carousel-caption d-none d-md-block">'+
+'    <h5>'+estrellas+'</h5>'+
+'    <p>'+mensaje+'</p>'+
+'  </div>'+
+'</div>';
+}
+
+function productMenssengA(estrellas,mensaje) {
+  return '<div class="carousel-item" style="background-color: gray; height: 200px; display: flex; justify-items: center;align-items: center;">'+
+'  <img src="..." class="d-block " alt="...">'+
+'  <div class="carousel-caption d-none d-md-block">'+
+'    <h5>'+estrellas+'</h5>'+
+'    <p>'+mensaje+'</p>'+
+'  </div>'+
+'</div>';
 }
 
 function ContentCarritoCompra() {
@@ -850,29 +890,78 @@ class ApiComentProduct{
 
   async listarComent(){
 
+    $('.carousel-control-next').hide();
+    $('.carousel-control-prev').hide();
+
     fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=list"
     +"&idpo="+this.IdProd
-    +"&tip="+this.idcli)
+    +"&tip=2")
     .then(response => response.json())
     .then(data => {
+      data.forEach(element => {
+        var est1 = "#estreuno"+this.IdProd;
+        var est2 = "#estredos"+this.IdProd;
+        var est3 = "#estretres"+this.IdProd;
+        var est4 = "#estrecuatro"+this.IdProd;
+        var est5 = "#estrecinco"+this.IdProd;
+        var cani = "#CantiComent"+this.IdProd;
+        
+        console.log(est1+" "+est2+" "+est3+" "+est4+" "+est5);
 
-      var est1 = "#estre1"+this.IdProd;
-      var est2 = "#estre2"+this.IdProd;
-      var est3 = "#estre3"+this.IdProd;
-      var est4 = "#estre4"+this.IdProd;
-      var est5 = "#estre5"+this.IdProd;
-      
-      console.log(est1+" "+est2+" "+est3+" "+est4+" "+est5);
+        $(est1).html(element.estre1+"%");
+        $(est2).html(element.estre2+"%");
+        $(est3).html(element.estre3+"%");
+        $(est4).html(element.estre4+"%");
+        $(est5).html(element.estre5+"%");
+        $(cani).html("Cantida de comentarios : "+element.canti);
+        
 
-      $(est1).attr("aria-valuenow",data.estre1);
-      $(est2).attr("aria-valuenow",data.estre2);
-      $(est3).attr("aria-valuenow",data.estre3);
-      $(est4).attr("aria-valuenow",data.estre4);
-      $(est5).attr("aria-valuenow",data.estre5);
+        //document.getElementById(est1).setAttribute('aria-valuenow',element.estre1);
+        //$(est1).attr('aria-valuenow',element.estre1);
+        $(est1).css("width",((element.estre1 == null)?0:element.estre1)+'%')
+        $(est2).css("width",((element.estre2 == null)?0:element.estre2)+'%');
+        $(est3).css("width",((element.estre3 == null)?0:element.estre3)+'%');
+        $(est4).css("width",((element.estre4 == null)?0:element.estre4)+'%');
+        $(est5).css("width",((element.estre5 == null)?0:element.estre5)+'%');
 
-      console.log(data)
+      });
+      console.log(data);
     });
 
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=list"
+    +"&idpo="+this.IdProd
+    +"&tip=1")
+    .then(response => response.json())
+    .then(data => {
+      var ctabs = "#ContainerTabsIten"+this.IdProd;
+      var cmsgs = "#ContainerMesseg"+this.IdProd;
+      var container_tabs = '<li data-target="#mensajesslidig" data-slide-to="0" class="active"></li>';
+      var container_messeg = "";
+      var cont= 1;
+
+      data.forEach(element => {
+        console.log(element);
+        if(cont == 1){
+          container_messeg = productMenssengPri(this.estrellas(element.califprod,''),element.descripccion);
+          $('.carousel-control-next').show();
+          $('.carousel-control-prev').show();
+        }else{
+          container_tabs += '<li data-target="#mensajesslidig" data-slide-to="'+(cont-1)+'"></li>';
+          container_messeg += productMenssengPri2(this.estrellas(element.califprod,``),element.descripccion);
+        }
+        cont++;
+      });
+      $(ctabs).html(container_tabs);
+      $(cmsgs).html(container_messeg);
+    });
+
+  }
+
+  estrellas(cantes,estre){
+    for (let index = 0; index < cantes; index++) {  
+      estre += '★';
+    }
+    return estre;
   }
 }
 

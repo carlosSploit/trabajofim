@@ -79,3 +79,34 @@ body {
 .nav-link .active-2 {
   background: #546e7a;
 }
+
+.carousel-item {
+  display: none;
+}
+
+.carousel-item .active {
+  display: flex;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  /*outline: black;*/
+  background-size: 100%, 100%;
+  /*border-radius: 50%;*/
+  /*border: 1px solid black;*/
+  background-image: none;
+}
+
+.carousel-control-next-icon:after {
+  content: ">";
+  font-size: 50px;
+  color: #546e7a;
+}
+
+.carousel-control-prev-icon:after {
+  content: "<";
+  font-size: 50px;
+  color: #546e7a;
+}
