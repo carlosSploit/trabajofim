@@ -30,7 +30,7 @@ class CarritCompraDAO extends conexion implements crud {
     public function listar($var) {
         try {
             $obj = Conexion::singleton();    
-            $data = $obj->prepare('CALL usp_ListarCuentaC(?)');          
+            $data = $obj->prepare('CALL usp_ListarCarritP(?)');          
             $data->bindParam(1,$var);      
             $data->execute();
             $lista = $data->fetchAll();                      

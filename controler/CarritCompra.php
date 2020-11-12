@@ -22,9 +22,8 @@ if(isset($_GET['Action'])){
             break;
         
         case "list" :
-            $objmac = $_GET['mac'];
-            $objmac=str_replace("a", ".", $objmac);
-            echo json_encode(listar($objmac));
+            $id = $_GET['id'];
+            echo json_encode(listar($id));
             break;
         case "Upd" :
             

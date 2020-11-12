@@ -11,15 +11,24 @@ function principal(){
     $("#ConteNavega").html(Navegacion);//instertar un tab de navegacion en el contenedor de estore
 
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
-        $('#contModal').html(ContentCarritoCompra);
-        $('.modal-dialog').attr("style", "position: fixed;margin: auto;width: 500px;height: 100%;right: 0px;");
-        $('.modal-content').attr("style", "height: 100%;");
-        $('#Encabezaod').attr("style", "background:  #546e7a;");
-        $('#TituloModal').html("Insertar Producto");
-        $('#TituloModal').attr("style", "color: white;");
-        $('.close').attr("style", "color: white;");
-        Setprogressbar();
-        $('#infoProducto').modal('show');
+        if(localStorage.getItem("user")){
+          $('#contModal').html(ContentCarritoCompra);
+          $('.modal-dialog').attr("style", "position: fixed;margin: auto;width: 500px;height: 100%;right: 0px;");
+          $('.modal-content').attr("style", "height: 100%;");
+          $('#Encabezaod').attr("style", "background:  #546e7a;");
+          $('#TituloModal').html("Insertar Producto");
+          $('#TituloModal').attr("style", "color: white;");
+          $('.close').attr("style", "color: white;");
+          Setprogressbar();
+          
+          var objCarrit= new ApiCarritoCompra("","","");
+          objCarrit.listarCarrito();
+
+          $('#infoProducto').modal('show');
+        }else{
+          alert("Antes de ingresar un producto o ver tus productos insertado o tus perdidos, primero tienes que registarte---");
+        }
+        
     });
 }
 
@@ -454,7 +463,7 @@ function CarritoCompra(){
 '           </div>'+
 '         </div>'+
 '       </div>'+
-'       <div style="background:  #eceff1; width: 100%; height: 300px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
+'       <div id="ContProduPed" style="background:  #eceff1; width: 100%; height: 300px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
             productCarri()+
             productCarri()+
             productCarri()+
@@ -549,7 +558,7 @@ function ProducDist() {
   return '<option value="1">Piura</option>';  
 }
 
-function productCarri(){
+function productCarri(id,nombre,precio,cantidad){
   return '<!--        Card de producto insertado         -->'+
   '         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
   '           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
@@ -560,28 +569,31 @@ function productCarri(){
   '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
   '            </div> '+
   '            <div class = "col-4 bg-light "  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-  '               Maquintosh de 3gb de ram con 2 procesaroderes'+
+                  nombre+
   '            </div>'+
   '            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-  '               40 Un'+
+  '               '+cantidad+' Un'+
   '            </div>'+
   '            <div class = "col-2 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-  '               S/.4500'+
+  '               S/.'+precio+''+
   '            </div>'+
   '            <div class = "col-2 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-  '              <button type="button" class="btn btn-danger rounded-circle btn-sm" >x</button>'+
+  '              <button onclick="EliminarCarrit('+id+')" type="button" class="btn btn-danger rounded-circle btn-sm" >x</button>'+
   '            </div>'+
   '           </div>'+
   '       </div>';
 }
 
+function EliminarCarrit(id) {
+  
+}
 
 /* contenedor de listado de pedidos teniendo en cuenta que presenta variantes*/
 
 function PedidosCont(){
   return '<div'+
   'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
-  '<div class="accordion" id="accordionExample">'+
+  '<div class="accordion" id="ContenedrPedidos">'+
       CardPedidoMY()+
       CardPedidoMY()+
       CardPedidoMY()+
@@ -965,4 +977,40 @@ class ApiComentProduct{
   }
 }
 
+
+class ApiCarritoCompra{
+  constructor(Idclien,idProd,canti){
+    this.IdProd = idProd;
+    this.Idclien = Idclien;
+    this.canti = canti;
+}
+
+async insertCarrito(){
+
+  fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=inse"
+  +"&idProd="+this.IdProd
+  +"&idClient="+this.idcli
+  +"&Descrip="+this.descrip
+  +"&Califi="+this.calif)
+  .then(response => response.json())
+  .then(data => console.log(JSON.parse(data)));
+
+}
+
+async listarCarrito(){
+    let varOBJ = JSON.parse(localStorage.getItem("user"));
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=list"
+    +"&id="+varOBJ.id)
+    .then(response => response.json())
+    .then(data => {
+      var conten_Items = "";
+      data.forEach(element => {
+        console.log(element);
+      });
+      
+      console.log(data);
+    });
+
+}
+}
 

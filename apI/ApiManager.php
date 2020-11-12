@@ -88,9 +88,9 @@ if(isset($_GET['ob'])){
 
                 /* la accion realizada es listado se traduce de la siguiente manera
                  * http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=list
-                 * &mac=(mac de la cuenta)*/
+                 * &id=(id del usuario)*/
                 case "list": //se realizara la accion de list
-                    header("Location: ../controler/CarritCompra.php?Action=list&mac=".$_GET['mac']);
+                    header("Location: ../controler/CarritCompra.php?Action=list&id=".$_GET['id']);
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
