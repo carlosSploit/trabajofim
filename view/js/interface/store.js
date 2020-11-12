@@ -12,6 +12,12 @@ function principal(){
 
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(ContentCarritoCompra);
+        $('.modal-dialog').removeAttr("style");
+        $('.modal-content').removeAttr("style");
+        $('#Encabezaod').attr("style", "background:  #546e7a;");
+        $('#TituloModal').html("Insertar Producto");
+        $('#TituloModal').attr("style", "color: white;");
+        $('.close').attr("style", "color: white;");
         Setprogressbar();
         $('#infoProducto').modal('show');
     });
@@ -54,6 +60,12 @@ function ItenProduct(id,nombre,Punt,prec){
 function Interaccion(id){//cuando se precione la opccion de meseng, cambia el contenedor
   var opa = new ApiProducto();
   opa.List('A',2,id);
+  $('.modal-dialog').removeAttr("style");
+  $('.modal-content').removeAttr("style");
+  $('#Encabezaod').attr("style", "background:  #546e7a;");
+  $('#TituloModal').html("Informacion de producto");
+  $('#TituloModal').attr("style", "color: white;");
+  $('.close').attr("style", "color: white;");
   $('#infoProducto').modal('show');
 }
 
@@ -772,7 +784,11 @@ class ApiProducto{
                           var html_codeIten = "";
                           data.forEach(element => {
                               console.log(element.Descripcion);
+                              
                               $('#contModal').html(Info_Product(element.idproducto,element.Nombre,element.Descripcion,element.Cantidad,element.PrecioV,element.calificacion));
+
+                              var objComent = new ApiComentProduct(element.idproducto,'2');
+                              objComent.listarComent();
 
                               $("#ProductBoton").click(function (event){ //cuando se precione la opccion de Producto, cambia el contenedor
                                   $('#contCompra').show(); // se enciende la vicion de la informaicon del producto 
@@ -835,12 +851,12 @@ class ApiComentProduct{
   async listarComent(){
 
     fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=list"
-    +"&idProd="+this.IdProd
-    +"&idClient="+this.idcli
-    +"&Descrip="+this.descrip
-    +"&Califi="+this.calif)
+    +"&idpo="+this.IdProd
+    +"&tip="+this.idcli)
     .then(response => response.json())
-    .then(data => console.log(JSON.parse(data)));
+    .then(data => {
+      console.log(data)
+    });
 
   }
 }
