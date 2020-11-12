@@ -12,8 +12,8 @@ function principal(){
 
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         $('#contModal').html(ContentCarritoCompra);
-        $('.modal-dialog').removeAttr("style");
-        $('.modal-content').removeAttr("style");
+        $('.modal-dialog').attr("style", "position: fixed;margin: auto;width: 500px;height: 100%;right: 0px;");
+        $('.modal-content').attr("style", "height: 100%;");
         $('#Encabezaod').attr("style", "background:  #546e7a;");
         $('#TituloModal').html("Insertar Producto");
         $('#TituloModal').attr("style", "color: white;");
@@ -361,7 +361,7 @@ function productMenssengPri2(estrellas,mensaje) {
   '<!------------------------------------------------------------->';
 }
 
-function productMensseng(estrellas,mensaje) {
+/*function productMensseng(estrellas,mensaje) {
   return '<!--      card de mensaje de usuario sobre el producto       --->'+
   '<div onLoad="console.log('+'pasando a ->'+');" class="carousel-item" style="height: 100px; ">'+
     '<div class="d-block mx-auto" style="-webkit-box-shadow: 5px -1px 30px -9px rgba(0,0,0,0.75);'+
@@ -405,7 +405,7 @@ function productMenssengA(estrellas,mensaje) {
 '    <p>'+mensaje+'</p>'+
 '  </div>'+
 '</div>';
-}
+}*/
 
 function ContentCarritoCompra() {
   return '<div class="row">'+
@@ -454,7 +454,7 @@ function CarritoCompra(){
 '           </div>'+
 '         </div>'+
 '       </div>'+
-'       <div style="background:  #eceff1; width: 100%; height: 150px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
+'       <div style="background:  #eceff1; width: 100%; height: 300px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
             productCarri()+
             productCarri()+
             productCarri()+

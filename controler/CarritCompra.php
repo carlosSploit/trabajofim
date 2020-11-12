@@ -1,7 +1,7 @@
 <?php
 
-include_once ("../module/enti/CuentaCont.php");
-include_once ("../module/bd/BDCuentaCont.php");
+include_once ("../module/enti/CarritCompra.php");
+include_once ("../module/bd/BDCarritCompra.php");
 
 if(isset($_GET['Action'])){
     $action=$_GET['Action'];
@@ -9,10 +9,12 @@ if(isset($_GET['Action'])){
     switch ($action) {
 
         case "inse" :
-            $objdni = $_GET['uss'];
-            $objmac = $_GET['mac'];
+            $objUser = $_GET['idUser'];
+            $objProd = $_GET['idProd'];
+            $objCant = $_GET['cantidad'];
 
-            $objAdmi = new CuentaCont("", $objdni, $objmac,"");
+            $objAdmi = new CarritCompra("", $objUser, $objProd, $objCant);
+            
             echo insertar($objAdmi);
             break;
 
@@ -34,7 +36,7 @@ if(isset($_GET['Action'])){
             $objfoto = $_GET['foto'];
             $objpass = $_GET['pass'];
 
-            $objAdmi = new CuentaCont($idSeccion, $idClient, $mac, $estadoC);
+            $objAdmi = new CarritCompra($idSeccion, $idClient, $mac, $estadoC);
             echo update($objAdmi);
             break;
         default:
@@ -46,21 +48,21 @@ if(isset($_GET['Action'])){
 }
 //------------ METODOS ---------------
 function eliminar($var) {
-    $objAdmi = new CuentaContDAO();
+    $objAdmi = new CarritCompraDAO();
     return $objAdmi->eliminar($var);
 }
 
 function insertar($var) {
-    $objAdmi = new CuentaContDAO();
+    $objAdmi = new CarritCompraDAO();
     return $objAdmi->insertar($var);
 }
 
 function listar($var) {
-    $objAdmi = new CuentaContDAO();
+    $objAdmi = new CarritCompraDAO();
     return $objAdmi->listar($var);
 }
 
 function update($var) {
-    $objAdmi = new CuentaContDAO();
+    $objAdmi = new CarritCompraDAO();
     return $objAdmi->update($var);
 }

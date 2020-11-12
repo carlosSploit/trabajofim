@@ -4,7 +4,7 @@ require 'conexion.php';
 
 // es el data acces objet de la tabla producto
 
-class CuentaContDAO extends conexion implements crud {
+class CarritCompraDAO extends conexion implements crud {
 
     public function __construct() {
         $con = new conexion();
@@ -16,9 +16,10 @@ class CuentaContDAO extends conexion implements crud {
     public function insertar($var) {
         try {
             $obj = Conexion::singleton();      
-            $data = $obj->prepare('CALL usp_InsertarCuentaC(?,?)');
+            $data = $obj->prepare('CALL usp_InsertarCarritP(?,?,?)');
             $data->bindParam(1, $var->getIdClient());
-            $data->bindParam(2, $var->getMac());
+            $data->bindParam(2, $var->getIdProduc());
+            $data->bindParam(3, $var->getCantida());
             $data->execute();
             return "Insercion correcto";
         }catch (Exception $e) {

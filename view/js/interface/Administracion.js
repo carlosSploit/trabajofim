@@ -1517,20 +1517,6 @@ function deleDistri(id){
 }
 
 
-function PedidosCont() {
-    return '<div' +
-        'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        '<div class="accordion" id="accordionExample">' +
-        CardPedido() +
-        CardPedido() +
-        CardPedido() +
-        CardPedido() +
-        '</div>' +
-        '<!------------------------------------>' +
-        '</div>';
-}
-
-
 function MantAdm() {
     return '<div class="row">' +
         '<div class="col">' +
@@ -1857,6 +1843,20 @@ function ElimiAdminIten(id) {
 
     var objAdmi = new ApiAdministrador(-1,"","","","","","",""); //la segunda imprecion por el bug
     objAdmi.ListAdmin();
+}
+
+
+function PedidosCont() {
+    return '<div' +
+        'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
+        '<div class="accordion" id="accordionExample">' +
+            CardPedido() +
+            CardPedido() +
+            CardPedido() +
+            CardPedido() +
+        '</div>' +
+        '<!------------------------------------>' +
+        '</div>';
 }
 
 function CardPedido() {

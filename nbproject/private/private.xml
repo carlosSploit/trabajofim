@@ -3,49 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/PhpProjec/view/Administrador.html</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDComentProducto.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Cliente.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/view/Registrar.html</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Administrador.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/Administrador.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/Distrito.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/view/login.html</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDistrito.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Distrito.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDAdministrador.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDCuentaCont.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDepartamento.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Ventas.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/DetalleVenta.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Ciudad.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDCiudad.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/apI/ApiManager.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Departamento.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDDetalleVenta.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/CuentaCont.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/Departamento.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDtipoProducto.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/Producto.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/view/js/interface/login.js</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/CuntaControler.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/Proveedor.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/tipoProducto.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Proveedor.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/ComentProducto.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/ComentProducto.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/view/store.html</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/tipoProducto.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDCliente.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDProducto.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/enti/Producto.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/Ciudad.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDComentProducto.php</file>
             <file>file:/C:/xampp/htdocs/PhpProjec/controler/Cliente.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/view/js/interface/Administracion.js</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/conexion.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDProveedor.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/view/home.html</file>
-            <file>file:/C:/xampp/htdocs/PhpProjec/controler/MessengControler.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/apI/ApiManager.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/controler/Administrador.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProjec/module/bd/BDAdministrador.php</file>
         </group>
     </open-files>
 </project-private>
