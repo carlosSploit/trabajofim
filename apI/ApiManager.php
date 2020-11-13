@@ -81,7 +81,7 @@ if(isset($_GET['ob'])){
                  * http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=inse
                  * &idUser=(id del cliente)
                  * &idProd=(mac del cliente)
-                 * &cantidad = (Cantidad de productos)*/
+                 * &cantidad= (Cantidad de productos)*/
                 case "inse":
                     header("Location: ../controler/CarritCompra.php?Action=inse&idUser=".$_GET['idUser']."&idProd=".$_GET['idProd']."&cantidad=".$_GET['cantidad']);
                 break;
@@ -92,25 +92,22 @@ if(isset($_GET['ob'])){
                 case "list": //se realizara la accion de list
                     header("Location: ../controler/CarritCompra.php?Action=list&id=".$_GET['id']);
                 break;
-            
+                /*la actalisacion en este caso solo se va a dar por ciudad y descripccion, por otra parte en la parte la tarea sera manipulado por sercivios*/
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=Upd
-                 * &id= (id del administraodr)
-                 * &dni=(dni del administrador)
-                 * &nom=(nombre del administrador)
-                 * &corre=(correo activo del administrador)
-                 * &telef=(telefono activo del administrador)
-                 * &foto= (telefono activo del administrador)
-                 * &pass= (contraseña de acceso al sistema del administrador)*/
-                /*case 'Upd':
-                    header("Location: ../controler/Cliente.php?Action=Upd&id=".$_GET['id']."&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']);
-                break;*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=Upd
+                 * &idClient=(id del cliente)
+                 * &Ciudad=(id de la ciudad)
+                 * &Descrip=(descripccion del pedido o lugar)*/
+                case 'Upd':
+                    header("Location: ../controler/CarritCompra.php?Action=Upd&idClient=".$_GET['idClient']."&Ciudad=".$_GET['Ciudad']."&Descrip=".$_GET['Descrip']);
+                break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=delet&id=(
-                 * index del departamento)*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=delet
+                 * &idUser=(id del cliente)
+                 * &idProd=(mac del cliente)*/
                 case "delet":
-                    header("Location: ../controler/Cliente.php?Action=delet&id=".$_GET['id']);
+                    header("Location: ../controler/CarritCompra.php?Action=delet&idUser=".$_GET['idUser']."&idProd=".$_GET['idProd']);
                 break;
 
                 default:

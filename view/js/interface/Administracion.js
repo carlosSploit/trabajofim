@@ -1516,7 +1516,6 @@ function deleDistri(id){
     objd.List();//listado de precaucion, causado por bugg
 }
 
-
 function MantAdm() {
     return '<div class="row">' +
         '<div class="col">' +
@@ -2414,20 +2413,22 @@ class ApiDepart{
         .then(data => {
             var html_codeIten = "";
             var html_codeList = "";
-            var html_codeListp = $(dat_constant.llave).html(); //sirve en caso que sea parabetrizado
+            var html_codeListp = ""//sirve en caso que sea parabetrizado
             data.forEach(element => {
+                console.log(element);
                 html_codeIten = html_codeIten + DatDepart(element.IdDepartamento ,element.NombreDepart) ;
                 html_codeList = html_codeList + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
                 //como el contenedor de las ciudades ya presenta el contenedor, solo quedaria mostrar
-                if((dat_constant.iddist != element.IdDepartamento)&&(html_codeListp.indexOf(element.NombreDepart)==-1)&&(dat_constant != "")){
-                    html_codeListp = html_codeListp + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
-                }
+                //if((dat_constant.iddist != element.IdDepartamento)&&(html_codeListp.indexOf(element.NombreDepart)==-1)&&(dat_constant != "")){
+                html_codeListp = html_codeListp + DatLisDepart(element.IdDepartamento ,element.NombreDepart) ;
+                //}
             });
             $('#contentDepart').html(html_codeIten); //imprime a su contenedor
             $('#LisDpartament').html(html_codeList); //imprime al contenedor de la ciudad
             $('#LisDepartDist').html(html_codeList); //imprime al contenedor del distrito
             if(dat_constant != ""){ // teniendo en cuenta que lo insertado sea un nulo-para un listado de rutina
                 $(dat_constant.llave).html(html_codeListp); //imprime al contenedor del distrito
+                $(dat_constant.llave).val(dat_constant.iddist);
             }
         }).catch(Error => console.log(Error));
     }
@@ -2632,12 +2633,13 @@ class ApiCiudad{
                 html_codeIten = html_codeIten + DatLisCiry(element.IdCiudad,element.NombreCiudad) ;
                 //lista en caso que se ingresa el parametro y se hace el filtraje 
                 console.log(html_codeList);
-                if((dat_constant.idCiu != element.IdCiudad)&&(((html_codeList == undefined)?1:html_codeList.indexOf(element.NombreCiudad))==-1)&&(dat_constant != "")){
+                //if((dat_constant.idCiu != element.IdCiudad)&&(((html_codeList == undefined)?1:html_codeList.indexOf(element.NombreCiudad))==-1)&&(dat_constant != "")){
                     html_codeList = html_codeList + DatLisCiry(element.IdCiudad ,element.NombreCiudad) ;
-                }
+                //}
             });
             if(dat_constant != ""){ // teniendo en cuenta que lo insertado sea un nulo-para un listado de rutina
                 $(dat_constant.llave).html(html_codeList); //imprime al contenedor del distrito
+                $(dat_constant.llave).val(dat_constant.idCiu);
             }else{ $('#LisCiudad').html(html_codeIten);  }
             
             }).catch(Error => console.log(Error));

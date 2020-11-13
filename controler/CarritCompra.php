@@ -18,7 +18,12 @@ if(isset($_GET['Action'])){
             echo insertar($objAdmi);
             break;
 
-        case "delet" : 
+        case "delet" :
+            $objUser = $_GET['idUser'];
+            $objProd = $_GET['idProd'];
+
+            $objAdmi = new CarritCompra("", $objUser, $objProd,"");
+            echo eliminar($objAdmi);
             break;
         
         case "list" :
@@ -26,17 +31,12 @@ if(isset($_GET['Action'])){
             echo json_encode(listar($id));
             break;
         case "Upd" :
-            
-            $objidCl = $_GET['id'];
-            $objdni = $_GET['dni'];
-            $objnom = $_GET['nom'];
-            $objcorre = $_GET['corre'];
-            $objtelef = $_GET['telef'];
-            $objfoto = $_GET['foto'];
-            $objpass = $_GET['pass'];
+            /*$objidClient = $_GET['idClient'];
+            $objCiudad = $_GET['Ciudad'];
+            $objDescrip = $_GET['Descrip'];
 
-            $objAdmi = new CarritCompra($idSeccion, $idClient, $mac, $estadoC);
-            echo update($objAdmi);
+            $objAdmi = array('idClient'=>$objidClient,'Ciudad'=>$objCiudad,'Descrip'=>$objDescrip);
+            echo update($objAdmi);*/
             break;
         default:
             echo 'no tienes nada en enseñar perro';

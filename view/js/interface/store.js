@@ -148,12 +148,12 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                   '<label style="text-align: center; margin-top: 5px; margin-right: 5px;" >Cantidad :  </label>'+
                                 '</div>'+
                                 '<div class="input-group-append">'+
-                                  '<input type="number" style="width: 60px;" class="form-control" >'+
+                                  '<input id="CantiInserCar" type="number" style="width: 60px;" class="form-control" >'+
                                 '</div>'+
                               '</div>'+
                             '</div>'+
                             '<div class="col" style=" width: 100%; height: 40px;">'+
-                              '<button type="button" class="btn btn-primary">Añadir al Carrito</button>'+
+                              '<button onclick="inserProductCart('+id+')" type="button" class="btn btn-primary">Añadir al Carrito</button>'+
                             '</div>'+
                           '</div>'+
                       '</div>'+
@@ -294,6 +294,18 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                   '</div>'+
                   '<!------------------------------------------------------>'+
                 '</div>';
+}
+
+function inserProductCart(id) {
+  if(localStorage.getItem("user")){
+    let varOBJ = JSON.parse(localStorage.getItem("user"));
+    console.log(id);
+    var objCarr = new ApiCarritoCompra(varOBJ.id,id,$('#CantiInserCar').val());
+    objCarr.insertCarrito();
+    $('#CantiInserCar').val("");
+  }else{
+    alert('Anter de ingrear un producto al carrito, porfavor inicie seccion,,');
+  }
 }
 
 function EnviarMs(id) {
@@ -474,8 +486,7 @@ function CarritoCompra(){
 '  <div class="row">'+
 '     <div class="col">'+
 '       <div class="row my-2">'+
-'           <select class="custom-select" id="inputGroupSelect01">'+
-'            <option selected>Departamento</option>'+
+'           <select id="GeneralListDep" class="custom-select" id="inputGroupSelect01">'+
                ProducDepart()+
                ProducDepart()+
                ProducDepart()+
@@ -483,7 +494,7 @@ function CarritoCompra(){
 '           </select>'+
 '       </div>'+
 '       <div class="row my-1">'+
-'           <select class="custom-select" id="inputGroupSelect01">'+
+'           <select id="GeneralListCit" class="custom-select" id="inputGroupSelect01">'+
 '             <option selected>Ciudad</option>'+
                ProducCity()+
                ProducCity()+
@@ -492,7 +503,7 @@ function CarritoCompra(){
 '           </select>'+
 '       </div>'+
 '       <div class="row my-1">'+
-'           <select class="custom-select" id="inputGroupSelect01">'+
+'           <select id="GeneralListDis" class="custom-select" id="inputGroupSelect01">'+
 '             <option selected>Distrito</option>'+
                 ProducDist()+
                 ProducDist()+
@@ -546,16 +557,16 @@ function CarritoCompra(){
 '</div>';
 }
 
-function ProducDepart() {
-  return '<option value="1">Piura</option>';
+function ProducDepart(id,nombredep,tip) {
+  return '<option value="'+id+'" '+tip+' >'+nombredep+'</option>';
 }
 
-function ProducCity() {
-  return '<option value="1">Piura</option>';
+function ProducCity(id,nombredep) {
+  return '<option value="'+id+'">'+nombredep+'</option>';
 }
 
-function ProducDist() {
-  return '<option value="1">Piura</option>';  
+function ProducDist(id,nombredDist) {
+  return '<option value="'+id+'">'+nombredDist+'</option>';  
 }
 
 function productCarri(id,nombre,precio,cantidad){
@@ -585,7 +596,14 @@ function productCarri(id,nombre,precio,cantidad){
 }
 
 function EliminarCarrit(id) {
-  
+    let varOBJ = JSON.parse(localStorage.getItem("user"));
+    var objCarr = new ApiCarritoCompra(varOBJ.id,id,"");
+    objCarr.delectCarrito();
+
+    var objCarr = new ApiCarritoCompra(varOBJ.id,id,"");
+    objCarr.listarCarrito(); //en esta etapa solo los items que estan en el carrito, mas no los pedidos
+    /*se vuelve hacer una redundacia de codigo para volver a cargar los prodcutos en casoq ue no se cargen*/
+    objCarr.listarCarrito(); //en esta etapa solo los items que estan en el carrito, mas no los pedidos
 }
 
 /* contenedor de listado de pedidos teniendo en cuenta que presenta variantes*/
@@ -987,11 +1005,10 @@ class ApiCarritoCompra{
 
 async insertCarrito(){
 
-  fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=inse"
+  fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=inse"
+  +"&idUser="+this.Idclien
   +"&idProd="+this.IdProd
-  +"&idClient="+this.idcli
-  +"&Descrip="+this.descrip
-  +"&Califi="+this.calif)
+  +"&cantidad="+this.canti)
   .then(response => response.json())
   .then(data => console.log(JSON.parse(data)));
 
@@ -1005,12 +1022,138 @@ async listarCarrito(){
     .then(data => {
       var conten_Items = "";
       data.forEach(element => {
-        console.log(element);
+          conten_Items += productCarri(element.idproducto,element.Nombre,element.PrecioV,element.cantidad); 
       });
-      
+      //  listar los departamentos dentro del carrito
+      var objdep = new ApiDepartCar("","");
+      objdep.List();
+
+      /*Eventos de relistado en caso de una seleccion*/
+      $('#GeneralListDep').change(function(event){
+          var objCit = new ApiCiudadCar("",$('#GeneralListDep').val(),"");
+          objCit.List();
+      });
+
+      $('#GeneralListCit').change(function(event){
+        var objCit = new ApiDistritoCar("",$('#GeneralListCit').val(),"");
+        objCit.List();
+      });
+      /*----------------------------------------------*/
+      $('#ContProduPed').html(conten_Items);
       console.log(data);
     });
 
 }
+
+async delectCarrito(){
+
+  fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=delet"
+  +"&idUser="+this.Idclien
+  +"&idProd="+this.IdProd)
+  .then(response => response.json())
+  .then(data => console.log(JSON.parse(data)));
+
 }
+}
+
+
+/* contenedor de fecht para el Depart, interactuara con la api*/
+
+class ApiDepartCar{
+    
+  constructor(id,nombre){
+      this.id = id;
+      this.Nombre_Dep = nombre;
+  }
+
+  async List(){//sirve para en caso que se quiera insertar un tipo de dato, se inyecte por la variable del contenedor
+      //dat_constant = dat_constant.substring(1,dat_constant.length);
+      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=list",{ method: 'GET'})
+      .then(response => response.json())
+      .catch(Error => console.log(Error))
+      .then(data => {
+        $('#GeneralListDep').html(""); //se elimina todo el contenido que tenga dentro el contenedor para evitar designaciones en falso
+          var html_codeListp = "";
+          var Bad = 0; //usado para saber si se usa primero
+
+          data.forEach(element => {
+            if(Bad==0){
+              html_codeListp = html_codeListp + ProducDepart(element.IdDepartamento ,element.NombreDepart,"selected") ;
+              /*--------- Inicializar los distritos --------------*/
+                //  listar los distritos dentro del carrito
+                //  listar los ciudad dentro del carrito
+                var objCit = new ApiCiudadCar("",element.IdDepartamento,"");
+                objCit.List();
+              /*--------------------------------------------------*/
+            }else {
+              html_codeListp = html_codeListp + ProducDepart(element.IdDepartamento ,element.NombreDepart,"") ;
+            }
+            Bad++;
+          });
+          $('#GeneralListDep').html(html_codeListp); //imprime al contenedor del distrito
+      
+      }).catch(Error => console.log(Error));
+  }
+}
+
+class ApiCiudadCar{
+    
+  constructor(id,idDep,nombre){
+      this.id = id;
+      this.idDepart = idDep;
+      this.Nombre_ciu = nombre;
+  }
+
+  async List(){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
+      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=list&idDep="+this.idDepart)
+      .then(response => response.json())
+      .catch(Error => console.log(Error))
+      .then(data => {
+          var html_codeList = "";
+          var Bad = 0; //usado para saber si se usa primero
+          data.forEach(element => {
+            if(Bad==0){
+              html_codeList = html_codeList + ProducCity(element.IdCiudad ,element.NombreCiudad);
+              /*--------- Inicializar los distritos --------------*/
+                //  listar los distritos dentro del carrito
+                var objCit = new ApiDistritoCar("",element.IdCiudad,"");
+                objCit.List();
+              /*--------------------------------------------------*/
+            }else {
+              html_codeList = html_codeList + ProducCity(element.IdCiudad ,element.NombreCiudad);
+            }
+            Bad++;
+          });
+          $('#GeneralListCit').html(html_codeList);
+          
+      }).catch(Error => console.log(Error));
+  }
+}
+
+class ApiDistritoCar{
+    
+  constructor(id,idciu,nombre){
+      this.id = id;
+      this.idCiudad = idciu;
+      this.Nombre_dis = nombre;
+  }
+
+  async List(){
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=list&idCI="+this.idCiudad)
+    .then(response => response.json())
+    .catch(Error => console.log("json ERROR"))
+    .then(data => {
+        var html_codeIten = "";
+        data.forEach(element => {
+            html_codeIten = html_codeIten + ProducDist(element.idDistrito,element.nombreDistrito) ;
+        });
+        $('#GeneralListDis').html(html_codeIten);
+    }).catch(Error => console.log(Error));
+  }
+
+}
+
+
+
+
 

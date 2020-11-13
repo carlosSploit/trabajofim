@@ -11,6 +11,16 @@ class CarritCompraDAO extends conexion implements crud {
     }
     //------------ METODOS ---------------
     public function eliminar($var) {
+        try {
+            $obj = Conexion::singleton();      
+            $data = $obj->prepare('CALL usp_EliminarCarritP(?,?)');
+            $data->bindParam(1, $var->getIdClient());
+            $data->bindParam(2, $var->getIdProduc());
+            $data->execute();
+            return "Insercion correcto";
+        }catch (Exception $e) {
+            throw $e->getMessage();
+        }
     }
 
     public function insertar($var) {
@@ -42,15 +52,17 @@ class CarritCompraDAO extends conexion implements crud {
     }
 
     public function update($var) {
-        try {
+        /*try {
             $obj = Conexion::singleton();      
-            $data = $obj->prepare('CALL usp_ActualizarCuentaC(?,?,?,?,?,?,?,?)');
-            $data->bindParam(1, $var->getIdClient());
+            $data = $obj->prepare('CALL usp_ActualizarCarritP(?,?,?)');
+            $data->bindParam(1, $var['idClient']);
+            $data->bindParam(2, $var['Ciudad']);
+            $data->bindParam(3, $var['Descrip']);
             $data->execute();
             return "Actualizado correcto";
         }catch (Exception $e) {
             throw $e->getMessage();
-        }
+        }*/
     }
 
 }
