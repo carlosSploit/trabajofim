@@ -46,13 +46,17 @@ class ProductoDAO extends conexion implements crud {
     public function listar($var) {
         try {
             $obj = Conexion::singleton();    
-            $data = $obj->prepare('CALL usp_ListarProduc(?,?,?)');          
+            $data = $obj->prepare('CALL usp_ListarProduc(?,?,?,?,?,?)');          
             $data->bindParam(1, $var['userT']);   
             $data->bindParam(2, $var['Tipo']);   
             $data->bindParam(3, $var['Nombre']);   
+            $data->bindParam(4, $var['punt']);   
+            $data->bindParam(5, $var['coins']);   
+            $data->bindParam(6, $var['cat']);   
             $data->execute();
             $lista = $data->fetchAll();                      
-            return $lista;         
+            return $lista;   
+            //echo $var['punt'];
 
         }catch (Exception $e) {
             throw $e;

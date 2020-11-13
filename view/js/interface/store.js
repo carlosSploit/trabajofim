@@ -6,9 +6,11 @@ function principal(){
     var objProdu = new ApiProducto(1,"","","","","","","","","");
     objProdu.List("A",1,"");
 
-    $("#ConternCategoriStore").html(ItenCateg);//instertar una categoria en el contenedor de estore
+    //instertar una categoria en el contenedor de estore
+    var objCat = new ApiCategorica("","","");
+    objCat.ListAdmin();
     //$("#ContstoreProduct").html(ItenProduct);//instertar un producto en el contenedor de estore
-    $("#ConteNavega").html(Navegacion);//instertar un tab de navegacion en el contenedor de estore
+    $("#ConteNavega").html(Navegacion(""));  //instertar un tab de navegacion en el contenedor de estore
 
     $("#Carrito").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         if(localStorage.getItem("user")){
@@ -30,19 +32,49 @@ function principal(){
         }
         
     });
+
+    //Filtrerbus
+    $("#Filtrerbus").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+       console.log($("input:radio[name=exampleRadios2]:checked").val());
+       console.log($("input:radio[name=exampleRadios1]:checked").val());
+       console.log($("input:radio[name=exampleRadios]:checked").val());
+       var obj = new ApiProducto("","","","","","","","","","");
+       obj.List("C","","",$("input:radio[name=exampleRadios1]:checked").val(),$("input:radio[name=exampleRadios2]:checked").val(),$("input:radio[name=exampleRadios]:checked").val()); 
+       if($("input:radio[name=exampleRadios]:checked").val()==0){
+          $("#ConteNavega").html(Navegacion(""))
+       } else {
+          var Stare = new ApiCategorica($("input:radio[name=exampleRadios]:checked").val(),"","");
+          Stare.consultName();
+       }
+       
+    });
+
+    $("#BrowserIten").keydown(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+      console.log($("input:radio[name=exampleRadios2]:checked").val());
+      console.log($("input:radio[name=exampleRadios1]:checked").val());
+      console.log($("input:radio[name=exampleRadios]:checked").val());
+      var obj = new ApiProducto("","","","","","","","","","");
+      obj.List("C","",$("#BrowserIten").val(),$("input:radio[name=exampleRadios1]:checked").val(),$("input:radio[name=exampleRadios2]:checked").val(),$("input:radio[name=exampleRadios]:checked").val()); 
+   });
 }
 
-function Navegacion(){
-  return '<li class="breadcrumb-item"><a href="#">Gemeral</a></li>'+
+function Navegacion(nombreCat){
+  return '<li class="breadcrumb-item"><a onclick=Refresh()>Gemeral</a></li>'+
   '<!--         card de interface ingresada           --->'+
-  '<li class="breadcrumb-item active" aria-current="page">Electrodomesticos</li>';
+  '<li class="breadcrumb-item active" aria-current="page">'+nombreCat+'</li>';
 }
 
-function ItenCateg(){
+function Refresh() {
+  var obj = new ApiProducto("","","","","","","","","","");
+      obj.List("C","",'',0,0,0);
+      $("#ConteNavega").html(Navegacion("")); 
+}
+
+function ItenCateg(id,nombre){
   return  '<div class="form-check">'+
-          '  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>'+
-          ' <label class="form-check-label" for="exampleRadios1">'+
-          '  👕 Ropa'+
+          '  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios" value="'+id+'" checked>'+
+          ' <label class="form-check-label" for="exampleRadios">'+
+          nombre+
           ' </label>'+
           '</div>';
 }
@@ -841,13 +873,13 @@ class ApiProducto{
       this.Photo = Photo;
   }
 
-  async List(user,tipo,nombre){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
+  async List(user,tipo,nombre,punt,coins,cat){ // se ingresa datos en caso que se quiera listar por distrito o por departamento
       //var aux = new ApiDepart("","");
       switch (user) {
           case "A":
               switch (tipo) {
                   case 2: // se consulta la informacion, producto por producto
-                      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre)
+                      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre+"&punt=a&coins=a&cat=a")
                       .then(response => response.json())
                       .catch(Error => console.log(Error))
                       .then(data => {
@@ -878,7 +910,7 @@ class ApiProducto{
                   break;
 
                   default: // con son varios los caso que se repiten con el mismo metodo se colocara el default
-                      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre)
+                      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre+"&punt=a&coins=a&cat=a")
                       .then(response => response.json())
                       .catch(Error => console.log(Error))
                       .then(data => {
@@ -891,6 +923,24 @@ class ApiProducto{
                       });
                       break;
               }
+              break;
+              case "C":
+                switch (tipo) {
+
+                    default: // con son varios los caso que se repiten con el mismo metodo se colocara el default
+                        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre+"&punt="+punt+"&coins="+coins+"&cat="+cat)
+                        .then(response => response.json())
+                        .catch(Error => console.log(Error))
+                        .then(data => {
+                            var html_codeIten = "";
+                            data.forEach(element => {
+                                html_codeIten = html_codeIten + ItenProduct(element.idproducto,element.Nombre,element.calificacion,element.PrecioV);
+                                //console.log(element.idproducto+" "+element.Nombre+" "+element.calificacion+" "+element.PrecioV);
+                            });
+                            $('#ContstoreProduct').html(html_codeIten);
+                        });
+                    break;
+                }
               break;
           default:
               break;
@@ -1153,7 +1203,61 @@ class ApiDistritoCar{
 
 }
 
+/* contenedor de fecht para la categoria de productos, interactuara con la api*/
+class ApiCategorica{
+    
+  constructor(id,icono, nombre){
+      this.id = id;
+      this.icono = icono;
+      this.nombre = nombre;
+  }
 
+  async ListAdmin(){
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list")
+    .then(response => response.json())
+    .catch(Error => console.log(Error))
+    .then(data => {
+        console.log(data);
+        var html_codeIten = ItenCateg(0,"All");
+        data.forEach(element => {
+            console.log(element);
+            html_codeIten = html_codeIten + ItenCateg(element.idTipo,this.ListIncont(element.nombreTipo.charAt(0))+" "+element.nombreTipo.substring(1,element.nombreTipo.length));
+        });
+        $("#ConternCategoriStore").html(html_codeIten);
+    }).catch(Error => console.log(Error));
+  }
+  //se aprobecha el metodo de lestado para crear un metodo de consulta
+  async consultName(){ 
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list")
+    .then(response => response.json())
+    .catch(Error => console.log(Error))
+    .then(data => {
+        console.log(data);
+        var html_codeIten = "";
+        data.forEach(element => {
+            if(element.idTipo == this.id){
+              html_codeIten = html_codeIten + Navegacion(element.nombreTipo.substring(1,element.nombreTipo.length));
+            }
+        });
+        $("#ConteNavega").html(html_codeIten);
+    }).catch(Error => console.log(Error));
+  }
+
+  ListIncont(cod) {
+
+      if(cod == 1){return "👕";}
+      if(cod == 2){return "👟";}
+      if(cod == 3){return "👞";}
+      if(cod == 4){return "👖";}
+      if(cod == 5){return "💻";}
+      if(cod == 6){return "📱";}
+      if(cod == 7){return "🔫";}
+      if(cod == 8){return "👙";}
+      if(cod == 9){return "🎮";}
+      if(cod == 10){return "🎸";}
+      if(cod == 11){return "♟";}
+  }
+}
 
 
 

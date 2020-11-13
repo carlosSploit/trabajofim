@@ -308,10 +308,15 @@ if(isset($_GET['ob'])){
                 break;
 
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT=(el tipo de usuario que lo este buscando ya sea)
-                 * por Administrador o cliente)&Tipo=(ya sea un listado de un producto o de una consulta de un producto)&Nombre=*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list
+                 * &userT=(el tipo de usuario que lo este buscando ya sea por Administrador o cliente)
+                 * &Tipo=(ya sea un listado de un producto o de una consulta de un producto)
+                 * &Nombre= (Algun tipo de parametro de busqueda ya sea por nombre o categoria)
+                 * &punt = (filtraje por puntos)
+                 * &coins = (cantidad de dinero por filtro)
+                 * &cat = (filtraje por categoria)*/
                 case "list": //se realizara la accion de list
-                    header("Location: ../controler/Producto.php?Action=list&userT=".$_GET['userT']."&Tipo=".$_GET['Tipo']."&Nombre=".$_GET['Nombre']);
+                    header("Location: ../controler/Producto.php?Action=list&userT=".$_GET['userT']."&Tipo=".$_GET['Tipo']."&Nombre=".$_GET['Nombre']."&punt=".$_GET['punt']."&coins=".$_GET['coins']."&cat=".$_GET['cat']);
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera

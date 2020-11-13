@@ -22,7 +22,14 @@ if(isset($_GET['Action'])){
             break;
 
         case "list":
-                $idDep = array("userT"=>$_GET['userT'], "Tipo"=>$_GET['Tipo'],"Nombre"=>$_GET['Nombre']);
+                $us = $_GET['userT'];
+                $nom = $_GET['Nombre'];
+                $tip = $_GET['Tipo'];
+                $punt = $_GET['punt'];
+                $coin = $_GET['coins'];
+                $cat = $_GET['cat'];
+            
+                $idDep = array("userT"=>$us, "Tipo"=>$tip,"Nombre"=>$nom ,"punt"=>$punt,"coins"=>$coin,"cat"=>$cat);
                 /*ESTA CLASE DE LISTADO DE DE MANEA MOMENTANEA*/
                 echo json_encode(listar($idDep));
             break;

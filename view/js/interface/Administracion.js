@@ -2482,7 +2482,7 @@ class ApiProducto{
             case "A":
                 switch (tipo) {
                     case 2: // se consulta la informacion, producto por producto
-                        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre)
+                        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre+"&punt=a&coins=a&cat=a")
                         .then(response => response.json())
                         .catch(Error => console.log(Error))
                         .then(data => {
@@ -2521,7 +2521,7 @@ class ApiProducto{
                     break;
 
                     default: // con son varios los caso que se repiten con el mismo metodo se colocara el default
-                        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre)
+                        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT="+user+"&Tipo="+tipo+"&Nombre="+nombre+"&punt=a&coins=a&cat=a")
                         .then(response => response.json())
                         .catch(Error => console.log(Error))
                         .then(data => {
