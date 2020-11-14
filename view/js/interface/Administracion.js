@@ -1,5 +1,7 @@
 
 
+/*cada ves que se hace una insercion e actualizacion del estado de un pedido se evia un correo*/
+
 $(document).ready(principal);
 
 function principal() {
@@ -1969,7 +1971,9 @@ function CarritoCompra(id,montoT,depart,city,dis,direc,estd) {
 }
 
 function ActualiEstate(id) {
-    
+    var obj = new ApiPedidoA(id,"","");
+    obj.Update();
+    alert("Actualizado el estado correctamente");
 }
 
 function ProducDepart() {
@@ -2788,6 +2792,13 @@ class ApiPedidoA{
             }).catch(Error => console.log(Error));    
         });
       }).catch(Error => console.log(Error));
+    }
+
+    async Update(){
+        var yabidciu = 'div.'+this.idClient;
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=Upd&id="+this.idClient+"&est="+$(yabidciu).attr("value"))
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
     }
   
   }
