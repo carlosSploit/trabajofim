@@ -49,16 +49,11 @@ if(isset($_GET['ob'])){
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=Upd
-                 * &id= (id del administraodr)
-                 * &dni=(dni del administrador)
-                 * &nom=(nombre del administrador)
-                 * &corre=(correo activo del administrador)
-                 * &telef=(telefono activo del administrador)
-                 * &foto= (telefono activo del administrador)
-                 * &pass= (contraseña de acceso al sistema del administrador)*/
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=Upd
+                 * &id= (id del pedido)
+                 * &est=(nuevo estado del pedido)*/
                 case 'Upd':
-                    header("Location: ../controler/Cliente.php?Action=Upd&id=".$_GET['id']."&dni=".$_GET['dni']."&nom=".$_GET['nom']."&corre=".$_GET['corre']."&telef=".$_GET['telef']."&foto=".$_GET['foto']."&pass=".$_GET['pass']);
+                    header("Location: ../controler/Pedido.php?Action=Upd&id=".$_GET['id']."&est=".$_GET['est']);
                 break;
             
                 /* la accion realizada es insercion se traduce de la siguiente manera

@@ -157,25 +157,25 @@ class ApiCliente{
 
     async ListAdmin(){ // comprueva el login si el cliente con los datos existe
         console.log(this.corre+" "+this.pass);
-            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=list"
-                +"&tip=1"
-                +"&uss="+this.id
-                +"&pas="+this.pass)
-            .then(response => response.json())
-            .catch(Error => console.log(Error))
-            .then(data => {
-                console.log(data);
-                if(data.length != 0){
-                    data.forEach(element => {
-                        console.log(element);
-                        $('#contModal').html(ConfigUser("",element.dni_user,element.nombre,element.telefono,element.correo,"",element.pass));
-                    });
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=list"
+            +"&tip=1"
+            +"&uss="+this.id
+            +"&pas="+this.pass)
+        .then(response => response.json())
+        .catch(Error => console.log(Error))
+        .then(data => {
+            console.log(data);
+            if(data.length != 0){
+                data.forEach(element => {
+                    console.log(element);
+                    $('#contModal').html(ConfigUser("",element.dni_user,element.nombre,element.telefono,element.correo,"",element.pass));
+                });
 
-                }else{
-                    alert("Archivo no existende");
-                }
-                //$('#ContenerAdmin').html(html_codeIten);
-            }).catch(Error => console.log(Error));
+            }else{
+                alert("Archivo no existende");
+            }
+            //$('#ContenerAdmin').html(html_codeIten);
+        }).catch(Error => console.log(Error));
     }
 }
 
@@ -208,14 +208,6 @@ class ApiAdministrador{
     }
 
     async Update(){
-        var yabidA = this.id;
-        var yabdni = '#dniTextAdmi'+this.id;
-        var yabnom = '#nomTextAdmi'+this.id;
-        var yabcor = '#correTextAdmi'+this.id;
-        var yabtel = '#telefTextAdmi'+this.id;
-        var yabpho = '#fotoImgAdmi'+this.id;
-        var yabpas = '#passTextAdmi'+this.id;
-        var yabTiA = '#tiptrabajoSeletAdmi'+this.id;
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd"
         +"&id=" + yabidA
         +"&dni=" + $(yabdni).val()

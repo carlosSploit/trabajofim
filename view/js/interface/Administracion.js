@@ -175,7 +175,10 @@ function principal() {
         $('#TituloModal').html("Lista de Pedidos");
         $('#TituloModal').attr("style", "color: white;");
         $('.close').attr("style", "color: white;");
-        Setprogressbar();
+        
+        var obj = new ApiPedidoA("","","");
+        obj.ListarPedid("A",1,0,0,0);
+
         $('#ModalContainer').modal('show');
     });
     $("#Admi").click(function (event) { //cuando se precione la opccion de meseng, cambia el contenedor
@@ -1848,42 +1851,39 @@ function ElimiAdminIten(id) {
 function PedidosCont() {
     return '<div' +
         'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        '<div class="accordion" id="accordionExample">' +
-            CardPedido() +
-            CardPedido() +
-            CardPedido() +
-            CardPedido() +
+        '<div class="accordion" id="ContenedrPedidosItens">' +
+            CardPedido("1","asdsadsadsad","454","asdsad","dsads","sadsa","sadsdsadsa",1)+
         '</div>' +
         '<!------------------------------------>' +
         '</div>';
 }
 
-function CardPedido() {
+function CardPedido(id,nombre,montoT,depart,city,dis,direc,estd) {
     return '<!-- car del pedido a mostrar--->' +
-        '<div class="card my-1">' +
+        '<div id="contentPrinsipalIten'+id+'" class="card my-1">' +
         '<div class="card-header" id="headingOne">' +
         '<h2 class="mb-0">' +
         '<button class="btn btn-link btn-block text-left" type="button"' +
-        'data-toggle="collapse" data-target="#collapseOne6" aria-expanded="true"' +
-        'aria-controls="collapseOne6">' +
+        'data-toggle="collapse" data-parent="#contentPrinsipalIten'+id+'" data-target="#collapseOne'+id+'" aria-expanded="true"' +
+        'aria-controls="collapseOne'+id+'">' +
         '<div class="row">' +
         '<div class="col-3">' +
-        '    4567856' +
+            id+
         '</div>' +
         '<div class="col-6">' +
-        '    Jose maria hernandez' +
+            nombre +
         '</div>' +
         '<div class="col-3">' +
-        '    S/.4500' +
+        '    S/.'+montoT+
         '</div>' +
         '</div>' +
         '</button>' +
         '</h2>' +
         '</div>' +
-        '<div id="collapseOne6" class="collapse show" aria-labelledby="headingOne"' +
+        '<div id="collapseOne'+id+'" class="collapse show" aria-labelledby="headingOne"' +
         'data-parent="#accordionExample">' +
-        '<div class="card-body" id="secudContendP">' +
-        CarritoCompra() +
+        '<div class="card-body">' +
+            CarritoCompra(id,montoT,depart,city,dis,direc,estd) +
         '</div>' +
         '</div>' +
         '</div>' +
@@ -1893,7 +1893,7 @@ function CardPedido() {
 
 /* codigo directamente extraido de store el cual 
 da la informacion del pedido*/
-function CarritoCompra() {
+function CarritoCompra(id,montoT,depart,city,dis,direc,estd) {
     return '<div class="container">' +
         '  <div class="row">' +
         '     <div class="col">' +
@@ -1907,16 +1907,12 @@ function CarritoCompra() {
         '               <div class="input-group-prepend">' +
         '                 <span class="input-group-text" id="basic-addon1">S/.</span>' +
         '               </div>' +
-        '               <input type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">' +
+        '               <input value="'+montoT+'" type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">' +
         '             </div>' +
         '           </div>' +
         '         </div>' +
         '       </div>' +
-        '       <div style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
-        productCarri() +
-        productCarri() +
-        productCarri() +
-        productCarri() +
+        '       <div id="containerprodutIten'+id+'" style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">' +
         '       </div>' +
         '     </div>' +
         '  </div>' +
@@ -1924,30 +1920,17 @@ function CarritoCompra() {
         '     <div class="col">' +
         '       <div class="row my-1">' +
         '           <select disabled class="custom-select" id="inputGroupSelect01">' +
-        '            <option selected>Departamento</option>' +
-        ProducDepart() +
-        ProducDepart() +
-        ProducDepart() +
-        ProducDepart() +
+        '            <option selected>'+depart+'</option>' +
         '           </select>' +
         '       </div>' +
         '       <div class="row my-1">' +
         '           <select disabled class="custom-select" id="inputGroupSelect01">' +
-        '             <option selected>Ciudad</option>' +
-        ProducCity() +
-        ProducCity() +
-        ProducCity() +
-        ProducCity() +
+        '             <option selected>'+city+'</option>' +
         '           </select>' +
         '       </div>' +
         '       <div class="row my-1">' +
         '           <select disabled class="custom-select" id="inputGroupSelect01">' +
-        '             <option selected>Distrito</option>' +
-        ProducDist() +
-        ProducDist() +
-        ProducDist() +
-        ProducDist() +
-        ProducDist() +
+        '             <option selected>'+dis+'</option>' +
         '           </select>' +
         '       </div>' +
         '       <div class="row my-1">' +
@@ -1956,13 +1939,13 @@ function CarritoCompra() {
         '               <div class="input-group-prepend">' +
         '                 <span class="input-group-text" id="basic-addon1">🌍</span>' +
         '               </div>' +
-        '               <input disabled type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">' +
+        '               <input value="'+direc+'" disabled type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">' +
         '             </div>' +
         '           </div>' +
         '       </div>' +
         '          <div class="row">' +
         '              <div class="col">' +
-        '                  <div class="conteSetP">' +
+        '                  <div class="conteSetP '+id+'" onclick="Setprogressbar3('+id+')">' +
         '                      <ul id="stp-dsjdhj" value="0" class="Setprogressbar padre">' +
         '                          <li value="1" class="li-iten-sep hijo">Pedido Recivido</li>' +
         '                          <li value="2" class="li-iten-sep hijo">Enviado</li>' +
@@ -1972,7 +1955,7 @@ function CarritoCompra() {
         '              </div>' +
         '          </div>' +
         '       <div class="row my-1">' +
-        '             <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar' +
+        '             <button onclick="ActualiEstate('+id+')" type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar' +
         '             Estado</button>' +
         '       </div>' +
         '     </div>' +
@@ -1983,6 +1966,10 @@ function CarritoCompra() {
         '       ' +
         '  </div>' +
         '</div>';
+}
+
+function ActualiEstate(id) {
+    
 }
 
 function ProducDepart() {
@@ -1997,7 +1984,7 @@ function ProducDist() {
     return '<option value="1">Piura</option>';
 }
 
-function productCarri() {
+function productCarri(photo,nombre,canti,monto) {
     return '<!--        Card de producto insertado         -->' +
         '         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">' +
         '           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> ' +
@@ -2008,13 +1995,13 @@ function productCarri() {
         '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >' +
         '            </div> ' +
         '            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">' +
-        '               Maquintosh de 3gb de ram con 2 procesaroderes' +
+                        nombre +
         '            </div>' +
         '            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">' +
-        '               40 Un' +
+        '               '+canti+' Un' +
         '            </div>' +
         '            <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">' +
-        '               S/.4500' +
+        '               S/.'+monto+
         '            </div>' +
         '           </div>' +
         '       </div>';
@@ -2103,8 +2090,9 @@ function ConfigAdmini() {
 }
 
 
-function Setprogressbar() {
-    var hijos = document.querySelectorAll("div.conteSetP > ul.padre > li.hijo");
+function Setprogressbar3(id) {
+    var idyabBUshijos = "div."+id;
+    var hijos = $(idyabBUshijos).children();
     for (unHijo of hijos) {
         console.log(unHijo);
         unHijo.addEventListener("click", function (evt) {
@@ -2750,3 +2738,56 @@ class ApiDistrito{
         this.List();
     }
 }
+
+
+class ApiPedidoA{
+
+    constructor(idClient,idDist,Direccio){
+      this.idClient = idClient;
+      this.idDist = idDist;
+      this.Direccio = Direccio;
+    }
+
+    async ListarPedid(tip,fil,id,idcli,filgeneral){ 
+      fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=list"
+            +"&tip="+tip
+            +"&fil="+fil
+            +"&id="
+            +"&iclien=0"
+            +"&filGene=0")
+      .then(response => response.json())
+      .catch(Error => console.log(Error))
+      .then(data => {
+  
+          var html_codeIten = "";
+          data.forEach(element => {
+              console.log(element);    
+              html_codeIten = html_codeIten + CardPedido(element.idpedido,element.NombreCiudad+"/"+element.nombreDistrito+"  "+element.FechaVenta,element.montoT,element.NombreDepart,element.NombreCiudad,element.nombreDistrito,element.direccion,element.estado);
+          });
+          $("#ContenedrPedidosItens").html(html_codeIten);
+  
+          /*insertar los productos*/
+          data.forEach(element => {
+            //console.log(element);
+            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=list"
+            +"&tip="+tip
+            +"&fil=0"
+            +"&id="+element.idpedido
+            +"&iclien=0"
+            +"&filGene=0")
+            .then(response => response.json())
+            .catch(Error => console.log(Error))
+            .then(data => {
+                var html_codeItenLis = "";
+                var codYabe = "#containerprodutIten"+element.idpedido;
+                data.forEach(Iten => {
+                  //console.log(element);    
+                  html_codeItenLis = html_codeItenLis + productCarri(Iten.photo,Iten.Nombre,Iten.canti,Iten.PrecioV);
+                });
+              $(codYabe).html(html_codeItenLis);
+            }).catch(Error => console.log(Error));    
+        });
+      }).catch(Error => console.log(Error));
+    }
+  
+  }

@@ -61,17 +61,16 @@ class PedidoDAO extends conexion  implements crud{
     }
 
     public function update($var) {
-        /*try {
+        try {
             $obj = Conexion::singleton();      
-            $data = $obj->prepare('CALL usp_ActualizarCiu(?,?,?)');
-            $data->bindParam(1, $var->getIdCiudad());
-            $data->bindParam(2, $var->getIdDeparmt());
-            $data->bindParam(3, $var->getNombreCiudad());
+            $data = $obj->prepare('CALL usp_ActualizarPedid(?,?)');
+            $data->bindParam(1, $var->getIdPedido());
+            $data->bindParam(2, $var->getEstado());
             $data->execute();
             return "Actualizado correcto";
         }catch (Exception $e) {
             throw $e->getMessage();
-        }*/
+        }
     }
 }
 

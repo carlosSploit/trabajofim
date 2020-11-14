@@ -25,12 +25,11 @@ if(isset($_GET['Action'])){
             break;
         
         case "Upd":
-                /*$id = $_GET['id'];
-                $idDep = $_GET['idDep'];
-                $nombre = $_GET['nom'];
-                $obj = new Ciudad($idDep,$nombre);
-                $obj->setIdCiudad($id);
-                echo update($obj);*/
+                $id = $_GET['id'];
+                $est = $_GET['est'];
+                $obj = new Pedido($id,"","","");
+                $obj->setEstado($est);
+                echo update($obj);
             break;
         case 'delet':
                 /*$id = $_GET['id'];
