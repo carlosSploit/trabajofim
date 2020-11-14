@@ -46,9 +46,9 @@ class PedidoDAO extends conexion  implements crud{
         try {
             $obj = Conexion::singleton();    
             $data = $obj->prepare('CALL usp_ListarPedid(?,?,?,?,?)');          
-            $data->bindParam(1, $var['tip']);   
-            $data->bindParam(2, $var['id']);   
-            $data->bindParam(3, $var['fil']);   
+            $data->bindParam(1, $var['tip']); 
+            $data->bindParam(2, $var['fil']);
+            $data->bindParam(3, $var['id']);   
             $data->bindParam(4, $var['iclien']);   
             $data->bindParam(5, $var['filGene']);   
             $data->execute();

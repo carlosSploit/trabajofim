@@ -25,7 +25,11 @@ function principal(){
           
           var objCarrit= new ApiCarritoCompra("","","");
           objCarrit.listarCarrito();
-
+          //LISTAR LOS PEDIDOS DEL USUARIO
+          let varOBJ = JSON.parse(localStorage.getItem("user"));
+          var objPedi = new ApiPedido("","","");
+          objPedi.ListarPedid("C",1,0,varOBJ.id,0);
+          
           $('#infoProducto').modal('show');
         }else{
           alert("Antes de ingresar un producto o ver tus productos insertado o tus perdidos, primero tienes que registarte---");
@@ -550,7 +554,7 @@ function CarritoCompra(){
 '               <div class="input-group-prepend">'+
 '                 <span class="input-group-text" id="basic-addon1">🌍</span>'+
 '               </div>'+
-'               <input type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'               <input id="Destinet" type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
 '             </div>'+
 '             <small id="text_mese" class="form-text text-muted">Escriba la direccion donde quiera recibir el paquete..</small>'+
 '           </div>'+
@@ -584,10 +588,27 @@ function CarritoCompra(){
 '     </div>'+
 '  </div>'+
 '  <div Class="row">'+
-'       <button type="button" class="btn btn-primary btn-block">Realizar pedido</button>'+
+'       <button onclick="RealPedid()" type="button" class="btn btn-primary btn-block">Realizar pedido</button>'+
 '  </div>'+
 '</div>';
 }
+
+function RealPedid() {
+    if(localStorage.getItem("user")){
+      let varOBJ = JSON.parse(localStorage.getItem("user"));
+      var objPedi = new ApiPedido(varOBJ.id,$('#GeneralListDis').val(),$('#Destinet').val());
+      objPedi.ADDPedido();
+      $('#Destinet').val("");
+
+      //Actualizar el carrito de compras
+      var objCarrit= new ApiCarritoCompra("","","");
+      objCarrit.listarCarrito();
+          
+      alert('Pedido Realizado correctamente');
+    }else{
+      alert('Antes de realizar un pedido, porfavor primero ingrese seccion');
+    }
+} 
 
 function ProducDepart(id,nombredep,tip) {
   return '<option value="'+id+'" '+tip+' >'+nombredep+'</option>';
@@ -643,7 +664,7 @@ function EliminarCarrit(id) {
 function PedidosCont(){
   return '<div'+
   'style="background:  #eceff1; width: 100%; height: 600px; display: grid;grid-template-columns:100% ;grid-row: 5; ;grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
-  '<div class="accordion" id="ContenedrPedidos">'+
+  '<div class="accordion" id="ContenedrPedidosItens">'+
       CardPedidoMY()+
       CardPedidoMY()+
       CardPedidoMY()+
@@ -652,32 +673,32 @@ function PedidosCont(){
 '</div>';
 }
 
-function CardPedidoMY() {
+function CardPedidoMY(id,nombre,montoT,depart,city,dis,direc,estd) {
   return '<!-- car del pedido a mostrar--->'+
   '<div class="card my-1">'+
       '<div class="card-header" id="headingOne">'+
           '<h2 class="mb-0">'+
               '<button class="btn btn-link btn-block text-left" type="button"'+
-                  'data-toggle="collapse" data-target="#collapseOne6" aria-expanded="true"'+
-                  'aria-controls="collapseOne6">'+
+                  'data-toggle="collapse" data-target="#collapseOne'+id+'" aria-expanded="true"'+
+                  'aria-controls="collapseOne'+id+'">'+
                   '<div class="row">'+
                       '<div class="col-3">'+
                       '    4567856'+
                       '</div>'+
                       '<div class="col-6">'+
-                      '    Jose maria hernandez'+
+                      nombre+
                       '</div>'+
                       '<div class="col-3">'+
-                      '    S/.4500'+
+                      '    S/.'+montoT+''+
                       '</div>'+
                   '</div>'+
               '</button>'+
           '</h2>'+
       '</div>'+
-      '<div id="collapseOne6" class="collapse show" aria-labelledby="headingOne"'+
+      '<div id="collapseOne'+id+'" class="collapse show" aria-labelledby="headingOne"'+
           'data-parent="#accordionExample">'+
           '<div class="card-body" id="secudContendP">'+
-          CarritoCompraMY()+
+          CarritoCompraMY(id,montoT,depart,city,dis,direc,estd)+
           '</div>'+
       '</div>'+
   '</div>'+
@@ -686,7 +707,7 @@ function CardPedidoMY() {
 
 /* codigo directamente extraido de store el cual 
 da la informacion del pedido*/
-function CarritoCompraMY(){
+function CarritoCompraMY(id,montoT,depart,city,dis,direc,estd){
   return '<div class="container">'+
 '  <div class="row">'+
 '     <div class="col">'+
@@ -700,16 +721,12 @@ function CarritoCompraMY(){
 '               <div class="input-group-prepend">'+
 '                 <span class="input-group-text" id="basic-addon1">S/.</span>'+
 '               </div>'+
-'               <input type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'               <input value="'+montoT+'" type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">'+
 '             </div>'+
 '           </div>'+
 '         </div>'+
 '       </div>'+
-'       <div style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
-            productCarriMY()+
-            productCarriMY()+
-            productCarriMY()+
-            productCarriMY()+
+'       <div id="containerprodutIten'+id+'" style="background:  #eceff1; width: 100%; height: 250px; display: grid;grid-template-columns:100% ; grid-row-gap: 1px; overflow:scroll;overflow-x: hidden;">'+
 '       </div>'+
 '     </div>'+
 '  </div>'+
@@ -717,30 +734,17 @@ function CarritoCompraMY(){
 '     <div class="col">'+
 '       <div class="row my-1">'+
 '           <select disabled class="custom-select" id="inputGroupSelect01">'+
-'            <option selected>Departamento</option>'+
-              ProducDepartMY()+
-              ProducDepartMY()+
-              ProducDepartMY()+
-              ProducDepartMY()+
+'            <option selected>'+depart+'</option>'+
 '           </select>'+
 '       </div>'+
 '       <div class="row my-1">'+
 '           <select disabled class="custom-select" id="inputGroupSelect01">'+
-'             <option selected>Ciudad</option>'+
-                ProducCitMY()+
-                ProducCitMY()+
-                ProducCitMY()+
-                ProducCitMY()+
+'             <option selected>'+city+'</option>'+
 '           </select>'+
 '       </div>'+
 '       <div class="row my-1">'+
 '           <select disabled class="custom-select" id="inputGroupSelect01">'+
-'             <option selected>Distrito</option>'+
-                ProducDist()+
-                ProducDist()+
-                ProducDist()+
-                ProducDist()+
-                ProducDist()+
+'             <option selected>'+dis+'</option>'+
 '           </select>'+
 '       </div>'+
 '       <div class="row my-1">'+
@@ -749,7 +753,7 @@ function CarritoCompraMY(){
 '               <div class="input-group-prepend">'+
 '                 <span class="input-group-text" id="basic-addon1">🌍</span>'+
 '               </div>'+
-'               <input disabled type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'               <input value="'+direc+'" disabled type="text" class="form-control" placeholder="Direccion" aria-label="Direccion" aria-describedby="basic-addon1">'+
 '             </div>'+
 '           </div>'+
 '       </div>'+
@@ -757,16 +761,14 @@ function CarritoCompraMY(){
 '              <div class="col">'+
 '                  <div class="conteSetP">'+
 '                      <ul id="stp-dsjdhj" value="0" class="Setprogressbar padre">'+
-'                          <li value="1" class="li-iten-sep hijo">Pedido Recivido</li>'+
-'                          <li value="2" class="li-iten-sep hijo">Enviado</li>'+
-'                          <li value="3" class="li-iten-sep hijo">Paquete entregado</li>'+
+                          '<li value="1" class="li-iten-sep hijo '+((estd>0)?'active':'')+'">Pedido Recivido</li>'+
+                          '<li value="2" class="li-iten-sep hijo '+((estd>1)?'active':'')+'">Enviado</li>'+
+                          '<li value="3" class="li-iten-sep hijo '+((estd>2)?'active':'')+'">Paquete entregado</li>'+
 '                      </ul>'+
 '                  </div>'+
 '              </div>'+
 '          </div>'+
 '       <div class="row my-1">'+
-'             <button type="button" id="NewProdut" class="btn btn-success btn-block">Actualizar'+
-'             Estado</button>'+
 '       </div>'+
 '     </div>'+
 '     <div class="row my-1">'+
@@ -790,7 +792,7 @@ function ProducDistMY() {
   return '<option value="1">Piura</option>';  
 }
 
-function productCarriMY(){
+function productCarriMY(photo,nombre,canti,monto){
   return '<!--        Card de producto insertado         -->'+
   '         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
   '           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
@@ -801,13 +803,13 @@ function productCarriMY(){
   '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
   '            </div> '+
   '            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-  '               Maquintosh de 3gb de ram con 2 procesaroderes'+
+                    nombre+
   '            </div>'+
   '            <div class = "col-2 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
-  '               40 Un'+
+  '               '+canti+' Un'+
   '            </div>'+
   '            <div class = "col-3 bg-light"  style="border-top-right-radius: 10px ;border-bottom-right-radius: 10px ;height: 70px; display: flex; justify-items: center;align-items: center;">'+
-  '               S/.4500'+
+  '               S/.'+monto+''+
   '            </div>'+
   '           </div>'+
   '       </div>';
@@ -1257,6 +1259,68 @@ class ApiCategorica{
       if(cod == 10){return "🎸";}
       if(cod == 11){return "♟";}
   }
+}
+
+class ApiPedido{
+
+  constructor(idClient,idDist,Direccio){
+    this.idClient = idClient;
+    this.idDist = idDist;
+    this.Direccio = Direccio;
+  }
+
+  async ADDPedido(){
+    console.log("Insertadaso pes tilin como tiene que cher");
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=inse"
+    +"&idCli="+this.idClient
+    +"&idDis="+this.idDist
+    +"&direccion="+this.Direccio)
+    .then(response => response.json())
+    .then(data => console.log(JSON.parse(data)));
+  }
+
+  async ListarPedid(tip,fil,id,idcli,filgeneral){ 
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=list"
+          +"&tip="+tip
+          +"&fil="+fil
+          +"&id="+id
+          +"&iclien="+idcli
+          +"&filGene="+filgeneral)
+    .then(response => response.json())
+    .catch(Error => console.log(Error))
+    .then(data => {
+
+        var html_codeIten = "";
+        data.forEach(element => {
+            //console.log(element);    
+            html_codeIten = html_codeIten + CardPedidoMY(element.idpedido,element.NombreCiudad+"/"+element.nombreDistrito+"  "+element.FechaVenta,element.montoT,element.NombreDepart,element.NombreCiudad,element.nombreDistrito,element.direccion,element.estado);
+        });
+        $("#ContenedrPedidosItens").html(html_codeIten);
+
+        /*insertar los productos*/
+        data.forEach(element => {
+          //console.log(element);
+          fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=list"
+          +"&tip="+tip
+          +"&fil=0"
+          +"&id="+element.idpedido
+          +"&iclien="+idcli
+          +"&filGene=0")
+          .then(response => response.json())
+          .catch(Error => console.log(Error))
+          .then(data => {
+              var html_codeItenLis = "";
+              var codYabe = "#containerprodutIten"+ element.idpedido;
+              data.forEach(Iten => {
+                //console.log(element);    
+                html_codeItenLis = html_codeItenLis + productCarriMY(Iten.photo,Iten.Nombre,Iten.canti,Iten.PrecioV);
+              });
+            $(codYabe).html(html_codeItenLis);
+          }).catch(Error => console.log(Error));    
+      });
+    }).catch(Error => console.log(Error));
+  }
+
 }
 
 
