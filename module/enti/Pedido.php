@@ -1,34 +1,19 @@
 <?php
 
-//---- api producto--------
-
-switch (isset($_POST['action'])) {
-    
-    case "insert" : 
-        break;
-    
-    case "eliminar" : 
-        break;
-    case "listar" : 
-        break;
-    case "update" : 
-        break;
-    default:
-        break;
-}
 //-------------------------------
-class Pedido  implements crud{
+class Pedido {
     var $idPedido = 0;
     var $Dist = "";
     var $Direccion = "";
+    var $idVentas = "";
     
     //----------- COSTRUCTOR -------------
-    function __construct($NombreDepart,$NombreCiudad,$NombreDistrito,$Direccion,$idPedido) {
+    function __construct($idPedido, $Dist, $Direccion, $idVentas) {
         $this->setIdPedido($idPedido);
+        $this->setDist($Dist);
         $this->setDireccion($Direccion);
-        $this->Dist  = new Distrito($NombreDepart,$NombreCiudad,$NombreDistrito);
+        $this->setIdVentas($idVentas);
     }
-    
     //--------- GETTER Y SETTER ------------------
     
     function getDireccion() {
@@ -46,26 +31,23 @@ class Pedido  implements crud{
     function setIdPedido($idPedido) {
         $this->idPedido = $idPedido;
     }
-
     
-    //------------ METODOS ---------------
-    public function eliminar($var) {
-        $this->Dist->eliminar($this->Dist);
-        //eliminar en cliente 
+    function getDist() {
+        return $this->Dist;
     }
 
-    public function insertar($var) {
-        $this->Dist->insertar($this->Dist);
-        //insertar en cliente 
+    function getIdVentas() {
+        return $this->idVentas;
     }
 
-    public function listar($var) {
-        
+    function setDist($Dist) {
+        $this->Dist = $Dist;
     }
 
-    public function update($var) {
-        $this->Dist->update($this->Dist);
-        //eliminar en cliente 
+    function setIdVentas($idVentas) {
+        $this->idVentas = $idVentas;
     }
+
+
 }
 
