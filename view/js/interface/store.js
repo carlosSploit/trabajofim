@@ -683,10 +683,10 @@ function CardPedidoMY(id,nombre,montoT,depart,city,dis,direc,estd) {
                   'aria-controls="collapseOne'+id+'">'+
                   '<div class="row">'+
                       '<div class="col-3">'+
-                      '    4567856'+
+                          id +
                       '</div>'+
                       '<div class="col-6">'+
-                      nombre+
+                          nombre+
                       '</div>'+
                       '<div class="col-3">'+
                       '    S/.'+montoT+''+
