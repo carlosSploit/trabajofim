@@ -24,6 +24,24 @@ if(isset($_GET['ob'])){
 //        break;
 //    case "Vet": //Ventas
 //        break;
+        case "Analic":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Analic&A=list
+                 * &id=(mac de la cuenta)*/
+                case "list": //se realizara la accion de list
+                    header("Location: ../controler/Analitic.php?Action=list&id=".$_GET['id']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
         case "pedid":
         if(isset($_GET['A'])){
             $actioOBJ = $_GET['A'];

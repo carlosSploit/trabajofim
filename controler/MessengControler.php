@@ -29,7 +29,7 @@ $mailC->addReplyTo($mail,$name);
 $mailC->isHTML(true);
 $mailC->Subject='Enviado por:'.$name;
 //$mailC->Body = 'nombre: '.$name.'<br/> Messege: '.$message;
-$mailC->Body = mmessengClientCustion($name,$message);
+$mailC->Body = pedidoVendt();
 if(!$mailC->send()){
   echo 'No te puedes comer un buen culo'.$name;  
 }else{
@@ -73,67 +73,6 @@ function pedidoVendt(){
 			text-decoration: none !important;
 		}
                 
-                .conteSetP {
-                    width: 100%;
-                    margin-top: -10px;
-                    margin-bottom: 10px;
-                  }
-
-                  .conteSetP .Setprogressbar {
-                    counter-reset: step;
-                  }
-
-                  .conteSetP .Setprogressbar .li-iten-sep {
-                    list-style-type: none;
-                    float: left;
-                    width: 33.33%;
-                    position: relative;
-                    text-align: center;
-                  }
-
-                  .conteSetP .Setprogressbar .li-iten-sep:before {
-                    content: counter(step);
-                    counter-increment: step;
-                    position: relative;
-                    width: 30px;
-                    height: 30px;
-                    line-height: 30px;
-                    border: 1px solid #ddd;
-                    display: block;
-                    text-align: center;
-                    margin: 0 auto 10px auto;
-                    border-radius: 50%;
-                    background-color: white;
-                    z-index: 2;
-                  }
-
-                  .conteSetP .Setprogressbar .li-iten-sep:after {
-                    content: "";
-                    position: absolute;
-                    width: 100%;
-                    height: 3px;
-                    line-height: 30px;
-                    background-color: #ddd;
-                    top: 15px;
-                    left: -50%;
-                    z-index: 1;
-                  }
-
-                  .conteSetP .Setprogressbar .li-iten-sep:first-child:after {
-                    content: none;
-                  }
-
-                  .conteSetP .Setprogressbar .li-iten-sep.active {
-                    color: green;
-                  }
-
-                  .conteSetP .Setprogressbar .li-iten-sep.active:before {
-                    border-color: green;
-                  }
-
-                  .conteSetP .Setprogressbar .li-iten-sep.active + .li-iten-sep:after {
-                    background-color: green;
-                  }
 	</style>
 	<style type="text/css" id="media-query">
 		@media (max-width: 520px) {
@@ -494,7 +433,7 @@ function pedidoVendt(){
 											<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
 											<div style="color:#393d47;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
 												<div style="line-height: 1.2; font-size: 12px; color: #393d47; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 14px;">
-													<p style="line-height: 1.2; word-break: break-word; mso-line-height-alt: 14px; margin: 0;">Precio total de productos:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;$4546546</p>
+													<p style="line-height: 1.2; word-break: break-word; mso-line-height-alt: 14px; margin: 0;">Precio total de productos:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $4546546</p>
 												</div>
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->
@@ -521,15 +460,83 @@ function pedidoVendt(){
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->
 											<div style="font-size:16px;text-align:center;font-family:Arial, Helvetica Neue, Helvetica, sans-serif">
-												<style>
-												</style>
-												<div class="our-class">
-													<ul id="stp-dsjdhj" class="Setprogressbar padre">
-														<li class="li-iten-sep hijo">Pedido Recivido</li>
-														<li class="li-iten-sep hijo">Enviado</li>
-														<li class="li-iten-sep hijo">Paquete entregado</li>
-													</ul>
-												</div>
+												<div style="background-color:transparent;">
+                                                                                                    <div class="block-grid three-up" style="min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: transparent;">
+                                                                                                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
+                                                                                                                    <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
+                                                                                                                    <!--[if (mso)|(IE)]><td align="center" width="166" style="background-color:transparent;width:166px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
+                                                                                                                    <div class="col num4" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 164px; width: 166px;">
+                                                                                                                            <div class="col_cont" style="width:100% !important;">
+                                                                                                                                    <!--[if (!mso)&(!IE)]><!-->
+                                                                                                                                    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
+                                                                                                                                            <!--<![endif]-->
+                                                                                                                                            <div class="img-container center autowidth" align="center" style="padding-right: 0px;padding-left: 0px;">
+                                                                                                                                                    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img class="center autowidth" align="center" border="0" src="https://d2fi4ri5dhpqd1.cloudfront.net/public/resources/defaultrows/1.png" alt="Im an image" title="Im an image" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 125px; display: block;" width="125">
+                                                                                                                                                    <!--[if mso]></td></tr></table><![endif]-->
+                                                                                                                                            </div>
+                                                                                                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
+                                                                                                                                            <div style="color:#555555;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
+                                                                                                                                                    <div style="line-height: 1.2; font-size: 12px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; color: #555555; mso-line-height-alt: 14px;">
+                                                                                                                                                            <p style="font-size: 14px; line-height: 1.2; text-align: center; word-break: break-word; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 17px; margin: 0;"><em><strong>Pedido Recibido</strong></em></p>
+                                                                                                                                                    </div>
+                                                                                                                                            </div>
+                                                                                                                                            <!--[if mso]></td></tr></table><![endif]-->
+                                                                                                                                            <!--[if (!mso)&(!IE)]><!-->
+                                                                                                                                    </div>
+                                                                                                                                    <!--<![endif]-->
+                                                                                                                            </div>
+                                                                                                                    </div>
+                                                                                                                    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+                                                                                                                    <!--[if (mso)|(IE)]></td><td align="center" width="166" style="background-color:transparent;width:166px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
+                                                                                                                    <div class="col num4" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 164px; width: 166px;">
+                                                                                                                            <div class="col_cont" style="width:100% !important;">
+                                                                                                                                    <!--[if (!mso)&(!IE)]><!-->
+                                                                                                                                    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
+                                                                                                                                            <!--<![endif]-->
+                                                                                                                                            <div class="img-container center autowidth" align="center" style="padding-right: 0px;padding-left: 0px;">
+                                                                                                                                                    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img class="center autowidth" align="center" border="0" src="https://d2fi4ri5dhpqd1.cloudfront.net/public/resources/defaultrows/5.png" alt="Im an image" title="Im an image" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 125px; display: block;" width="125">
+                                                                                                                                                    <!--[if mso]></td></tr></table><![endif]-->
+                                                                                                                                            </div>
+                                                                                                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
+                                                                                                                                            <div style="color:#555555;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
+                                                                                                                                                    <div style="line-height: 1.2; font-size: 12px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; color: #555555; mso-line-height-alt: 14px;">
+                                                                                                                                                            <p style="font-size: 14px; line-height: 1.2; text-align: center; word-break: break-word; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 17px; margin: 0;"><em><strong>Enviado</strong></em></p>
+                                                                                                                                                    </div>
+                                                                                                                                            </div>
+                                                                                                                                            <!--[if mso]></td></tr></table><![endif]-->
+                                                                                                                                            <!--[if (!mso)&(!IE)]><!-->
+                                                                                                                                    </div>
+                                                                                                                                    <!--<![endif]-->
+                                                                                                                            </div>
+                                                                                                                    </div>
+                                                                                                                    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+                                                                                                                    <!--[if (mso)|(IE)]></td><td align="center" width="166" style="background-color:transparent;width:166px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
+                                                                                                                    <div class="col num4" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 164px; width: 166px;">
+                                                                                                                            <div class="col_cont" style="width:100% !important;">
+                                                                                                                                    <!--[if (!mso)&(!IE)]><!-->
+                                                                                                                                    <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
+                                                                                                                                            <!--<![endif]-->
+                                                                                                                                            <div class="img-container center autowidth" align="center" style="padding-right: 0px;padding-left: 0px;">
+                                                                                                                                                    <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="center"><![endif]--><img class="center autowidth" align="center" border="0" src="https://d2fi4ri5dhpqd1.cloudfront.net/public/resources/defaultrows/3.png" alt="Im an image" title="Im an image" style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 125px; display: block;" width="125">
+                                                                                                                                                    <!--[if mso]></td></tr></table><![endif]-->
+                                                                                                                                            </div>
+                                                                                                                                            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
+                                                                                                                                            <div style="color:#555555;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
+                                                                                                                                                    <div style="line-height: 1.2; font-size: 12px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; color: #555555; mso-line-height-alt: 14px;">
+                                                                                                                                                            <p style="font-size: 14px; line-height: 1.2; text-align: center; word-break: break-word; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 17px; margin: 0;"><em><strong>Paquete&nbsp;entregado</strong></em></p>
+                                                                                                                                                    </div>
+                                                                                                                                            </div>
+                                                                                                                                            <!--[if mso]></td></tr></table><![endif]-->
+                                                                                                                                            <!--[if (!mso)&(!IE)]><!-->
+                                                                                                                                    </div>
+                                                                                                                                    <!--<![endif]-->
+                                                                                                                            </div>
+                                                                                                                    </div>
+                                                                                                                    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+                                                                                                                    <!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
+                                                                                                            </div>
+                                                                                                    </div>
+                                                                                            </div>
 											</div>
 											<!--[if (!mso)&(!IE)]><!-->
 										</div>
