@@ -506,7 +506,7 @@ function CarritoCompra(){
 '               <div class="input-group-prepend">'+
 '                 <span class="input-group-text" id="basic-addon1">S/.</span>'+
 '               </div>'+
-'               <input type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">'+
+'               <input id="MontoTot" type="text" disabled class="form-control" placeholder="00.0" aria-label="Direccion" aria-describedby="basic-addon1">'+
 '             </div>'+
 '           </div>'+
 '         </div>'+
@@ -1073,9 +1073,13 @@ async listarCarrito(){
     .then(response => response.json())
     .then(data => {
       var conten_Items = "";
+      var monto=0;
       data.forEach(element => {
           conten_Items += productCarri(element.idproducto,element.Nombre,element.PrecioV,element.cantidad); 
-      });
+          monto+= (element.PrecioV*element.cantidad);
+        });
+      console.log(monto);
+      $('#MontoTot').val(monto);
       //  listar los departamentos dentro del carrito
       var objdep = new ApiDepartCar("","");
       objdep.List();
