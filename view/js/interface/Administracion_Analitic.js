@@ -43,8 +43,6 @@
             }
         });
 
-        
-
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Analic&A=list"
             +"&id=2")
             .then(response => response.json())
