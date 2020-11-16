@@ -33,7 +33,7 @@ $mailC->Subject='Enviado por:'.$name;
 //$mailC->Body = 'nombre: '.$name.'<br/> Messege: '.$message;
 switch ($tipm) {
     case 1:$mailC->Body = mmessengClientCustion($name, $messeng);break;
-    case 2:$mailC->Body = messengCodigoValides($codigo);break;
+    case 2:$mailC->Body = messengCodigoValides($name, $message);break;
     case 3:$mailC->Body = pedidoVendt();break;
     default:
         break;
@@ -833,7 +833,7 @@ function mmessengClientCustion($nombre,$messeng){
 </html>';
 }
 
-function messengCodigoValides($codigo){
+function messengCodigoValides($name,$codigo){
     return '
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -1029,7 +1029,7 @@ function messengCodigoValides($codigo){
 											<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
 											<div style="color:#555555;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
 												<div style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 14px;">
-													<p style="line-height: 1.2; word-break: break-word; font-size: 14px; mso-line-height-alt: 17px; margin: 0;"><span style="font-size: 14px;">Gracias por haberte inscrito a nuestra tienda virtual. Esta es una plataforma que te permitirá poder comprar cualquier cosa que se te pueda ocurrir, por el cual presenta muchas categorías, y seguridad en tu compra a un 100%. </span></p>
+													<p style="line-height: 1.2; word-break: break-word; font-size: 14px; mso-line-height-alt: 17px; margin: 0;"><span style="font-size: 14px;">Gracias por haberte inscrito a nuestra tienda virtual '.$name.'. Esta es una plataforma que te permitirá poder comprar cualquier cosa que se te pueda ocurrir, por el cual presenta muchas categorías, y seguridad en tu compra a un 100%. </span></p>
 													<p style="line-height: 1.2; word-break: break-word; mso-line-height-alt: 14px; margin: 0;">&nbsp;</p>
 													<p style="line-height: 1.2; word-break: break-word; font-size: 14px; mso-line-height-alt: 17px; margin: 0;"><span style="font-size: 14px;">Para seguir con la experiencia de nuestra plataforma por favor ingrese el siguiente codigo de autentificacion.&nbsp;</span></p>
 												</div>

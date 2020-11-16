@@ -5,8 +5,10 @@ $(document).ready(principal);
 function principal(){
     
     $("#RegUser").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+        /*Envia mensajes de token validando si es su cuenta o no, o si la cuenta es valida....*/
         var objMesg = new ApiMessege($('#RegNom').val(),$('#RegEmai').val(),'');
         objMesg.sedMessege();
+        
         $('#ModalAler').modal('show');
         $('#ValidCod').click(function (event){
             if(Token == $('#RegCod').val()){
@@ -52,7 +54,7 @@ class ApiMessege{
         +"&tipm=2"
         +"&name="+ this.nombre
         +"&mail="+ this.email
-        +"&message="+ this.messenge + Token
+        +"&message="+ Token
         +"&mailD=1")
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
@@ -89,8 +91,9 @@ class ApiCliente{
         +"&pass=" + this.pass)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        this.ListAdmin();
-        this.ListAdmin();
+        //this.ListAdmin();
+        //this.ListAdmin();
+        setTimeout ("redireccionar()", 2000); //tiempo expresado en milisegundos
     }
 
     getRandomArbitrary(min, max) {
@@ -99,29 +102,29 @@ class ApiCliente{
 
     async ListAdmin(){
         if(this.id == -1){ //prestamos la variable id para poder realizar el listado
-            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list"
-                +"&tip=1"
-                +"&uss=sdfsdfds"
-                +"&pas=dsfsdf")
-            .then(response => response.json())
-            .catch(Error => console.log(Error))
-            .then(data => {
-                var html_codeIten = "";
-                data.forEach(element => {
-                    html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
-                });
-                $('#ContenerAdmin').html(html_codeIten);
-            }).catch(Error => console.log(Error));
+        //    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list"
+        //        +"&tip=1"
+        //        +"&uss=sdfsdfds"
+        //        +"&pas=dsfsdf")
+        //    .then(response => response.json())
+        //    .catch(Error => console.log(Error))
+        //    .then(data => {
+        //        var html_codeIten = "";
+        //        data.forEach(element => {
+        //            html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
+        //        });
+        //        $('#ContenerAdmin').html(html_codeIten);
+        //    }).catch(Error => console.log(Error));
         }
     }
 
 
     async delect(){
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=delet&id="+this.id)
-        .then(response => response.json())
-        .then(data => console.log(JSON.parse(data)));
-        this.ListAdmin();
-        this.ListAdmin();
+        //fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=delet&id="+this.id)
+        //.then(response => response.json())
+        //.then(data => console.log(JSON.parse(data)));
+        //this.ListAdmin();
+        //this.ListAdmin();
     }
 
     async Update(){
@@ -149,3 +152,7 @@ class ApiCliente{
         this.ListAdmin();
     }
 }
+
+function redireccionar(){
+    window.location.href = "../view/login.html";
+} 
