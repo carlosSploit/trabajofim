@@ -5,14 +5,16 @@
 
 require ('./phpMyheler/PHPMailerAutoload.php');
 
+$tipm = $_GET['tipm']; //tipo de mensaje de usuario 1 - 2 - 3
 $name = $_GET['name']; //nombre del usuario
 $mail = $_GET['mail']; //correo del usuario
-$mailD = $_GET['mailD']; //correo del usuario
+$mailD = $_GET['mailD']; //tipo de corro usuario 1 - 0
 $message = $_GET['message'];//mensaje que se desea enviar al usuario
 
 SWITCH($mailD){
-    case 1: $mailD="arturo14212000@gmail.com"; break;
-    case 2: $mailD=$mail; break;
+    case 1: $mail="arturo14212000@gmail.com"; break;
+    //case 2: $mailD=$mail; break;
+    case 2: $mail="arturo14212000@gmail.com"; break;
 }
 
 $mailC = new PHPMailer();
@@ -24,12 +26,18 @@ $mailC->SMTPSecure = 'tls';
 $mailC->Username = 'arturo14212000@gmail.com';
 $mailC->Password = '@123456789987654321';
 $mailC->setFrom($mail, $name);
-$mailC->addAddress($mailD);
+$mailC->addAddress($mail);
 $mailC->addReplyTo($mail,$name);
 $mailC->isHTML(true);
 $mailC->Subject='Enviado por:'.$name;
 //$mailC->Body = 'nombre: '.$name.'<br/> Messege: '.$message;
-$mailC->Body = pedidoVendt();
+switch ($tipm) {
+    case 1:$mailC->Body = mmessengClientCustion($name, $messeng);break;
+    case 2:$mailC->Body = messengCodigoValides($codigo);break;
+    case 3:$mailC->Body = pedidoVendt();break;
+    default:
+        break;
+}
 if(!$mailC->send()){
   echo 'No te puedes comer un buen culo'.$name;  
 }else{

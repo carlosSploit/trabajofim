@@ -5,7 +5,7 @@ $(document).ready(principal);
 function principal(){
     
     $("#RegUser").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
-        var objMesg = new ApiMessege($('#RegNom').val(),$('#RegEmai').val(),'El codigo es : ');
+        var objMesg = new ApiMessege($('#RegNom').val(),$('#RegEmai').val(),'');
         objMesg.sedMessege();
         $('#ModalAler').modal('show');
         $('#ValidCod').click(function (event){
@@ -49,10 +49,11 @@ class ApiMessege{
     async sedMessege(){
         Token = this.getRandomArbitrary(1,999999);
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Mesg&A=inse"
+        +"&tipm=2"
         +"&name="+ this.nombre
         +"&mail="+ this.email
         +"&message="+ this.messenge + Token
-        +"&mailD=2")
+        +"&mailD=1")
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
     }
