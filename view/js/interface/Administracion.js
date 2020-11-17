@@ -2765,8 +2765,7 @@ class ApiPedidoA{
       .then(data => {
   
           var html_codeIten = "";
-          data.forEach(element => {
-              console.log(element);    
+          data.forEach(element => { 
               html_codeIten = html_codeIten + CardPedido(element.idpedido,element.NombreCiudad+"/"+element.nombreDistrito+"  "+element.FechaVenta,element.montoT,element.NombreDepart,element.NombreCiudad,element.nombreDistrito,element.direccion,element.estado);
           });
           $("#ContenedrPedidosItens").html(html_codeIten);
