@@ -1896,6 +1896,7 @@ function CardPedido(id,nombre,montoT,depart,city,dis,direc,estd) {
 /* codigo directamente extraido de store el cual 
 da la informacion del pedido*/
 function CarritoCompra(id,montoT,depart,city,dis,direc,estd) {
+    console.log(estd);
     return '<div class="container">' +
         '  <div class="row">' +
         '     <div class="col">' +

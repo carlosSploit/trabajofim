@@ -135,7 +135,7 @@ if(isset($_GET['ob'])){
             }
         }
         break;
-        /*--------------------------      Adminstraciom      -------------------------------*/
+        /*--------------------------      Carrito de compra      -------------------------------*/
         case "carritC":
         if(isset($_GET['A'])){
             $actioOBJ = $_GET['A'];
