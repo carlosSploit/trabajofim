@@ -32,7 +32,7 @@ $mailC->isHTML(true);
 $mailC->Subject='Enviado por:'.$name;
 //$mailC->Body = 'nombre: '.$name.'<br/> Messege: '.$message;
 switch ($tipm) {
-    case 1:$mailC->Body = mmessengClientCustion($name, $messeng);break;
+    case 1:$mailC->Body = mmessengClientCustion($name, $message);break;
     case 2:$mailC->Body = messengCodigoValides($name, $message);break;
     case 3:$mailC->Body = pedidoVendt();break;
     default:

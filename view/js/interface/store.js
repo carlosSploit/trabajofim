@@ -1091,6 +1091,7 @@ async listarCarrito(){
       });
 
       $('#GeneralListCit').change(function(event){
+        console.log($('#GeneralListCit').val());
         var objCit = new ApiDistritoCar("",$('#GeneralListCit').val(),"");
         objCit.List();
       });
@@ -1197,10 +1198,13 @@ class ApiDistritoCar{
   async List(){
     fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=list&idCI="+this.idCiudad)
     .then(response => response.json())
-    .catch(Error => console.log("json ERROR"))
+    .catch(Error => console.log(Error))
     .then(data => {
         var html_codeIten = "";
+        console.log(this.idCiudad);
+        console.log(data);
         data.forEach(element => {
+            console.log (element);
             html_codeIten = html_codeIten + ProducDist(element.idDistrito,element.nombreDistrito) ;
         });
         $('#GeneralListDis').html(html_codeIten);

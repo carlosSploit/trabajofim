@@ -40,6 +40,7 @@ class ApiMessege{
 
     async sedMessege(){
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Mesg&A=inse"
+        +"&tipm=1"
         +"&name="+ this.nombre
         +"&mail="+ this.email
         +"&message="+ this.messenge

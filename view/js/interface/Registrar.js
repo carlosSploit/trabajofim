@@ -6,29 +6,55 @@ function principal(){
     
     $("#RegUser").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         /*Envia mensajes de token validando si es su cuenta o no, o si la cuenta es valida....*/
-        var objMesg = new ApiMessege($('#RegNom').val(),$('#RegEmai').val(),'');
-        objMesg.sedMessege();
+        /*validaciones para saber si un cliente ya esta susbscrito*/
+        if(($('#RegNom').val()!="")&&($('#RegEmai').val()!="")){
+
+            /*En caso que aya susedido un error se suspende el mensaje de error*/
+            $('#RegNom').attr("class","form-control my-1 p-3");
+            $('#RegEmai').attr("class","form-control my-1 p-3");
+
+            /*validad si la cuenta ya existe o no en caso que se requiera*/
+            var objAd = new ApiCliente("","","",$('#RegEmai').val(),"",'56565+655+565',"");
+            objAd.ListAdmin(); /*extraera un dat0o en el localstore llamado valid para saber si existe*/
+
+            if(!localStorage.getItem("valid")){
+                localStorage.removeItem("valid"); // para otras inserciones en una misma pc se evita los errores eliminando el iten en caso exista
+                var objMesg = new ApiMessege($('#RegNom').val(),$('#RegEmai').val(),'');
+                objMesg.sedMessege();
+                
+                $('#ModalAler').modal('show');
+                $('#ValidCod').click(function (event){
+                    if(Token == $('#RegCod').val()){
         
-        $('#ModalAler').modal('show');
-        $('#ValidCod').click(function (event){
-            if(Token == $('#RegCod').val()){
-
-                //ingresa los datos del cliente
-                var objAd = new ApiCliente("","",$('#RegNom').val(),$('#RegEmai').val(),$('#RegCell').val(),'56565+655+565',$('#RegPass').val());
-                objAd.addAdmin();
-                $('#RegNom').val("");
-                $('#RegEmai').val("");
-                $('#RegCell').val("");
-                $('#RegPass').val("");
-
-                $('#ModalAler').modal('hide');
+                        //ingresa los datos del cliente
+                        var objAd = new ApiCliente("","",$('#RegNom').val(),$('#RegEmai').val(),$('#RegCell').val(),'56565+655+565',$('#RegPass').val());
+                        objAd.addAdmin();
+                        $('#RegNom').val("");
+                        $('#RegEmai').val("");
+                        $('#RegCell').val("");
+                        $('#RegPass').val("");
+        
+                        $('#ModalAler').modal('hide');
+                    }else{
+                        $('#RegCod').popover('enable');
+                        $('#RegCod').popover('show');
+                    }
+                });
+                $('#RegCod').focus(Apagar);
             }else{
-                $('#RegCod').popover('enable');
-                $('#RegCod').popover('show');
+                $('#RegEmai').attr("class","form-control my-1 p-3 is-invalid");
+                localStorage.removeItem("valid"); // para otras inserciones en una misma pc se evita los errores eliminando el iten en caso exista
             }
-        });
+        }else{
+            /*validaciones por casillas.......*/
+            if($('#RegNom').val()==""){
+                $('#RegNom').attr("class","form-control my-1 p-3 is-invalid");
+            }
 
-        $('#RegCod').focus(Apagar)
+            if($('#RegEmai').val()==""){
+                $('#RegEmai').attr("class","form-control my-1 p-3 is-invalid");
+            }
+        }
         
     });
 
@@ -80,8 +106,7 @@ class ApiCliente{
     }
 
     async addAdmin(){
-        console.log(this.getRandomArbitrary(1,999999)-this.nombre);
-        console.log(this.dni+" "+this.nombre);
+
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=inse"
         +"&dni="+ this.getRandomArbitrary(1,999999)
         +"&nom="+ this.nombre
@@ -91,40 +116,27 @@ class ApiCliente{
         +"&pass=" + this.pass)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        //this.ListAdmin();
-        //this.ListAdmin();
         setTimeout ("redireccionar()", 2000); //tiempo expresado en milisegundos
     }
 
     getRandomArbitrary(min, max) {
         return Math.random() * (max - min) + min;
     }
-
-    async ListAdmin(){
-        if(this.id == -1){ //prestamos la variable id para poder realizar el listado
-        //    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list"
-        //        +"&tip=1"
-        //        +"&uss=sdfsdfds"
-        //        +"&pas=dsfsdf")
-        //    .then(response => response.json())
-        //    .catch(Error => console.log(Error))
-        //    .then(data => {
-        //        var html_codeIten = "";
-        //        data.forEach(element => {
-        //            html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
-        //        });
-        //        $('#ContenerAdmin').html(html_codeIten);
-        //    }).catch(Error => console.log(Error));
-        }
-    }
-
-
-    async delect(){
-        //fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=delet&id="+this.id)
-        //.then(response => response.json())
-        //.then(data => console.log(JSON.parse(data)));
-        //this.ListAdmin();
-        //this.ListAdmin();
+    /* validar los correos en caso que esta registrado */
+    async ListAdmin(){ // comprueva el login si el cliente con los datos existe
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=list"
+            +"&tip=3"
+            +"&uss="+this.corre
+            +"&pas=")
+        .then(response => response.json())
+        .catch(Error => console.log(Error))
+        .then(data => {
+            data.forEach(element => {
+                console.log(element);
+                localStorage.setItem("valid",element.dni_user);
+            });
+            //$('#ContenerAdmin').html(html_codeIten);
+        }).catch(Error => console.log(Error));
     }
 
     async Update(){
