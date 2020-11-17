@@ -603,6 +603,10 @@ function RealPedid() {
       //Actualizar el carrito de compras
       var objCarrit= new ApiCarritoCompra("","","");
       objCarrit.listarCarrito();
+      objCarrit.listarCarrito();
+
+      var objPedi = new ApiPedido("","","");
+      objPedi.ListarPedid("C",1,0,varOBJ.id,0);
           
       alert('Pedido Realizado correctamente');
     }else{
@@ -1076,10 +1080,8 @@ async listarCarrito(){
       var monto=0;
       data.forEach(element => {
           conten_Items += productCarri(element.idproducto,element.Nombre,element.PrecioV,element.cantidad); 
-          monto+= (element.PrecioV*element.cantidad);
+          $('#MontoTot').val(element.montT);
         });
-      console.log(monto);
-      $('#MontoTot').val(monto);
       //  listar los departamentos dentro del carrito
       var objdep = new ApiDepartCar("","");
       objdep.List();

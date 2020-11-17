@@ -1949,9 +1949,9 @@ function CarritoCompra(id,montoT,depart,city,dis,direc,estd) {
         '              <div class="col">' +
         '                  <div class="conteSetP '+id+'" onclick="Setprogressbar3('+id+')">' +
         '                      <ul id="stp-dsjdhj" value="0" class="Setprogressbar padre">' +
-        '                          <li value="1" class="li-iten-sep hijo">Pedido Recivido</li>' +
-        '                          <li value="2" class="li-iten-sep hijo">Enviado</li>' +
-        '                          <li value="3" class="li-iten-sep hijo">Paquete entregado</li>' +
+                                '<li value="1" class="li-iten-sep hijo '+((estd>0)?'active':'')+'">Pedido Recivido</li>'+
+                                '<li value="2" class="li-iten-sep hijo '+((estd>1)?'active':'')+'">Enviado</li>'+
+                                '<li value="3" class="li-iten-sep hijo '+((estd>2)?'active':'')+'">Paquete entregado</li>'+
         '                      </ul>' +
         '                  </div>' +
         '              </div>' +
