@@ -2799,6 +2799,73 @@ class ApiPedidoA{
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=Upd&id="+this.idClient+"&est="+$(yabidciu).attr("value"))
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+        //setTimeout ("MandarMesseng()", 2000); //tiempo expresado en milisegundos
+        var objCli = new ApiCliente(this.idClient,"","","","","","");
+        objCli.ListAdmin();
     }
   
+}
+
+function MandarMesseng() {
+    
+}
+
+//carga informacion casica del cliente para rellenar algunos datos para el envio de su correro
+class ApiCliente{
+    
+    constructor(id,dni, nombre,correo,telef,foto,pass){
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.corre = correo;
+        this.telef = telef;
+        this.foto = foto;
+        this.pass = pass;
+    }
+  
+    async ListAdmin(){ // comprueva el login si el cliente con los datos existe
+        console.log(this.corre+" "+this.pass);
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=list"
+            +"&tip=3"
+            +"&uss="+this.id
+            +"&pas="+this.pass)
+        .then(response => response.json())
+        .catch(Error => console.log(Error))
+        .then(data => {
+            console.log(data);
+            if(data.length != 0){
+                data.forEach(element => {
+                    //$('#contModal').html(ConfigUser("",element.dni_user,element.nombre,element.telefono,element.correo,"",element.pass));
+                    var messeng = new ApiMessege(element.nombre,element.correo,"",this.id);
+                    messeng.sedMessege();
+                });
+  
+            }else{
+                alert("Archivo no existende");
+            }
+            //$('#ContenerAdmin').html(html_codeIten);
+        }).catch(Error => console.log(Error));
+    }
+}
+
+//Enviar el mensaje de comprovacion de la Actalizacion del pedido
+class ApiMessege{
+    
+    constructor(nombre,email,messenge, cli){
+        this.nombre = nombre;
+        this.email = email;
+        this.messenge = messenge;
+        this.idClient = cli;
+    }
+  
+    async sedMessege(){
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Mesg&A=inse"
+        +"&tipm=4"
+        +"&name="+ this.nombre
+        +"&mail="+ this.email
+        +"&message=ad"
+        +"&mailD=2&iclien="+this.idClient)
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+    }
   }

@@ -238,7 +238,7 @@ if(isset($_GET['ob'])){
                  * &mailD=(tipo de correo de envio)
                  * &message=(Mensaje que se quiera enviar)*/
                 case "inse":
-                    header("Location: ../controler/MessengControler.php?Action=inse&tipm=".$_GET['tipm']."&name=".$_GET['name']."&mail=".$_GET['mail']."&mailD=".$_GET['mailD']."&message=".$_GET['message']);
+                    header("Location: ../controler/MessengControler.php?Action=inse&tipm=".$_GET['tipm']."&name=".$_GET['name']."&mail=".$_GET['mail']."&mailD=".$_GET['mailD']."&message=".$_GET['message']."&iclien=".$_GET['iclien']);
                 break;
                 default:
                     echo 'no se entendio la accion que quiso realizar';

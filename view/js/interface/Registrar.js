@@ -81,7 +81,7 @@ class ApiMessege{
         +"&name="+ this.nombre
         +"&mail="+ this.email
         +"&message="+ Token
-        +"&mailD=1")
+        +"&mailD=1&iclien=0")
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
     }

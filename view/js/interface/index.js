@@ -208,6 +208,30 @@ class ApiAdministrador{
     }
 
     async Update(){
+        var yabidA = this.id;
+        var yabdni = '#dniText';
+        var yabnom = '#nomText';
+        var yabcor = '#correText';
+        var yabtel = '#telefText';
+        var yabpho = '#fotoImg';
+        var yabpas = '#passText';
+        //Extraer el tipo de administrador para la actualizacion
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list"
+                +"&tip=3"
+                +"&uss=" + this.id
+                +"&pas=" + this.pass)
+        .then(response => response.json())
+        .catch(Error => console.log(Error))
+        .then(data => {
+            data.forEach(element => {
+                localStorage.setItem(`Tip`,element.TipoAdministrador);
+            });
+        }).catch(Error => console.log(Error));
+        //captura los datos del fetch y lo redirecciona o lo guarda en el tipo de administrador
+        //y luego se elimina
+        var yabTiA = localStorage.getItem("Tip");
+        localStorage.removeItem("Tip");
+        //se inseran los datos
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd"
         +"&id=" + yabidA
         +"&dni=" + $(yabdni).val()
