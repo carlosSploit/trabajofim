@@ -29,22 +29,6 @@ async function principal(){
             objApi.ListAdmin();
         }
 
-        //se da la escucha al boton del actualizar
-        $('.actualius').click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
-            console.log("Saaaaaaaaaaapeeeeeeeeeeeeeee");
-            if(localStorage.getItem("user")){
-                let varOBJ = JSON.parse(localStorage.getItem("user"));
-                if(varOBJ.tip == 'A'){ //administrador
-                    var objApi = new ApiAdministrador(varOBJ.id,"","","","","","");
-                    objApi.Update();
-                }else{//cliente
-                    var objApi = new ApiCliente(varOBJ.id,"","","","","","");
-                    objApi.ListAdmin();
-                }
-        
-            }
-        });
-
     }else{
         $('#ucog').hide();
         $('#sign').attr("style", 'display: block');
@@ -54,6 +38,23 @@ async function principal(){
     $("#ConfigUsar").click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
         //$('#contModal').html(ConfigUser);
         $('#tituProduct').html("Configuracion")
+        //se da la escucha al boton del actualizar
+        $('#actualius').click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+            console.log("Saaaaaaaaaaapeeeeeeeeeeeeeee");
+            if(localStorage.getItem("user")){
+                let varOBJ = JSON.parse(localStorage.getItem("user"));
+                if(varOBJ.tip == 'A'){ //administrador
+                    var objApi = new ApiAdministrador(varOBJ.id,"","","","","","");
+                    objApi.Update();
+                    alert("Actualizado Correctamente");
+                }else{//cliente
+                    var objApi = new ApiCliente(varOBJ.id,"","","","","","");
+                    objApi.Update();
+                    alert("Actualizado Correctamente");
+                }
+        
+            }
+        });
         $('#infoProducto').modal('show');
     });
 
@@ -155,13 +156,9 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
             '<div class="row">' +
             '   <div class="col">' +
             '       <div class="input-group mb-3">' +
-            '            <div class="input-group-prepend">' +
-            '                 <span class="input-group-text"' +
-            '                     id="basic-addon1">🔐</span>' +
-            '            </div>' +
-            '            <input id="" value="'+pass+'" id="passTextAdmi" type="text" class="form-control"' +
-            '                placeholder="Contraseña" aria-label="Direccion"' +
-            '                aria-describedby="basic-addon1">' +
+            '           <button type="button" id="actualius"type="button" class="btn font-weight-bold rounded-pill col-8 d-flex justify-content-center mx-auto actualius"'+
+                          'style="background-color: #546e7a; color: aliceblue">Ingresar' +
+            '            Datos</button>' +
             '        </div>' +
             '     </div>' +
             ' </div>' +    
@@ -202,6 +199,27 @@ class ApiCliente{
             }
             //$('#ContenerAdmin').html(html_codeIten);
         }).catch(Error => console.log(Error));
+    }
+
+    async Update(){
+        var yabidA = this.id;
+        var yabdni = '#dniText';
+        var yabnom = '#nomText';
+        var yabcor = '#correText';
+        var yabtel = '#telefText';
+        var yabpho = '#fotoImg';
+        var yabpas = '#passText';
+        //se inseran los datos
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=Upd"
+        +"&id=" + yabidA
+        +"&dni=" + $(yabdni).val()
+        +"&nom=" + $(yabnom).val()
+        +"&corre=" + $(yabcor).val()
+        +"&telef=" + $(yabtel).val()
+        +"&foto=" + "sahdjahdjkahdjkahdjkashdjksa"
+        +"&pass=" + $(yabpas).val())
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
     }
 }
 
