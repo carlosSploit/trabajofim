@@ -29,6 +29,22 @@ async function principal(){
             objApi.ListAdmin();
         }
 
+        //se da la escucha al boton del actualizar
+        $('.actualius').click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
+            console.log("Saaaaaaaaaaapeeeeeeeeeeeeeee");
+            if(localStorage.getItem("user")){
+                let varOBJ = JSON.parse(localStorage.getItem("user"));
+                if(varOBJ.tip == 'A'){ //administrador
+                    var objApi = new ApiAdministrador(varOBJ.id,"","","","","","");
+                    objApi.Update();
+                }else{//cliente
+                    var objApi = new ApiCliente(varOBJ.id,"","","","","","");
+                    objApi.ListAdmin();
+                }
+        
+            }
+        });
+
     }else{
         $('#ucog').hide();
         $('#sign').attr("style", 'display: block');
@@ -46,6 +62,7 @@ async function principal(){
         window.location ="index.html";
     });
 
+    
     //$('#contenedor_cuerpo').on('change', function() {
         //console.log('seleccionado man');
     //});
@@ -65,7 +82,7 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
                                     ' <div class="input-group-prepend">'+
                                         ' <span class="input-group-text" id="basic-addon1">🔢</span>'+
                                         ' </div>'+
-                                    ' <input value="'+dni+'" disabled="false" type="text" class="form-control" placeholder="Dni Cliente"'+
+                                    ' <input id="dniText" value="'+dni+'" disabled="false" type="text" class="form-control" placeholder="Dni Cliente"'+
                                     ' aria-label="Direccion" aria-describedby="basic-addon1">'+
                                     ' </div>'+
                                 '</div>'+
@@ -76,7 +93,7 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
                                     ' <div class="input-group-prepend">'+
                                         ' <span class="input-group-text" id="basic-addon1">📋</span>'+
                                         ' </div>'+
-                                    ' <input value="'+nombre+'" type="text" class="form-control" placeholder="Nombre del Cliente"'+
+                                    ' <input id="nomText" value="'+nombre+'" type="text" class="form-control" placeholder="Nombre del Cliente"'+
                                     ' aria-label="Direccion" aria-describedby="basic-addon1">'+
                                     ' </div>'+
                                 ' </div>'+
@@ -87,7 +104,7 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
                                     ' <div class="input-group-prepend">'+
                                         ' <span class="input-group-text" id="basic-addon1">📱</span>'+
                                         ' </div>'+
-                                        ' <input value="'+telf+'" type="text" class="form-control" placeholder="Telefono del Cliente"'+
+                                        ' <input id="telefText" value="'+telf+'" type="text" class="form-control" placeholder="Telefono del Cliente"'+
                                         ' aria-label="Direccion" aria-describedby="basic-addon1">'+
                                     ' </div>'+
                                 ' </div>'+
@@ -117,7 +134,7 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
                     ' <div class="input-group-prepend">'+
                         ' <span class="input-group-text" id="basic-addon1">📧</span>'+
                         ' </div>'+
-                        ' <input value="'+corr+'" type="text" class="form-control" placeholder="Correo Electronico"'+
+                        ' <input id="correText" value="'+corr+'" type="text" class="form-control" placeholder="Correo Electronico"'+
                         ' aria-label="Direccion" aria-describedby="basic-addon1">'+
                     ' </div>'+
                 ' </div>'+
@@ -129,16 +146,25 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
             '                 <span class="input-group-text"' +
             '                     id="basic-addon1">🔐</span>' +
             '            </div>' +
-            '            <input value="'+pass+'" id="passTextAdmi" type="text" class="form-control"' +
+            '            <input id="passText" value="'+pass+'" id="passTextAdmi" type="text" class="form-control"' +
             '                placeholder="Contraseña" aria-label="Direccion"' +
             '                aria-describedby="basic-addon1">' +
             '        </div>' +
             '     </div>' +
-            ' </div>' +     
-        ' <div class="row">'+
-            ' <div class="col">'+
-            ' </div>'+
-        ' </div>'+
+            ' </div>' + 
+            '<div class="row">' +
+            '   <div class="col">' +
+            '       <div class="input-group mb-3">' +
+            '            <div class="input-group-prepend">' +
+            '                 <span class="input-group-text"' +
+            '                     id="basic-addon1">🔐</span>' +
+            '            </div>' +
+            '            <input id="" value="'+pass+'" id="passTextAdmi" type="text" class="form-control"' +
+            '                placeholder="Contraseña" aria-label="Direccion"' +
+            '                aria-describedby="basic-addon1">' +
+            '        </div>' +
+            '     </div>' +
+            ' </div>' +    
     ' </div>'+
 '<!------------------------->';
 }
