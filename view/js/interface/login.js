@@ -63,6 +63,8 @@ class ApiCliente{
             }).catch(Error => console.log(Error));
         }
     }
+
+    
 }
 
 class ApiAdministrador{

@@ -127,7 +127,7 @@
                     valor.push(Iten.monto);
                     content = content + '<div class="row">'+
                                             '<div class="col">'+
-                                                '⚪ Dia '+Iten.dia+' : $'+Iten.monto+' - '+Iten.canti+' Uni'+
+                                                '⚪ Fecha : '+Iten.FechaVenta+' Dia '+Iten.dia+' : $'+Iten.monto+' - '+Iten.canti+' Uni'+
                                             '</div>'+
                                          '</div>';
                 });
