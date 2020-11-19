@@ -8,13 +8,35 @@
 </head>
 
 <body>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            width: 70%;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto
+        }
+    </style>
     <section>
-        <div>
-            Reporte de ventas:
-        </div>
+        <center>
+            <div style="width: 100%;">
+                <h4 style="margin-left: auto; margin-right: auto;">Reporte de ventas:</h4>
+            </div>
+        </center>
         <div style="display: grid;grid-template-columns: auto auto;">
             <div>
-                <table class="egt">
+                <center>
+                    <h4>Reporte de los productos segun las unidades</h4>
+                </center>
+                <table>
                     <tr>
                         <th>Hoy</th>
                         <th>Mañana</th>
@@ -38,7 +60,31 @@
                 </table>
             </div>
             <div>
-
+                <center>
+                    <h4>Reporte de los productos segun las ganancias:</h4>
+                </center>
+                <table>
+                    <tr>
+                        <th>Hoy</th>
+                        <th>Mañana</th>
+                        <th>Sábado</th>
+                    </tr>
+                    <tr>
+                        <td>Soleado</td>
+                        <td>Mayormente soleado</td>
+                        <td>Parcialmente nublado</td>
+                    </tr>
+                    <tr>
+                        <td>19°C</td>
+                        <td>17°C</td>
+                        <td>12°C</td>
+                    </tr>
+                    <tr>
+                        <td>E 13 km/h</td>
+                        <td>E 11 km/h</td>
+                        <td>S 16 km/h</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </section>
