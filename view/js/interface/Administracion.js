@@ -213,7 +213,36 @@ function principal() {
         });
         $('#ModalContainer').modal('show');
     });
+
+    $('#GenereReport').click(function (event) {
+         var desde = $('#DateDest').val();
+         var hasta = $('#DateHast').val();
+         GenerarReport(desde,hasta);
+         
+    });
 }
+
+function GenerarReport(desde,hasta){ // comprueva el login si el cliente con los datos existe
+
+    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Report&A=list"
+        +"&tip=0"
+        +"&desde="+desde
+        +"&hasta="+hasta)
+    .then(response => response.json())
+    .catch(Error => console.log(Error))
+    .then(data => {
+        var f = new Date();
+        var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+        console.log(fecha);
+        var pdf = new jsPDF('p', 'pt', 'letter');
+        html = data;
+        specialElementHandlers = {};
+        margins = {top: 30,bottom: 20,left: 40,width: 522};
+        pdf.fromHTML(html, margins.left, margins.top, {'width': margins.width},function (dispose) {pdf.save("ReporteTiendaNuve-"+fecha+'.pdf');}, margins);
+        //$('#ContenerAdmin').html(html_codeIten);
+    }).catch(Error => console.log(Error));
+}
+
 /*Vista del Categoria*/
 function ItenCatego(id,nombre) {
     return '<a class="dropdown-item" onclick="buscCatPro('+id+')">'+nombre+'</a>';
@@ -1601,10 +1630,11 @@ function MantAdm() {
         '                                   </div>' +
         '                                   <div class="row my-2">' +
         '                                       <div class="col">' +
-        '                                           <button type="button"' +
+                                                    '<input type="file" id="imgLog" style="display:none;" accept="image/*">' +
+        '                                           <Label for="imgLog"' +
         '                                               style="text-align: center; width: 100px; height: 30px;"' +
         '                                               id="NewProdut"' +
-        '                                               class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir' +
+        '                                               class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir</Label>' +
         '                                       </div>' +
         '                                   </div>' +
         '                               </div>' +
@@ -1666,6 +1696,10 @@ function MantAdm() {
         '   </div>' +
         '</div>' +
         '</div>';
+}
+
+function sampee(id) {
+    console.log($(id).val());
 }
 
 function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {

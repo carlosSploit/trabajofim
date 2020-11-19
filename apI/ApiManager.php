@@ -24,6 +24,26 @@ if(isset($_GET['ob'])){
 //        break;
 //    case "Vet": //Ventas
 //        break;
+        case "Report":
+        if(isset($_GET['A'])){
+            $actioOBJ = $_GET['A'];
+            switch ($actioOBJ) {
+                
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Report&A=list
+                 * &tip=(mac de la cuenta)
+                 * &desde=(mac de la cuenta)
+                 * &hasta=(mac de la cuenta)*/
+                case "list": //se realizara la accion de list
+                    header("Location: ../controler/Report.php?Action=list&tip=".$_GET['tip']."&desde=".$_GET['desde']."&hasta=".$_GET['hasta']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
         case "Analic":
         if(isset($_GET['A'])){
             $actioOBJ = $_GET['A'];
