@@ -7,11 +7,19 @@
             .then(data => {
                 let names = [];
                 let valor = [];
+                var content = "";
+                var cont = 0;
                 data.forEach(Iten => {
+                    cont = cont + 1;
                     names.push(Iten.Nombre);
-                    valor.push(Iten.canti);
+                    valor.push(Iten.monto);
+                    content = content + '<div class="row">'+
+                                            '<div class="col">'+
+                                                '<font style="color:'+colorget(cont)+';">●</font> Prod: '+Iten.Nombre+' -> $'+Iten.monto+' -  Uni'+Iten.canti+' '
+                                            '</div>'+
+                                         '</div>';
                 });
-
+                document.getElementById("ContentProGana").innerHTML = content;
                 var ctx = document.getElementById('myChart3');
                 var myDoughnutChart = new Chart(ctx, {
                     type: 'doughnut',
@@ -56,11 +64,19 @@
             .then(data => {
                 let names = [];
                 let valor = [];
+                var content = "";
+                var cont = 0;
                 data.forEach(Iten => {
                     names.push(Iten.Nombre);
                     valor.push(Iten.canti);
+                    cont = cont + 1;
+                    content = content + '<div class="row">'+
+                                            '<div class="col">'+
+                                            '<font style="color:'+colorget(cont)+';">●</font> Prod: '+Iten.Nombre+' -> $'+Iten.monto+' - '+Iten.canti+' Uni'+
+                                            '</div>'+
+                                         '</div>';
                 });
-
+                document.getElementById("ContentProCom").innerHTML = content;
                 var ctx = document.getElementById('myChart');
                 var myDoughnutChart = new Chart(ctx, {
                     type: 'doughnut',
@@ -105,11 +121,17 @@
             .then(data => {
                 let names = [];
                 let valor = [];
+                var content = "";
                 data.forEach(Iten => {
                     names.push(Iten.dia);
                     valor.push(Iten.monto);
+                    content = content + '<div class="row">'+
+                                            '<div class="col">'+
+                                                '⚪ Dia '+Iten.dia+' : $'+Iten.monto+' - '+Iten.canti+' Uni'+
+                                            '</div>'+
+                                         '</div>';
                 });
-
+                document.getElementById("ContVentReal").innerHTML = content;
                 var ctx = document.getElementById('myChart2');
                 var myDoughnutChart = new Chart(ctx, {
                     type: 'line',
@@ -154,5 +176,18 @@
 
                 });
             }).catch(Error => console.log(Error)); 
+
+
+            function colorget(idCOLR) {
+                var color = '';
+                switch (idCOLR) {
+                    case 1: color = '#FF6384'; break;
+                    case 2: color = 'rgba(54, 162, 235, 1)'; break;
+                    case 3: color = 'rgba(255, 206, 86, 1)'; break;
+                    default:
+                        break;
+                }
+                return color;
+            }
 
         
