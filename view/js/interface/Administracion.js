@@ -1887,11 +1887,12 @@ function clickFileItenAdmin(id) {
     const imgFile = document.getElementById(idchankey);
     imgFile.addEventListener("change",function () {
         const file = this.files[0];
-        console.log(file);
+        var tmppath = URL.createObjectURL( this.files[0]);
         var yave = '#ImganItenAdmin'+id;
         if (file) {
             const render = new FileReader();
             render.addEventListener("load",function (event) {
+                console.log(this.result);
                 $(yave).attr("src",this.result);
                 $(yave).attr("value",$(idchan).val());
             });
@@ -2279,10 +2280,12 @@ class ApiAdministrador{
         +"&nom=" + $(yabnom).val()
         +"&corre=" + $(yabcor).val()
         +"&telef=" + $(yabtel).val()
-        +"&foto=" + $(yabpho).attr("value")
+        +"&foto=" + $(yabpho).attr("src")
         +"&pass=" + $(yabpas).val()
         +"&tiptrabajo=" + $(yabTiA).val())
-        .then(response => response.json())
+        .then(response => response.json(), {
+            method: 'POST',
+         })
         .then(data => console.log(JSON.parse(data)));
         
         this.ListAdmin();

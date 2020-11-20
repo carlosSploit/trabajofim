@@ -649,5 +649,137 @@ if(isset($_GET['ob'])){
 }
 
 }
+/*------------------------Como se da la insercion de archivos se requiere un metodo post-----------------------------------------*/
+/* por otra parte el ob son los objetos donde tu quieras interactuar ya sea
+ * un cliente un administrador una ciudad etc. cada objeto tiene una accion por
+ * el cual aqui (significa en cas swicht) es donde se va realizar las acciones 
+ * del departamento inser-lis-up- donde utilizamos un carapter de entrada...
+ * A-> es la accion que se va a realizar con la entidad el cual sera nuestro
+ * partametro de uso*/
 
+if(isset($_POST['ob'])){
+    $objet = $_POST['ob'];
+    switch ($objet) {
+        /*--------------------------      Administrador      -------------------------------*/
+        case "Admi":
+        if(isset($_POST['A'])){
+            $actioOBJ = $_POST['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=inse
+                 * &dni=(dni del administrador)
+                 * &nom=(nombre del administrador)
+                 * &corre=(correo activo del administrador)
+                 * &telef=(telefono activo del administrador)
+                 * &foto= (telefono activo del administrador)
+                 * &pass= (contraseña de acceso al sistema del administrador)
+                 * &tiptrabajo= (tipo de trabajador del adminitrador) esta funcionavilidad no presenta mucho uso momentaneamente*/
+                case "inse":
+                    header("Location: ../controler/Administrador.php?Action=inse&dni=".$_POST['dni']."&nom=".$_POST['nom']."&corre=".$_POST['corre']."&telef=".$_POST['telef']."&foto=".$_POST['foto']."&pass=".$_POST['pass']."&tiptrabajo=".$_POST['tiptrabajo']);
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd
+                 * &id= (id del administraodr)
+                 * &dni=(dni del administrador)
+                 * &nom=(nombre del administrador)
+                 * &corre=(correo activo del administrador)
+                 * &telef=(telefono activo del administrador)
+                 * &foto= (telefono activo del administrador)
+                 * &pass= (contraseña de acceso al sistema del administrador)
+                 * &tiptrabajo= (tipo de trabajador del adminitrador) esta funcionavilidad no presenta mucho uso momentaneamente*/
+                case 'Upd':
+                    echo $_POST['foto'];
+                    //header("Location: ../controler/Administrador.php?Action=Upd&id=".$_POST['id']."&dni=".$_POST['dni']."&nom=".$_POST['nom']."&corre=".$_POST['corre']."&telef=".$_POST['telef']."&foto=".$_POST['foto']."&pass=".$_POST['pass']."&tiptrabajo=".$_POST['tiptrabajo']);
+                break;
 
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
+/*--------------------------       Producto      -------------------------------*/
+        case "Prod":
+        if(isset($_POST['A'])){
+            $actioOBJ = $_POST['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=inse
+                 * &CodProd=(cod del producto)
+                 * &IdProve=(id de proveedor de producto)
+                 * &IdTipo=(id de la categoria del producto)
+                 * &Nom=(nombre del producto)
+                 * &Descri=(descripccion de producto)
+                 * &Cantid=(cantidad en stock de producto)
+                 * &PreC=(precio de compra del producto)
+                 * &PreV=(precio de venta del producto)
+                 * &Photo=(photodeproducto)*/
+                case "inse":
+                    header("Location: ../controler/Producto.php?Action=inse&CodProd=".$_POST['CodProd']."&IdProve=".$_POST['IdProve']."&IdTipo=".$_POST['IdTipo']."&Nom=".$_POST['Nom']."&Descri=".$_POST['Descri']."&Cantid=".$_POST['Cantid']."&PreC=".$_POST['PreC']."&PreV=".$_POST['PreV']."&Photo=".$_POST['Photo']);
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=Upd
+                 * &IdProd=(id del producto)
+                 * &CodProd=(Codigo del producto)
+                 * &IdProve=(Id de proveedor)
+                 * &IdTipo=(id de categoria)
+                 * &Nom=(nombre dle producto)
+                 * &Descri=(descripccion del producto)
+                 * &Cantid=(stock del producto)
+                 * &PreC=(precio de compra)
+                 * &PreV=(precio de venta)
+                 * &Photo=(array de byts de la foto)*/
+                case 'Upd':
+                    header("Location: ../controler/Producto.php?Action=Upd&IdProd=".$_POST['IdProd']."&CodProd=".$_POST['CodProd']."&IdProve=".$_POST['IdProve']."&IdTipo=".$_POST['IdTipo']."&Nom=".$_POST['Nom']."&Descri=".$_POST['Descri']."&Cantid=".$_POST['Cantid']."&PreC=".$_POST['PreC']."&PreV=".$_POST['PreV']."&Photo=".$_POST['Photo']);
+                break;
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
+/*--------------------------      Cliente      -------------------------------*/
+        case "clie":
+        if(isset($_POST['A'])){
+            $actioOBJ = $_POST['A'];
+            switch ($actioOBJ) {
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=inse
+                 * &dni=(dni del administrador)
+                 * &nom=(nombre del administrador)
+                 * &corre=(correo activo del administrador)
+                 * &telef=(telefono activo del administrador)
+                 * &foto= (telefono activo del administrador)
+                 * &pass= (contraseña de acceso al sistema del administrador)*/
+                case "inse":
+                    header("Location: ../controler/Cliente.php?Action=inse&dni=".$_POST['dni']."&nom=".$_POST['nom']."&corre=".$_POST['corre']."&telef=".$_POST['telef']."&foto=".$_POST['foto']."&pass=".$_POST['pass']);
+                break;
+            
+                /* la accion realizada es listado se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=Upd
+                 * &id= (id del administraodr)
+                 * &dni=(dni del administrador)
+                 * &nom=(nombre del administrador)
+                 * &corre=(correo activo del administrador)
+                 * &telef=(telefono activo del administrador)
+                 * &foto= (telefono activo del administrador)
+                 * &pass= (contraseña de acceso al sistema del administrador)*/
+                case 'Upd':
+                    header("Location: ../controler/Cliente.php?Action=Upd&id=".$_POST['id']."&dni=".$_POST['dni']."&nom=".$_POST['nom']."&corre=".$_POST['corre']."&telef=".$_POST['telef']."&foto=".$_POST['foto']."&pass=".$_POST['pass']);
+                break;
+
+                default:
+                    echo 'no se entendio la accion que quiso realizar';
+                break;
+            }
+        }
+        break;
+
+    default:
+        echo 'se a realizado un mal uso de la api, porfavor consulta el manual';
+        break;
+}
+
+}

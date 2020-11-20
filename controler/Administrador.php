@@ -14,10 +14,6 @@ if(isset($_GET['Action'])){
             $objcorre = $_GET['corre'];
             $objtelef = $_GET['telef'];
             $objfoto = $_GET['foto'];
-            $file = fopen($objfoto, "r");
-            $read = fread($file, filesize($objfoto));
-            fclose($file);
-            $objfoto = $file;
             $objpass = $_GET['pass'];
             $objtipT = $_GET['tiptrabajo'];
 
@@ -41,12 +37,10 @@ if(isset($_GET['Action'])){
             }
             echo json_encode($aux);
             break;
-            
         case "img" : 
-            
+            echo Imgen(2);
             break;
         case "Upd" :
-            
             $objidAd = $_GET['id'];
             $objdni = $_GET['dni'];
             $objnom = $_GET['nom'];
