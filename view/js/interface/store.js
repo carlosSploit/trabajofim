@@ -168,7 +168,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                           '<div class="row">'+
                               '<div class="col" style=" width: 100%; height: 40px;">'+
                                 '<div class="input-group-append">'+
-                                  '<label style="text-align: center; margin-top: 5px; margin-right: 5px; font-size: 20px; line-height: 1.2;" >Disponibles :  '+cantidad+'</label>'+
+                                  '<label style="text-align: center; margin-top: 5px; margin-right: 5px; font-size: 20px; line-height: 1.2;" >Disponibles :  '+((cantidad<=0)?'Agotado':cantidad)+'</label>'+
                                 '</div>'+
                               '</div>'+
                               ' <div class="col" style=" width: 100%; height: 40px;">'+
@@ -184,12 +184,12 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                                   '<label style="text-align: center; margin-top: 5px; margin-right: 5px;" >Cantidad :  </label>'+
                                 '</div>'+
                                 '<div class="input-group-append">'+
-                                  '<input id="CantiInserCar" type="number" style="width: 60px;" class="form-control" >'+
+                                  '<input '+((cantidad<=0)?'disabled':'')+' id="CantiInserCar" type="number" style="width: 60px;" class="form-control" >'+
                                 '</div>'+
                               '</div>'+
                             '</div>'+
                             '<div class="col" style=" width: 100%; height: 40px;">'+
-                              '<button onclick="inserProductCart('+id+')" type="button" class="btn btn-primary">Añadir al Carrito</button>'+
+                              '<button '+((cantidad<=0)?'':'onclick="inserProductCart('+id+')"')+' type="button" class="btn btn-primary">Añadir al Carrito</button>'+
                             '</div>'+
                           '</div>'+
                       '</div>'+
