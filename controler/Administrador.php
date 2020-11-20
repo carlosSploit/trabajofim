@@ -28,7 +28,24 @@ if(isset($_GET['Action'])){
             break;
         case "list" : 
             $idDep = array("tip"=>$_GET['tip'], "uss"=>$_GET['uss'],"pas"=>$_GET['pas']);
-            echo json_encode(listar($idDep));
+            $array = listar($idDep);
+            $aux = array();
+            foreach ($array as $value) {
+                $foto = array('foto'=>'http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=img&tip=5&uss='.$value['idAdministracion'].'&pas=dsfsdf');
+                array_push($value, $foto);
+                array_push($aux, $value);
+            }
+            echo json_encode($aux);
+            break;
+            
+        case "img" : 
+            $idDep = array("tip"=>$_GET['tip'], "uss"=>$_GET['uss'],"pas"=>$_GET['pas']);
+            $array = listar($idDep);
+            $auximage = '';
+            foreach ($array as $value) {
+                $auximage = base64_encode($value['foto']);
+            }
+            echo '<img id="ImganItenAdmin" src="data:image;base64,'.$auximage.'">';
             break;
         case "Upd" :
             

@@ -365,6 +365,13 @@ if(isset($_GET['ob'])){
                 case "delet":
                     header("Location: ../controler/Administrador.php?Action=delet&id=".$_GET['id']);
                 break;
+            
+                /* la accion realizada es insercion se traduce de la siguiente manera
+                 * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=delet&id=(
+                 * index del departamento)*/
+                case "img":
+                    header("Location: ../controler/Administrador.php?Action=img&tip=".$_GET['tip']."&uss=".$_GET['uss']."&pas=".$_GET['pas']);
+                break;
 
                 default:
                     echo 'no se entendio la accion que quiso realizar';

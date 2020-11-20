@@ -197,7 +197,7 @@ function principal() {
         objAdmi.ListAdmin();
         objAdmi.ListAdmin();
         $('#InserAdmid').click(function (event) {
-            var objAdmi = new ApiAdministrador("",$('#dniTextAdmi').val(),$('#nomTextAdmi').val(),$('#correTextAdmi').val(),$('#telefTextAdmi').val(),"asjdgsajdgsajdghsahdjas",$('#passTextAdmi').val(),$('#tiptrabajoSeletAdmi').val());            
+            var objAdmi = new ApiAdministrador("",$('#dniTextAdmi').val(),$('#nomTextAdmi').val(),$('#correTextAdmi').val(),$('#telefTextAdmi').val(),$('#ImganItenAdmin').val(),$('#passTextAdmi').val(),$('#tiptrabajoSeletAdmi').val());            
             objAdmi.addAdmin();
             objAdmi.id = -1;
             objAdmi.ListAdmin();
@@ -1621,7 +1621,7 @@ function MantAdm() {
         '                               </div>' +
         '                               <div class="col-5">' +
         '                                   <div class="text-center">' +
-        '                                       <img src="./resorces/fondolo.jpg"' +
+        '                                       <img id="ImganItenAdmin" src="./resorces/fondolo.jpg"' +
         '                                           style="width: 14vh; height: 14vh;' +
         '                                               -webkit-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
         '                                               -moz-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
@@ -1630,10 +1630,10 @@ function MantAdm() {
         '                                   </div>' +
         '                                   <div class="row my-2">' +
         '                                       <div class="col">' +
-                                                    '<input type="file" id="imgLog" style="display:none;" accept="image/*">' +
-        '                                           <Label for="imgLog"' +
+                                                    '<input type="file" id="imgLog" hidden="hidden" accept="image/*""/>' +
+        '                                           <Label' +
         '                                               style="text-align: center; width: 100px; height: 30px;"' +
-        '                                               id="NewProdut"' +
+        '                                               id="FothoAdmi" onclick="clickFile()"' +
         '                                               class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir</Label>' +
         '                                       </div>' +
         '                                   </div>' +
@@ -1697,9 +1697,24 @@ function MantAdm() {
         '</div>' +
         '</div>';
 }
-
-function sampee(id) {
-    console.log($(id).val());
+/*escucha del Boton para insertar un file*/
+function clickFile() {
+    var idchan = '#imgLog';
+    var idchankey = 'imgLog';
+    $(idchan).click();//obliga un click
+    const imgFile = document.getElementById(idchankey);
+    imgFile.addEventListener("change",function () {
+        const file = this.files[0];
+        var yave = '#ImganItenAdmin';
+        if (file) {
+            const render = new FileReader();
+            render.addEventListener("load",function (event) {
+                console.log(this.result);
+                $(yave).attr("src",this.result);
+            });
+            render.readAsDataURL(file);
+        }
+    });
 }
 
 function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {
@@ -1793,7 +1808,7 @@ function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {
         '                                               </div>' +
         '                                               <div class="col-5">' +
         '                                                   <div class="text-center">' +
-        '                                                       <img src="./resorces/fondolo.jpg"' +
+        '                                                       <img id="ImganItenAdmin'+id+'" src="'+photo+'"' +
         '                                                           style="width: 14vh; height: 14vh;' +
         '                                                               -webkit-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
         '                                                               -moz-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
@@ -1802,10 +1817,11 @@ function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {
         '                                                   </div>' +
         '                                                   <div class="row my-2">' +
         '                                                       <div class="col">' +
-        '                                                           <button type="button"' +
+                                                                    '<input type="file" id="imgLog'+id+'" hidden="hidden" accept="image/*"/>' +
+        '                                                            <Label' +
         '                                                               style="text-align: center; width: 100px; height: 30px;"' +
-        '                                                               id="NewProdut"' +
-        '                                                               class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir' +
+        '                                                               id="FothoAdmi" onclick="clickFileItenAdmin('+id+')"' +
+        '                                                               class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir</Label>' +
         '                                                       </div>' +
         '                                                   </div>' +
         '                                               </div>' +
@@ -1861,6 +1877,25 @@ function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {
         '     </div>' +
         '</div>' +
         '<!------------------------------------>';
+}
+
+/*escucha del Boton para insertar un file*/
+function clickFileItenAdmin(id) {
+    var idchan = '#imgLog'+id;
+    var idchankey = 'imgLog'+id;
+    $(idchan).click();
+    const imgFile = document.getElementById(idchankey);
+    imgFile.addEventListener("change",function () {
+        const file = this.files[0];
+        var yave = '#ImganItenAdmin'+id;
+        if (file) {
+            const render = new FileReader();
+            render.addEventListener("load",function (event) {
+                $(yave).attr("src",this.result);
+            });
+            render.readAsDataURL(file);
+        }
+    });
 }
 
 function ActuAminIten(id) {
@@ -2210,7 +2245,8 @@ class ApiAdministrador{
             .then(data => {
                 var html_codeIten = "";
                 data.forEach(element => {
-                    html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
+                    console.log(element.foto);
+                    //html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
                 });
                 $('#ContenerAdmin').html(html_codeIten);
             }).catch(Error => console.log(Error));
@@ -2232,16 +2268,17 @@ class ApiAdministrador{
         var yabnom = '#nomTextAdmi'+this.id;
         var yabcor = '#correTextAdmi'+this.id;
         var yabtel = '#telefTextAdmi'+this.id;
-        var yabpho = '#fotoImgAdmi'+this.id;
+        var yabpho = '#ImganItenAdmin'+this.id;
         var yabpas = '#passTextAdmi'+this.id;
         var yabTiA = '#tiptrabajoSeletAdmi'+this.id;
+        console.log(atob($(yabpho).attr("src").replace('data:image/jpeg;base64,','')));
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd"
         +"&id=" + yabidA
         +"&dni=" + $(yabdni).val()
         +"&nom=" + $(yabnom).val()
         +"&corre=" + $(yabcor).val()
         +"&telef=" + $(yabtel).val()
-        +"&foto=" + "sahdjahdjkahdjkahdjkashdjksa"
+        +"&foto=" + atob($(yabpho).attr("src").replace('data:image/jpeg;base64,',''))
         +"&pass=" + $(yabpas).val()
         +"&tiptrabajo=" + $(yabTiA).val())
         .then(response => response.json())
@@ -2903,3 +2940,13 @@ class ApiMessege{
         .then(data => console.log(JSON.parse(data)));
     }
   }
+
+  function convert(num) {
+    return num
+        .toString()    // convert number to string
+        .split('')     // convert string to array of characters
+        .map(Number)   // parse characters as numbers
+        .map(n => (n || 10) + 64)   // convert to char code, correcting for J
+        .map(c => String.fromCharCode(c))   // convert char codes to strings
+        .join('');     // join values together
+}
