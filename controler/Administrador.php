@@ -14,6 +14,10 @@ if(isset($_GET['Action'])){
             $objcorre = $_GET['corre'];
             $objtelef = $_GET['telef'];
             $objfoto = $_GET['foto'];
+            $file = fopen($objfoto, "r");
+            $read = fread($file, filesize($objfoto));
+            fclose($file);
+            $objfoto = $file;
             $objpass = $_GET['pass'];
             $objtipT = $_GET['tiptrabajo'];
 
@@ -31,21 +35,15 @@ if(isset($_GET['Action'])){
             $array = listar($idDep);
             $aux = array();
             foreach ($array as $value) {
-                $foto = array('foto'=>'http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=img&tip=5&uss='.$value['idAdministracion'].'&pas=dsfsdf');
-                array_push($value, $foto);
+                $value['foto'] = Imgen($value['idAdministracion']);
+                array_push($value,Imgen($value['idAdministracion']));
                 array_push($aux, $value);
             }
             echo json_encode($aux);
             break;
             
         case "img" : 
-            $idDep = array("tip"=>$_GET['tip'], "uss"=>$_GET['uss'],"pas"=>$_GET['pas']);
-            $array = listar($idDep);
-            $auximage = '';
-            foreach ($array as $value) {
-                $auximage = base64_encode($value['foto']);
-            }
-            echo '<img id="ImganItenAdmin" src="data:image;base64,'.$auximage.'">';
+            
             break;
         case "Upd" :
             
@@ -68,6 +66,17 @@ if(isset($_GET['Action'])){
 }else{
     echo 'no tienes nada en enseñar perro';
 }
+
+function Imgen($idAdminis) {
+   $idDep = array("tip"=>'5', "uss"=>$idAdminis,"pas"=>'AHGSDHASGD');
+   $array = listar($idDep);
+   $auximage = '';
+   foreach ($array as $value) {
+      $auximage = base64_encode($value['foto']);  
+   }
+   return $auximage;
+}
+
 //------------ METODOS ---------------
 function eliminar($var) {
     $objAdmi = new AdministradorDAO();

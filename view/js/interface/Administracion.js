@@ -197,7 +197,7 @@ function principal() {
         objAdmi.ListAdmin();
         objAdmi.ListAdmin();
         $('#InserAdmid').click(function (event) {
-            var objAdmi = new ApiAdministrador("",$('#dniTextAdmi').val(),$('#nomTextAdmi').val(),$('#correTextAdmi').val(),$('#telefTextAdmi').val(),$('#ImganItenAdmin').val(),$('#passTextAdmi').val(),$('#tiptrabajoSeletAdmi').val());            
+            var objAdmi = new ApiAdministrador("",$('#dniTextAdmi').val(),$('#nomTextAdmi').val(),$('#correTextAdmi').val(),$('#telefTextAdmi').val(),$('#ImganItenAdmin').attr("value"),$('#passTextAdmi').val(),$('#tiptrabajoSeletAdmi').val());            
             objAdmi.addAdmin();
             objAdmi.id = -1;
             objAdmi.ListAdmin();
@@ -1887,11 +1887,13 @@ function clickFileItenAdmin(id) {
     const imgFile = document.getElementById(idchankey);
     imgFile.addEventListener("change",function () {
         const file = this.files[0];
+        console.log(file);
         var yave = '#ImganItenAdmin'+id;
         if (file) {
             const render = new FileReader();
             render.addEventListener("load",function (event) {
                 $(yave).attr("src",this.result);
+                $(yave).attr("value",$(idchan).val());
             });
             render.readAsDataURL(file);
         }
@@ -2245,8 +2247,8 @@ class ApiAdministrador{
             .then(data => {
                 var html_codeIten = "";
                 data.forEach(element => {
-                    console.log(element.foto);
-                    //html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass,element.TipoAdministrador);
+                    console.log(element);
+                    html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,'data:image/jpeg;base64,'+element.foto,element.pass,element.TipoAdministrador);
                 });
                 $('#ContenerAdmin').html(html_codeIten);
             }).catch(Error => console.log(Error));
@@ -2271,14 +2273,13 @@ class ApiAdministrador{
         var yabpho = '#ImganItenAdmin'+this.id;
         var yabpas = '#passTextAdmi'+this.id;
         var yabTiA = '#tiptrabajoSeletAdmi'+this.id;
-        console.log(atob($(yabpho).attr("src").replace('data:image/jpeg;base64,','')));
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd"
         +"&id=" + yabidA
         +"&dni=" + $(yabdni).val()
         +"&nom=" + $(yabnom).val()
         +"&corre=" + $(yabcor).val()
         +"&telef=" + $(yabtel).val()
-        +"&foto=" + atob($(yabpho).attr("src").replace('data:image/jpeg;base64,',''))
+        +"&foto=" + $(yabpho).attr("value")
         +"&pass=" + $(yabpas).val()
         +"&tiptrabajo=" + $(yabTiA).val())
         .then(response => response.json())
