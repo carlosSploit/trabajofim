@@ -1705,6 +1705,8 @@ function clickFile() {
     const imgFile = document.getElementById(idchankey);
     imgFile.addEventListener("change",function () {
         const file = this.files[0];
+        localStorage.setItem("foto",JSON.stringify(file));
+        console.log(file);
         var yave = '#ImganItenAdmin';
         if (file) {
             const render = new FileReader();
@@ -1763,7 +1765,7 @@ function ItenAdmin(id,dni,nombre,telef,correo,photo,pass,tipAdmin) {
         '                                                                       class="input-group-text"' +
         '                                                                       id="basic-addon1">🔢</span>' +
         '                                                               </div>' +
-        '                                                               <input value="'+dni+'" id="dniTextAdmi'+id+'" type="text"' +
+        '                                                               <input disabled value="'+dni+'" id="dniTextAdmi'+id+'" type="text"' +
         '                                                                   class="form-control"' +
         '                                                                   placeholder="Dni Administrador"' +
         '                                                                   aria-label="Direccion"' +
@@ -2249,7 +2251,7 @@ class ApiAdministrador{
                 var html_codeIten = "";
                 data.forEach(element => {
                     console.log(element);
-                    html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,'data:image/jpeg;base64,'+element.foto,element.pass,element.TipoAdministrador);
+                    html_codeIten = html_codeIten + ItenAdmin(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,'data:image/jpg;base64,'+element.foto,element.pass,element.TipoAdministrador);
                 });
                 $('#ContenerAdmin').html(html_codeIten);
             }).catch(Error => console.log(Error));
@@ -2266,7 +2268,70 @@ class ApiAdministrador{
     }
 
     async Update(){
+        /*Enviar datos a actualizar*/
         var yabidA = this.id;
+        var yabdni = '#dniTextAdmi'+this.id;
+        var yabnom = '#nomTextAdmi'+this.id;
+        var yabcor = '#correTextAdmi'+this.id;
+        var yabtel = '#telefTextAdmi'+this.id;
+        var yabpho = 'imgLog'+this.id;
+        var yabpas = '#passTextAdmi'+this.id;
+        var yabTiA = '#tiptrabajoSeletAdmi'+this.id;
+
+
+        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd"
+        +"&id=" + yabidA
+        +"&dni=" + $(yabdni).val()
+        +"&nom=" +  $(yabnom).val()
+        +"&corre=" + $(yabcor).val()
+        +"&telef=" + $(yabtel).val()
+        +"&foto=" + ""
+        +"&pass=" + $(yabpas).val()
+        +"&tiptrabajo=" + $(yabTiA).val(),{
+            method: 'GET',
+            cache: "no-store"
+        })
+        .then(response => response.json())
+        .then(data => console.log(JSON.parse(data)));
+        /*iNSERTADO IMAGEN EN LA DATA*/
+        /*$.post( "http://localhost/PhpProjec/api/ApiManager.php", { ob : "Admi" , A : "Upd" ,id: yabidA, foto: $(yabpho).attr("src") } )
+        .done(function( data ) {
+            alert( "Data Loaded: " + data );
+        });*/
+
+        /*$.ajax({
+            type:"POST",
+            url:"http://localhost/PhpProjec/api/ApiManager.php",
+            data: {ob : "Admi" , A : "Upd" ,id: yabidA, foto: $(yabpho).attr("src") },
+            beforeSend: function (){
+              console.log("**Whatever before send!**");
+            }
+          });*/
+        console.log( document.getElementById(yabpho).files[0]);
+        var formData = new FormData();
+        formData.append("ob", "Admi");
+        formData.append("A", "Upd");
+        formData.append("id", yabidA);
+        formData.append("foto", document.getElementById(yabpho).files[0]);
+
+        fetch("http://localhost/PhpProjec/apI/ApiManager.php",{
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.success) {
+                console.log(response);
+            }else{
+                console.log(response);
+            }
+          })
+        .then(data => {
+            data.forEach(element => {
+                console.log(element);
+            });
+        });
+        
+        /*var yabidA = this.id;
         var yabdni = '#dniTextAdmi'+this.id;
         var yabnom = '#nomTextAdmi'+this.id;
         var yabcor = '#correTextAdmi'+this.id;
@@ -2282,12 +2347,12 @@ class ApiAdministrador{
         +"&telef=" + $(yabtel).val()
         +"&foto=" + $(yabpho).attr("src")
         +"&pass=" + $(yabpas).val()
-        +"&tiptrabajo=" + $(yabTiA).val())
-        .then(response => response.json(), {
-            method: 'POST',
-         })
+        +"&tiptrabajo=" + $(yabTiA).val(),{
+            method: 'POST'
+        })
+        .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
-        
+        */
         this.ListAdmin();
         this.ListAdmin();
     }

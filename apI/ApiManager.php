@@ -648,16 +648,7 @@ if(isset($_GET['ob'])){
         break;
 }
 
-}
-/*------------------------Como se da la insercion de archivos se requiere un metodo post-----------------------------------------*/
-/* por otra parte el ob son los objetos donde tu quieras interactuar ya sea
- * un cliente un administrador una ciudad etc. cada objeto tiene una accion por
- * el cual aqui (significa en cas swicht) es donde se va realizar las acciones 
- * del departamento inser-lis-up- donde utilizamos un carapter de entrada...
- * A-> es la accion que se va a realizar con la entidad el cual sera nuestro
- * partametro de uso*/
-
-if(isset($_POST['ob'])){
+} else if(isset($_POST['ob'])){
     $objet = $_POST['ob'];
     switch ($objet) {
         /*--------------------------      Administrador      -------------------------------*/
@@ -681,16 +672,16 @@ if(isset($_POST['ob'])){
                 /* la accion realizada es listado se traduce de la siguiente manera
                  * http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd
                  * &id= (id del administraodr)
-                 * &dni=(dni del administrador)
-                 * &nom=(nombre del administrador)
-                 * &corre=(correo activo del administrador)
-                 * &telef=(telefono activo del administrador)
-                 * &foto= (telefono activo del administrador)
-                 * &pass= (contraseña de acceso al sistema del administrador)
-                 * &tiptrabajo= (tipo de trabajador del adminitrador) esta funcionavilidad no presenta mucho uso momentaneamente*/
+                 * &foto= (telefono activo del administrador)*/
                 case 'Upd':
-                    echo $_POST['foto'];
-                    //header("Location: ../controler/Administrador.php?Action=Upd&id=".$_POST['id']."&dni=".$_POST['dni']."&nom=".$_POST['nom']."&corre=".$_POST['corre']."&telef=".$_POST['telef']."&foto=".$_POST['foto']."&pass=".$_POST['pass']."&tiptrabajo=".$_POST['tiptrabajo']);
+                    $objidAd = $_POST['id'];
+                    $nameArch = $_FILES['foto']['name'];
+                    $TypeArch = $_FILES['foto']['type'];
+                    $SiseArch = $_FILES['foto']['size'];
+                    $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/'; //ruta de la carpeta destino del servidor
+                    move_uploaded_file($_FILES['foto']['tmp_name'],$serv.$nameArch);
+
+                    header("Location: ../controler/Administrador.php?Action=Upd&id=".$_POST['id']."&fotosize=".$SiseArch."&fotospath=".$serv.$nameArch);
                 break;
 
                 default:

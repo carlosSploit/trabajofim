@@ -41,6 +41,18 @@ if(isset($_GET['Action'])){
             echo Imgen(2);
             break;
         case "Upd" :
+            if(isset($_GET['fotosize'])&&isset($_GET['fotospath'])){
+            $objidAd = $_GET['id'];
+            $size = $_GET['fotosize'];
+            $patch = $_GET['fotospath'];
+            
+            $archivoObjet = fopen($patch,"r");
+            $content = fread($archivoObjet, $size);
+            fclose($archivoObjet);
+
+            $objAdmi = new Administrador("","","","", $content,$objidAd,"","","");
+            update($objAdmi);
+            }else{
             $objidAd = $_GET['id'];
             $objdni = $_GET['dni'];
             $objnom = $_GET['nom'];
@@ -51,7 +63,8 @@ if(isset($_GET['Action'])){
             $objtipT = $_GET['tiptrabajo'];
 
             $objAdmi = new Administrador($objnom, $objdni, $objcorre, $objtelef, $objfoto,$objidAd,"",$objpass, $objtipT);
-            echo update($objAdmi);
+            update($objAdmi);
+            }
             break;
         default:
             echo 'no tienes nada en enseñar perro';

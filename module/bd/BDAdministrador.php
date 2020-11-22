@@ -69,7 +69,7 @@ class AdministradorDAO extends conexion implements crud {
             $data->bindParam(7, $var->getPass());
             $data->bindParam(8, $var->getTipTrabajo());
             $data->execute();
-            return "Actualizado correcto";
+            header_remove('Set-Cookie');
         }catch (Exception $e) {
             throw $e->getMessage();
         }
