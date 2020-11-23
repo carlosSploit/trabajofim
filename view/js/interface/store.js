@@ -1114,7 +1114,8 @@ async delectCarrito(){
   +"&idProd="+this.IdProd)
   .then(response => response.json())
   .then(data => console.log(JSON.parse(data)));
-
+  this.listarCarrito();
+  this.listarCarrito();
 }
 }
 
