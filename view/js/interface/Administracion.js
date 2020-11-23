@@ -2440,10 +2440,10 @@ class ApiCategori{
                 data.forEach(element => {
                     if(this.nombre != ""){
                         if(this.nombre!=element.idTipo){
-                            html_codeLis = html_codeLis + DatCategoriMP(element.idTipo,element.nombreTipo);
+                            html_codeLis = html_codeLis + DatCategoriMP(element.idTipo,this.ListIncont(element.nombreTipo.charAt(0))+element.nombreTipo.substring(1,element.nombreTipo.length));
                         }
                     }else{
-                        html_codeLis = html_codeLis + DatCategoriMP(element.idTipo,element.nombreTipo) ;
+                        html_codeLis = html_codeLis + DatCategoriMP(element.idTipo,this.ListIncont(element.nombreTipo.charAt(0))+element.nombreTipo.substring(1,element.nombreTipo.length)) ;
                     }
                 });
                 $(this.icono).html(html_codeLis); //en este caso para evitar la funcionabilidad principal se reusa las variables
@@ -2674,7 +2674,7 @@ class ApiProducto{
                                 $(yavFoto).attr("src",'data:image/jpg;base64,'+element.foto);
                                 //insertar datos a las categorirasss
                                 var objCat = new ApiCategori(-1,yavctp,element.idTipo);
-                                $(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
+                                $(yavctp).html(DatCategoriMP(element.idTipo,this.ListIncont(element.nombreTipo.charAt(0))+element.nombreTipo.substring(1,element.nombreTipo.length))); //inicializa con el proveedor del producto
                                 objCat.ListAdmin();
                                 //insertar datos a los proveedores
                                 var objPro = new ApiProvee(-1,yavpro,element.idProveedor,"");
@@ -2713,6 +2713,21 @@ class ApiProducto{
             default:
                 break;
         }
+    }
+
+    ListIncont(cod) {
+
+        if(cod == 1){return "👕";}
+        if(cod == 2){return "👟";}
+        if(cod == 3){return "👞";}
+        if(cod == 4){return "👖";}
+        if(cod == 5){return "💻";}
+        if(cod == 6){return "📱";}
+        if(cod == 7){return "🔫";}
+        if(cod == 8){return "👙";}
+        if(cod == 9){return "🎮";}
+        if(cod == 10){return "🎸";}
+        if(cod == 11){return "♟";}
     }
 
     async delect(){
