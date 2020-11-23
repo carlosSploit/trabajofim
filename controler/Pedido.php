@@ -21,9 +21,20 @@ if(isset($_GET['Action'])){
                 $objClie = $_GET['iclien'];
                 $objFiltro = $_GET['filGene'];
                 $obj = array("tip"=>$objtip,'id'=>$objid,'fil'=>$objfil,'iclien'=>$objClie,'filGene'=>$objFiltro);
-                echo json_encode(listar($obj));
+                $array = listar($obj);
+                $aux = array();
+                foreach ($array as $value) {
+                    if(array_key_exists('photo',$value)){
+                        $value['foto'] = Imgen($value['photo']);
+                        array_push($value,Imgen($value['photo']));
+                    }
+                    array_push($aux, $value);
+                }
+                echo json_encode($aux);
             break;
-        
+        case "img" : 
+            echo Imgen('descarga.jpg');
+            break;
         case "Upd":
                 $id = $_GET['id'];
                 $est = $_GET['est'];
@@ -41,6 +52,17 @@ if(isset($_GET['Action'])){
             break;
     }    
 }
+
+function Imgen($idProdu) {
+    $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/product/'; /*carpeta de donde se encuenta las imagenes del servidor*/
+    $archivoObjet = fopen($serv.$idProdu,"rb");
+    $content = fread($archivoObjet,filesize($serv.$idProdu));
+    fclose($archivoObjet);
+    $auximage = base64_encode($content);
+   //echo '<img src="data:image/jpg;base64,'.$auximage.'" />';
+   return $auximage;
+}
+
 
 //------------ METODOS ---------------
  function eliminar($var) {

@@ -31,10 +31,31 @@ if(isset($_GET['Action'])){
             
                 $idDep = array("userT"=>$us, "Tipo"=>$tip,"Nombre"=>$nom ,"punt"=>$punt,"coins"=>$coin,"cat"=>$cat);
                 /*ESTA CLASE DE LISTADO DE DE MANEA MOMENTANEA*/
-                echo json_encode(listar($idDep));
+                $array = listar($idDep);
+                $aux = array();
+                foreach ($array as $value) {
+                    $value['foto'] = Imgen($value['idproducto']);
+                    array_push($value,Imgen($value['idproducto']));
+                    array_push($aux, $value);
+                }
+                echo json_encode($aux);
             break;
-        
+        case "img" : 
+            echo Imgen(1);
+            break;
         case "Upd":
+            if(isset($_GET['fotosize'])&&isset($_GET['fotospath'])){
+                $IdProd = $_GET['id'];
+                $size = $_GET['fotosize'];
+                $patch = $_GET['fotospath'];
+            
+//            $archivoObjet = fopen($patch,"rb");
+//            $content = fread($archivoObjet,filesize($patch));
+//            fclose($archivoObjet); 
+            
+                $obj = new Producto($IdProd,"","","","","","","","",$patch,0,1);
+                echo update($obj);
+            }else{
                 $IdProd = $_GET['IdProd'];
                 $CodProd = $_GET['CodProd'];
                 $IdProve = $_GET['IdProve'];
@@ -47,6 +68,7 @@ if(isset($_GET['Action'])){
                 $Photo = $_GET['Photo'];
                 $obj = new Producto($IdProd,$CodProd, $IdProve, $IdTipo, $Nom, $Descri, $Cantid, $PreC, $PreV, $Photo,0,1);
                 echo update($obj);
+            }
             break;
         case 'delet':
                 $IdProd = $_GET['IdProd'];
@@ -56,6 +78,21 @@ if(isset($_GET['Action'])){
         default:
             break;
     }    
+}
+
+function Imgen($idProdu) {
+   $idDep = array("userT"=>"I", "Tipo"=>"0","Nombre"=>$idProdu,"punt"=>"0","coins"=>"0","cat"=>"0");
+   $array = listar($idDep);
+   $auximage = '';
+   foreach ($array as $value) {
+      $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/product/'; /*carpeta de donde se encuenta las imagenes del servidor*/
+      $archivoObjet = fopen($serv.$value['photo'],"rb");
+      $content = fread($archivoObjet,filesize($serv.$value['photo']));
+      fclose($archivoObjet);
+      $auximage = base64_encode($content);
+   }
+   //echo '<img src="data:image/jpg;base64,'.$auximage.'" />';
+   return $auximage;
 }
 
 //------------ METODOS ---------------

@@ -28,7 +28,16 @@ if(isset($_GET['Action'])){
         
         case "list" :
             $id = $_GET['id'];
-            echo json_encode(listar($id));
+            $array = listar($id);
+                $aux = array();
+                foreach ($array as $value) {
+                    if(array_key_exists('photo',$value)){
+                        $value['foto'] = Imgen($value['photo']);
+                        array_push($value,Imgen($value['photo']));
+                    }
+                    array_push($aux, $value);
+                }
+                echo json_encode($aux);
             break;
         case "Upd" :
             /*$objidClient = $_GET['idClient'];
@@ -45,6 +54,17 @@ if(isset($_GET['Action'])){
 }else{
     echo 'no tienes nada en enseñar perro';
 }
+
+function Imgen($idProdu) {
+    $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/product/'; /*carpeta de donde se encuenta las imagenes del servidor*/
+    $archivoObjet = fopen($serv.$idProdu,"rb");
+    $content = fread($archivoObjet,filesize($serv.$idProdu));
+    fclose($archivoObjet);
+    $auximage = base64_encode($content);
+   //echo '<img src="data:image/jpg;base64,'.$auximage.'" />';
+   return $auximage;
+}
+
 //------------ METODOS ---------------
 function eliminar($var) {
     $objAdmi = new CarritCompraDAO();

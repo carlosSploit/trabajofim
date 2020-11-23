@@ -40,7 +40,6 @@ async function principal(){
         $('#tituProduct').html("Configuracion")
         //se da la escucha al boton del actualizar
         $('#actualius').click(function (event){ //cuando se precione la opccion de sign, cambia el contenedor
-            console.log("Saaaaaaaaaaapeeeeeeeeeeeeeee");
             if(localStorage.getItem("user")){
                 let varOBJ = JSON.parse(localStorage.getItem("user"));
                 if(varOBJ.tip == 'A'){ //administrador
@@ -113,7 +112,7 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
                         '</div>'+
                     '<div class="col-5">'+
                         '<div class="text-center">'+
-                            '<img src="./view/resorces/fondolo.jpg" style="width: 14vh; height: 14vh;'+
+                            '<img id="ImganItenAdmin" src="'+photo+'" style="width: 14vh; height: 14vh;'+
                             '-webkit-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);'+
                             '-moz-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);'+
                             'box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);"'+
@@ -121,8 +120,11 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
                             '</div>'+
                         '<div class="row my-2">'+
                             '<div class="col">'+
-                                ' <button type="button" style="text-align: center; width: 100px; height: 30px;" id="NewProdut"'+
-                                  '  class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir' + 
+                               '<input type="file" id="imgLog" hidden="hidden" accept="image/*""/>' +
+                            '   <Label' +
+                            '      style="text-align: center; width: 100px; height: 30px;"' +
+                            '      id="FothoAdmi" onclick="clickFile()"' +
+                            '      class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir</Label>' +
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -156,7 +158,7 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
             '<div class="row">' +
             '   <div class="col">' +
             '       <div class="input-group mb-3">' +
-            '           <button type="button" id="actualius"type="button" class="btn font-weight-bold rounded-pill col-8 d-flex justify-content-center mx-auto actualius"'+
+            '           <button type="button" id="actualius" type="button" class="btn font-weight-bold rounded-pill col-8 d-flex justify-content-center mx-auto actualius"'+
                           'style="background-color: #546e7a; color: aliceblue">Ingresar' +
             '            Datos</button>' +
             '        </div>' +
@@ -164,6 +166,28 @@ function ConfigUser(id,dni,nombre,telf,corr,photo,pass) {
             ' </div>' +    
     ' </div>'+
 '<!------------------------->';
+}
+
+/*escucha del Boton para insertar un file*/
+function clickFile() {
+    var idchan = '#imgLog';
+    var idchankey = 'imgLog';
+    $(idchan).click();//obliga un click
+    const imgFile = document.getElementById(idchankey);
+    imgFile.addEventListener("change",function () {
+        const file = this.files[0];
+        localStorage.setItem("foto",JSON.stringify(file));
+        console.log(file);
+        var yave = '#ImganItenAdmin';
+        if (file) {
+            const render = new FileReader();
+            render.addEventListener("load",function (event) {
+                console.log(this.result);
+                $(yave).attr("src",this.result);
+            });
+            render.readAsDataURL(file);
+        }
+    });
 }
 
 class ApiCliente{
@@ -191,7 +215,8 @@ class ApiCliente{
             if(data.length != 0){
                 data.forEach(element => {
                     console.log(element);
-                    $('#contModal').html(ConfigUser("",element.dni_user,element.nombre,element.telefono,element.correo,"",element.pass));
+                    $('#contModal').html(ConfigUser("",element.dni_user,element.nombre,element.telefono,element.correo,'data:image/jpg;base64,'+element.foto,element.pass));
+                    $('#FotPerfilUs').attr("src",'data:image/jpg;base64,'+element.foto);
                 });
 
             }else{
@@ -207,7 +232,7 @@ class ApiCliente{
         var yabnom = '#nomText';
         var yabcor = '#correText';
         var yabtel = '#telefText';
-        var yabpho = '#fotoImg';
+        var yabpho = 'imgLog';
         var yabpas = '#passText';
         //se inseran los datos
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=Upd"
@@ -216,10 +241,41 @@ class ApiCliente{
         +"&nom=" + $(yabnom).val()
         +"&corre=" + $(yabcor).val()
         +"&telef=" + $(yabtel).val()
-        +"&foto=" + "sahdjahdjkahdjkahdjkashdjksa"
+        +"&foto=" + "default.jpg"
         +"&pass=" + $(yabpas).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+
+        /*Inserta la foto en el sistema*/
+        if(document.getElementById(yabpho).files[0]==null){
+            console.log("No hay pes");
+        }else{
+            var formData = new FormData();
+            formData.append("ob", "clie");
+            formData.append("A", "Upd");
+            formData.append("id", $(yabdni).val());
+            formData.append("foto", document.getElementById(yabpho).files[0]);
+
+            fetch("http://localhost/PhpProjec/apI/ApiManager.php",{
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.success) {
+                    console.log(response);
+                }else{
+                    console.log(response);
+                }
+                })
+            .then(data => {
+                data.forEach(element => {
+                    console.log(element);
+                });
+            });
+        }
+
+        this.ListAdmin();
+        this.ListAdmin();
     }
 }
 
@@ -246,7 +302,8 @@ class ApiAdministrador{
             .then(data => {
                 console.log(data);
                 data.forEach(element => {
-                    $('#contModal').html(ConfigUser(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,element.foto,element.pass));
+                    $('#contModal').html(ConfigUser(element.idAdministracion,element.dni_user,element.nombre,element.telefono,element.correo,'data:image/jpg;base64,'+element.foto,element.pass));
+                    $('#FotPerfilUs').attr("src",'data:image/jpg;base64,'+element.foto);
                 });
             }).catch(Error => console.log(Error));
     }
@@ -257,7 +314,7 @@ class ApiAdministrador{
         var yabnom = '#nomText';
         var yabcor = '#correText';
         var yabtel = '#telefText';
-        var yabpho = '#fotoImg';
+        var yabpho = 'imgLog';
         var yabpas = '#passText';
         //Extraer el tipo de administrador para la actualizacion
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=list"
@@ -282,10 +339,42 @@ class ApiAdministrador{
         +"&nom=" + $(yabnom).val()
         +"&corre=" + $(yabcor).val()
         +"&telef=" + $(yabtel).val()
-        +"&foto=" + "sahdjahdjkahdjkahdjkashdjksa"
+        +"&foto=" + "default.jpg"
         +"&pass=" + $(yabpas).val()
         +"&tiptrabajo=" + $(yabTiA).val())
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+
+
+        if(document.getElementById(yabpho).files[0]==null){
+            console.log("No hay pes");
+        }else{
+            /*Inserta la foto en el sistema*/
+            var formData = new FormData();
+            formData.append("ob", "Admi");
+            formData.append("A", "Upd");
+            formData.append("id", yabidA);
+            formData.append("foto", document.getElementById(yabpho).files[0]);
+
+            fetch("http://localhost/PhpProjec/apI/ApiManager.php",{
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.success) {
+                    console.log(response);
+                }else{
+                    console.log(response);
+                }
+            })
+            .then(data => {
+                data.forEach(element => {
+                    console.log(element);
+                });
+            });
+        }
+
+        this.ListAdmin();
+        this.ListAdmin();
     }
 }

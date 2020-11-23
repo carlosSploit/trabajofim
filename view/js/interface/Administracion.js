@@ -197,7 +197,8 @@ function principal() {
         objAdmi.ListAdmin();
         objAdmi.ListAdmin();
         $('#InserAdmid').click(function (event) {
-            var objAdmi = new ApiAdministrador("",$('#dniTextAdmi').val(),$('#nomTextAdmi').val(),$('#correTextAdmi').val(),$('#telefTextAdmi').val(),$('#ImganItenAdmin').attr("value"),$('#passTextAdmi').val(),$('#tiptrabajoSeletAdmi').val());            
+            /*en el caso de la imagen se le envia el indicador donde va a jalar la imagen*/
+            var objAdmi = new ApiAdministrador("",$('#dniTextAdmi').val(),$('#nomTextAdmi').val(),$('#correTextAdmi').val(),$('#telefTextAdmi').val(),"imgLog",$('#passTextAdmi').val(),$('#tiptrabajoSeletAdmi').val());            
             objAdmi.addAdmin();
             objAdmi.id = -1;
             objAdmi.ListAdmin();
@@ -254,11 +255,11 @@ function buscCatPro(id) {
 }
 
 /*Vista del producto*/
-function ItenProduc(id,nombre,Punt,prec) {
+function ItenProduc(id,nombre,Punt,prec,foto) {
     return '<!--          card de productos generico            -->' +
         '    <div id="456789" class="card mx-1 my-1"' +
         '        style="width: 170px; height: 270px; border-radius: 10px; overflow: hidden;">' +
-        '        <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg"' +
+        '        <img class="caratCard mx-auto img-fluid" src="'+foto+'"' +
         '            alt="Card image cap">' +
         '        <div class="mx-2" style="width: 100%; height: auto;">' +
         '            <h6 class="textCard">'+nombre+'</h6>' +
@@ -530,7 +531,7 @@ function ManteniProduc() {
         '</div>' +
         '<div class="col-5">' +
         '<div class="text-center">' +
-        '<img src="./resorces/fondolo.jpg" style="width: 14vh; height: 14vh;' +
+        '<img id="ImganItenAdmin" src="./resorces/fondolo.jpg" style="width: 14vh; height: 14vh;' +
         '-webkit-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
         '-moz-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
         'box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);"' +
@@ -538,8 +539,11 @@ function ManteniProduc() {
         '</div>' +
         '<div class="row my-2">' +
         '<div class="col">' +
-        ' <button type="button" style="text-align: center; width: 100px; height: 30px;" id="NewProdut"' +
-        '  class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir' +
+        '<input type="file" id="imgLog" hidden="hidden" accept="image/*""/>' +
+        '<Label' +
+        'style="text-align: center; width: 100px; height: 30px;"' +
+        'id="FothoAdmi" onclick="clickFile()"' +
+        'class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir</Label>' +
         '</div>' +
         '</div>' +
         '</div>' +
@@ -664,7 +668,7 @@ function ManteniProducAct(id) {
         '</div>' +
         '<div class="col-5">' +
         '<div class="text-center">' +
-        '<img src="./resorces/fondolo.jpg" style="width: 14vh; height: 14vh;' +
+        '<img id="ImganItenAdmin'+id+'" src="./resorces/fondolo.jpg" style="width: 14vh; height: 14vh;' +
         '-webkit-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
         '-moz-box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);' +
         'box-shadow: 6px 4px 29px -14px rgba(0, 0, 0, 0.75);"' +
@@ -672,8 +676,11 @@ function ManteniProducAct(id) {
         '</div>' +
         '<div class="row my-2">' +
         '<div class="col">' +
-        ' <button type="button" style="text-align: center; width: 100px; height: 30px;" id="NewProdut"' +
-        '  class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir' +
+        '<input type="file" id="imgLog'+id+'" hidden="hidden" accept="image/*"/>' +
+        '<Label' +
+        '  style="text-align: center; width: 100px; height: 30px;"' +
+        '  id="FothoAdmi" onclick="clickFileItenAdmin('+id+')"' +
+        '  class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir</Label>' +
         '</div>' +
         '</div>' +
         '</div>' +
@@ -1631,7 +1638,7 @@ function MantAdm() {
         '                                   <div class="row my-2">' +
         '                                       <div class="col">' +
                                                     '<input type="file" id="imgLog" hidden="hidden" accept="image/*""/>' +
-        '                                           <Label' +
+                                                    '<Label' +
         '                                               style="text-align: center; width: 100px; height: 30px;"' +
         '                                               id="FothoAdmi" onclick="clickFile()"' +
         '                                               class="btn btn-primary btn-block btn-sm mx-auto rounded-pill">Añadir</Label>' +
@@ -2071,7 +2078,7 @@ function productCarri(photo,nombre,canti,monto) {
         '               <img style="border-radius: 50%;' +
         '               width: 40px;' +
         '               height: 40px;' +
-        '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >' +
+        '               justify-content: right;" class="mx-auto" src="'+photo+'" alt="" >' +
         '            </div> ' +
         '            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">' +
                         nombre +
@@ -2230,13 +2237,37 @@ class ApiAdministrador{
         +"&nom="+ this.nombre
         +"&corre="+ this.corre
         +"&telef="+ this.telef
-        +"&foto=" + this.foto
+        +"&foto=" + "default.jpg"
         +"&pass=" + this.pass
         +"&tiptrabajo="+ this.tiptrabajo)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
         this.ListAdmin();
         this.ListAdmin();
+
+        /*Inserta la foto en el sistema*/
+        var formData = new FormData();
+        formData.append("ob", "Admi");
+        formData.append("A", "inse");
+        formData.append("id", this.dni);
+        formData.append("foto", document.getElementById(this.foto).files[0]);
+
+        fetch("http://localhost/PhpProjec/apI/ApiManager.php",{
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.success) {
+                console.log(response);
+            }else{
+                console.log(response);
+            }
+          })
+        .then(data => {
+            data.forEach(element => {
+                console.log(element);
+            });
+        });
     }
 
     async ListAdmin(){
@@ -2285,7 +2316,7 @@ class ApiAdministrador{
         +"&nom=" +  $(yabnom).val()
         +"&corre=" + $(yabcor).val()
         +"&telef=" + $(yabtel).val()
-        +"&foto=" + ""
+        +"&foto=" + "default.jpg"
         +"&pass=" + $(yabpas).val()
         +"&tiptrabajo=" + $(yabTiA).val(),{
             method: 'GET',
@@ -2308,28 +2339,34 @@ class ApiAdministrador{
             }
           });*/
         console.log( document.getElementById(yabpho).files[0]);
-        var formData = new FormData();
-        formData.append("ob", "Admi");
-        formData.append("A", "Upd");
-        formData.append("id", yabidA);
-        formData.append("foto", document.getElementById(yabpho).files[0]);
+        /*Evita que al momento de insertar, produsca un bug, insertando como imagen la de default.jpg*/
+        if(document.getElementById(yabpho).files[0]==null){
+            console.log("No hay pes");
+        }else{
+            /*Inserta la foto en el sistema*/
+            var formData = new FormData();
+            formData.append("ob", "Admi");
+            formData.append("A", "Upd");
+            formData.append("id", yabidA);
+            formData.append("foto", document.getElementById(yabpho).files[0]);
 
-        fetch("http://localhost/PhpProjec/apI/ApiManager.php",{
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => {
-            if (response.success) {
-                console.log(response);
-            }else{
-                console.log(response);
-            }
-          })
-        .then(data => {
-            data.forEach(element => {
-                console.log(element);
+            fetch("http://localhost/PhpProjec/apI/ApiManager.php",{
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.success) {
+                    console.log(response);
+                }else{
+                    console.log(response);
+                }
+            })
+            .then(data => {
+                data.forEach(element => {
+                    console.log(element);
+                });
             });
-        });
+        }
         
         /*var yabidA = this.id;
         var yabdni = '#dniTextAdmi'+this.id;
@@ -2630,9 +2667,11 @@ class ApiProducto{
                                 var yavprv = "#PrVProduc"+nombre;
                                 var yavsto = "#CanProduc"+nombre;
                                 var yavdes = "#DesProduc"+nombre;
+                                var yavFoto = "#ImganItenAdmin"+nombre;
                                 // insertando datos al contenedor
                                 $(yavcod).val(element.CodProduc);
                                 $(yavnom).val(element.Nombre);
+                                $(yavFoto).attr("src",'data:image/jpg;base64,'+element.foto);
                                 //insertar datos a las categorirasss
                                 var objCat = new ApiCategori(-1,yavctp,element.idTipo);
                                 $(yavctp).html(DatCategoriMP(element.idTipo,element.nombreTipo)); //inicializa con el proveedor del producto
@@ -2660,7 +2699,7 @@ class ApiProducto{
                         .then(data => {
                             var html_codeIten = "";
                             data.forEach(element => {
-                                html_codeIten = html_codeIten + ItenProduc(element.idproducto,element.Nombre,element.calificacion,element.PrecioV);
+                                html_codeIten = html_codeIten + ItenProduc(element.idproducto,element.Nombre,element.calificacion,element.PrecioV,'data:image/jpg;base64,'+element.foto);
                                 //console.log(element.idproducto+" "+element.Nombre+" "+element.calificacion+" "+element.PrecioV);
                             });
                             $('#contentProductAct').html(html_codeIten);
@@ -2693,6 +2732,7 @@ class ApiProducto{
         var yavprv = "#PrVProduc"+this.IdProd;
         var yavsto = "#CanProduc"+this.IdProd;
         var yavdes = "#DesProduc"+this.IdProd;
+        var yavPro = "imgLog"+this.IdProd;
 
         fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=Upd"
         +"&IdProd="+this.IdProd
@@ -2704,9 +2744,40 @@ class ApiProducto{
         +"&Cantid="+$(yavsto).val()
         +"&PreC="+$(yavprc).val()
         +"&PreV="+$(yavprv).val()
-        +"&Photo="+"adjkasdhjsahdjsahdjshdkjashdks")
+        +"&Photo="+"default.jpg")
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
+
+        if(document.getElementById(yavPro).files[0]==null){
+            console.log("No hay pes");
+        }else{
+            /*Inserta la foto en el sistema*/
+            var formData = new FormData();
+            formData.append("ob", "Prod");
+            formData.append("A", "Upd");
+            formData.append("id", this.IdProd);
+            formData.append("foto", document.getElementById(yavPro).files[0]);
+
+            fetch("http://localhost/PhpProjec/apI/ApiManager.php",{
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.success) {
+                    console.log(response);
+                }else{
+                    console.log(response);
+                }
+            })
+            .then(data => {
+                data.forEach(element => {
+                    console.log(element);
+                });
+            });
+        }
+
+        alert("Actualizado correctamente...!");
+
         this.List("");
         this.List("");
     }
@@ -2926,7 +2997,7 @@ class ApiPedidoA{
                 var codYabe = "#containerprodutIten"+element.idpedido;
                 data.forEach(Iten => {
                   //console.log(element);    
-                  html_codeItenLis = html_codeItenLis + productCarri(Iten.photo,Iten.Nombre,Iten.canti,Iten.PrecioV);
+                  html_codeItenLis = html_codeItenLis + productCarri('data:image/jpg;base64,'+Iten.foto,Iten.Nombre,Iten.canti,Iten.PrecioV);
                 });
               $(codYabe).html(html_codeItenLis);
             }).catch(Error => console.log(Error));    

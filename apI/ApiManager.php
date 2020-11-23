@@ -666,7 +666,14 @@ if(isset($_GET['ob'])){
                  * &pass= (contraseña de acceso al sistema del administrador)
                  * &tiptrabajo= (tipo de trabajador del adminitrador) esta funcionavilidad no presenta mucho uso momentaneamente*/
                 case "inse":
-                    header("Location: ../controler/Administrador.php?Action=inse&dni=".$_POST['dni']."&nom=".$_POST['nom']."&corre=".$_POST['corre']."&telef=".$_POST['telef']."&foto=".$_POST['foto']."&pass=".$_POST['pass']."&tiptrabajo=".$_POST['tiptrabajo']);
+                    $nameArch = $_FILES['foto']['name'];
+                    $TypeArch = $_FILES['foto']['type'];
+                    $SiseArch = $_FILES['foto']['size'];
+                    $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/Admin/'; //ruta de la carpeta destino del servidor
+                    move_uploaded_file($_FILES['foto']['tmp_name'],$serv.$nameArch);
+
+                    
+                    header("Location: ../controler/Administrador.php?Action=inse&id=".$_POST['id']."&fotosize=".$SiseArch."&fotospath=".$nameArch);
                 break;
             
                 /* la accion realizada es listado se traduce de la siguiente manera
@@ -678,10 +685,10 @@ if(isset($_GET['ob'])){
                     $nameArch = $_FILES['foto']['name'];
                     $TypeArch = $_FILES['foto']['type'];
                     $SiseArch = $_FILES['foto']['size'];
-                    $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/'; //ruta de la carpeta destino del servidor
+                    $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/Admin/'; //ruta de la carpeta destino del servidor
                     move_uploaded_file($_FILES['foto']['tmp_name'],$serv.$nameArch);
 
-                    header("Location: ../controler/Administrador.php?Action=Upd&id=".$_POST['id']."&fotosize=".$SiseArch."&fotospath=".$serv.$nameArch);
+                    header("Location: ../controler/Administrador.php?Action=Upd&id=".$_POST['id']."&fotosize=".$SiseArch."&fotospath=".$nameArch);
                 break;
 
                 default:
@@ -723,7 +730,14 @@ if(isset($_GET['ob'])){
                  * &PreV=(precio de venta)
                  * &Photo=(array de byts de la foto)*/
                 case 'Upd':
-                    header("Location: ../controler/Producto.php?Action=Upd&IdProd=".$_POST['IdProd']."&CodProd=".$_POST['CodProd']."&IdProve=".$_POST['IdProve']."&IdTipo=".$_POST['IdTipo']."&Nom=".$_POST['Nom']."&Descri=".$_POST['Descri']."&Cantid=".$_POST['Cantid']."&PreC=".$_POST['PreC']."&PreV=".$_POST['PreV']."&Photo=".$_POST['Photo']);
+                    $objidAd = $_POST['id'];
+                    $nameArch = $_FILES['foto']['name'];
+                    $TypeArch = $_FILES['foto']['type'];
+                    $SiseArch = $_FILES['foto']['size'];
+                    $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/product/'; //ruta de la carpeta destino del servidor
+                    move_uploaded_file($_FILES['foto']['tmp_name'],$serv.$nameArch);
+                    
+                    header("Location: ../controler/Producto.php?Action=Upd&id=".$objidAd."&fotosize=".$SiseArch."&fotospath=".$nameArch);
                 break;
                 default:
                     echo 'no se entendio la accion que quiso realizar';
@@ -736,18 +750,6 @@ if(isset($_GET['ob'])){
         if(isset($_POST['A'])){
             $actioOBJ = $_POST['A'];
             switch ($actioOBJ) {
-                /* la accion realizada es insercion se traduce de la siguiente manera
-                 * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=inse
-                 * &dni=(dni del administrador)
-                 * &nom=(nombre del administrador)
-                 * &corre=(correo activo del administrador)
-                 * &telef=(telefono activo del administrador)
-                 * &foto= (telefono activo del administrador)
-                 * &pass= (contraseña de acceso al sistema del administrador)*/
-                case "inse":
-                    header("Location: ../controler/Cliente.php?Action=inse&dni=".$_POST['dni']."&nom=".$_POST['nom']."&corre=".$_POST['corre']."&telef=".$_POST['telef']."&foto=".$_POST['foto']."&pass=".$_POST['pass']);
-                break;
-            
                 /* la accion realizada es listado se traduce de la siguiente manera
                  * http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=Upd
                  * &id= (id del administraodr)
@@ -758,7 +760,14 @@ if(isset($_GET['ob'])){
                  * &foto= (telefono activo del administrador)
                  * &pass= (contraseña de acceso al sistema del administrador)*/
                 case 'Upd':
-                    header("Location: ../controler/Cliente.php?Action=Upd&id=".$_POST['id']."&dni=".$_POST['dni']."&nom=".$_POST['nom']."&corre=".$_POST['corre']."&telef=".$_POST['telef']."&foto=".$_POST['foto']."&pass=".$_POST['pass']);
+                    $objidAd = $_POST['id'];
+                    $nameArch = $_FILES['foto']['name'];
+                    $TypeArch = $_FILES['foto']['type'];
+                    $SiseArch = $_FILES['foto']['size'];
+                    $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/Cliente/'; //ruta de la carpeta destino del servidor
+                    move_uploaded_file($_FILES['foto']['tmp_name'],$serv.$nameArch);
+                    
+                    header("Location: ../controler/Cliente.php?Action=Upd&id=".$objidAd."&fotosize=".$SiseArch."&fotospath=".$nameArch);
                 break;
 
                 default:

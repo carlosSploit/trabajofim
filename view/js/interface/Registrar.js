@@ -112,7 +112,7 @@ class ApiCliente{
         +"&nom="+ this.nombre
         +"&corre="+ this.corre
         +"&telef="+ this.telef
-        +"&foto=" + this.foto
+        +"&foto=" + "default.jpg"
         +"&pass=" + this.pass)
         .then(response => response.json())
         .then(data => console.log(JSON.parse(data)));
@@ -137,31 +137,6 @@ class ApiCliente{
             });
             //$('#ContenerAdmin').html(html_codeIten);
         }).catch(Error => console.log(Error));
-    }
-
-    async Update(){
-        var yabidA = this.id;
-        var yabdni = '#dniTextAdmi'+this.id;
-        var yabnom = '#nomTextAdmi'+this.id;
-        var yabcor = '#correTextAdmi'+this.id;
-        var yabtel = '#telefTextAdmi'+this.id;
-        var yabpho = '#fotoImgAdmi'+this.id;
-        var yabpas = '#passTextAdmi'+this.id;
-        var yabTiA = '#tiptrabajoSeletAdmi'+this.id;
-        fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Admi&A=Upd"
-        +"&id=" + yabidA
-        +"&dni=" + $(yabdni).val()
-        +"&nom=" + $(yabnom).val()
-        +"&corre=" + $(yabcor).val()
-        +"&telef=" + $(yabtel).val()
-        +"&foto=" + "sahdjahdjkahdjkahdjkashdjksa"
-        +"&pass=" + $(yabpas).val()
-        +"&tiptrabajo=" + $(yabTiA).val())
-        .then(response => response.json())
-        .then(data => console.log(JSON.parse(data)));
-        
-        this.ListAdmin();
-        this.ListAdmin();
     }
 }
 

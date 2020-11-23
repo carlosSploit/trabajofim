@@ -83,10 +83,10 @@ function ItenCateg(id,nombre){
           '</div>';
 }
 
-function ItenProduct(id,nombre,Punt,prec){
+function ItenProduct(id,nombre,Punt,prec,foto){
     return '<!--          card de productos generico            -->'+
   '  <div onclick="Interaccion('+id+')" class="card mx-1 my-1" style="width: 170px; height: 180px; border-radius: 10px; overflow: hidden;">'+
-  '     <img class="caratCard mx-auto img-fluid" src="./resorces/fondo_homeprinci.jpg" alt="Card image cap">'+
+  '     <img class="caratCard mx-auto img-fluid" src="'+foto+'" alt="Card image cap">'+
   '     <div class="mx-2" style="width: 100%; height: auto;"><h6 class="textCard">'+nombre+'</h6></div>'+
   '     <div class="container" style="width: 100%;">'+
   '         <div class="row extencion">'+
@@ -117,7 +117,7 @@ function Interaccion(id){//cuando se precione la opccion de meseng, cambia el co
   $('#infoProducto').modal('show');
 }
 
-function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
+function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion,foto){
     return '<div class="container">'+
                   '<div class="row">'+
                     '<div class="col-lg-12" style=" width: 100%; height:200px; margin-bottom: 10px;">'+
@@ -127,7 +127,7 @@ function Info_Product(id,nombre,descripccion,cantidad,precio,calificacion){
                         '</ol>'+
                         '<div class="carousel-inner">'+
                           '<div class="carousel-item active">'+
-                            '<img src="resorces/fondolo.jpg" class="d-block w-100" height="200px" alt="...">'+ /*Aqui va ir una de las imagenes del producto*/
+                            '<img src="'+foto+'" class="d-block w-100" height="200px" alt="...">'+ /*Aqui va ir una de las imagenes del producto*/
                           '</div>'+
                         '</div>'+
                       '</div>'+
@@ -598,16 +598,18 @@ function RealPedid() {
       let varOBJ = JSON.parse(localStorage.getItem("user"));
       var objPedi = new ApiPedido(varOBJ.id,$('#GeneralListDis').val(),$('#Destinet').val());
       objPedi.ADDPedido();
-      $('#Destinet').val("");
 
       //Actualizar el carrito de compras
-      var objCarrit= new ApiCarritoCompra("","","");
-      objCarrit.listarCarrito();
-      objCarrit.listarCarrito();
+      //var objCarrit= new ApiCarritoCompra("","","");
+      //objCarrit.listarCarrito();
+      //objCarrit.listarCarrito();
 
       var objPedi = new ApiPedido("","","");
       objPedi.ListarPedid("C",1,0,varOBJ.id,0);
 
+      $('#MontoTot').val("");
+      $('#Destinet').val("");
+      $('#ContProduPed').html("");
           
       alert('Pedido Realizado correctamente');
     }else{
@@ -627,7 +629,7 @@ function ProducDist(id,nombredDist) {
   return '<option value="'+id+'">'+nombredDist+'</option>';  
 }
 
-function productCarri(id,nombre,precio,cantidad){
+function productCarri(id,nombre,precio,cantidad,foto){
   return '<!--        Card de producto insertado         -->'+
   '         <div class="row col-12 mx-1 my-1" style="width:100%; height: 80px; display: flex; justify-items: center;align-items: center;">'+
   '           <div class="row col-lg-12" style="overflow: hidden; border-radius: 20px;"> '+
@@ -635,7 +637,7 @@ function productCarri(id,nombre,precio,cantidad){
   '               <img style="border-radius: 50%;'+
   '               width: 40px;'+
   '               height: 40px;'+
-  '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+  '               justify-content: right;" class="mx-auto" src="'+foto+'" alt="" >'+
   '            </div> '+
   '            <div class = "col-4 bg-light "  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
                   nombre+
@@ -805,7 +807,7 @@ function productCarriMY(photo,nombre,canti,monto){
   '               <img style="border-radius: 50%;'+
   '               width: 40px;'+
   '               height: 40px;'+
-  '               justify-content: right;" class="mx-auto" src="./resorces/fondolo.jpg" alt="" >'+
+  '               justify-content: right;" class="mx-auto" src="'+photo+'" alt="" >'+
   '            </div> '+
   '            <div class = "col-5 bg-light"  style="height: 70px; display: flex; justify-items: center;align-items: center;">'+
                     nombre+
@@ -894,7 +896,7 @@ class ApiProducto{
                           data.forEach(element => {
                               console.log(element.Descripcion);
                               
-                              $('#contModal').html(Info_Product(element.idproducto,element.Nombre,element.Descripcion,element.Cantidad,element.PrecioV,element.calificacion));
+                              $('#contModal').html(Info_Product(element.idproducto,element.Nombre,element.Descripcion,element.Cantidad,element.PrecioV,element.calificacion,'data:image/jpg;base64,'+element.foto));
 
                               var objComent = new ApiComentProduct(element.idproducto,'2');
                               objComent.listarComent();
@@ -923,7 +925,7 @@ class ApiProducto{
                       .then(data => {
                           var html_codeIten = "";
                           data.forEach(element => {
-                              html_codeIten = html_codeIten + ItenProduct(element.idproducto,element.Nombre,element.calificacion,element.PrecioV);
+                              html_codeIten = html_codeIten + ItenProduct(element.idproducto,element.Nombre,element.calificacion,element.PrecioV,'data:image/jpg;base64,'+element.foto);
                               //console.log(element.idproducto+" "+element.Nombre+" "+element.calificacion+" "+element.PrecioV);
                           });
                           $('#ContstoreProduct').html(html_codeIten);
@@ -941,7 +943,7 @@ class ApiProducto{
                         .then(data => {
                             var html_codeIten = "";
                             data.forEach(element => {
-                                html_codeIten = html_codeIten + ItenProduct(element.idproducto,element.Nombre,element.calificacion,element.PrecioV);
+                                html_codeIten = html_codeIten + ItenProduct(element.idproducto,element.Nombre,element.calificacion,element.PrecioV,'data:image/jpg;base64,'+element.foto);
                                 //console.log(element.idproducto+" "+element.Nombre+" "+element.calificacion+" "+element.PrecioV);
                             });
                             $('#ContstoreProduct').html(html_codeIten);
@@ -1080,7 +1082,7 @@ async listarCarrito(){
       var conten_Items = "";
       var monto=0;
       data.forEach(element => {
-          conten_Items += productCarri(element.idproducto,element.Nombre,element.PrecioV,element.cantidad); 
+          conten_Items += productCarri(element.idproducto,element.Nombre,element.PrecioV,element.cantidad,'data:image/jpg;base64,'+element.foto); 
           $('#MontoTot').val(element.montT);
         });
       //  listar los departamentos dentro del carrito
@@ -1326,7 +1328,7 @@ class ApiPedido{
               var codYabe = "#containerprodutIten"+ element.idpedido;
               data.forEach(Iten => {
                 //console.log(element);    
-                html_codeItenLis = html_codeItenLis + productCarriMY(Iten.photo,Iten.Nombre,Iten.canti,Iten.PrecioV);
+                html_codeItenLis = html_codeItenLis + productCarriMY('data:image/jpg;base64,'+Iten.foto,Iten.Nombre,Iten.canti,Iten.PrecioV);
               });
             $(codYabe).html(html_codeItenLis);
           }).catch(Error => console.log(Error));    

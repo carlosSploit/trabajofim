@@ -9,6 +9,17 @@ if(isset($_GET['Action'])){
     switch ($action) {
 
         case "inse" :
+            /*verifica si lo que se quiere insertar es una imagen o los datos del administrador y realiza el proceso*/
+            if(isset($_GET['fotosize'])&&isset($_GET['fotospath'])){
+            $objidAd = $_GET['id'];
+            $size = $_GET['fotosize'];
+            $patch = $_GET['fotospath'];
+            
+            $objAdmi = new Administrador("",$objidAd,"","",$patch,"","","","");
+            echo insertar($objAdmi);
+            
+            } else {
+            
             $objdni = $_GET['dni'];
             $objnom = $_GET['nom'];
             $objcorre = $_GET['corre'];
@@ -19,6 +30,7 @@ if(isset($_GET['Action'])){
 
             $objAdmi = new Administrador($objnom, $objdni, $objcorre, $objtelef, $objfoto,"","",$objpass, $objtipT);
             echo insertar($objAdmi);
+            }
             break;
 
         case "delet" : 
@@ -46,11 +58,11 @@ if(isset($_GET['Action'])){
             $size = $_GET['fotosize'];
             $patch = $_GET['fotospath'];
             
-            $archivoObjet = fopen($patch,"r");
-            $content = fread($archivoObjet, $size);
-            fclose($archivoObjet);
-
-            $objAdmi = new Administrador("","","","", $content,$objidAd,"","","");
+//            $archivoObjet = fopen($patch,"rb");
+//            $content = fread($archivoObjet,filesize($patch));
+//            fclose($archivoObjet); 
+            
+            $objAdmi = new Administrador("","","","", $patch,$objidAd,"","","");
             update($objAdmi);
             }else{
             $objidAd = $_GET['id'];
@@ -79,8 +91,13 @@ function Imgen($idAdminis) {
    $array = listar($idDep);
    $auximage = '';
    foreach ($array as $value) {
-      $auximage = base64_encode($value['foto']);  
+      $serv = $_SERVER['DOCUMENT_ROOT'].'/uploads/Admin/'; /*carpeta de donde se encuenta las imagenes del servidor*/
+      $archivoObjet = fopen($serv.$value['foto'],"rb");
+      $content = fread($archivoObjet,filesize($serv.$value['foto']));
+      fclose($archivoObjet);
+      $auximage = base64_encode($content);  
    }
+   //echo '<img src="data:image/jpg;base64,'.$auximage.'" />';
    return $auximage;
 }
 
