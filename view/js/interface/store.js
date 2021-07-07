@@ -1,6 +1,6 @@
 
 $(document).ready(principal);
-
+var urlbase = "http://localhost/PhpProjec/";
 function principal() {
 
   var objProdu = new ApiProducto(1, "", "", "", "", "", "", "", "", "");
@@ -888,7 +888,7 @@ class ApiProducto {
       case "A":
         switch (tipo) {
           case 2: // se consulta la informacion, producto por producto
-            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT=" + user + "&Tipo=" + tipo + "&Nombre=" + nombre + "&punt=a&coins=a&cat=a")
+            fetch(urlbase + "api/ApiManager.php?ob=Prod&A=list&userT=" + user + "&Tipo=" + tipo + "&Nombre=" + nombre + "&punt=a&coins=a&cat=a")
               .then(response => response.json())
               .catch(Error => console.log(Error))
               .then(data => {
@@ -919,7 +919,7 @@ class ApiProducto {
             break;
 
           default: // con son varios los caso que se repiten con el mismo metodo se colocara el default
-            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT=" + user + "&Tipo=" + tipo + "&Nombre=" + nombre + "&punt=a&coins=a&cat=a")
+            fetch(urlbase + "api/ApiManager.php?ob=Prod&A=list&userT=" + user + "&Tipo=" + tipo + "&Nombre=" + nombre + "&punt=a&coins=a&cat=a")
               .then(response => response.json())
               .catch(Error => console.log(Error))
               .then(data => {
@@ -939,7 +939,7 @@ class ApiProducto {
         switch (tipo) {
 
           default: // con son varios los caso que se repiten con el mismo metodo se colocara el default
-            fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Prod&A=list&userT=" + user + "&Tipo=" + tipo + "&Nombre=" + nombre + "&punt=" + punt + "&coins=" + coins + "&cat=" + cat)
+            fetch(urlbase + "api/ApiManager.php?ob=Prod&A=list&userT=" + user + "&Tipo=" + tipo + "&Nombre=" + nombre + "&punt=" + punt + "&coins=" + coins + "&cat=" + cat)
               .then(response => response.json())
               .catch(Error => console.log(Error))
               .then(data => {
@@ -971,7 +971,7 @@ class ApiComentProduct {
 
   async insertComent() {
 
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=inse"
+    fetch(urlbase + "api/ApiManager.php?ob=coment&A=inse"
       + "&idProd=" + this.IdProd
       + "&idClient=" + this.idcli
       + "&Descrip=" + this.descrip
@@ -986,7 +986,7 @@ class ApiComentProduct {
     $('.carousel-control-next').hide();
     $('.carousel-control-prev').hide();
 
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=list"
+    fetch(urlbase + "api/ApiManager.php?ob=coment&A=list"
       + "&idpo=" + this.IdProd
       + "&tip=2")
       .then(response => response.json())
@@ -1021,7 +1021,7 @@ class ApiComentProduct {
         console.log(data);
       });
 
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=coment&A=list"
+    fetch(urlbase + "api/ApiManager.php?ob=coment&A=list"
       + "&idpo=" + this.IdProd
       + "&tip=1")
       .then(response => response.json())
@@ -1068,7 +1068,7 @@ class ApiCarritoCompra {
 
   async insertCarrito() {
 
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=inse"
+    fetch(urlbase + "api/ApiManager.php?ob=carritC&A=inse"
       + "&idUser=" + this.Idclien
       + "&idProd=" + this.IdProd
       + "&cantidad=" + this.canti)
@@ -1079,7 +1079,7 @@ class ApiCarritoCompra {
 
   async listarCarrito() {
     let varOBJ = JSON.parse(localStorage.getItem("user"));
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=list"
+    fetch(urlbase + "api/ApiManager.php?ob=carritC&A=list"
       + "&id=" + varOBJ.id)
       .then(response => response.json())
       .then(data => {
@@ -1113,7 +1113,7 @@ class ApiCarritoCompra {
 
   async delectCarrito() {
 
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=carritC&A=delet"
+    fetch(urlbase + "api/ApiManager.php?ob=carritC&A=delet"
       + "&idUser=" + this.Idclien
       + "&idProd=" + this.IdProd)
       .then(response => response.json())
@@ -1135,7 +1135,7 @@ class ApiDepartCar {
 
   async List() {//sirve para en caso que se quiera insertar un tipo de dato, se inyecte por la variable del contenedor
     //dat_constant = dat_constant.substring(1,dat_constant.length);
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=depart&A=list", { method: 'GET' })
+    fetch(urlbase + "api/ApiManager.php?ob=depart&A=list", { method: 'GET' })
       .then(response => response.json())
       .catch(Error => console.log(Error))
       .then(data => {
@@ -1172,7 +1172,7 @@ class ApiCiudadCar {
   }
 
   async List() { // se ingresa datos en caso que se quiera listar por distrito o por departamento
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Ciu&A=list&idDep=" + this.idDepart)
+    fetch(urlbase + "api/ApiManager.php?ob=Ciu&A=list&idDep=" + this.idDepart)
       .then(response => response.json())
       .catch(Error => console.log(Error))
       .then(data => {
@@ -1206,7 +1206,7 @@ class ApiDistritoCar {
   }
 
   async List() {
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Distr&A=list&idCI=" + this.idCiudad)
+    fetch(urlbase + "api/ApiManager.php?ob=Distr&A=list&idCI=" + this.idCiudad)
       .then(response => response.json())
       .catch(Error => console.log(Error))
       .then(data => {
@@ -1233,7 +1233,7 @@ class ApiCategorica {
   }
 
   async ListAdmin() {
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list")
+    fetch(urlbase + "api/ApiManager.php?ob=CatProd&A=list")
       .then(response => response.json())
       .catch(Error => console.log(Error))
       .then(data => {
@@ -1248,7 +1248,7 @@ class ApiCategorica {
   }
   //se aprobecha el metodo de lestado para crear un metodo de consulta
   async consultName() {
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=CatProd&A=list")
+    fetch(urlbase + "api/ApiManager.php?ob=CatProd&A=list")
       .then(response => response.json())
       .catch(Error => console.log(Error))
       .then(data => {
@@ -1289,7 +1289,7 @@ class ApiPedido {
 
   async ADDPedido() {
     console.log("Insertadaso pes tilin como tiene que cher");
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=inse"
+    fetch(urlbase + "api/ApiManager.php?ob=pedid&A=inse"
       + "&idCli=" + this.idClient
       + "&idDis=" + this.idDist
       + "&direccion=" + this.Direccio)
@@ -1300,7 +1300,7 @@ class ApiPedido {
   }
 
   async ListarPedid(tip, fil, id, idcli, filgeneral) {
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=list"
+    fetch(urlbase + "api/ApiManager.php?ob=pedid&A=list"
       + "&tip=" + tip
       + "&fil=" + fil
       + "&id=" + id
@@ -1320,7 +1320,7 @@ class ApiPedido {
         /*insertar los productos*/
         data.forEach(element => {
           //console.log(element);
-          fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=pedid&A=list"
+          fetch(urlbase + "api/ApiManager.php?ob=pedid&A=list"
             + "&tip=" + tip
             + "&fil=0"
             + "&id=" + element.idpedido
@@ -1366,7 +1366,7 @@ class ApiCliente {
 
   async ListAdmin() { // comprueva el login si el cliente con los datos existe
     console.log(this.corre + " " + this.pass);
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=clie&A=list"
+    fetch(urlbase + "api/ApiManager.php?ob=clie&A=list"
       + "&tip=1"
       + "&uss=" + this.id
       + "&pas=" + this.pass)
@@ -1400,7 +1400,7 @@ class ApiMessege {
   }
 
   async sedMessege() {
-    fetch("http://localhost/PhpProjec/api/ApiManager.php?ob=Mesg&A=inse"
+    fetch(urlbase + "api/ApiManager.php?ob=Mesg&A=inse"
       + "&tipm=3"
       + "&name=" + this.nombre
       + "&mail=" + this.email
