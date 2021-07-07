@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: white;
+}
+
+.caratCard {
+  height: 100px;
+  width: 100%;
+  border-radius: 6px;
+}
+.btn1 {
+  margin-left: 10px;
+  background-color: white;
+  color: #546e7a;
+  border-radius: 10px;
+  border: 1px solid;
+  width: auto;
+  height: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn1:hover {
+  background: #546e7a;
+  color: white;
+}
+
+.icon {
+  min-width: 10px;
+  text-align: left;
+  color: #546e7a;
+  font-weight: bold;
+}
+
+.icon:hover {
+  color: white;
+}
+
+.textCard {
+  width: 100%;
+  height: 14px;
+  padding-top: -7px;
+  margin-left: 1px;
+  margin-right: 5px;
+  font-size: 15px;
+}
+
+.textCardPrecio {
+  width: 100%;
+  height: 14px;
+  text-align: right;
+  margin-right: 2px;
+}
+
+.extencion {
+  padding-top: 30px;
+}
+
+.ContextCarTex {
+  height: 16px;
+  width: 100%;
+}
+
+.textCoint {
+  text-align: right;
+  font-size: 16px;
+  font-weight: 90;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 0.7em;
+  background: transparent;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: #c0392b;
+}
+
+.nav-link .active-2 {
+  background: #546e7a;
+}
+
+.carousel-item {
+  display: none;
+}
+
+.carousel-item .active {
+  display: flex;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  /*outline: black;*/
+  background-size: 100%, 100%;
+  /*border-radius: 50%;*/
+  /*border: 1px solid black;*/
+  background-image: none;
+}
+
+.carousel-control-next-icon:after {
+  content: ">";
+  font-size: 50px;
+  color: #546e7a;
+}
+
+.carousel-control-prev-icon:after {
+  content: "<";
+  font-size: 50px;
+  color: #546e7a;
+}
